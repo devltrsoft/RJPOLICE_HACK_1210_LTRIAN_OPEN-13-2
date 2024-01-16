@@ -1,4 +1,4 @@
-package com.ltrsoft.police_app.Add_complaint;
+package com.ltrsoft.police_app.fragment;
 
 import android.os.Bundle;
 
@@ -16,15 +16,14 @@ import android.widget.ImageView;
 import android.widget.Spinner;
 
 import com.google.android.material.navigation.NavigationView;
-import com.ltrsoft.police_app.Add_complaint.Investigation_adapter.IEvidenceAdapter;
-import com.ltrsoft.police_app.Add_complaint.Investigation_adapter.ISuspectAdapter;
-import com.ltrsoft.police_app.Add_complaint.Investigation_adapter.IVictimAdapter;
-import com.ltrsoft.police_app.Add_complaint.Investigation_adapter.IWitnessAdapter;
+import com.ltrsoft.police_app.Adapter.IEvidenceAdapter;
+import com.ltrsoft.police_app.Adapter.ISuspectAdapter;
+import com.ltrsoft.police_app.Adapter.IVictimAdapter;
+import com.ltrsoft.police_app.Adapter.IWitnessAdapter;
 import com.ltrsoft.police_app.Classes.Evidance;
 import com.ltrsoft.police_app.Classes.Suspect;
 import com.ltrsoft.police_app.Classes.Victim;
 import com.ltrsoft.police_app.Classes.Witness;
-import com.ltrsoft.police_app.Model.AddVictim;
 import com.ltrsoft.police_app.R;
 
 import java.util.ArrayList;

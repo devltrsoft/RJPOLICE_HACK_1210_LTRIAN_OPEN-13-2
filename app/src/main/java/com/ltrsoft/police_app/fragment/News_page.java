@@ -1,4 +1,4 @@
-package com.ltrsoft.police_app;
+package com.ltrsoft.police_app.fragment;
 
 import android.os.Bundle;
 
@@ -14,6 +14,8 @@ import android.view.ViewGroup;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.ltrsoft.police_app.Classes.News;
+import com.ltrsoft.police_app.R;
+import com.ltrsoft.police_app.fragment.Add_News_Page;
 
 import java.util.ArrayList;
 

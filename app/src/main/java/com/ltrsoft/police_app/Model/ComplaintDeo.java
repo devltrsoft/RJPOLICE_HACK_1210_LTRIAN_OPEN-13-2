@@ -42,7 +42,7 @@ public class ComplaintDeo {
     String searcgUrl="";
     public ArrayList<Complaint> list = new ArrayList<>();
     public ArrayList<String> search_list=new ArrayList<String>();
-    public ArrayList<Complaint> getAllComplaint(String fir_id, Context context) {
+    public void getAllComplaint(String fir_id, Context context ,Callback callback) {
 
         StringRequest stringRequest = new StringRequest(Request.Method.POST,  getAllComplaint_URL,
                 new Response.Listener<String>() {
@@ -70,24 +70,21 @@ public class ComplaintDeo {
                                 String city = jsonObject.getString("state_name");
                                 String district = jsonObject.getString("district_name");
 
-
                                  list.add(new Complaint(complaint_type_name, station_name, complaint_subject, complaint_location, complain_contact_no,
                                          incident_date, complaint_against, complaint_description,
                                          state, country, city, district,complaint_id, user_id, status_id));
-
                              }
-
+                            callback.onSuccess(list);
                         } catch (JSONException e) {
+                            callback.onErro(e.toString());
                             e.printStackTrace();
                             throw new RuntimeException(e);
-
                         }
-
-
                     }
                 }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
+                callback.onErro(error.toString());
                 error.printStackTrace();
             }
         }) {
@@ -95,16 +92,13 @@ public class ComplaintDeo {
             @Override
             protected Map<String, String> getParams() throws AuthFailureError {
                 HashMap<String, String> map = new HashMap<>();
-                map.put("fir_id", fir_id);
-
-
+//                map.put("fir_id", fir_id);
                 return map;
             }
 
         };
         RequestQueue requestQueue = Volley.newRequestQueue(context);
         requestQueue.add(stringRequest);
-        return list;
     }
 
 

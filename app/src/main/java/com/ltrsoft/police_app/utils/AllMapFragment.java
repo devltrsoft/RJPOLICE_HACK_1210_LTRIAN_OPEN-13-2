@@ -1,4 +1,4 @@
-package com.ltrsoft.police_app.fragment;
+package com.ltrsoft.police_app.utils;
 
 import android.Manifest;
 import android.annotation.SuppressLint;

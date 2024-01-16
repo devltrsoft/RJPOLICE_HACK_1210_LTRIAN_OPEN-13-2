@@ -1,4 +1,4 @@
-package com.ltrsoft.police_app.Add_complaint.Investigation_adapter;
+package com.ltrsoft.police_app.Adapter;
 
 import android.view.LayoutInflater;
 import android.view.View;

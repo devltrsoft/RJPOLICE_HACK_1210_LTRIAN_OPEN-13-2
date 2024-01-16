@@ -7,11 +7,7 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentManager;
-import androidx.fragment.app.FragmentTransaction;
 
-import android.os.Handler;
-import android.os.Looper;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -23,10 +19,9 @@ import android.widget.Toast;
 import com.ltrsoft.police_app.Classes.Police;
 import com.ltrsoft.police_app.MainActivity;
 import com.ltrsoft.police_app.Model.PoliceDeo;
-import com.ltrsoft.police_app.NavigationDrawer;
 import com.ltrsoft.police_app.R;
-import com.ltrsoft.police_app.SplashScreen;
 import com.ltrsoft.police_app.interface1.Callback;
+import com.ltrsoft.police_app.utils.UserDataAccess;
 
 public class login extends Fragment {
 
@@ -74,6 +69,11 @@ public class login extends Fragment {
                             SharedPreferences.Editor editor = pref.edit();
                             editor.putBoolean("flag", true)
                                     .apply();
+
+                            String police_id = (String)obj;
+                            UserDataAccess access = new UserDataAccess();
+                            access.setUserId(police_id ,getActivity());
+
                             Toast.makeText(getContext(), "success"+success, Toast.LENGTH_SHORT).show();
                             Intent main_activity_intent = new Intent( getActivity(), MainActivity.class);
                             startActivity(main_activity_intent);

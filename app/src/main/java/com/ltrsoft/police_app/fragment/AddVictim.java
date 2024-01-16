@@ -1,4 +1,4 @@
-package com.ltrsoft.police_app.Add_complaint;
+package com.ltrsoft.police_app.fragment;
 
 import android.Manifest;
 import android.app.Activity;
@@ -38,13 +38,11 @@ import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
-import com.android.volley.toolbox.JsonArrayRequest;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.ltrsoft.police_app.Adapter.SpinnerAdapter;
-import com.ltrsoft.police_app.Classes.Suspect;
-import com.ltrsoft.police_app.Dashboard;
-import com.ltrsoft.police_app.Model.SuspectDeo;
+import com.ltrsoft.police_app.Classes.Victim;
+import com.ltrsoft.police_app.Model.VictimDeo;
 import com.ltrsoft.police_app.R;
 import com.ltrsoft.police_app.interface1.Callback;
 
@@ -58,65 +56,56 @@ import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
-public class AddSuspect extends Fragment {
-
-
-
-    public AddSuspect() {
-        // Required empty public constructor
-    }
-    private ArrayList<String> listcomplain = new ArrayList<>();
-    private ArrayList<String> listcomplainid = new ArrayList<>();
-    private static final String COMPLAIN_NAME_EBY_USER = "https://rj.ltr-soft.com/public/police_api/data/complaint_user_read.php";
-private  Bitmap bitmap;
-    private String encodeImage;
+public class AddVictim extends Fragment {
     private final int CAMERA_REQ_CODE = 104;
     private final int GALLERY_REQ_CODE = 105;
-    private EditText name, address, contact, dob, email, addhar;
-    private RadioGroup gender;
-    private RadioButton male, female;
-    private Button save, upload;
-    private Spinner country, state, district, city, complain_names;
-    private ImageView photo, back_image;
-    private ArrayAdapter adapter,adapter2,adapter3,adapter4;
 
+    private EditText name,address,contact,dob,email,addhar;
+    private RadioGroup gender;
+    private String encodeImage;
+    private RadioButton male,female;
+    private Button save,upload;
+    private Spinner country,state,district,city,complain_name;
+    private ImageView photo,back_image;
+
+    public ArrayAdapter adapter,adapter2,adapter3,adapter4;
+
+    private ArrayList<String> listcomplain = new ArrayList<>();
+    private ArrayList<String> listcomplainid = new ArrayList<>();
     private String cid;
+    private Bitmap bitmap;
+    private static  String COMPLAIN_NAME_EBY_USER = "https://rj.ltr-soft.com/public/police_api/data/complaint_user_read.php";
+     public AddVictim() {
+        // Required empty public constructor
+    }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-         View view= inflater.inflate(R.layout.add_suspect, container, false);
-        setSpinner();  name = view.findViewById(R.id.fname);
-        address = view.findViewById(R.id.address);
-        contact = view.findViewById(R.id.contact);
-        dob = view.findViewById(R.id.dob);
-        email = view.findViewById(R.id.email);
-        addhar = view.findViewById(R.id.addhar);
-        male = view.findViewById(R.id.male);
-        female = view.findViewById(R.id.female);
-        save = view.findViewById(R.id.save);
-        upload = view.findViewById(R.id.upload);
-        country = view.findViewById(R.id.country);
-        state = view.findViewById(R.id.state);
-        district = view.findViewById(R.id.district);
-        city = view.findViewById(R.id.city);
-        photo = view.findViewById(R.id.photo);
-        gender = view.findViewById(R.id.gender);
-        back_image = view.findViewById(R.id.back_image);
-        complain_names = view.findViewById(R.id.complain_name);
-        dob.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                showDatePickerDialog();
-            }
-        });
+         View view= inflater.inflate(R.layout.add_victim, container, false);
+        name=view.findViewById(R.id.fname);
+        address=view.findViewById(R.id.address);
+        contact=view.findViewById(R.id.contact);
+        dob=view.findViewById(R.id.dob);
+        email=view.findViewById(R.id.email);
+        addhar=view.findViewById(R.id.addhar);
+        male=view.findViewById(R.id.male);
+        female=view.findViewById(R.id.female);
+        save=view.findViewById(R.id.save);
+        upload=view.findViewById(R.id.upload);
+        country=view.findViewById(R.id.country);
+        state=view.findViewById(R.id.state);
+        district=view.findViewById(R.id.district);
+        city=view.findViewById(R.id.city);
+        photo=view.findViewById(R.id.photo);
+        gender=view.findViewById(R.id.gender);
+        back_image=view.findViewById(R.id.back_image);
+        complain_name = view.findViewById(R.id.complain_name);
 
-
-        complain_names.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+        complain_name.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 cid=  listcomplainid.get(position);
@@ -130,28 +119,29 @@ private  Bitmap bitmap;
 
         String police_Id = "1";
         loadComplainNameByUser(police_Id);
+
+
         back_image.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 getFragmentManager().beginTransaction()
-                        .replace(R.id.container_main, new Dashboard())
+                        .replace(R.id.main_container, new Dashboard())
                         .commit();
             }
         });
+        dob.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                showDatePickerDialog();
+            }
+        });
 
+        photo.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
 
-        List<String> Complain_name_list = new ArrayList<>();
-
-
-        ArrayAdapter<String> complain_name_adapter = new ArrayAdapter<>(
-                getActivity(),
-                android.R.layout.simple_spinner_item,
-                Complain_name_list
-        );
-        complain_name_adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-
-// Set the adapter to the spinner
-        complain_names.setAdapter(complain_name_adapter);
+            }
+        });
 
         upload.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -174,9 +164,10 @@ private  Bitmap bitmap;
                 final String mobile1 =  contact.getText().toString().trim();
                 final String addhar1 =  addhar.getText().toString().trim();
                 String gender = male.isChecked() ? "Male" : "Female";
-                SuspectDeo suspectDeo=new SuspectDeo();
-                suspectDeo.createsuspect(new Suspect(country1,state1,district1,city1,name1,address1,email1,dob1,mobile1
-                ,addhar1,gender),getContext(), new Callback() {
+
+                VictimDeo victimDeo=new VictimDeo();
+                victimDeo.createvictim(new Victim(country1,state1,district1,city1,name1,address1,email1,dob1,mobile1,
+                        addhar1,gender),getContext(), new Callback() {
                     @Override
                     public void onSuccess(Object obj) {
                         String success=(String) obj;
@@ -186,17 +177,22 @@ private  Bitmap bitmap;
                     @Override
                     public void onErro(String errro) {
                         Toast.makeText(getContext(), ""+errro, Toast.LENGTH_SHORT).show();
+
                     }
                 });
 
- //                Adding_complain_detail adding_complain_detail=new Adding_complain_detail();
+
+                //save();
+//                Adding_complain_detail adding_complain_detail=new Adding_complain_detail();
 //                getFragmentManager(). beginTransaction().replace(R.id.containers, adding_complain_detail  ).addToBackStack(null).commit();
 
             }
         });
 
-    return view;
-    }
+
+
+     return view;
+     }
     private void showDatePickerDialog() {
 
         Calendar calendar = Calendar.getInstance();
@@ -304,20 +300,20 @@ private  Bitmap bitmap;
     }
     public void setSpinner(){
         SpinnerAdapter spinnerAdapter = new SpinnerAdapter(getContext());
-//        ArrayList list = spinnerAdapter.getCountryAdapter();
-//        adapter = new ArrayAdapter(getContext(), android.R.layout.simple_expandable_list_item_1,list);
-//        adapter.setDropDownViewResource(android.R.layout.simple_expandable_list_item_1);
-//        country.setAdapter(adapter);
-//
-//        ArrayList list2 = spinnerAdapter.getStateList(1);
-//        adapter2 = new ArrayAdapter(getContext(), android.R.layout.simple_expandable_list_item_1,list2);
-//        adapter2.setDropDownViewResource(android.R.layout.simple_expandable_list_item_1);
-//        state.setAdapter(adapter2);
-//
-//        ArrayList list3 = spinnerAdapter.getStateList(1);
-//        adapter3 = new ArrayAdapter(getContext(), android.R.layout.simple_expandable_list_item_1,list3);
-//        adapter3.setDropDownViewResource(android.R.layout.simple_expandable_list_item_1);
-//        district.setAdapter(adapter3);
+        ArrayList list = spinnerAdapter.getCountryAdapter();
+        adapter = new ArrayAdapter(getContext(), android.R.layout.simple_expandable_list_item_1,list);
+        adapter.setDropDownViewResource(android.R.layout.simple_expandable_list_item_1);
+        country.setAdapter(adapter);
+
+        ArrayList list2 = spinnerAdapter.getStateList(1);
+        adapter2 = new ArrayAdapter(getContext(), android.R.layout.simple_expandable_list_item_1,list2);
+        adapter2.setDropDownViewResource(android.R.layout.simple_expandable_list_item_1);
+        state.setAdapter(adapter2);
+
+        ArrayList list3 = spinnerAdapter.getStateList(1);
+        adapter3 = new ArrayAdapter(getContext(), android.R.layout.simple_expandable_list_item_1,list3);
+        adapter3.setDropDownViewResource(android.R.layout.simple_expandable_list_item_1);
+        district.setAdapter(adapter3);
     }
     private void loadComplainNameByUser(String police_id) {
         StringRequest stringRequest = new StringRequest(Request.Method.POST, COMPLAIN_NAME_EBY_USER,
@@ -347,7 +343,7 @@ private  Bitmap bitmap;
 
                         adapter = new ArrayAdapter<>(getContext(), android.R.layout.simple_expandable_list_item_1, listcomplain);
                         adapter.setDropDownViewResource(android.R.layout.simple_expandable_list_item_1);
-                        complain_names.setAdapter(adapter);
+                        complain_name.setAdapter(adapter);
                     }
                 }, new Response.ErrorListener() {
             @Override

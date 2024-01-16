@@ -1,4 +1,4 @@
-package com.ltrsoft.police_app;
+package com.ltrsoft.police_app.ineerfragments;
 
 import android.content.Intent;
 import android.content.pm.PackageManager;
@@ -12,6 +12,8 @@ import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+
+import com.ltrsoft.police_app.R;
 
 public class Emergancy_page extends Fragment {
 

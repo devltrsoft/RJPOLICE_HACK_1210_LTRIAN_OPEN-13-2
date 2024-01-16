@@ -1,4 +1,4 @@
-package com.ltrsoft.police_app;
+package com.ltrsoft.police_app.fragment;
 
 import android.os.Bundle;
 
@@ -7,6 +7,8 @@ import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+
+import com.ltrsoft.police_app.R;
 
 public class Add_News_Page extends Fragment {
 

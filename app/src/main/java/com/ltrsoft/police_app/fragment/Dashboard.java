@@ -1,4 +1,4 @@
-package com.ltrsoft.police_app;
+package com.ltrsoft.police_app.fragment;
 
 import android.Manifest;
 import android.annotation.SuppressLint;
@@ -35,9 +35,11 @@ import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
-import com.ltrsoft.police_app.fragment.AllMapFragment;
-
-import java.util.Objects;
+import com.ltrsoft.police_app.R;
+import com.ltrsoft.police_app.utils.AllMapFragment;
+import com.ltrsoft.police_app.ineerfragments.Add_Complain_page;
+import com.ltrsoft.police_app.ineerfragments.Emergancy_page;
+import com.ltrsoft.police_app.ineerfragments.Police_Complaint_History_Page;
 
 public class Dashboard extends Fragment implements OnMapReadyCallback{
 
@@ -83,7 +85,7 @@ public class Dashboard extends Fragment implements OnMapReadyCallback{
         Cadd.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Add_Complain_page  add_complain_page = new Add_Complain_page();
+                Add_Complain_page add_complain_page = new Add_Complain_page();
                 getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.dashboard_layout, add_complain_page).commit();
 
             }

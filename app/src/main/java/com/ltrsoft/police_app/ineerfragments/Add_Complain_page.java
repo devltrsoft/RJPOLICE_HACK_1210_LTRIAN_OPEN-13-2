@@ -1,4 +1,4 @@
-package com.ltrsoft.police_app;
+package com.ltrsoft.police_app.ineerfragments;
 
 import android.os.Bundle;
 
@@ -13,14 +13,15 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
 
-import com.ltrsoft.police_app.Add_complaint.AddComplaint;
-import com.ltrsoft.police_app.Add_complaint.AddEvidence;
-import com.ltrsoft.police_app.Add_complaint.AddSuspect;
-import com.ltrsoft.police_app.Add_complaint.AddWarrent;
-import com.ltrsoft.police_app.Add_complaint.AddWitness;
-import com.ltrsoft.police_app.Add_complaint.Add_Criminal;
-import com.ltrsoft.police_app.Add_complaint.Add_Investigation;
-import com.ltrsoft.police_app.Model.AddVictim;
+import com.ltrsoft.police_app.R;
+import com.ltrsoft.police_app.fragment.AddComplaint;
+import com.ltrsoft.police_app.fragment.AddEvidence;
+import com.ltrsoft.police_app.fragment.AddSuspect;
+import com.ltrsoft.police_app.fragment.AddWarrent;
+import com.ltrsoft.police_app.fragment.AddWitness;
+import com.ltrsoft.police_app.fragment.Add_Criminal;
+import com.ltrsoft.police_app.fragment.Add_Investigation;
+import com.ltrsoft.police_app.fragment.AddVictim;
 
 public class Add_Complain_page extends Fragment {
 

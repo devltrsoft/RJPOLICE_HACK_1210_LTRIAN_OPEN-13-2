@@ -1,4 +1,4 @@
-package com.ltrsoft.police_app.Add_complaint;
+package com.ltrsoft.police_app.fragment;
 
 import android.Manifest;
 import android.app.Activity;
@@ -36,7 +36,6 @@ import com.android.volley.toolbox.Volley;
 import com.ltrsoft.police_app.Adapter.SpinnerAdapter;
 import com.ltrsoft.police_app.Classes.Criminal;
 import com.ltrsoft.police_app.Model.CriminalDeo;
-import com.ltrsoft.police_app.NavigationDrawer;
 import com.ltrsoft.police_app.R;
 import com.ltrsoft.police_app.interface1.Callback;
 

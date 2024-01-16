@@ -1,9 +1,8 @@
-package com.ltrsoft.police_app;
+package com.ltrsoft.police_app.fragment;
 
 import static android.content.Context.MODE_PRIVATE;
 
 import android.content.DialogInterface;
-import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 
@@ -23,9 +22,7 @@ import android.view.ViewGroup;
 import android.widget.Toast;
 
 import com.google.android.material.navigation.NavigationView;
-import com.ltrsoft.police_app.fragment.ProfileDetail;
-import com.ltrsoft.police_app.fragment.Setting;
-import com.ltrsoft.police_app.fragment.login;
+import com.ltrsoft.police_app.R;
 
 public class  NavigationDrawer extends Fragment {
 
@@ -65,20 +62,11 @@ public class  NavigationDrawer extends Fragment {
                 item.setChecked(true);
                 if (id == R.id.home) {
                     getFragmentManager().beginTransaction().replace(R.id.container_main, dashboardFragment).addToBackStack(null).commit();
-                } else if (id==R.id.admin) {
-                    Dashboard dashBoard=new Dashboard();
-                    Bundle bundle=new Bundle();
-                    bundle.putString("User","admin");
-                    dashBoard.setArguments(bundle);
-                    getFragmentManager().beginTransaction().replace(R.id.container_main, new Dashboard()).addToBackStack(null).commit();
-                } else if (id == R.id.profile) {
+                }
+                else if (id == R.id.profile) {
                    getFragmentManager().beginTransaction().replace(R.id.container_main, new ProfileDetail()).addToBackStack(null).commit();
                 }else if (id == R.id.setting) {
                   getFragmentManager().beginTransaction().replace(R.id.container_main, new Setting()).addToBackStack(null).commit();
-                } else if (id==R.id.admin) {
-                   // getFragmentManager().beginTransaction().replace(R.id.container_main, new AdminDashBoard()).addToBackStack(null).commit();
-                } else if (id==R.id.feedback){
-                   // getFragmentManager().beginTransaction().replace(R.id.container_main, new Feedback_Fragment()).addToBackStack(null).commit();
                 }
                 else if (id == R.id.logout) {
                     AlertDialog.Builder builder = new AlertDialog.Builder(getContext());

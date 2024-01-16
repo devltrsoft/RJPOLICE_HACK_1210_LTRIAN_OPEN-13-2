@@ -393,10 +393,9 @@ public class PoliceDeo {
                         try {
                             JSONObject jsonObject = new JSONObject(response);
                             String msg = jsonObject.getString("Message");
+                            String id = jsonObject.getString("police_id");
                             if (msg.equals("100")) {
-                                callback.onSuccess(msg);
-
-
+                                callback.onSuccess(id);
                             } else if (msg.equals("200")) {
                                 callback.onErro("invalid password");
 
