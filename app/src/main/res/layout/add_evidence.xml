@@ -1,0 +1,155 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Add_complaint.AddEvidence">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+        <com.google.android.material.navigation.NavigationView
+            android:id="@+id/navigationView2"
+            android:layout_width="400dp"
+            android:layout_height="80dp"
+            android:background="@drawable/navi"
+            android:backgroundTint="#000080"
+            android:layout_marginLeft="5dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+                <ImageView
+                    android:id="@+id/back"
+                    android:layout_width="28dp"
+                    android:layout_height="28dp"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginTop="25dp"
+                    android:background="@drawable/arrow" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Evidance Information"
+                    android:textSize="28dp"
+                    android:textStyle="bold"
+                    android:textColor="@color/white"
+                    android:layout_gravity="center"
+                    android:layout_marginLeft="40dp"/>
+
+            </LinearLayout>
+        </com.google.android.material.navigation.NavigationView>
+
+        <Spinner
+            android:id="@+id/ecomplain_name"
+            android:layout_width="300dp"
+            android:layout_height="50dp"
+            android:layout_below="@+id/card"
+            android:layout_marginTop="26dp"
+            android:gravity="center"
+            android:layout_marginLeft="55dp"
+            android:paddingLeft="15dp"
+            android:hint="Full Name"
+            android:background="@drawable/d1"/>
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+            <EditText
+                android:id="@+id/evidance_name"
+                android:layout_width="300dp"
+                android:layout_height="50dp"
+                android:layout_marginTop="20dp"
+                android:hint="Evidance Name"
+                android:background="@drawable/d1"
+                android:layout_marginLeft="55dp"
+                android:paddingLeft="20dp"
+                />
+
+        </LinearLayout>
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="40dp"
+            android:layout_marginLeft="20dp">
+            <VideoView
+                android:id="@+id/Evidance_video"
+                android:layout_width="380dp"
+                android:layout_height="200dp"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="20dp"
+                />
+            <ImageView
+                android:id="@+id/Evidance_photo"
+                android:layout_width="380dp"
+                android:layout_height="200dp"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="20dp"
+                android:src="@drawable/evidance"/>
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+            <Button
+                android:id="@+id/open_gallery"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="40dp"
+                android:layout_marginLeft="20dp"
+                android:backgroundTint="#000080"
+                android:text="Open Gallery"/>
+
+            <Button
+                android:id="@+id/open_camera"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="90dp"
+                android:layout_marginTop="40dp"
+                android:backgroundTint="#000080"
+                android:text="Open Camera" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+            <EditText
+                android:id="@+id/description"
+                android:layout_width="335dp"
+                android:layout_height="200dp"
+                android:layout_weight="1"
+                android:ems="10"
+                android:gravity="start|top"
+                android:inputType="textMultiLine"
+                android:hint="Description"
+                android:background="@drawable/d1"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="20dp"
+                android:paddingLeft="20dp"
+                android:paddingTop="10dp"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:gravity="center"
+            android:layout_gravity="center"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+            <Button
+                android:id="@+id/save"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/btn_border3"
+                android:layout_marginTop="20dp"
+                android:layout_marginLeft="20dp"
+                android:text="Save"
+                android:textStyle="bold"
+                android:textSize="40dp"
+
+                />
+        </LinearLayout>
+    </LinearLayout>
+
+</ScrollView>

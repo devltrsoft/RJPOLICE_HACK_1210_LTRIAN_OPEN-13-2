@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    >
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+
+        <EditText
+            android:id="@+id/caseIDs"
+            android:layout_width="300dp"
+            android:layout_height="50dp"
+             android:layout_marginTop="26dp"
+            android:gravity="center"
+            android:layout_marginLeft="55dp"
+            android:paddingLeft="15dp"
+            android:hint="Case id"
+            android:background="@drawable/d1"/>
+        <EditText
+            android:id="@+id/fname"
+            android:layout_width="300dp"
+            android:layout_height="50dp"
+            android:layout_below="@+id/caseIDs"
+            android:layout_marginTop="26dp"
+            android:gravity="center"
+            android:layout_marginLeft="55dp"
+            android:paddingLeft="15dp"
+            android:hint="Full Name"
+            android:background="@drawable/d1"/>
+
+
+        <EditText
+            android:id="@+id/issued_date"
+            android:layout_width="300dp"
+            android:layout_height="50dp"
+            android:layout_below="@+id/fname"
+            android:layout_marginTop="26dp"
+            android:gravity="center"
+            android:layout_marginLeft="55dp"
+            android:paddingLeft="15dp"
+            android:hint="Issue Date"
+            android:background="@drawable/d1"/>
+
+
+        <EditText
+            android:id="@+id/judician"
+            android:layout_width="300dp"
+            android:layout_height="50dp"
+            android:layout_below="@+id/issued_date"
+            android:layout_marginTop="26dp"
+            android:gravity="center"
+            android:layout_marginLeft="55dp"
+            android:paddingLeft="15dp"
+            android:hint=" Jurisdiction"
+            android:background="@drawable/d1"/>
+
+        <EditText
+            android:id="@+id/authority"
+            android:layout_width="300dp"
+            android:layout_height="50dp"
+            android:layout_below="@+id/judician"
+            android:layout_marginTop="26dp"
+            android:gravity="center"
+            android:layout_marginLeft="55dp"
+            android:paddingLeft="15dp"
+            android:hint="Issuing Authority "
+            android:background="@drawable/d1"/>
+        <EditText
+            android:id="@+id/court_name"
+            android:layout_width="300dp"
+            android:layout_height="50dp"
+            android:layout_below="@+id/authority"
+            android:layout_marginTop="26dp"
+            android:gravity="center"
+            android:layout_marginLeft="55dp"
+            android:paddingLeft="15dp"
+            android:hint="Court name "
+            android:background="@drawable/d1"/>
+
+        <Spinner
+            android:id="@+id/Warrant_Type"
+            android:layout_width="300dp"
+            android:layout_height="50dp"
+            android:layout_below="@+id/court_name"
+            android:layout_marginTop="26dp"
+            android:gravity="center"
+            android:layout_marginLeft="55dp"
+            android:paddingLeft="15dp"
+            android:hint="Email"
+            android:background="@drawable/d1"/>
+
+        <EditText
+            android:id="@+id/Discription"
+            android:layout_width="300dp"
+            android:layout_height="190dp"
+            android:layout_below="@+id/Warrant_Type"
+            android:layout_marginTop="26dp"
+            android:gravity="center"
+            android:layout_marginLeft="55dp"
+            android:paddingLeft="15dp"
+            android:hint="Discription"
+            android:background="@drawable/d1"/>
+
+        <Button
+            android:id="@+id/save"
+            android:layout_width="200dp"
+            android:layout_height="70dp"
+            android:text="Save"
+            android:textSize="30dp"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="26dp"
+            android:layout_below="@+id/Discription"
+            android:background="@drawable/btn_border"
+            android:backgroundTint="#000080"/>
+    </RelativeLayout>
+</ScrollView>
