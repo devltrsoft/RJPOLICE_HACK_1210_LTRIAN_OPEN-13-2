@@ -100,7 +100,7 @@ public class Add_Criminal extends Fragment {
         submit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Toast.makeText(getContext(), "", Toast.LENGTH_SHORT).show();
+              //  Toast.makeText(getContext(), "", Toast.LENGTH_SHORT).show();
                 cname=name.getText().toString();
                 caddress = address.getText().toString();
                 ccontatct = contatct.getText().toString();
@@ -123,13 +123,13 @@ public class Add_Criminal extends Fragment {
                          @Override
                          public void onSuccess(Object obj) {
                              String success = (String)obj;
-                             Toast.makeText(getContext(), ""+success, Toast.LENGTH_SHORT).show();
+                            // Toast.makeText(getContext(), ""+success, Toast.LENGTH_SHORT).show();
                          }
 
                          @Override
                          public void onErro(String errro) {
                            String error=(String)errro;
-                             Toast.makeText(getContext(), ""+error, Toast.LENGTH_SHORT).show();
+                           //  Toast.makeText(getContext(), ""+error, Toast.LENGTH_SHORT).show();
                          }
                      });
                  }

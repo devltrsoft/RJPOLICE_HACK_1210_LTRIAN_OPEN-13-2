@@ -98,17 +98,17 @@ public class Dashboard extends Fragment implements OnMapReadyCallback{
 
                 int id = item.getItemId();
                 if (id == R.id.ecall) {
-                    Toast.makeText(getContext(), "Ecall Clicked", Toast.LENGTH_SHORT).show();
+                   // Toast.makeText(getContext(), "Ecall Clicked", Toast.LENGTH_SHORT).show();
                     Emergancy_page emergencyPage = new Emergancy_page();
                     getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.dashboard_layout, emergencyPage).commit();
 
                 } else if (id == R.id.ecomplaints) {
-                    Toast.makeText(getContext(), "Compalint Clicked", Toast.LENGTH_SHORT).show();
+                   // Toast.makeText(getContext(), "Compalint Clicked", Toast.LENGTH_SHORT).show();
                     Police_Complaint_History_Page policeComplaintHistoryPage = new Police_Complaint_History_Page();
                     getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.dashboard_layout, policeComplaintHistoryPage).commit();
 
                 } else if (id == R.id.enews) {
-                    Toast.makeText(getContext(), "News", Toast.LENGTH_SHORT).show();
+                   // Toast.makeText(getContext(), "News", Toast.LENGTH_SHORT).show();
                     News_page newsPage = new News_page();
                     FragmentManager fragmentManager = getFragmentManager();
                     FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
@@ -136,7 +136,7 @@ public class Dashboard extends Fragment implements OnMapReadyCallback{
                         googleMap[0].setOnMapClickListener(new GoogleMap.OnMapClickListener() {
                             @Override
                             public void onMapClick(LatLng latLng) { // Handle the map click event here
-                                Toast.makeText(getActivity(), "Clicked on the map", Toast.LENGTH_SHORT).show();
+                              //  Toast.makeText(getActivity(), "Clicked on the map", Toast.LENGTH_SHORT).show();
                                 AllMapFragment allMapFragmet=new AllMapFragment();
 
                                 getFragmentManager().beginTransaction()
@@ -181,7 +181,7 @@ public class Dashboard extends Fragment implements OnMapReadyCallback{
                     currentLocation = location;
                     moveCameraToLocation(location);
                 } else {
-                    Toast.makeText(getContext(), "Location is null", Toast.LENGTH_SHORT).show();
+                   // Toast.makeText(getContext(), "Location is null", Toast.LENGTH_SHORT).show();
                     Log.d("Location", "null");
                 }
             }

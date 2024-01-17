@@ -11,7 +11,7 @@ import android.view.ViewGroup;
 import android.widget.Toast;
 
 import com.ltrsoft.police_app.R;
-import com.ltrsoft.police_app.fragment.Alloted_Case_History_Dashboard;
+import com.ltrsoft.police_app.fragment.Alloted_case1;
 import com.ltrsoft.police_app.fragment.Alloted_case2;
 import com.ltrsoft.police_app.fragment.Criminal1;
 import com.ltrsoft.police_app.fragment.Evidence1;

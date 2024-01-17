@@ -10,6 +10,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.Toast;
 
 import com.ltrsoft.police_app.Adapter.EvidenceAdapter1;
@@ -40,7 +41,7 @@ public class Alloted_case2 extends Fragment {
     private CardView suspect_card,witness_card,victim_card,Evidance_card;
     private RecyclerView Suspect_recycler,Witness_Recycler,Victim_Recycler,Evidance_Recycler;
     public  View view;
-
+    private Button close;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -87,7 +88,7 @@ public class Alloted_case2 extends Fragment {
             public void onClick(View view) {
                 // Toggle visibility for others
 
-                int newVisibility = ( witness_card  .getVisibility() == View.VISIBLE) ? View.GONE : View.VISIBLE;
+                int newVisibility = (  close  .getVisibility() == View.VISIBLE) ? View.GONE : View.VISIBLE;
 
                 int oppositeVisibility = (newVisibility == View.VISIBLE) ? View.GONE : View.VISIBLE;
                 Evidance_Recycler.setVisibility(oppositeVisibility);
@@ -114,7 +115,12 @@ public class Alloted_case2 extends Fragment {
                 Suspect_recycler.setVisibility(oppositeVisibility);
             }
         });
+        close.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
 
+            }
+        });
 
     return  view;
     }
@@ -202,7 +208,7 @@ public class Alloted_case2 extends Fragment {
         Victim_Recycler=view.findViewById(R.id.victim_recycler);
         Witness_Recycler=view.findViewById(R.id.Witness_recycler);
         Suspect_recycler=view.findViewById(R.id.suspect_recycler);
-
+         close=view.findViewById(R.id.close);
     }
 
 }
