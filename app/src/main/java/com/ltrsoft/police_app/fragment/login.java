@@ -26,9 +26,7 @@ import com.ltrsoft.police_app.utils.UserDataAccess;
 public class login extends Fragment {
 
 
-    public login() {
-        // Required empty public constructor
-    }
+    public login() {    }
 
     Button loginbtn;
     EditText Email,Password;
@@ -77,11 +75,10 @@ public class login extends Fragment {
                             access.setUserId(police_id ,getActivity());
 
                             Toast.makeText(getContext(), "success"+success, Toast.LENGTH_SHORT).show();
+                            System.out.println("response = "+success.toString());
                             Intent main_activity_intent = new Intent( getActivity(), MainActivity.class);
                             startActivity(main_activity_intent);
-
                         }
-
                         @Override
                         public void onErro(String errro) {
                             Toast.makeText(getContext(), "error "+errro, Toast.LENGTH_SHORT).show();

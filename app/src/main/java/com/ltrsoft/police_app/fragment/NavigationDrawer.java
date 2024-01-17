@@ -3,6 +3,7 @@ package com.ltrsoft.police_app.fragment;
 import static android.content.Context.MODE_PRIVATE;
 
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 
@@ -22,6 +23,7 @@ import android.view.ViewGroup;
 import android.widget.Toast;
 
 import com.google.android.material.navigation.NavigationView;
+import com.ltrsoft.police_app.LoginAndRegistrationActivity;
 import com.ltrsoft.police_app.R;
 
 public class  NavigationDrawer extends Fragment {
@@ -79,8 +81,10 @@ public class  NavigationDrawer extends Fragment {
                             SharedPreferences.Editor editor = pref.edit();
                             editor.putBoolean("flag", false)
                                     .apply();
-                            getFragmentManager().beginTransaction().replace(R.id.main_container, new login()).commit();
-
+                            editor.commit();
+//                            getFragmentManager().beginTransaction().replace(R.id.main_container, new login()).commit();
+                            Intent main_activity_intent = new Intent( getActivity(), LoginAndRegistrationActivity.class);
+                                   startActivity(main_activity_intent);
                         }
                     });
                     builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {

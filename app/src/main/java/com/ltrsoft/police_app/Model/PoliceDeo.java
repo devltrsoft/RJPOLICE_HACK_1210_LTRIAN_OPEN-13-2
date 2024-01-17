@@ -393,22 +393,16 @@ public class PoliceDeo {
                         try {
                             JSONObject jsonObject = new JSONObject(response);
                             String msg = jsonObject.getString("Message");
-                            String id = jsonObject.getString("police_id");
+//                            String id = jsonObject.getString("police_id");
                             if (msg.equals("100")) {
-                                callback.onSuccess(id);
+                                callback.onSuccess(response.toString());
                             } else if (msg.equals("200")) {
                                 callback.onErro("invalid password");
-
-
                             } else {
                                 callback.onErro(" user not found");
-
-
-
                             }
                         } catch (JSONException e) {
                             callback.onErro(e.toString());
-
                             throw new RuntimeException(e);
                         }
                     }
@@ -443,11 +437,6 @@ public class PoliceDeo {
 //                        System.out.println(response);
                         if (response.contains("success")) {
                         callback.onSuccess("registration success");
-
-
-
-
-
                         } else {
                             callback.onErro("unexpected response");
                          }

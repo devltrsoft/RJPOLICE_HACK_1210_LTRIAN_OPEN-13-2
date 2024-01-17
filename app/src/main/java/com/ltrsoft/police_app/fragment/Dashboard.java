@@ -1,9 +1,10 @@
 package com.ltrsoft.police_app.fragment;
-
 import android.Manifest;
 import android.annotation.SuppressLint;
+import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.location.Location;
+import android.net.Uri;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -35,18 +36,14 @@ import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.ltrsoft.police_app.R;
 import com.ltrsoft.police_app.utils.AllMapFragment;
 import com.ltrsoft.police_app.ineerfragments.Add_Complain_page;
 import com.ltrsoft.police_app.ineerfragments.Emergancy_page;
 import com.ltrsoft.police_app.ineerfragments.Police_Complaint_History_Page;
-
 public class Dashboard extends Fragment implements OnMapReadyCallback{
-
-
-    public Dashboard() {
-        // Required empty public constructor
-    }
+    public Dashboard() {}
     private ImageView Cadd;
     private boolean isLocationPermissionOk, istraffic;
     private Marker currentMarker;
@@ -57,7 +54,7 @@ public class Dashboard extends Fragment implements OnMapReadyCallback{
     private BottomNavigationView navigationView,adminBottomDashNav;
     private GoogleMap mMap;
     private ImageView add_btn;
-
+    private FloatingActionButton socialMedia,camera,missing;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -70,17 +67,9 @@ public class Dashboard extends Fragment implements OnMapReadyCallback{
         add_btn = view.findViewById(R.id.cadd);
         add_button_card=view.findViewById(R.id.image_card);
 
-        add_btn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-//                Toast.makeText(getContext(), "Compalin add page  Clicked", Toast.LENGTH_SHORT).show();
-//                CreateComplainPage complainPage = new CreateComplainPage();
-//                getActivity().getSupportFragmentManager().beginTransaction()
-//                        .addToBackStack(null)
-//                        .replace(R.id.dashboard_layout, complainPage)
-//                        .commit();
-            }
-        });
+        socialMedia = view.findViewById(R.id.network);
+        camera = view.findViewById(R.id.search);
+        missing = view.findViewById(R.id.elearning);
 
         Cadd.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -91,6 +80,35 @@ public class Dashboard extends Fragment implements OnMapReadyCallback{
             }
         });
 
+        socialMedia.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent=new Intent(Intent.ACTION_VIEW);
+                intent.setData(Uri.parse("https://ltr-soft.com/"));
+                startActivity(intent);
+            }
+        });
+
+        camera.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                getFragmentManager()
+                        .beginTransaction()
+                        .replace(R.id.container_main,
+                                new Camera()).addToBackStack(null).commit();
+               }
+        });
+
+        missing.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Missing_pages missingPages = new Missing_pages();
+                getActivity().getSupportFragmentManager()
+                        .beginTransaction()
+                        .replace(R.id.container_main, missingPages)
+                        .commit();
+            }
+        });
 
         navigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
             @Override
@@ -98,17 +116,20 @@ public class Dashboard extends Fragment implements OnMapReadyCallback{
 
                 int id = item.getItemId();
                 if (id == R.id.ecall) {
-                    Toast.makeText(getContext(), "Ecall Clicked", Toast.LENGTH_SHORT).show();
+                    item.setCheckable(true);
+                //    Toast.makeText(getContext(), "Ecall Clicked", Toast.LENGTH_SHORT).show();
                     Emergancy_page emergencyPage = new Emergancy_page();
                     getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.dashboard_layout, emergencyPage).commit();
 
                 } else if (id == R.id.ecomplaints) {
-                    Toast.makeText(getContext(), "Compalint Clicked", Toast.LENGTH_SHORT).show();
+                    item.setCheckable(true);
+                  //  Toast.makeText(getContext(), "Compalint Clicked", Toast.LENGTH_SHORT).show();
                     Police_Complaint_History_Page policeComplaintHistoryPage = new Police_Complaint_History_Page();
                     getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.dashboard_layout, policeComplaintHistoryPage).commit();
 
                 } else if (id == R.id.enews) {
-                    Toast.makeText(getContext(), "News", Toast.LENGTH_SHORT).show();
+                    item.setCheckable(true);
+                //   Toast.makeText(getContext(), "News", Toast.LENGTH_SHORT).show();
                     News_page newsPage = new News_page();
                     FragmentManager fragmentManager = getFragmentManager();
                     FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
@@ -116,9 +137,9 @@ public class Dashboard extends Fragment implements OnMapReadyCallback{
                     fragmentTransaction.addToBackStack("fragmenttag");
                     fragmentTransaction.commit();
                 } else if (id == R.id.emassge) {
-                    Toast.makeText(getContext(), "Message clicked", Toast.LENGTH_SHORT).show();
-//                    Messeges message = new Messeges();
-//                    loadfragment(message);
+                    item.setCheckable(true);
+                    Message_fragment message = new Message_fragment();
+                    getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.container_main, message).commit();
                 }
                 return false;
             }
@@ -131,8 +152,6 @@ public class Dashboard extends Fragment implements OnMapReadyCallback{
                 public void onMapReady(GoogleMap map) {
                     if (map != null) {
                         googleMap[0] = map;
-
-
                         googleMap[0].setOnMapClickListener(new GoogleMap.OnMapClickListener() {
                             @Override
                             public void onMapClick(LatLng latLng) { // Handle the map click event here

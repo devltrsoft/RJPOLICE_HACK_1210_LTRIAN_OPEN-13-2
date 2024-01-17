@@ -16,7 +16,5 @@ public class MainActivity extends AppCompatActivity {
                 .beginTransaction()
                 .replace(R.id.main_container, new NavigationDrawer())
                 .commit();
-
-
     }
 }
