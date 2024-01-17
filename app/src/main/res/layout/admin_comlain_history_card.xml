@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="40dp"
+        android:layout_marginTop="35dp"
+        android:layout_marginRight="40dp"
+        app:cardBackgroundColor="#E2E9FC"
+        app:cardCornerRadius="10dp"
+        app:cardElevation="15dp">
+
+        <TextView
+            android:id="@+id/complaint_id"
+            android:layout_width="match_parent"
+            android:layout_height="25dp"
+            android:text="Complaint ID"
+            android:layout_marginTop="20dp"
+            android:layout_marginLeft="20dp"
+            android:textColor="#000080"
+            android:textSize="20dp"
+            android:textStyle="bold" />
+
+
+
+        <TextView
+            android:id="@+id/name"
+            android:layout_width="match_parent"
+            android:layout_height="20dp"
+            android:text="Name/Title"
+            android:layout_marginVertical="70dp"
+            android:layout_marginLeft="20dp"
+            android:textColor="#000080"
+            android:textSize="16dp"
+            android:textStyle="bold"/>
+
+        <TextView
+            android:id="@+id/information"
+            android:layout_width="match_parent"
+            android:layout_height="20dp"
+            android:text="case information .............."
+            android:layout_marginVertical="110dp"
+            android:layout_marginLeft="20dp"
+            android:textColor="#000080"
+            android:textSize="15dp"
+            android:textStyle="bold"/>
+
+
+    </androidx.cardview.widget.CardView>
+
+</LinearLayout>

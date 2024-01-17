@@ -45,8 +45,7 @@ public class Add_Investigation extends Fragment {
     private Button addRecomandationButton;
     private Spinner yourSpinner;
     private Button closeFile;
-    NavigationView navigationView2;
-    private RecyclerView Suspect_recycler,Witness_Recycler,Victim_Recycler,Evidance_Recycler;
+     private RecyclerView Suspect_recycler,Witness_Recycler,Victim_Recycler,Evidance_Recycler;
     public  View view;
 
     @Override
@@ -55,11 +54,10 @@ public class Add_Investigation extends Fragment {
         // Inflate the layout for this fragment
           view= inflater.inflate(R.layout.add__investigation, container, false);
         setId();
-//        setSuspectAdapter();
-//        setVictimAdapter();
-//        setWitnessAdapter();
-//        setEvidenceAdapter();
-        navigationView2.setVisibility(View.VISIBLE);
+       setSuspectAdapter();
+        setVictimAdapter();
+        setWitnessAdapter();
+        setEvidenceAdapter();
 
         Suspect_plus.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -282,6 +280,5 @@ public class Add_Investigation extends Fragment {
         Suspect_plus=view.findViewById(R.id.Suspect_plus);
         Victim_plus=view.findViewById(R.id.victim_plus);
         Evidance_plus=view.findViewById(R.id.evidance_plus);
-        navigationView2=view.findViewById(R.id.navigationView2);
-    }
+     }
 }

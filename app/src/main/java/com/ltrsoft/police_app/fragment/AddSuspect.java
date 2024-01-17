@@ -127,14 +127,6 @@ private  Bitmap bitmap;
 
         String police_Id = "1";
         loadComplainNameByUser(police_Id);
-        back_image.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                getFragmentManager().beginTransaction()
-                        .replace(R.id.container_main, new Dashboard())
-                        .commit();
-            }
-        });
 
 
         List<String> Complain_name_list = new ArrayList<>();

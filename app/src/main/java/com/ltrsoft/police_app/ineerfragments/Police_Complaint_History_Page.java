@@ -53,7 +53,7 @@ public class Police_Complaint_History_Page extends Fragment {
         invistigationcard.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
 
-                Toast.makeText(getActivity(), " invistigation", Toast.LENGTH_SHORT).show();
+                //Toast.makeText(getActivity(), " invistigation", Toast.LENGTH_SHORT).show();
                 Investigation_History_Dashboard d=new Investigation_History_Dashboard();
 
                 getFragmentManager().beginTransaction().replace(R.id.container_main,d).addToBackStack(null).commit();
@@ -65,7 +65,7 @@ public class Police_Complaint_History_Page extends Fragment {
         allowed_cases.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
 
-                Toast.makeText(getActivity(), " allowd cases", Toast.LENGTH_SHORT).show();
+              //  Toast.makeText(getActivity(), " allowd cases", Toast.LENGTH_SHORT).show();
                 Alloted_case2 al=new Alloted_case2();
                 getFragmentManager().beginTransaction().replace(R.id.container_main,al).addToBackStack(null).commit();
 
@@ -77,7 +77,7 @@ public class Police_Complaint_History_Page extends Fragment {
             public void onClick(View v) {
 
 //                Complaint_History_Dashboard c=new Complaint_History_Dashboard();
-                Toast.makeText(getContext(), " hiii", Toast.LENGTH_SHORT).show();
+              //  Toast.makeText(getContext(), " hiii", Toast.LENGTH_SHORT).show();
 //                getFragmentManager().beginTransaction().replace(R.id.container_main,c).addToBackStack(null).commit();
             }
         });
@@ -94,7 +94,7 @@ public class Police_Complaint_History_Page extends Fragment {
         suspect.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(getActivity(), " suspect", Toast.LENGTH_SHORT).show();
+              //  Toast.makeText(getActivity(), " suspect", Toast.LENGTH_SHORT).show();
                 Suspect1 shd=new Suspect1();
                 getFragmentManager().beginTransaction().replace(R.id.main_container,shd).addToBackStack(null).addToBackStack(null).commit();
             }
@@ -105,7 +105,7 @@ public class Police_Complaint_History_Page extends Fragment {
             public void onClick(View v) {
 
 
-                Toast.makeText(getActivity(), "witness", Toast.LENGTH_SHORT).show();
+               // Toast.makeText(getActivity(), "witness", Toast.LENGTH_SHORT).show();
 //                Warrant_History_Dashboard w=new Warrant_History_Dashboard();
 //                getFragmentManager().beginTransaction().replace(R.id.main_container,w).commit();
 
@@ -115,7 +115,7 @@ public class Police_Complaint_History_Page extends Fragment {
         witness.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(getActivity(), "witness", Toast.LENGTH_SHORT).show();
+                //Toast.makeText(getActivity(), "witness", Toast.LENGTH_SHORT).show();
                 Witness1 w=new Witness1();
                 getFragmentManager().beginTransaction().replace(R.id.main_container,w).addToBackStack(null).addToBackStack(null).commit();
 

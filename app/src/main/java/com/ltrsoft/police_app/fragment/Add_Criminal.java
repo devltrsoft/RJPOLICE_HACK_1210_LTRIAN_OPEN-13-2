@@ -79,16 +79,7 @@ public class Add_Criminal extends Fragment {
         setSpinner();
         queue= Volley.newRequestQueue(getContext());
 
-        back.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                getActivity().getSupportFragmentManager()
-                        .beginTransaction().
-                        replace(R.id.main_container, new NavigationDrawer())
-                        .commit();
 
-            }
-        });
 
         upload.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -100,42 +91,42 @@ public class Add_Criminal extends Fragment {
         submit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-              //  Toast.makeText(getContext(), "", Toast.LENGTH_SHORT).show();
-                cname=name.getText().toString();
-                caddress = address.getText().toString();
-                ccontatct = contatct.getText().toString();
-                cdob = dob.getText().toString();
-                cemail = email.getText().toString();
-                cadharc = adhar.getText().toString();
-                ccaseId = caseId.getText().toString();
-                int   case_id = Integer.parseInt(ccaseId);
-
-                int gen= gender.getCheckedRadioButtonId();
-                String gender1 = null;
-                if (gen==R.id. male ) {
-                      gender1="male";
-                } else if (gen==R.id. fname) {
-                      gender1="female";
-                }
-                if (cname!=null) {
-                    CriminalDeo criminalDeo=new CriminalDeo();
-                     criminalDeo.createcriminal(new Criminal(cname, caddress, ccontatct, cdob, cemail, cadharc,    encodeImage,gender1,case_id), getContext(), new Callback() {
-                         @Override
-                         public void onSuccess(Object obj) {
-                             String success = (String)obj;
-                            // Toast.makeText(getContext(), ""+success, Toast.LENGTH_SHORT).show();
-                         }
-
-                         @Override
-                         public void onErro(String errro) {
-                           String error=(String)errro;
-                           //  Toast.makeText(getContext(), ""+error, Toast.LENGTH_SHORT).show();
-                         }
-                     });
-                 }
-                else {
-                    Toast.makeText(getContext(), "fill all contents", Toast.LENGTH_SHORT).show();
-                }
+                Toast.makeText(getContext(), "success", Toast.LENGTH_SHORT).show();
+//                cname=name.getText().toString();
+//                caddress = address.getText().toString();
+//                ccontatct = contatct.getText().toString();
+//                cdob = dob.getText().toString();
+//                cemail = email.getText().toString();
+//                cadharc = adhar.getText().toString();
+//                ccaseId = caseId.getText().toString();
+//                int   case_id = Integer.parseInt(ccaseId);
+//
+//                int gen= gender.getCheckedRadioButtonId();
+//                String gender1 = null;
+//                if (gen==R.id. male ) {
+//                      gender1="male";
+//                } else if (gen==R.id. fname) {
+//                      gender1="female";
+//                }
+//                if (cname!=null) {
+//                    CriminalDeo criminalDeo=new CriminalDeo();
+//                     criminalDeo.createcriminal(new Criminal(cname, caddress, ccontatct, cdob, cemail, cadharc,    encodeImage,gender1,case_id), getContext(), new Callback() {
+//                         @Override
+//                         public void onSuccess(Object obj) {
+//                             String success = (String)obj;
+//                            // Toast.makeText(getContext(), ""+success, Toast.LENGTH_SHORT).show();
+//                         }
+//
+//                         @Override
+//                         public void onErro(String errro) {
+//                           String error=(String)errro;
+//                           //  Toast.makeText(getContext(), ""+error, Toast.LENGTH_SHORT).show();
+//                         }
+//                     });
+//                 }
+//                else {
+//                    Toast.makeText(getContext(), "fill all contents", Toast.LENGTH_SHORT).show();
+//                }
             }
         });
 

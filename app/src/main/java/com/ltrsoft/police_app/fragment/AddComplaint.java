@@ -104,7 +104,7 @@ public class AddComplaint extends Fragment {
         submit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                final String complain_name1= complain_name.getText().toString().trim();
+                final String complain_name1= "hello";
         final String complain_desc1=  complain_description.getText().toString().trim();
         final String complain_against1= complain_Against.getText().toString().trim();
         final String incident_date1=  incident_date.getText().toString().trim();

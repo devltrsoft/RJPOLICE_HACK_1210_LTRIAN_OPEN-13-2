@@ -61,10 +61,10 @@ public class AdminDashBoard extends Fragment {
 
                 } else if (id == R.id.ecomplaint) {
                     Toast.makeText(getContext(), "Compalint Clicked", Toast.LENGTH_SHORT).show();
-//                    AdminPages adminAthority = new AdminPages();
+                   AdminPages adminAthority = new AdminPages();
 //                    getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.Admin_dashboard, adminAthority).commit();
                 } else if (id == R.id.enews) {
-//                    Toast.makeText(getContext(), "News", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getContext(), "News", Toast.LENGTH_SHORT).show();
                     getActivity().getSupportFragmentManager().beginTransaction().replace(R.id. container_main,  new News_page()).addToBackStack(null).commit();
                 } else if (id == R.id.message) {
 //                    Toast.makeText(getContext(), " selection clicked", Toast.LENGTH_SHORT).show();
