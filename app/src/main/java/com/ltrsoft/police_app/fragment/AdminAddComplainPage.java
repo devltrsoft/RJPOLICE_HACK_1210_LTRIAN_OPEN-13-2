@@ -16,11 +16,13 @@ import com.ltrsoft.police_app.R;
 
 public class AdminAddComplainPage extends Fragment {
 
-    private LinearLayout addcomplain,addsuspect,addevidence,addwitness,addvictim,Addinvestigation,addcriminal,addwrrent;
+    private LinearLayout addcomplain,addsuspect,addevidence,addwitness,addvictim,Addinvestigation,addcriminal,
+            addnotification,addwrrent;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view= inflater.inflate(R.layout.admin_complain_page, container, false);
+        addnotification=view.findViewById(R.id.addnotification);
 
         addcomplain = view.findViewById(R.id.Addcompalint);
         addsuspect = view.findViewById(R.id.Addsuspect);
@@ -56,6 +58,13 @@ public class AdminAddComplainPage extends Fragment {
             public void onClick(View view) {
                 AddComplaint addComplaint = new AddComplaint();
                 loadfragment(addComplaint);
+            }
+        });
+        addnotification.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Admin_add_notification adminAddNotification = new Admin_add_notification();
+                loadfragment(adminAddNotification);
             }
         });
 

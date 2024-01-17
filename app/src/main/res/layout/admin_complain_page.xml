@@ -319,8 +319,7 @@
         android:layout_below="@+id/layout2"
         android:gravity="center">
         <androidx.cardview.widget.CardView
-            android:id="@+id/addnotification"
-            android:layout_width="80dp"
+             android:layout_width="80dp"
             android:backgroundTint="@android:color/transparent"
 
             android:layout_height="80dp"
@@ -328,7 +327,7 @@
             app:cardMaxElevation="10dp">
 
             <LinearLayout
-                android:id="@+id/noti"
+                android:id="@+id/addnotification"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:background="@drawable/cornercard"
