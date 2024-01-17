@@ -37,7 +37,7 @@ public class WitnessDeo {
 
     String createwitness_url = "https://rj.ltr-soft.com/public/police_api/investigation_witness/create__investigation_witness.php";
     String updatesWitness_url = "https://rj.ltr-soft.com/public/police_api/investigation_witness/create__investigation_witness.php";
-    String getAllWitness_URL = "https://rj.ltr-soft.com/public/police_api/Investigation_witness/read__investigation_vitness.php";
+    String getAllWitness_URL = "https://rj.ltr-soft.com/public/police_api/investigation_witness/read__investigation_vitness.php";
     String searcgUrl = "";
     public ArrayList<Witness> list = new ArrayList<>();
     public ArrayList<String> search_list = new ArrayList<String>();
@@ -57,21 +57,22 @@ public class WitnessDeo {
                                 String state = jsonObject.getString("state_name");
                                 String district = jsonObject.getString("district_name");
                                 String city = jsonObject.getString("city_name");
-                                String fname = jsonObject.getString("witness_fname");
-                                String mname = jsonObject.getString("witness_mname");
-                                String lname = jsonObject.getString("witness_lname");
-                                String address = jsonObject.getString("");
+                                String fname = jsonObject.getString("investigation_witness_fname");
+                                String mname = jsonObject.getString("investigation_witness_mname");
+                                String lname = jsonObject.getString("investigation_witness_lname");
+                                String address = jsonObject.getString("investigation_witness_address");
 
-                                String dob = jsonObject.getString("witness_dob");
-                                String email = jsonObject.getString("witness_email");
-                                String adhar = jsonObject.getString("witness_adhar");
-                                String gender = jsonObject.getString("witness_gender");
+                                String dob = jsonObject.getString("investigation_witness_dob");
+                                String email = jsonObject.getString("investigation_witness_email");
+                                String adhar = jsonObject.getString("investigation_witness_adhar");
+                                String gender = jsonObject.getString("investigation_witness_gender");
 
-                                String photo_path = jsonObject.getString("witness_photo");
-                                String pan = jsonObject.getString("witness_mobile_no");
-                                String mobile = jsonObject.getString("witness_mobile_no");
+                                String photo_path = jsonObject.getString("investigation_witness_photo");
+                                String pan = jsonObject.getString("witness_pan");
+                                String mobile = jsonObject.getString("investigation_witness_mobile");
                                 String is_witness = jsonObject.getString("is_i_witness");
-                                int fir_id = jsonObject.getInt("fir_id");
+                                String fir_id = jsonObject.getString("fir_id");
+
                                 int investigation_witness_id = jsonObject.getInt("investigation_witness_id");
                                 list.add(new Witness(country, state, district, city, fname, mname, lname, address,
                                         dob, email, adhar, gender,
@@ -99,7 +100,7 @@ public class WitnessDeo {
             @Override
             protected Map<String, String> getParams() throws AuthFailureError {
                 HashMap<String, String> map = new HashMap<>();
-                map.put("created_date","2023-12-25" );
+//                map.put("created_date","2023-12-25" );
                 return map;
             }
 
@@ -151,7 +152,7 @@ public class WitnessDeo {
                                 String pan = jsonObject.getString("complaint_witness_pan");
                                 String mobile = jsonObject.getString("complaint_witness_mobile");
                                 String is_witness = jsonObject.getString("is_c_witness");
-                                int fir_id = 1023;
+                                String fir_id = jsonObject.getString("complaint_id");
                                 int investigation_witness_id = 000;
                                 list.add(witnessone = new Witness(country, state, district, city, fname, mname, lname, address,
                                         dob, email, adhar, gender,
