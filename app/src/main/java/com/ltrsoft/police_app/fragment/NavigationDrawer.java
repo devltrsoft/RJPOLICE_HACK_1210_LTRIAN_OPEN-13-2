@@ -25,6 +25,8 @@ import android.widget.Toast;
 import com.google.android.material.navigation.NavigationView;
 import com.ltrsoft.police_app.LoginAndRegistrationActivity;
 import com.ltrsoft.police_app.R;
+import com.ltrsoft.police_app.dashboards.AdminDashBoard;
+import com.ltrsoft.police_app.dashboards.Dashboard;
 
 public class  NavigationDrawer extends Fragment {
 
@@ -43,8 +45,9 @@ public class  NavigationDrawer extends Fragment {
         View view= inflater.inflate(R.layout.navigation_drawer, container, false);
 
         toolbar = view.findViewById(R.id.toolbar);
-        Dashboard dashboardFragment = new Dashboard() ;
+//        Dashboard dashboardFragment = new Dashboard() ;
 
+        AdminDashBoard dashboardFragment = new AdminDashBoard();
         getFragmentManager().beginTransaction().replace(R.id.container_main, dashboardFragment).commit();
         ((AppCompatActivity) getActivity()).setSupportActionBar(toolbar);
 

@@ -1,4 +1,4 @@
-package com.ltrsoft.police_app.fragment;
+package com.ltrsoft.police_app.dashboards;
 
 import android.content.Intent;
 import android.net.Uri;
@@ -17,6 +17,11 @@ import com.google.android.gms.maps.GoogleMap;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.ltrsoft.police_app.R;
+import com.ltrsoft.police_app.fragment.AdminAddComplainPage;
+import com.ltrsoft.police_app.fragment.AdminPages;
+import com.ltrsoft.police_app.fragment.Camera;
+import com.ltrsoft.police_app.fragment.Missing_pages;
+import com.ltrsoft.police_app.fragment.News_page;
 import com.ltrsoft.police_app.ineerfragments.Add_Complain_page;
 import com.ltrsoft.police_app.ineerfragments.Emergancy_page;
 
@@ -43,7 +48,7 @@ public class AdminDashBoard extends Fragment {
             Cadd.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Add_Complain_page add_complain_page = new Add_Complain_page();
+                AdminAddComplainPage add_complain_page = new AdminAddComplainPage();
                 getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.Admin_dashboard, add_complain_page).commit();
             }
         }
@@ -62,7 +67,7 @@ public class AdminDashBoard extends Fragment {
                 } else if (id == R.id.ecomplaint) {
                     Toast.makeText(getContext(), "Compalint Clicked", Toast.LENGTH_SHORT).show();
                    AdminPages adminAthority = new AdminPages();
-//                    getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.Admin_dashboard, adminAthority).commit();
+                    getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.Admin_dashboard, adminAthority).commit();
                 } else if (id == R.id.enews) {
                     Toast.makeText(getContext(), "News", Toast.LENGTH_SHORT).show();
                     getActivity().getSupportFragmentManager().beginTransaction().replace(R.id. container_main,  new News_page()).addToBackStack(null).commit();

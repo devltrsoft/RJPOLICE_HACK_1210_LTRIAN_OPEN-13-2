@@ -121,8 +121,6 @@ public class Police_Complaint_History_Page extends Fragment {
 
             }
         });
-
-
         victime.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -130,7 +128,6 @@ public class Police_Complaint_History_Page extends Fragment {
                 getFragmentManager().beginTransaction().replace(R.id.container_main,vhd).addToBackStack(null).commit();
             }
         });
-
         criminal.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

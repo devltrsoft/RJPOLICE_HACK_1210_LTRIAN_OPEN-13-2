@@ -1,4 +1,4 @@
-package com.ltrsoft.police_app.fragment;
+package com.ltrsoft.police_app.dashboards;
 import android.Manifest;
 import android.annotation.SuppressLint;
 import android.content.Intent;
@@ -38,6 +38,10 @@ import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.ltrsoft.police_app.R;
+import com.ltrsoft.police_app.fragment.Camera;
+import com.ltrsoft.police_app.fragment.Message_fragment;
+import com.ltrsoft.police_app.fragment.Missing_pages;
+import com.ltrsoft.police_app.fragment.News_page;
 import com.ltrsoft.police_app.utils.AllMapFragment;
 import com.ltrsoft.police_app.ineerfragments.Add_Complain_page;
 import com.ltrsoft.police_app.ineerfragments.Emergancy_page;
