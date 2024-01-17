@@ -4,32 +4,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".Police_Complain_History.Investigation_History_Dashboard">
+ >
 
-    <androidx.appcompat.widget.Toolbar
-        android:id="@+id/toolbar2"
-        android:layout_width="390dp"
-        android:layout_height="60dp"
-        android:layout_margin="10dp"
-        android:background="@drawable/toolbar_border"
-        android:backgroundTint="#180E90">
-
-        <ImageView
-            android:id="@+id/back"
-            android:layout_width="20dp"
-            android:layout_height="20dp"
-            android:background="@drawable/back_image" />
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Investigation "
-            android:layout_gravity="center"
-            android:textColor="#FFFFFF"
-            android:textSize="20dp"
-            android:textStyle="bold" />
-
-    </androidx.appcompat.widget.Toolbar>
 
     <!-- TODO: Update blank fragment layout -->
    <androidx.recyclerview.widget.RecyclerView

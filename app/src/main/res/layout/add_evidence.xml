@@ -9,37 +9,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical">
-        <com.google.android.material.navigation.NavigationView
-            android:id="@+id/navigationView2"
-            android:layout_width="400dp"
-            android:layout_height="80dp"
-            android:background="@drawable/navi"
-            android:backgroundTint="#000080"
-            android:layout_marginLeft="5dp">
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent">
-                <ImageView
-                    android:id="@+id/back"
-                    android:layout_width="28dp"
-                    android:layout_height="28dp"
-                    android:layout_marginLeft="20dp"
-                    android:layout_marginTop="25dp"
-                    android:background="@drawable/arrow" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Evidance Information"
-                    android:textSize="28dp"
-                    android:textStyle="bold"
-                    android:textColor="@color/white"
-                    android:layout_gravity="center"
-                    android:layout_marginLeft="40dp"/>
-
-            </LinearLayout>
-        </com.google.android.material.navigation.NavigationView>
 
         <Spinner
             android:id="@+id/ecomplain_name"

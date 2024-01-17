@@ -5,29 +5,11 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Add_Complaint.Add_Criminal">
+ >
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
-        <Button
-            android:id="@+id/button"
-            android:layout_width="390dp"
-            android:layout_height="60dp"
-            android:layout_marginTop="15dp"
-            android:layout_marginLeft="10dp"
-            android:text="Criminal"
-            android:textSize="30dp"
-            android:backgroundTint="#000080"
-            android:background="@drawable/d1"
-            tools:ignore="MissingConstraints" />
 
-        <ImageView
-            android:id="@+id/back_image"
-            android:layout_width="35dp"
-            android:layout_height="30dp"
-            app:srcCompat="@drawable/back_image"
-            android:layout_marginLeft="25dp"
-            android:layout_marginTop="30dp"/>
 
         <androidx.cardview.widget.CardView
             android:visibility="gone"
@@ -35,8 +17,7 @@
             android:layout_width="350dp"
             android:layout_height="50dp"
             android:layout_centerHorizontal="true"
-            android:layout_below="@+id/button"
-            android:layout_marginTop="30dp"
+             android:layout_marginTop="30dp"
             >
 
             <ImageView
