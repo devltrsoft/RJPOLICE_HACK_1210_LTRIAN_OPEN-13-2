@@ -21,14 +21,7 @@
             android:layout_margin="10dp"
             android:background="@drawable/man" />
 
-        <ImageView
-            android:id="@+id/Edit_profile"
-            android:layout_width="20dp"
-            android:layout_height="20dp"
-            android:layout_gravity="end"
-            android:layout_marginTop="20dp"
-            android:layout_marginRight="20dp"
-            android:background="@drawable/pencil" />
+
 
         <TextView
             android:id="@+id/person_name"
@@ -64,15 +57,7 @@
             android:textSize="15dp"
             android:textStyle="bold" />
 
-        <Button
-            android:id="@+id/Non_Suspect"
-            android:layout_width="75dp"
-            android:layout_height="40dp"
-            android:layout_gravity="bottom"
-            android:layout_marginLeft="225dp"
-            android:backgroundTint="#EE4319"
-            android:text="Non suspect"
-            android:textSize="8dp" />
+
     </androidx.cardview.widget.CardView>
 
 

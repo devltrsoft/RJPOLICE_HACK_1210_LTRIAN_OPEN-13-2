@@ -5,7 +5,7 @@ public class Warrant {
     int warrant_id,fir_id;
     String warrant_type,warrant_against,date_issued,discription,action,court_name,issuing_athority;
 
-    public Warrant(int warrant_id, int fir_id, String warrant_type, String warrant_against,
+    public Warrant(int warrant_id, String warrant_type, String warrant_against,
                    String date_issued, String discription,
                    String action, String court_name, String issuing_athority) {
         this.warrant_id = warrant_id;
@@ -18,6 +18,11 @@ public class Warrant {
         this.court_name = court_name;
         this.issuing_athority = issuing_athority;
     }
+
+    public Warrant() {
+
+    }
+
 
     public int getWarrant_id() {
         return warrant_id;

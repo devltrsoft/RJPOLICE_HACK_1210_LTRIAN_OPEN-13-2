@@ -1,5 +1,6 @@
 package com.ltrsoft.police_app.Model;
 
+import android.app.Activity;
 import android.content.Context;
 import android.widget.Toast;
 
@@ -13,6 +14,8 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.ltrsoft.police_app.Classes.Feedback;
+import com.ltrsoft.police_app.interface1.Callback;
+import com.ltrsoft.police_app.utils.UserDataAccess;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -142,7 +145,7 @@ public class FeedbackDeo {
 
     };
 
-    public Feedback  create_Feedback(Feedback insertfeedback,Context context){
+    public  void   create_Feedback(Feedback insertfeedback, Context context, Activity activity, Callback callback){
         StringRequest stringRequest = new StringRequest(Request.Method.POST,   create_feedback_url ,
                 new Response.Listener<String>() {
                     @Override
@@ -176,14 +179,16 @@ public class FeedbackDeo {
             @Override
             protected Map<String, String> getParams() throws AuthFailureError {
                 HashMap<String, String> map = new HashMap<>();
-                map.put("police_id", String.valueOf(insertfeedback.getPolice_id()));
-                map.put("overall_satisfaction",insertfeedback.getOverallsatisfication() );
-                map.put("average_prating",insertfeedback.getAvarage_prating() );
-                map.put("relevance_info",insertfeedback.getRelavance_info() );
-                map.put("security_privacy",insertfeedback.getSecurity_privacy() );
-                map.put("alert_notification",insertfeedback.getAlert_notification() );
-                map.put("training_support",insertfeedback.getTraining_support() );
-                map.put("usability_navigation",insertfeedback.getUsability_navigation());
+                UserDataAccess userDataAccess =new UserDataAccess();
+
+                map.put("police_id",userDataAccess.getUserId(activity));
+                map.put("overall_satisfaction", String.valueOf(insertfeedback.getOverallsatisfication()));
+                map.put("average_prating", String.valueOf(insertfeedback.getAvarage_prating()));
+                map.put("relevance_info", String.valueOf(insertfeedback.getRelavance_info()));
+                map.put("security_privacy", String.valueOf(insertfeedback.getSecurity_privacy()));
+                map.put("alert_notification", String.valueOf(insertfeedback.getAlert_notification()));
+                map.put("training_support", String.valueOf(insertfeedback.getTraining_support()));
+                map.put("usability_navigation", String.valueOf(insertfeedback.getUsability_navigation()));
 
                 return map;
             }
@@ -194,47 +199,46 @@ public class FeedbackDeo {
 
 
 
-        return create_feedback;
-    };
-    public Feedback update_feedback(Feedback updatefeedback,Context context){
-        StringRequest stringRequest = new StringRequest(Request.Method.POST,   update_feedback_url ,
-                new Response.Listener<String>() {
-                    @Override
-                    public void onResponse(String response) {
-                        System.out.println("response"+response.toString());
-
-                    }
-                }, new Response.ErrorListener() {
-            @Override
-            public void onErrorResponse(VolleyError error) {
-                Toast.makeText( context, "error " + error.toString(), Toast.LENGTH_SHORT).show();
-            }
-        }) {
-            @Nullable
-            @Override
-            protected Map<String, String> getParams() throws AuthFailureError {
-                HashMap<String, String> map = new HashMap<>();
-                map.put("police_feedback_id", String.valueOf(updatefeedback.getPolice_feedback_id()));
-                map.put("police_id", String.valueOf(updatefeedback.getPolice_id()));
-                map.put("overall_satisfaction",updatefeedback.getOverallsatisfication() );
-                map.put("average_prating",updatefeedback.getAvarage_prating() );
-                map.put("relevance_info",updatefeedback.getRelavance_info() );
-                map.put("security_privacy",updatefeedback.getSecurity_privacy() );
-                map.put("alert_notification",updatefeedback.getAlert_notification() );
-                map.put("training_support",updatefeedback.getTraining_support() );
-                map.put("usability_navigation",updatefeedback.getUsability_navigation());
-
-                return map;
-            }
-        };
-
-        RequestQueue requestQueue = Volley.newRequestQueue( context);
-        requestQueue.add(stringRequest);
-
-
-
-        return  update_feedback;
-    }
+     };
+//    public Feedback update_feedback(Feedback updatefeedback,Context context){
+//        StringRequest stringRequest = new StringRequest(Request.Method.POST,   update_feedback_url ,
+//                new Response.Listener<String>() {
+//                    @Override
+//                    public void onResponse(String response) {
+//                        System.out.println("response"+response.toString());
+//
+//                    }
+//                }, new Response.ErrorListener() {
+//            @Override
+//            public void onErrorResponse(VolleyError error) {
+//                Toast.makeText( context, "error " + error.toString(), Toast.LENGTH_SHORT).show();
+//            }
+//        }) {
+//            @Nullable
+//            @Override
+//            protected Map<String, String> getParams() throws AuthFailureError {
+//                HashMap<String, String> map = new HashMap<>();
+//                map.put("police_feedback_id", String.valueOf(updatefeedback.getPolice_feedback_id()));
+//                map.put("police_id", String.valueOf(updatefeedback.getPolice_id()));
+//                map.put("overall_satisfaction",updatefeedback.getOverallsatisfication() );
+//                map.put("average_prating",updatefeedback.getAvarage_prating() );
+//                map.put("relevance_info",updatefeedback.getRelavance_info() );
+//                map.put("security_privacy",updatefeedback.getSecurity_privacy() );
+//                map.put("alert_notification",updatefeedback.getAlert_notification() );
+//                map.put("training_support",updatefeedback.getTraining_support() );
+//                map.put("usability_navigation",updatefeedback.getUsability_navigation());
+//
+//                return map;
+//            }
+//        };
+//
+//        RequestQueue requestQueue = Volley.newRequestQueue( context);
+//        requestQueue.add(stringRequest);
+//
+//
+//
+//        return  update_feedback;
+//    }
     public ArrayList<String> search_feedback(Feedback search_news, Context context){
         StringRequest  stringRequest=new StringRequest(Request.Method.POST, Search_URL,
                 new Response.Listener<String>() {

@@ -7,7 +7,7 @@ public class News {
 
     public News(int news_id, int station_id, int like, int news_photo_id,
                 String news_title, String news_category, String news_description,
-                String news_date, String news_photo_path) {
+                String news_date  ) {
         this.news_id = news_id;
         this.station_id = station_id;
         this.like = like;
@@ -16,7 +16,12 @@ public class News {
         this.news_category = news_category;
         this.news_description = news_description;
         this.news_date = news_date;
-        this.news_photo_path = news_photo_path;
+     }
+
+    public News(String ntitle, String ncatagory, String nstation, String ndescription, String ndate, String encodeImage) {
+    }
+
+    public News(String ntitle, String ncatagory, String nstation, String ndescription, String ndate) {
     }
 
     public int getNews_id() {

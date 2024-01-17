@@ -40,12 +40,12 @@ public class WarrantDeo {
 
         String createwarrant_url = "https://rj.ltr-soft.com/public/police_api/warrant/create_warrant.php";
         String updatesWarrant_url = "https://rj.ltr-soft.com/public/police_api/investigation_witness/create__investigation_witness.php";
-        String getAllWarrant_URL = "https://rj.ltr-soft.com/public/police_api/Investigation_witness/read__investigation_vitness.php";
+        String getAllWarrant_URL = "https://rj.ltr-soft.com/public/police_api/warrant/read_warrant.php";
         String searcgUrl = "";
         public ArrayList<Warrant> list = new ArrayList<>();
         public ArrayList<String> search_list = new ArrayList<String>();
 
-        public  ArrayList<Warrant>getAllWarrant(String fir_id, Context context){
+        public void  getAllWarrant(  Context context,Callback callback){
 
             StringRequest stringRequest = new StringRequest(Request.Method.POST, getAllWarrant_URL,
                     new Response.Listener<String>() {
@@ -57,21 +57,22 @@ public class WarrantDeo {
 
                                 for (int i = 0; i < jsonArray.length(); i++) {
                                     JSONObject jsonObject = jsonArray.getJSONObject(i);
-                                    String warrent_type = jsonObject.getString("warrant_type");
+                                    String warrent_type = jsonObject.getString("warrant_type_name");
                                     String warrent_against=jsonObject.getString("warrant_against");
                                     String date_issued=jsonObject.getString("date_issued");
                                     String discription=jsonObject.getString("description");
                                     String action=jsonObject.getString("action");
                                     String court_name=jsonObject.getString("court_name");
                                     String issuing_authority=jsonObject.getString("issuing_authority");
-                                    int fir_id = jsonObject.getInt("fir_id");
-                                    int warrent_id = jsonObject.getInt("investigation_witness_id");
+                                   // int fir_id = Integer.parseInt(jsonObject.getString("fir_id"));
+                                    int warrent_id = jsonObject.getInt("warrant_id");
 
-                                    list.add(new Warrant(warrent_id,fir_id,date_issued,discription,action,court_name,
+                                    list.add(new Warrant(warrent_id, date_issued,discription,action,court_name,
                                             issuing_authority,warrent_against ,warrent_type));
-
+                                       callback.onSuccess(list);
                                 }
                             } catch (Exception e) {
+                                callback.onErro(e.toString());
                                 e.printStackTrace();
                                 throw new RuntimeException(e);
                             }
@@ -81,13 +82,14 @@ public class WarrantDeo {
                         @Override
                         public void onErrorResponse(VolleyError error) {
                             error.printStackTrace();
+                            callback.onErro(error.toString());
                         }
                     }) {
                 @Nullable
                 @Override
                 protected Map<String, String> getParams() throws AuthFailureError {
                     HashMap<String, String> map = new HashMap<>();
-                    map.put(" fir_id", String.valueOf( fir_id));
+                  //  map.put(" fir_id", String.valueOf( fir_id));
                     return map;
                 }
             };
@@ -95,7 +97,6 @@ public class WarrantDeo {
 
             RequestQueue requestQueue = Volley.newRequestQueue(context);
             requestQueue.add(stringRequest);
-            return list;
 
         }
 
@@ -121,7 +122,7 @@ public class WarrantDeo {
                                     int fir_id = jsonObject.getInt("fir_id");
                                     int warrent_id = jsonObject.getInt("investigation_witness_id");
 
-                                    list.add(new Warrant(warrent_id,fir_id,date_issued,discription,action,court_name,
+                                    list.add(new Warrant(warrent_id, date_issued,discription,action,court_name,
                                             issuing_authority,warrent_against ,warrent_type));
 
                                 }
