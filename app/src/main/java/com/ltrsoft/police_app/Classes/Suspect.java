@@ -5,11 +5,11 @@ public class Suspect {
     String country,state,district,city,fname,mname,lname,address,
              dob,email,adhar, gender,
             photo_path,pan,mobile,is_suspect;
-       int  fir_id,investigation_suspect_id;
+       String  fir_id,investigation_suspect_id;
 
     public Suspect(String country, String state, String district, String city, String fname,
                    String mname, String lname, String address, String dob, String email, String adhar, String gender, String photo_path, String pan,
-                   String mobile, String is_suspect, int fir_id, int investigation_suspect_id) {
+                   String mobile, String is_suspect, String fir_id, String investigation_suspect_id) {
         this.country = country;
         this.state = state;
         this.district = district;
@@ -164,19 +164,19 @@ public class Suspect {
         this.is_suspect = is_suspect;
     }
 
-    public int getFir_id() {
+    public String getFir_id() {
         return fir_id;
     }
 
-    public void setFir_id(int fir_id) {
+    public void setFir_id(String fir_id) {
         this.fir_id = fir_id;
     }
 
-    public int getInvestigation_suspect_id() {
+    public String getInvestigation_suspect_id() {
         return investigation_suspect_id;
     }
 
-    public void setInvestigation_suspect_id(int investigation_suspect_id) {
+    public void setInvestigation_suspect_id(String investigation_suspect_id) {
         this.investigation_suspect_id = investigation_suspect_id;
     }
 }

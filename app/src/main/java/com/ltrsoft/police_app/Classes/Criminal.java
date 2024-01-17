@@ -5,11 +5,12 @@ import android.widget.EditText;
 public class Criminal {
        String fname,mname,lname,address,  dob,email,adhar, gender,city,
                district,state,country,  photo_path,pan,mobile,is_criminal,punishment,duration,punishment_date;
-       int criminal_id,criminal_complaint_id,fir_id;
+    int criminal_id,criminal_complaint_id;
+       String fir_id;
 
 
     public Criminal(String fname, String mname, String lname, String address, String dob, String email, String adhar, String gender, String city, String district, String state, String country, String photo_path, String pan, String mobile, String is_criminal, String punishment,
-                    String duration, String punishment_date, int criminal_id, int criminal_complaint_id, int fir_id) {
+                    String duration, String punishment_date, int criminal_id, int criminal_complaint_id, String fir_id) {
         this.fname = fname;
         this.mname = mname;
         this.lname = lname;
@@ -43,7 +44,7 @@ public class Criminal {
         this.adhar = adhar;
         this.photo_path = photo_path;
         this.mobile = mobile;
-        this.fir_id= Integer.parseInt(fir_id);
+        this.fir_id= fir_id;
         this.gender=gender;
     }
 
@@ -218,11 +219,11 @@ public class Criminal {
         this.criminal_complaint_id = criminal_complaint_id;
     }
 
-    public int getFir_id() {
+    public String getFir_id() {
         return fir_id;
     }
 
-    public void setFir_id(int fir_id) {
+    public void setFir_id(String fir_id) {
         this.fir_id = fir_id;
     }
 }

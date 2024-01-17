@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical">
+
+
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/Victim2card"
+        android:layout_width="350dp"
+        android:layout_height="220dp"
+        android:layout_gravity="center"
+        android:layout_marginTop="20dp"
+        android:outlineSpotShadowColor="#000080"
+        app:cardBackgroundColor="#E2E9FC"
+        app:cardCornerRadius="15dp"
+        app:cardElevation="20dp">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/Victim_Id"
+                android:textColor="#000080"
+                android:textSize="18dp"
+                android:textStyle="bold"
+                android:layout_marginTop="25dp"
+                android:layout_marginLeft="20dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Victim ID: " />
+
+            <TextView
+                android:textColor="#000080"
+                android:textSize="18dp"
+                android:textStyle="bold"
+                android:layout_marginTop="25dp"
+                android:layout_marginLeft="20dp"
+                android:id="@+id/Victim_Name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Victim Name: " />
+
+            <TextView
+                android:textColor="#000080"
+                android:textSize="18dp"
+                android:textStyle="bold"
+                android:layout_marginTop="25dp"
+                android:layout_marginLeft="20dp"
+                android:id="@+id/Victim_Date"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Victim_Date: " />
+            <TextView
+                android:textColor="#000080"
+                android:textSize="18dp"
+                android:textStyle="bold"
+                android:layout_marginTop="25dp"
+                android:layout_marginLeft="120dp"
+                android:id="@+id/Victim_changed_Date"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Victim Changed Date: " />
+
+        </LinearLayout>
+
+
+    </androidx.cardview.widget.CardView>
+
+</LinearLayout>

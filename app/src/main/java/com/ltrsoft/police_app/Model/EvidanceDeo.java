@@ -42,7 +42,7 @@ public class EvidanceDeo {
     String searchUrl="";
     public ArrayList<Evidance> list = new ArrayList<>();
     public ArrayList<String> search_list=new ArrayList<String>();
-    public ArrayList<Evidance> getAllEvidance(String fir_id, Context context) {
+    public void getAllEvidance(Context context,Callback callback) {
 
         StringRequest stringRequest = new StringRequest(Request.Method.POST,  getAllevidance_URL,
                 new Response.Listener<String>() {
@@ -62,18 +62,17 @@ public class EvidanceDeo {
                                  list.add(new Evidance(fir_id,evidance_id,evidance_name,evidance_description,evidance_photos_path,
                                          evidance_photos_description,evidance_photos_id));
                             }
-
+                            callback.onSuccess(list);
                         } catch (JSONException e) {
+                            callback.onErro(e.toString());
                             e.printStackTrace();
                             throw new RuntimeException(e);
-
                         }
-
-
                     }
                 }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
+                callback.onErro(error.toString());
                 error.printStackTrace();
             }
         }) {
@@ -81,20 +80,13 @@ public class EvidanceDeo {
             @Override
             protected Map<String, String> getParams() throws AuthFailureError {
                 HashMap<String, String> map = new HashMap<>();
-                map.put("fir_id", fir_id);
-                map.put("evidance_id", String.valueOf(evidance_id));
-
-
                 return map;
             }
 
         };
         RequestQueue requestQueue = Volley.newRequestQueue(context);
         requestQueue.add(stringRequest);
-        return list;
     }
-
-
     public Evidance getoneEvidance( Evidance evidance_id, Context context ){
 
         StringRequest stringRequest=new StringRequest(Request.Method.POST,  getoneEvidance_URL,

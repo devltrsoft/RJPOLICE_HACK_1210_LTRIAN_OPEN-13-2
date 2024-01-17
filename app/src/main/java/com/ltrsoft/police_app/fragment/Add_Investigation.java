@@ -55,10 +55,10 @@ public class Add_Investigation extends Fragment {
         // Inflate the layout for this fragment
           view= inflater.inflate(R.layout.add__investigation, container, false);
         setId();
-        setSuspectAdapter();
-        setVictimAdapter();
-        setWitnessAdapter();
-        setEvidenceAdapter();
+//        setSuspectAdapter();
+//        setVictimAdapter();
+//        setWitnessAdapter();
+//        setEvidenceAdapter();
         navigationView2.setVisibility(View.VISIBLE);
 
         Suspect_plus.setOnClickListener(new View.OnClickListener() {

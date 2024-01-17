@@ -22,11 +22,8 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
-
 public class CriminalDeo {
-
     private String encodeImage;
-
         String investigation_id, Criminal_id;
         Criminal criminalone;
         Criminal create_criminal;
@@ -45,7 +42,7 @@ public class CriminalDeo {
         public ArrayList<Criminal> list = new ArrayList<>();
         public ArrayList<String> search_list = new ArrayList<String>();
 
-        public  ArrayList<Criminal>getAllWarrant(String fir_id, Context context){
+        public  void  getAllCriminal(Context context , Callback callback){
 
             StringRequest stringRequest = new StringRequest(Request.Method.POST, getAllCriminal_URL,
                     new Response.Listener<String>() {
@@ -53,8 +50,6 @@ public class CriminalDeo {
                         public void onResponse(String response) {
                             try {
                                 JSONArray jsonArray = new JSONArray(response);
-
-
                                 for (int i = 0; i < jsonArray.length(); i++) {
                                     JSONObject jsonObject = jsonArray.getJSONObject(i);
                                     String fname = jsonObject.getString("criminal_fname");
@@ -70,22 +65,23 @@ public class CriminalDeo {
                                     String state=jsonObject.getString("state_id");
                                     String country=jsonObject.getString("country_id");
                                     String photo_path=jsonObject.getString("criminal_photo");
-                                    String pan=jsonObject.getString("");
-                                    String mobile=jsonObject.getString("");
-                                    String is_criminal=jsonObject.getString("");
+                                    String pan=jsonObject.getString("criminal_pan");
+                                    String mobile=jsonObject.getString("criminal_mobile");
+                                    String is_criminal=jsonObject.getString("is_criminal");
                                     String punishment=jsonObject.getString("punishment");
                                     String duration=jsonObject.getString("duration");
-                                    String punishment_date=jsonObject.getString("");
-                                    int criminal_complaint_id=jsonObject.getInt("criminal_complaint_id");
-                                    int fir_id = jsonObject.getInt("fir_id");
-                                    int criminal_id = jsonObject.getInt("criminal_id");
+                                    String punishment_date=jsonObject.getString("punishment_date");
+                                    int criminal_complaint_id= Integer.parseInt(jsonObject.getString("criminal_complaint_id"));
+                                    String fir_id = jsonObject.getString("fir_id");
+                                    int criminal_id = Integer.parseInt(jsonObject.getString("criminal_id"));
 
                                     list.add(new Criminal(fname,mname,lname,address,  dob,email,adhar, gender,city,
                                             district,state,country,  photo_path,pan,mobile,is_criminal,punishment,duration,punishment_date,
                                             criminal_id,criminal_complaint_id,fir_id));
-
                                 }
+                                callback.onSuccess(list);
                             } catch (Exception e) {
+                                callback.onErro(e.toString());
                                 e.printStackTrace();
                                 throw new RuntimeException(e);
                             }
@@ -94,6 +90,7 @@ public class CriminalDeo {
                     new Response.ErrorListener() {
                         @Override
                         public void onErrorResponse(VolleyError error) {
+                            callback.onErro(error.toString());
                             error.printStackTrace();
                         }
                     }) {
@@ -101,16 +98,11 @@ public class CriminalDeo {
                 @Override
                 protected Map<String, String> getParams() throws AuthFailureError {
                     HashMap<String, String> map = new HashMap<>();
-                    map.put(" fir_id", String.valueOf( fir_id));
                     return map;
                 }
             };
-
-
             RequestQueue requestQueue = Volley.newRequestQueue(context);
             requestQueue.add(stringRequest);
-            return list;
-
         }
 
         public Criminal criminalone(int criminal_id, Context context) {
@@ -145,7 +137,7 @@ public class CriminalDeo {
                                     String duration=jsonObject.getString("duration");
                                     String punishment_date=jsonObject.getString("");
                                     int criminal_complaint_id=jsonObject.getInt("criminal_complaint_id");
-                                    int fir_id = jsonObject.getInt("fir_id");
+                                    String fir_id = jsonObject.getString("fir_id");
                                     int criminal_id = jsonObject.getInt("criminal_id");
 
                                     list.add(new Criminal(fname,mname,lname,address,  dob,email,adhar, gender,city,

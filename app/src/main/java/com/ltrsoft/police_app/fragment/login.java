@@ -48,6 +48,8 @@ public class login extends Fragment {
         forgot_password=view.findViewById(R.id.forgot_password);
         Email=view.findViewById(R.id.email);
         Password=view.findViewById(R.id.password);
+        Intent main_activity_intent = new Intent( getActivity(), MainActivity.class);
+        startActivity(main_activity_intent);
 
         loginbtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -83,6 +85,7 @@ public class login extends Fragment {
                         @Override
                         public void onErro(String errro) {
                             Toast.makeText(getContext(), "error "+errro, Toast.LENGTH_SHORT).show();
+
                         }
                     });
                 } else {

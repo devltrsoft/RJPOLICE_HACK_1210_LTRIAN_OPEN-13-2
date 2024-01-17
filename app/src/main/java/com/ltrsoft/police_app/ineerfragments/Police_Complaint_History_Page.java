@@ -12,7 +12,11 @@ import android.widget.Toast;
 
 import com.ltrsoft.police_app.R;
 import com.ltrsoft.police_app.fragment.Alloted_Case_History_Dashboard;
+import com.ltrsoft.police_app.fragment.Criminal1;
 import com.ltrsoft.police_app.fragment.Investigation_History_Dashboard;
+import com.ltrsoft.police_app.fragment.Suspect1;
+import com.ltrsoft.police_app.fragment.Victim1;
+import com.ltrsoft.police_app.fragment.Witness1;
 
 public class Police_Complaint_History_Page extends Fragment {
 
@@ -89,8 +93,8 @@ public class Police_Complaint_History_Page extends Fragment {
             @Override
             public void onClick(View v) {
                 Toast.makeText(getActivity(), " suspect", Toast.LENGTH_SHORT).show();
-//                Suspect_History_Dashboard  shd=new Suspect_History_Dashboard();
-//                getFragmentManager().beginTransaction().replace(R.id.main_container,shd).addToBackStack(null).addToBackStack(null).commit();
+                Suspect1 shd=new Suspect1();
+                getFragmentManager().beginTransaction().replace(R.id.main_container,shd).addToBackStack(null).addToBackStack(null).commit();
             }
         });
 
@@ -110,8 +114,8 @@ public class Police_Complaint_History_Page extends Fragment {
             @Override
             public void onClick(View v) {
                 Toast.makeText(getActivity(), "witness", Toast.LENGTH_SHORT).show();
-//                Witness_History_Dashboard w=new Witness_History_Dashboard();
-//                getFragmentManager().beginTransaction().replace(R.id.main_container,w).addToBackStack(null).addToBackStack(null).commit();
+                Witness1 w=new Witness1();
+                getFragmentManager().beginTransaction().replace(R.id.main_container,w).addToBackStack(null).addToBackStack(null).commit();
 
             }
         });
@@ -120,16 +124,16 @@ public class Police_Complaint_History_Page extends Fragment {
         victime.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-//                Victim_History_Dashboard vhd=new Victim_History_Dashboard();
-//                getFragmentManager().beginTransaction().replace(R.id.container_main,vhd).addToBackStack(null).commit();
+                Victim1 vhd=new Victim1();
+                getFragmentManager().beginTransaction().replace(R.id.container_main,vhd).addToBackStack(null).commit();
             }
         });
 
         criminal.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-//                Criminal_History_Dashboard criminalHistoryDashboard=new Criminal_History_Dashboard();
-//                getFragmentManager().beginTransaction().replace(R.id.container_main,criminalHistoryDashboard).addToBackStack(null).commit();
+                Criminal1 criminal1=new Criminal1();
+                getFragmentManager().beginTransaction().replace(R.id.container_main,criminal1).addToBackStack(null).commit();
             }
         });
     return  v;
