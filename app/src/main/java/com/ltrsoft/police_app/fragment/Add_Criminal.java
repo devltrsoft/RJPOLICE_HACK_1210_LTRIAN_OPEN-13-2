@@ -243,8 +243,7 @@ public class Add_Criminal extends Fragment {
     }
 
     private void setId() {
-        back = view.findViewById(R.id.back_image);
-        name = view.findViewById(R.id.fname);
+         name = view.findViewById(R.id.fname);
         address = view.findViewById(R.id.address);
         contatct = view.findViewById(R.id.contact);
         dob = view.findViewById(R.id.dob);

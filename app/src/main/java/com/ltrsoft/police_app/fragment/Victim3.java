@@ -22,14 +22,7 @@ public class Victim3 extends Fragment {
         // Inflate the layout for this fragment
         View view= inflater.inflate(R.layout.victim__history__dates, container, false);
     close=view.findViewById(R.id.close);
-    back=view.findViewById(R.id.back);
-    back.setOnClickListener(new View.OnClickListener() {
-        @Override
-        public void onClick(View v) {
-            getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.  main_container,new Witness2()).commit();
 
-        }
-    });
         close.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

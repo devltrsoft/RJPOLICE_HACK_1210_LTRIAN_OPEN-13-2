@@ -104,8 +104,7 @@ private  Bitmap bitmap;
         city = view.findViewById(R.id.city);
         photo = view.findViewById(R.id.photo);
         gender = view.findViewById(R.id.gender);
-        back_image = view.findViewById(R.id.back_image);
-        complain_names = view.findViewById(R.id.complain_name);
+         complain_names = view.findViewById(R.id.complain_name);
         dob.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

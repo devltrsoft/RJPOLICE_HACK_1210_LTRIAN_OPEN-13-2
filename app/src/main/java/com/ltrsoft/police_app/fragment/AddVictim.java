@@ -102,8 +102,7 @@ public class AddVictim extends Fragment {
         city=view.findViewById(R.id.city);
         photo=view.findViewById(R.id.photo);
         gender=view.findViewById(R.id.gender);
-        back_image=view.findViewById(R.id.back_image);
-        complain_name = view.findViewById(R.id.complain_name);
+         complain_name = view.findViewById(R.id.complain_name);
 
         complain_name.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
@@ -121,14 +120,7 @@ public class AddVictim extends Fragment {
         loadComplainNameByUser(police_Id);
 
 
-        back_image.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                getFragmentManager().beginTransaction()
-                        .replace(R.id.main_container, new Dashboard())
-                        .commit();
-            }
-        });
+
         dob.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
