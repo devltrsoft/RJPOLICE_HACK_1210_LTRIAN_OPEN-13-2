@@ -12,7 +12,9 @@ import android.widget.Toast;
 
 import com.ltrsoft.police_app.R;
 import com.ltrsoft.police_app.fragment.Alloted_Case_History_Dashboard;
+import com.ltrsoft.police_app.fragment.Alloted_case2;
 import com.ltrsoft.police_app.fragment.Criminal1;
+import com.ltrsoft.police_app.fragment.Evidence1;
 import com.ltrsoft.police_app.fragment.Investigation_History_Dashboard;
 import com.ltrsoft.police_app.fragment.Suspect1;
 import com.ltrsoft.police_app.fragment.Victim1;
@@ -64,7 +66,7 @@ public class Police_Complaint_History_Page extends Fragment {
             public void onClick(View v) {
 
                 Toast.makeText(getActivity(), " allowd cases", Toast.LENGTH_SHORT).show();
-                Alloted_Case_History_Dashboard al=new Alloted_Case_History_Dashboard();
+                Alloted_case2 al=new Alloted_case2();
                 getFragmentManager().beginTransaction().replace(R.id.container_main,al).addToBackStack(null).commit();
 
             }
@@ -84,8 +86,8 @@ public class Police_Complaint_History_Page extends Fragment {
         evidence1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-//                Evidence_History_Dashboard  ehd=new Evidence_History_Dashboard();
-//                getFragmentManager().beginTransaction().replace(R.id.main_container,ehd).addToBackStack(null).commit();
+              Evidence1 ehd=new Evidence1();
+                getFragmentManager().beginTransaction().replace(R.id.main_container,ehd).addToBackStack(null).commit();
             }
         });
 

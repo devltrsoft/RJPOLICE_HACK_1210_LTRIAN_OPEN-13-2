@@ -9,6 +9,7 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.ltrsoft.police_app.Adapter.EvidenceAdapter1;
 import com.ltrsoft.police_app.Classes.Evidance;
 import com.ltrsoft.police_app.Model.EvidanceDeo;
 import com.ltrsoft.police_app.R;
@@ -28,10 +29,11 @@ public class Evidence1 extends Fragment {
         evidanceDeo.getAllEvidance(getContext(), new Callback() {
             @Override
             public void onSuccess(Object obj) {
-
-//                LinearLayoutManager layoutManager = new LinearLayoutManager(getContext());
-//                recyclerView.setLayoutManager(layoutManager);
-//                recyclerView.setAdapter(adapter);
+                   list=(ArrayList<Evidance>) obj;
+                EvidenceAdapter1 adapter=new EvidenceAdapter1((ArrayList<Evidance>)obj);
+                LinearLayoutManager layoutManager = new LinearLayoutManager(getContext());
+                recyclerView.setLayoutManager(layoutManager);
+                recyclerView.setAdapter(adapter);
             }
 
             @Override

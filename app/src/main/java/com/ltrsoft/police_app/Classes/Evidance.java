@@ -2,8 +2,9 @@ package com.ltrsoft.police_app.Classes;
 
 public class Evidance {
 
-    int evidance_id,fir_id;
-    String evidance_name,discription,evidance_photos_path,evidance_photos_description,evidance_photos_id;
+    String evidance_id;
+    String fir_id,evidance_name,discription,evidance_photos_path,evidance_photos_description,
+            evidance_photos_id;
 
     public Evidance(String evidanceName, String evidanceDesc, String photoPath, String firId) {
     }
@@ -14,19 +15,19 @@ public class Evidance {
     public Evidance(String harun, String pune, String number) {
     }
 
-    public int getEvidance_id() {
+    public String getEvidance_id() {
         return evidance_id;
     }
 
-    public void setEvidance_id(int evidance_id) {
+    public void setEvidance_id(String evidance_id) {
         this.evidance_id = evidance_id;
     }
 
-    public int getFir_id() {
+    public String getFir_id() {
         return fir_id;
     }
 
-    public void setFir_id(int fir_id) {
+    public void setFir_id(String fir_id) {
         this.fir_id = fir_id;
     }
 
@@ -70,7 +71,7 @@ public class Evidance {
         this.evidance_photos_id = evidance_photos_id;
     }
 
-    public Evidance(int evidance_id, int fir_id, String evidance_name, String discription,
+    public Evidance(String evidance_id, String fir_id, String evidance_name, String discription,
                     String evidance_photos_path, String evidance_photos_description, String evidance_photos_id) {
         this.evidance_id = evidance_id;
         this.fir_id = fir_id;

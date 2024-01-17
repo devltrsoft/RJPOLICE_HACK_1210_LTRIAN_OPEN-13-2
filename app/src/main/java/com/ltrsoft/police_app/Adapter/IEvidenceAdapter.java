@@ -37,7 +37,7 @@ public class IEvidenceAdapter extends RecyclerView.Adapter<IEvidenceAdapter.View
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
          Evidance iEvidenceClass = list.get(position);
 //        holder.desc.setText(iEvidenceClass.getEvidence());
-       holder.evidenceimg.setImageResource(iEvidenceClass.getEvidance_id());
+       holder.evidenceimg.setImageResource(Integer.parseInt(iEvidenceClass.getEvidance_id()));
         holder.nonsusupect.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

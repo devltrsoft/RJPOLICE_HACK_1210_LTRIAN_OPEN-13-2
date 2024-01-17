@@ -52,14 +52,14 @@ public class EvidanceDeo {
                             JSONArray jsonArray = new JSONArray(response);
                             for (int i = 0; i < jsonArray.length(); i++) {
                                 JSONObject jsonObject = jsonArray.getJSONObject(i);
-                                Integer fir_id = jsonObject.getInt("fir_id");
-                                Integer evidance_id=jsonObject.getInt("evidance_id");
+                                 String fir_id = jsonObject.getString("fir_id");
+                                String evidance_id=jsonObject.getString("evidance_id");
                                 String evidance_name = jsonObject.getString("evidance_name");
                                 String evidance_description = jsonObject.getString("evidance_description");
                                 String evidance_photos_path = jsonObject.getString("evidance_photos_path");
                                 String evidance_photos_description = jsonObject.getString("evidance_photos_description");
                                 String evidance_photos_id=jsonObject.getString("evidance_photos_id");
-                                 list.add(new Evidance(fir_id,evidance_id,evidance_name,evidance_description,evidance_photos_path,
+                                 list.add(new Evidance( evidance_id,fir_id,evidance_name,evidance_description,evidance_photos_path,
                                          evidance_photos_description,evidance_photos_id));
                             }
                             callback.onSuccess(list);
@@ -97,14 +97,14 @@ public class EvidanceDeo {
                             JSONArray jsonArray=new JSONArray(response);
                             for (int i = 0; i < jsonArray.length(); i++) {
                                 JSONObject jsonObject = jsonArray.getJSONObject(i);
-                                Integer fir_id = jsonObject.getInt("fir_id");
-                                Integer evidance_id=jsonObject.getInt("evidance_id");
+                                String fir_id = jsonObject.getString("fir_id");
+                                String evidance_id=jsonObject.getString("evidance_id");
                                 String evidance_name = jsonObject.getString("evidance_name");
                                 String evidance_description = jsonObject.getString("evidance_description");
                                 String evidance_photos_path = jsonObject.getString("evidance_photos_path");
                                 String evidance_photos_description = jsonObject.getString("evidance_photos_description");
                                 String evidance_photos_id=jsonObject.getString("evidance_photos_id");
-                                list.add(new Evidance(fir_id,evidance_id,evidance_name,evidance_description,evidance_photos_path,
+                                list.add(new Evidance( evidance_id,fir_id,evidance_name,evidance_description,evidance_photos_path,
                                         evidance_photos_description,evidance_photos_id));
 
 

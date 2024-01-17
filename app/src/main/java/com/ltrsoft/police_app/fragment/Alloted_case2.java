@@ -10,10 +10,21 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
+import com.ltrsoft.police_app.Adapter.EvidenceAdapter1;
 import com.ltrsoft.police_app.Adapter.ISuspectAdapter;
+import com.ltrsoft.police_app.Adapter.SuspectAdapter1;
+import com.ltrsoft.police_app.Adapter.VictimAdapter1;
+import com.ltrsoft.police_app.Classes.Evidance;
 import com.ltrsoft.police_app.Classes.Suspect;
+import com.ltrsoft.police_app.Classes.Victim;
+import com.ltrsoft.police_app.Model.EvidanceDeo;
+import com.ltrsoft.police_app.Model.SuspectDeo;
+import com.ltrsoft.police_app.Model.VictimDeo;
+import com.ltrsoft.police_app.Model.WitnessDeo;
 import com.ltrsoft.police_app.R;
+import com.ltrsoft.police_app.interface1.Callback;
 
 import java.util.ArrayList;
 
@@ -23,6 +34,8 @@ public class Alloted_case2 extends Fragment {
         // Required empty public constructor
     }
     private ArrayList<Suspect> list=new ArrayList<>();
+    private ArrayList<Victim> victim_list = new ArrayList<>();
+    private ArrayList<Evidance> evidances_list=new ArrayList<>();
 
     private CardView suspect_card,witness_card,victim_card,Evidance_card;
     private RecyclerView Suspect_recycler,Witness_Recycler,Victim_Recycler,Evidance_Recycler;
@@ -74,7 +87,7 @@ public class Alloted_case2 extends Fragment {
             public void onClick(View view) {
                 // Toggle visibility for others
 
-                int newVisibility = (  Evidance_Recycler.getVisibility() == View.VISIBLE) ? View.GONE : View.VISIBLE;
+                int newVisibility = ( witness_card  .getVisibility() == View.VISIBLE) ? View.GONE : View.VISIBLE;
 
                 int oppositeVisibility = (newVisibility == View.VISIBLE) ? View.GONE : View.VISIBLE;
                 Evidance_Recycler.setVisibility(oppositeVisibility);
@@ -112,54 +125,72 @@ public class Alloted_case2 extends Fragment {
     }
     private void setEvidenceAdapter() {
 
-//        listevidence.add(new IEvidenceClass("sample evidence",R.drawable.evidence));
-//        listevidence.add(new IEvidenceClass("sample evidence",R.drawable.evidence));
-//        listevidence.add(new IEvidenceClass("sample evidence",R.drawable.evidence));
-//        listevidence.add(new IEvidenceClass("sample evidence",R.drawable.evidence));
-//        listevidence.add(new IEvidenceClass("sample evidence",R.drawable.evidence));
-//        LinearLayoutManager layoutManager = new LinearLayoutManager(getContext());
-//        Evidance_Recycler.setLayoutManager(layoutManager);
-//        IEvidenceAdapter adapter = new IEvidenceAdapter(listevidence);
-//        Evidance_Recycler.setAdapter(adapter);
+        EvidanceDeo evidanceDeo=new EvidanceDeo();
+        evidanceDeo.getAllEvidance(getContext(), new Callback() {
+            @Override
+            public void onSuccess(Object obj) {
+                evidances_list=(ArrayList<Evidance>) obj;
+                EvidenceAdapter1 adapter=new EvidenceAdapter1((ArrayList<Evidance>)obj);
+                LinearLayoutManager layoutManager = new LinearLayoutManager(getContext());
+                Evidance_Recycler.setLayoutManager(layoutManager);
+                Evidance_Recycler.setAdapter(adapter);
+            }
+
+            @Override
+            public void onErro(String errro) {
+                Toast.makeText(getContext(), ""+errro, Toast.LENGTH_SHORT).show();
+            }
+        });
 
     }
 
     private void setWitnessAdapter() {
 
-//        listwitness.add(new IWitnessClass("Harun","pune","5673486583"));
-//        listwitness.add(new IWitnessClass("Harun","pune","5673486583"));
-//        listwitness.add(new IWitnessClass("Harun","pune","5673486583"));
-//        listwitness.add(new IWitnessClass("Harun","pune","5673486583"));
-//        listwitness.add(new IWitnessClass("Harun","pune","5673486583"));
-//        LinearLayoutManager layoutManager = new LinearLayoutManager(getContext());
-//        IWitnessAdapter adapter = new IWitnessAdapter(listwitness);
-//        Witness_Recycler.setLayoutManager(layoutManager);
-//        Witness_Recycler.setAdapter(adapter);
+        WitnessDeo witnessDeo=new WitnessDeo();
+
 
     }
 
     private void setVictimAdapter() {
-//        listvictim.add(new IVictimClass("Ganesh","latur","347738876324"));
-//        listvictim.add(new IVictimClass("Ganesh","latur","347738876324"));
-//        listvictim.add(new IVictimClass("Ganesh","latur","347738876324"));
-//        listvictim.add(new IVictimClass("Ganesh","latur","347738876324"));
-//        listvictim.add(new IVictimClass("Ganesh","latur","347738876324"));
-//        listvictim.add(new IVictimClass("Ganesh","latur","347738876324"));
-//        IVictimAdapter iVictimAdapter = new IVictimAdapter(listvictim);
-//        LinearLayoutManager layoutManager = new LinearLayoutManager(getContext());
-//        Victim_Recycler.setLayoutManager(layoutManager);
-//        Victim_Recycler.setAdapter(iVictimAdapter);
+        VictimDeo victimDeo=new VictimDeo();
+        victimDeo.getAllVictim(getContext(), new Callback() {
+            @Override
+            public void onSuccess(Object obj) {
+                victim_list = (ArrayList<Victim>) obj;
+                VictimAdapter1 adapter = new VictimAdapter1((ArrayList<Victim>) obj);
+                LinearLayoutManager layoutManager = new LinearLayoutManager(getContext());
+                 Victim_Recycler.setLayoutManager(layoutManager);
+                Victim_Recycler.setAdapter(adapter);
+            }
+
+            @Override
+            public void onErro(String errro) {
+
+            }
+        });
     }
     private void setSuspectAdapter() {
 
-//        list.add(new Suspect("8380949810","ganesh sagave","latur"));
-//        list.add(new Suspect("8380949810","ganesh sagave","latur"));
-//        list.add(new Suspect("8380949810","ganesh sagave","latur"));
-//        list.add(new Suspect("8380949810","ganesh sagave","latur"));
-       ISuspectAdapter iSuspectAdapter = new ISuspectAdapter(list);
-        LinearLayoutManager layoutManager = new LinearLayoutManager(getContext());
-        Suspect_recycler.setLayoutManager(layoutManager);
-        Suspect_recycler.setAdapter(iSuspectAdapter);
+        SuspectDeo suspectDeo=new SuspectDeo();
+        suspectDeo.getAllSuspect(getContext(), new Callback() {
+            @Override
+            public void onSuccess(Object obj) {
+               /// System.out.println("response"+obj.toString());
+               // Toast.makeText(getContext(), "response"+obj, Toast.LENGTH_SHORT).show();
+                list = (ArrayList<Suspect>)obj;
+                SuspectAdapter1 adapter = new SuspectAdapter1(list);
+                LinearLayoutManager layoutManager = new LinearLayoutManager(getContext());
+                Suspect_recycler.setLayoutManager(layoutManager);
+                Suspect_recycler.setAdapter(adapter);
+            }
+
+            @Override
+            public void onErro(String errro) {
+                Toast.makeText(getContext(), "response"+errro, Toast.LENGTH_SHORT).show();
+
+            }
+        });
+
     }
 
     private void setId() {
