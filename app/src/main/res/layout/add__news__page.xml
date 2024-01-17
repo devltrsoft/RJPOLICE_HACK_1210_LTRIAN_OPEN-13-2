@@ -1,14 +1,106 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".fragment.Add_News_Page">
+    android:orientation="vertical">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+        tools:context=".MainActivity"
+        android:orientation="vertical">
 
-</FrameLayout>
+
+        <androidx.cardview.widget.CardView
+            android:layout_width="380dp"
+            android:layout_height="50dp"
+            android:layout_gravity="center"
+            android:layout_marginTop="15dp"
+            app:cardElevation="20dp"
+            app:cardCornerRadius="10dp" >
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:text="News Details"
+                android:textColor="#180E90"
+                android:layout_gravity="center"
+                android:gravity="center"
+                android:textStyle="bold"
+                android:textSize="22dp"
+                android:background="@drawable/d1"
+                />
+
+        </androidx.cardview.widget.CardView>
+
+        <EditText
+            android:id="@+id/Ntitle"
+            android:layout_width="350dp"
+            android:layout_height="50dp"
+            android:hint="News Title"
+            android:layout_gravity="center"
+            android:textAlignment="center"
+            android:background="@drawable/d1"
+            android:layout_marginTop="20dp"
+            android:inputType="text"/>
+
+        <EditText
+            android:id="@+id/Ncatagory"
+            android:layout_width="350dp"
+            android:layout_height="50dp"
+            android:hint="Catagory"
+            android:layout_gravity="center"
+            android:background="@drawable/d1"
+            android:textAlignment="center"
+            android:layout_marginTop="20dp"
+            android:inputType="text"/>
+
+        <EditText
+            android:id="@+id/Nstation"
+            android:layout_width="350dp"
+            android:layout_height="50dp"
+            android:hint="Station"
+            android:layout_gravity="center"
+            android:background="@drawable/d1"
+            android:textAlignment="center"
+            android:layout_marginTop="20dp"
+            android:inputType="text"/>
+
+        <EditText
+            android:id="@+id/Ndescription"
+            android:layout_width="350dp"
+            android:layout_height="150dp"
+            android:layout_gravity="center"
+            android:layout_marginTop="20dp"
+            android:background="@drawable/d1"
+            android:hint="Desciption"
+            android:inputType="textMultiLine"
+            android:textAlignment="center" />
+
+        <EditText
+            android:id="@+id/Ndate"
+            android:layout_width="350dp"
+            android:layout_height="50dp"
+            android:hint="News Date"
+            android:layout_gravity="center"
+            android:background="@drawable/d1"
+            android:textAlignment="center"
+            android:layout_marginTop="20dp"
+            android:inputType="date"/>
+
+        <Button
+            android:id="@+id/save"
+            android:layout_width="300dp"
+            android:layout_height="50dp"
+            android:layout_marginTop="40dp"
+            android:layout_gravity="center"
+            android:background="@drawable/d1"
+            app:backgroundTint="#000080"
+            android:text="Save"
+            android:textSize="15dp" />
+
+    </LinearLayout>
+</LinearLayout>

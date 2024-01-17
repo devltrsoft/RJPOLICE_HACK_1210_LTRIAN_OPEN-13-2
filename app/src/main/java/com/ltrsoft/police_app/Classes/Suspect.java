@@ -7,6 +7,12 @@ public class Suspect {
             photo_path,pan,mobile,is_suspect;
        String  fir_id,investigation_suspect_id;
 
+    public Suspect(String fname, String address, String mobile) {
+        this.fname = fname;
+        this.address = address;
+        this.mobile = mobile;
+    }
+
     public Suspect(String country, String state, String district, String city, String fname,
                    String mname, String lname, String address, String dob, String email, String adhar, String gender, String photo_path, String pan,
                    String mobile, String is_suspect, String fir_id, String investigation_suspect_id) {
@@ -33,8 +39,7 @@ public class Suspect {
     public Suspect(String country1, String state1, String district1, String city1, String name1, String address1, String email1, String dob1, String mobile1, String addhar1, String gender) {
     }
 
-    public Suspect(String number, String ganeshSagave, String latur) {
-    }
+
 
     public String getCountry() {
         return country;

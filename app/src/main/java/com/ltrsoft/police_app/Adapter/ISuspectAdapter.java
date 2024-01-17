@@ -51,37 +51,8 @@ public class ISuspectAdapter extends RecyclerView.Adapter<ISuspectAdapter.ViewHo
         holder.phone.setText(iSuspectClass. getMobile());
         holder.location.setText(iSuspectClass. getAddress());
 
-        holder.edit.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                if (activityReference != null && activityReference.get() != null) {
-                    AppCompatActivity activity = activityReference.get();
 
-                    activity.getSupportFragmentManager()
-                            .beginTransaction()
-                            .replace(R.id.main_container, new AddSuspect())
-                            .addToBackStack(null)
-                            .commit();
-//                Toast.makeText(view.getContext(), "", Toast.LENGTH_SHORT).show();
-                }
-            }
-        });
 
-        holder.nonsusupect.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                if (flag){
-                    holder.nonsusupect.setText("Suspect");
-                    Toast.makeText(view.getContext(), "Suspect is being non suspect", Toast.LENGTH_SHORT).show();
-                    flag = false;
-                }
-                else {
-                    holder.nonsusupect.setText("Non Suspect");
-                    Toast.makeText(view.getContext(), "Suspect is suspect", Toast.LENGTH_SHORT).show();
-                    flag=true;
-                }
-            }
-        });
 
         holder.cardView.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -100,17 +71,13 @@ public class ISuspectAdapter extends RecyclerView.Adapter<ISuspectAdapter.ViewHo
 
     public class ViewHolder extends RecyclerView.ViewHolder{
         public TextView name,location,phone;
-        public Button nonsusupect;
-        public ImageView edit;
-        public CardView cardView;
+         public CardView cardView;
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
             name = itemView.findViewById(R.id.person_name);
             location = itemView.findViewById(R.id.person_location);
             phone = itemView.findViewById(R.id.person_contact);
-            nonsusupect = itemView.findViewById(R.id.Non_Suspect);
-            edit = itemView.findViewById(R.id.Edit_profile);
-            cardView = itemView.findViewById(R.id.person_card);
+             cardView = itemView.findViewById(R.id.person_card);
         }
     }
 }
