@@ -19,7 +19,6 @@ import com.ltrsoft.police_app.interface1.Callback;
 import java.util.ArrayList;
 
 public class Witness2 extends Fragment {
-
     private RecyclerView recyclerView;
     private ArrayList<Witness> list1 = new ArrayList<>();
     @Override

@@ -28,10 +28,6 @@ public class Witness1 extends Fragment {
         View view = inflater.inflate(R.layout.witness__history__dashboard, container, false);
         recyclerView = view.findViewById(R.id.witnessHistoryRecycler);
 
-//        AppCompatActivity activity = (AppCompatActivity)getContext();
-//        Witness2 witnessSecond = new Witness2();
-//        activity.getSupportFragmentManager().beginTransaction().replace(R.id. main_container, witnessSecond).addToBackStack(null).commit();
-
         WitnessDeo witnessDeo = new WitnessDeo();
         witnessDeo.getAllWitness(getContext(), new Callback() {
             @Override

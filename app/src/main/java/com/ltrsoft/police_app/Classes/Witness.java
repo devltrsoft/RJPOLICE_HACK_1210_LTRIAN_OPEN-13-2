@@ -8,10 +8,11 @@ public class Witness {
             gender,
               photo_path,pan,mobile,is_witness;
 
-        int fir_id,investigation_witness_id;
+        int investigation_witness_id;
+        String fir_id;
 
     public Witness(String country, String state, String district, String city, String fname, String mname, String lname, String address, String dob, String email, String adhar, String gender, String photo_path,
-                   String pan, String mobile, String is_witness, int fir_id, int investigation_witness_id) {
+                   String pan, String mobile, String is_witness, String fir_id, int investigation_witness_id) {
         this.country = country;
         this.state = state;
         this.district = district;
@@ -169,11 +170,11 @@ public class Witness {
         this.is_witness = is_witness;
     }
 
-    public int getFir_id() {
+    public String getFir_id() {
         return fir_id;
     }
 
-    public void setFir_id(int fir_id) {
+    public void setFir_id(String fir_id) {
         this.fir_id = fir_id;
     }
 
