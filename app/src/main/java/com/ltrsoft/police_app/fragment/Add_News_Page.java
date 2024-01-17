@@ -69,7 +69,7 @@ public class Add_News_Page extends Fragment {
                     @Override
                     public void onSuccess(Object obj) {
                         String success=(String) obj;
-                       Toast.makeText(getContext(), ""+success, Toast.LENGTH_SHORT).show();
+                      // Toast.makeText(getContext(), ""+success, Toast.LENGTH_SHORT).show();
                         FragmentTransaction transaction = getParentFragmentManager().beginTransaction();
                         transaction.replace(R.id.container_main,addNewsImage);
                         transaction.commit();

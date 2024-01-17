@@ -91,12 +91,12 @@ public class Add_News_image extends Fragment {
                     @Override
                     public void onSuccess(Object obj) {
                       String success=(String) obj;
-                        Toast.makeText(getContext(), ""+success, Toast.LENGTH_SHORT).show();
+                        //Toast.makeText(getContext(), ""+success, Toast.LENGTH_SHORT).show();
                     }
 
                     @Override
                     public void onErro(String errro) {
-                        Toast.makeText(getContext(), ""+errro, Toast.LENGTH_SHORT).show();
+                        //Toast.makeText(getContext(), ""+errro, Toast.LENGTH_SHORT).show();
 
                     }
                 });
@@ -160,13 +160,13 @@ public class Add_News_image extends Fragment {
                     encodeImage = Base64.encodeToString(bytes, Base64.NO_WRAP);
                     //
                 } else {
-                    Toast.makeText(getContext(), "please select the image", Toast.LENGTH_SHORT).show();
+                  //  Toast.makeText(getContext(), "please select the image", Toast.LENGTH_SHORT).show();
 
                 }
             }
         } else if (requestCode == GALLERY_REQ_CODE && resultCode == Activity.RESULT_OK && data != null) {
             Uri selectedImage = data.getData();
-            Toast.makeText(getActivity(), "" + selectedImage, Toast.LENGTH_SHORT).show();
+           // Toast.makeText(getActivity(), "" + selectedImage, Toast.LENGTH_SHORT).show();
             InputStream inputStream = null;
             try {
                 inputStream = getContext().getContentResolver().openInputStream(selectedImage);
@@ -205,46 +205,6 @@ public class Add_News_image extends Fragment {
         Intent galleryIntent = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
         startActivityForResult(galleryIntent, GALLERY_REQ_CODE);
     }
-
-//    private void save() {
-//
-//        StringRequest stringRequest = new StringRequest(Request.Method.POST, URL,
-//                new Response.Listener<String>() {
-//                    @Override
-//                    public void onResponse(String response) {
-//                        // Toast.makeText(getContext(), "Success! " + response, Toast.LENGTH_SHORT).show();
-//                        Log.d("Response", response);
-//
-//                        if (response.contains("success")) {
-////                                getFragmentManager().beginTransaction()
-////                                        .replace(R.id.containermain, new Dashboard())
-////                                        .commit();
-////                                Toast.makeText(getContext(), "Success! " + response, Toast.LENGTH_SHORT).show();
-//                        } else {
-//                            Toast.makeText(getContext(), "Error! " + response, Toast.LENGTH_SHORT).show();
-//                        }
-//                    }
-//                }, new Response.ErrorListener() {
-//            @Override
-//            public void onErrorResponse(VolleyError error) {
-//                Toast.makeText(getContext(), "" + error, Toast.LENGTH_SHORT).show();
-//            }
-//        }) {
-//            @Override
-//            protected Map<String, String> getParams() throws AuthFailureError {
-//                Map<String, String> param = new HashMap<>();
-//
-//                param.put("photo", encodeImage);
-//
-//
-//                return param;
-//            }
-//        };
-//        RequestQueue requestQueue = Volley.newRequestQueue(getContext());
-//        requestQueue.add(stringRequest);
-
-
-   // }
 
 
 

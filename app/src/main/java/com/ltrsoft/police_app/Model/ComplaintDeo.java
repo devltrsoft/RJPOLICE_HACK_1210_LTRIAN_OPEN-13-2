@@ -31,7 +31,7 @@ public class ComplaintDeo {
     Complaint update_complaint;
     Complaint delete_complaint;
     String Police_id="1";
-    String getoneComplaint_URL="";
+    String getoneComplaint_URL="http://rj.ltr-soft.com/public/police_api/data/police_c_read.php";
 
     String Search_URL="";
     String delete_URL="";
@@ -102,7 +102,7 @@ public class ComplaintDeo {
     }
 
 
-    public Complaint getoneComplaint(int  complaint_id, Context context ){
+    public void getoneComplaint(int  police_id, Context context,Callback callback ){
 
         StringRequest stringRequest=new StringRequest(Request.Method.POST,  getoneComplaint_URL,
                 new Response.Listener<String>() {
@@ -135,9 +135,11 @@ public class ComplaintDeo {
                                         incident_date, complaint_against, complaint_description,
                                         state, country, city, district,complaint_id, user_id, status_id);
                             }
+                            callback.onSuccess(complainttone);
                         }
                         catch ( Exception e){
                             e.printStackTrace();
+                            callback.onErro(e.toString());
                             throw new RuntimeException(e);
                         }
                     }
@@ -146,13 +148,14 @@ public class ComplaintDeo {
                     @Override
                     public void onErrorResponse(VolleyError error) {
                         error.printStackTrace();
+                        callback.onErro(error.toString());
                     }
                 }){
             @Nullable
             @Override
             protected Map<String, String> getParams() throws AuthFailureError {
                 HashMap <String,  String> map=new HashMap<>();
-                map.put("complaint_id", String.valueOf(complaint_id));
+                map.put("police_id", String.valueOf(police_id));
                 return map;
             }
         };
@@ -160,7 +163,6 @@ public class ComplaintDeo {
 
         RequestQueue requestQueue=Volley.newRequestQueue(context);
         requestQueue.add(stringRequest);
-        return complainttone;
 
     };
 
