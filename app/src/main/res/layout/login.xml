@@ -21,7 +21,27 @@
         android:textSize="40dp"
         android:layout_marginTop="30dp"
         android:textColor="#180E90"/>
-
+    <LinearLayout
+        android:layout_marginTop="10dp"
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <TextView
+            android:background="@drawable/d1"
+            android:layout_marginTop="10dp"
+            android:layout_marginLeft="60dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="17dp"
+            android:text="Login As"/>
+        <Spinner
+            android:background="@drawable/d1"
+            android:layout_marginTop="10dp"
+            android:layout_marginLeft="60dp"
+            android:id="@+id/user"
+            android:layout_width="183dp"
+            android:layout_height="31dp" />
+    </LinearLayout>
     <EditText
         android:id="@+id/email"
         android:layout_width="250dp"

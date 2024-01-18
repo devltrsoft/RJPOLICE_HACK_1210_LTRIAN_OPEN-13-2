@@ -93,7 +93,9 @@ public class  NavigationDrawer extends Fragment {
                     builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
                         @Override
                         public void onClick(DialogInterface dialog, int which) {
+
                             Toast.makeText(getContext(), "Cancelled", Toast.LENGTH_SHORT).show();
+                            
                         }
                     });
                     builder.show();

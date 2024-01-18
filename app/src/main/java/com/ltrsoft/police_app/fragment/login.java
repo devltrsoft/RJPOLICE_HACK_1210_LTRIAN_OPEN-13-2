@@ -11,8 +11,10 @@ import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -25,21 +27,24 @@ import com.ltrsoft.police_app.utils.UserDataAccess;
 
 public class login extends Fragment {
 
-
+    ArrayAdapter <String> adapter;
+    public Spinner users;
+    public String USER;
     public login() {    }
 
     Button loginbtn;
     EditText Email,Password;
     TextView registration,forgot_password;
-
+    String []user ={"police","Admin"};
     private static String URL = "https://rj.ltr-soft.com/public/police_api/login/user_login.php";
-
-
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
           View view= inflater.inflate(R.layout.login, container, false);
-
+        users = view.findViewById(R.id.user);
+        adapter = new ArrayAdapter<>(getActivity(), android.R.layout.simple_list_item_1,user);
+        adapter.setDropDownViewResource(android.R.layout.simple_expandable_list_item_1);
+        users.setAdapter(adapter);
 
         loginbtn=view.findViewById(R.id.loginbtn);
         registration=view.findViewById(R.id.registration);
@@ -48,16 +53,12 @@ public class login extends Fragment {
         Password=view.findViewById(R.id.password);
         Intent main_activity_intent = new Intent( getActivity(), MainActivity.class);
         startActivity(main_activity_intent);
-
         loginbtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 
-
                 String mEmail = Email.getText().toString().trim();
                 String mPass = Password.getText().toString().trim();
-
-
                 if (!mEmail.isEmpty() || !mPass.isEmpty()) {
 
                     PoliceDeo policeDeo = new PoliceDeo();

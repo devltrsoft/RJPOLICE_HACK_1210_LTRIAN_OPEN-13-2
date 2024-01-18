@@ -6,12 +6,19 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
+import com.ltrsoft.police_app.Adapter.NotAllotedCasesAdapter;
+import com.ltrsoft.police_app.Classes.NotAllotedCaseClass;
 import com.ltrsoft.police_app.R;
+
+import java.util.ArrayList;
 
 
 public class Not_Alloted_case extends Fragment {
-
+    public RecyclerView recyclerView;
+    ArrayList<NotAllotedCaseClass> list = new ArrayList<>();
     public Not_Alloted_case() {
         // Required empty public constructor
     }
@@ -20,6 +27,22 @@ public class Not_Alloted_case extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.not__alloted_case, container, false);
+        View view =  inflater.inflate(R.layout.not__alloted_case, container, false);
+        recyclerView = view.findViewById(R.id.not_alloted_cases);
+
+        list.add(new NotAllotedCaseClass("1032039","Murder"));
+        list.add(new NotAllotedCaseClass("1032039","Murder"));
+        list.add(new NotAllotedCaseClass("1032039","Murder"));
+        list.add(new NotAllotedCaseClass("1032039","Murder"));
+        list.add(new NotAllotedCaseClass("1032039","Murder"));
+        list.add(new NotAllotedCaseClass("1032039","Murder"));
+        list.add(new NotAllotedCaseClass("1032039","Murder"));
+
+        NotAllotedCasesAdapter adapter = new NotAllotedCasesAdapter(list);
+        LinearLayoutManager layoutManager = new LinearLayoutManager(getContext());
+        recyclerView.setLayoutManager(layoutManager);
+        recyclerView.setAdapter(adapter);
+
+   return view;
     }
 }

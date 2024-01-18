@@ -45,6 +45,7 @@ public class AdminDashBoard extends Fragment {
         socialMedia = view.findViewById(R.id.social_media);
         camera = view.findViewById(R.id.camera_btn);
         missing = view.findViewById(R.id.missing_btn);
+
             Cadd.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

@@ -245,26 +245,27 @@
                 android:gravity="top|left" />
 
             <LinearLayout
-                android:layout_width="wrap_content"
+                android:layout_width="341dp"
                 android:layout_height="wrap_content">
 
                 <Button
                     android:id="@+id/Add_button"
                     android:layout_width="100dp"
                     android:layout_height="40dp"
-                    android:layout_marginTop="10dp"
                     android:layout_marginLeft="50dp"
+                    android:layout_marginTop="10dp"
                     android:background="@drawable/d1"
-                    app:backgroundTint="#000080"
+                    android:text="Add"
                     android:textSize="15dp"
-                    android:text="Add" />
+                    android:visibility="gone"
+                    app:backgroundTint="#000080" />
+
                 <ImageView
-                    android:id="@+id/mike"
+                    android:id="@+id/mikedisc"
                     android:layout_width="50dp"
                     android:layout_height="50dp"
-                    android:src="@drawable/mike"
-                    android:layout_marginLeft="170dp"
-                    />
+                    android:layout_marginLeft="300dp"
+                    android:src="@drawable/mike" />
             </LinearLayout>
         </LinearLayout>
         <LinearLayout
@@ -283,16 +284,12 @@
                 android:background="@drawable/d1"
                 android:hint="Add_Recomandation and notes"
                 android:gravity="top|left" />
-            <Button
-                android:id="@+id/Add_Recomandation_Button"
-                android:layout_width="100dp"
-                android:layout_height="40dp"
-                android:layout_marginLeft="270dp"
-                android:layout_marginTop="15dp"
-                android:background="@drawable/d1"
-                app:backgroundTint="#000080"
-                android:textSize="15dp"
-                android:text="Add" />
+            <ImageView
+                android:id="@+id/mikerec"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_marginLeft="300dp"
+                android:src="@drawable/mike" />
 
             <Spinner
                 android:id="@+id/action"
@@ -314,7 +311,7 @@
                 android:textSize="15dp"
                 android:layout_gravity="center"
                 android:layout_marginLeft="20dp"
-                android:text="Add" />
+                android:text="Submit" />
         </LinearLayout>
     </FrameLayout>
 

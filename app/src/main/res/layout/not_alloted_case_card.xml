@@ -20,6 +20,7 @@
 
 
             <androidx.cardview.widget.CardView
+                android:id="@+id/not_alloted_card"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="40dp"

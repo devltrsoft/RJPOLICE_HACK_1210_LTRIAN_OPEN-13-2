@@ -1,12 +1,17 @@
 package com.ltrsoft.police_app.fragment;
 
+import static android.app.Activity.RESULT_OK;
+
+import android.content.Intent;
 import android.os.Bundle;
 
+import androidx.annotation.Nullable;
 import androidx.cardview.widget.CardView;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.speech.RecognizerIntent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,6 +19,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Spinner;
+import android.widget.Toast;
 
 import com.google.android.material.navigation.NavigationView;
 import com.ltrsoft.police_app.Adapter.IEvidenceAdapter;
@@ -26,10 +32,12 @@ import com.ltrsoft.police_app.Classes.Victim;
 import com.ltrsoft.police_app.Classes.Witness;
 import com.ltrsoft.police_app.R;
 
+import java.io.FileInputStream;
+import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Objects;
 
 public class Add_Investigation extends Fragment {
-
     public Add_Investigation() {
     }
     private CardView suspect_card,witness_card,victim_card,Evidance_card;
@@ -37,10 +45,14 @@ public class Add_Investigation extends Fragment {
     private ArrayList<Victim>listvictim=new ArrayList<>();
     private ArrayList<Witness>listwitness=new ArrayList<>();
     private ArrayList<Evidance>listevidence=new ArrayList<>();
-
+    private String filelang = "language.txt1";
+    String lang;
     private EditText addDiscryption;
     private Button addButton;
     private ImageView mike,Suspect_plus,Witness_plus,Victim_plus,Evidance_plus;
+    private ImageView disc,reco;
+    private static final int REQUEST_CODE_SPEECH_INPUT = 1;
+    private static final int REQUEST_CODE_FOR_DESC = 2;
     private EditText addRecomandation;
     private Button addRecomandationButton;
     private Spinner yourSpinner;
@@ -58,6 +70,51 @@ public class Add_Investigation extends Fragment {
         setVictimAdapter();
         setWitnessAdapter();
         setEvidenceAdapter();
+        try {
+            FileInputStream fin = getActivity().openFileInput(filelang);
+            int a;
+            StringBuilder temp = new StringBuilder();
+            while ((a = fin.read()) != -1) {
+                temp.append((char) a);
+            }
+            lang=temp.toString();
+            fin.close();
+        } catch (IOException e) {
+            Toast.makeText(getContext(), "error = "+e.toString(), Toast.LENGTH_SHORT).show();
+            e.printStackTrace();
+        }
+        disc.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(RecognizerIntent.ACTION_RECOGNIZE_SPEECH);
+                intent.putExtra(RecognizerIntent.EXTRA_LANGUAGE_MODEL, RecognizerIntent.LANGUAGE_MODEL_FREE_FORM);
+                intent.putExtra(RecognizerIntent.EXTRA_LANGUAGE, lang);
+                intent.putExtra(RecognizerIntent.EXTRA_PROMPT, "Speak to text");
+
+                try {
+                    startActivityForResult(intent, REQUEST_CODE_SPEECH_INPUT);
+                } catch (Exception e) {
+                    Toast.makeText(getContext(), " " + e.getMessage(), Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
+
+
+        reco.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(RecognizerIntent.ACTION_RECOGNIZE_SPEECH);
+                intent.putExtra(RecognizerIntent.EXTRA_LANGUAGE_MODEL, RecognizerIntent.LANGUAGE_MODEL_FREE_FORM);
+                intent.putExtra(RecognizerIntent.EXTRA_LANGUAGE, lang);
+                intent.putExtra(RecognizerIntent.EXTRA_PROMPT, "Speak to text");
+
+                try {
+                    startActivityForResult(intent, REQUEST_CODE_FOR_DESC);
+                } catch (Exception e) {
+                    Toast.makeText(getContext(), " " + e.getMessage(), Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
 
         Suspect_plus.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -261,6 +318,8 @@ public class Add_Investigation extends Fragment {
     }
 
     private void setId() {
+        disc =view.findViewById(R.id.mikedisc);
+        reco = view.findViewById(R.id.mikerec);
         suspect_card=view.findViewById(R.id.suspect_card);
         victim_card=view.findViewById(R.id.victim_card);
         witness_card=view.findViewById(R.id.witness_card);
@@ -271,9 +330,9 @@ public class Add_Investigation extends Fragment {
         Suspect_recycler=view.findViewById(R.id.suspect_recycler);
         addDiscryption = view.findViewById(R.id.Add_discryption);
         addButton = view.findViewById(R.id.Add_button);
-        mike = view.findViewById(R.id.mike);
+//        mike = view.findViewById(R.id.mike);
         addRecomandation = view.findViewById(R.id.add_note);
-        addRecomandationButton = view.findViewById(R.id.Add_Recomandation_Button);
+//        addRecomandationButton = view.findViewById(R.id.Add_Recomandation_Button);
         yourSpinner = view.findViewById(R.id.action);
         closeFile = view.findViewById(R.id.close_file);
         Witness_plus=view.findViewById(R.id.witness_plus);
@@ -281,4 +340,26 @@ public class Add_Investigation extends Fragment {
         Victim_plus=view.findViewById(R.id.victim_plus);
         Evidance_plus=view.findViewById(R.id.evidance_plus);
      }
+
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
+
+        if (requestCode == REQUEST_CODE_SPEECH_INPUT) {
+            if (resultCode == RESULT_OK && data != null) {
+                ArrayList<String> result = data.getStringArrayListExtra(RecognizerIntent.EXTRA_RESULTS);
+                addDiscryption.setText(Objects.requireNonNull(result).get(0));
+            }
+
+        }
+        else if (requestCode == REQUEST_CODE_FOR_DESC){
+            if (resultCode == RESULT_OK && data != null) {
+                ArrayList<String> result = data.getStringArrayListExtra(RecognizerIntent.EXTRA_RESULTS);
+                addRecomandation.setText(Objects.requireNonNull(result).get(0));
+            }
+
+        }
+    }
 }
