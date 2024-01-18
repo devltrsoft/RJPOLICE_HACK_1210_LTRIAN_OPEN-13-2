@@ -20,20 +20,28 @@ import java.util.ArrayList;
 public class NotAllotedDetailPage extends Fragment {
  public NotAllotedDetailPage() {    }
     public TextView cmpoid,crimetype;
- public Spinner police;
+ public Spinner police,spinner;
  public Button allot;
  ArrayList <String> list = new ArrayList<>();
- ArrayAdapter adapter ;
+    ArrayList <String> listpolice = new ArrayList<>();
+
+    ArrayAdapter adapter , Adapter2;
   @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.alloted_detail_page, container, false);
      Bundle bundle =getArguments();
-     cmpoid.setText(bundle.getString("case_id"));
-        cmpoid = view.findViewById(R.id.complainid);
+         cmpoid = view.findViewById(R.id.complainid);
         crimetype = view.findViewById(R.id.crimetype);
         police = view.findViewById(R.id.availbalepolice);
         allot = view.findViewById(R.id.allotbtn);
+        spinner=view.findViewById(R.id.police_id_spinner);
+      cmpoid.setText(bundle.getString("case_id"));
+
+      listpolice.add("Akash Mhatre");
+         listpolice.add("Om Patil");
+         listpolice.add("Raghunath Sharma");
+         listpolice.add("Shravani Warma");
 
         list.add("Encounter Specialist");
         list.add("SI Daya");
@@ -43,6 +51,9 @@ public class NotAllotedDetailPage extends Fragment {
         adapter = new ArrayAdapter(getContext(), android.R.layout.simple_expandable_list_item_1,list);
         adapter.setDropDownViewResource(android.R.layout.simple_expandable_list_item_1);
         police.setAdapter(adapter);
+      Adapter2 = new ArrayAdapter(getContext(), android.R.layout.simple_expandable_list_item_1,listpolice);
+      Adapter2.setDropDownViewResource(android.R.layout.simple_expandable_list_item_1);
+      spinner.setAdapter(Adapter2);
 
 allot.setOnClickListener(new View.OnClickListener() {
     @Override

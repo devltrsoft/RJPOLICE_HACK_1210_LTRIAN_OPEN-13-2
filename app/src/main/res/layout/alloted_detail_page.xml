@@ -67,8 +67,8 @@
         android:textSize="15dp"
         tools:ignore="MissingPrefix" />
 
-    <EditText
-        android:id="@+id/policwe_id"
+    <Spinner
+        android:id="@+id/police_id_spinner"
         android:layout_width="350dp"
         android:layout_height="50dp"
         android:layout_marginTop="20dp"
