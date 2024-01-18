@@ -28,7 +28,8 @@ public class NotAllotedDetailPage extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.alloted_detail_page, container, false);
-
+     Bundle bundle =getArguments();
+     cmpoid.setText(bundle.getString("case_id"));
         cmpoid = view.findViewById(R.id.complainid);
         crimetype = view.findViewById(R.id.crimetype);
         police = view.findViewById(R.id.availbalepolice);

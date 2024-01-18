@@ -51,7 +51,7 @@ public class Missing_pages extends Fragment {
                     @Override
                     public void onResponse(String response) {
                         Log.d("response",""+response.toString());
-                        Toast.makeText(getContext(), "response = "+response.toString(), Toast.LENGTH_SHORT).show();
+                        //Toast.makeText(getContext(), "response = "+response.toString(), Toast.LENGTH_SHORT).show();
                         try {
                             JSONArray jsonArray = new JSONArray(response);
                             for (int i = 0 ;i < jsonArray.length() ; i++){
@@ -64,7 +64,7 @@ public class Missing_pages extends Fragment {
                             }
 
                         } catch (JSONException e) {
-                            Toast.makeText(getContext(), "json error"+e.toString(), Toast.LENGTH_SHORT).show();
+                          //  Toast.makeText(getContext(), "json error"+e.toString(), Toast.LENGTH_SHORT).show();
                             throw new RuntimeException(e);
                         }
                         MissingAdapter adapter=new MissingAdapter(list);
@@ -75,7 +75,7 @@ public class Missing_pages extends Fragment {
                 }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
-                Toast.makeText(getContext() ,"volley error"+error.toString(), Toast.LENGTH_SHORT).show();
+               // Toast.makeText(getContext() ,"volley error"+error.toString(), Toast.LENGTH_SHORT).show();
 
             }
         }){

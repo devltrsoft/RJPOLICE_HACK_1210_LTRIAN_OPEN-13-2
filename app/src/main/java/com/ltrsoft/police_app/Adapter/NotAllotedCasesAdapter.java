@@ -1,5 +1,6 @@
 package com.ltrsoft.police_app.Adapter;
 
+import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -41,8 +42,11 @@ public class NotAllotedCasesAdapter extends RecyclerView.Adapter<NotAllotedCases
             @Override
             public void onClick(View view) {
                 AppCompatActivity activity = (AppCompatActivity) view.getContext();
-
-                activity.getSupportFragmentManager().beginTransaction().replace(R.id.main_container, new NotAllotedDetailPage()).addToBackStack(null).commit();
+                Bundle bundle=new Bundle();
+                  NotAllotedDetailPage notAllotedDetailPage=new NotAllotedDetailPage();
+                  bundle.putString("case_id", notAllotedCaseClass.getComplainid());
+                  notAllotedDetailPage.setArguments(bundle);
+                activity.getSupportFragmentManager().beginTransaction().replace(R.id.main_container,notAllotedDetailPage ).addToBackStack(null).commit();
             }
         });
     }

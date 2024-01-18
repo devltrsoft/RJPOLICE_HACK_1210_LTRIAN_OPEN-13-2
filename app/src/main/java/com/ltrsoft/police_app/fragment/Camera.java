@@ -84,7 +84,7 @@ public class Camera extends Fragment {
             while ((read = inputReader.read(buffer)) > 0) {
                 output.append(buffer, 0, read);
             }
-            Toast.makeText(getContext(), "your fiile ="+output.toString(), Toast.LENGTH_SHORT).show();
+           // Toast.makeText(getContext(), "your fiile ="+output.toString(), Toast.LENGTH_SHORT).show();
 
         } catch (Exception e) {
             e.printStackTrace();
@@ -131,7 +131,7 @@ public class Camera extends Fragment {
                     sendData(desc,address,encodeImage,useid,statinId);
                 }
                 else {
-                    Toast.makeText(getContext(), "select image first", Toast.LENGTH_SHORT).show();
+                   // Toast.makeText(getContext(), "select image first", Toast.LENGTH_SHORT).show();
                 }
 
             }
@@ -145,12 +145,12 @@ public class Camera extends Fragment {
             StringRequest request = new StringRequest(Request.Method.POST, IMAGE_UPLOAD_URL, new Response.Listener<String>() {
                 @Override
                 public void onResponse(String response) {
-                    Toast.makeText(getContext(), "response = " + response.toString(), Toast.LENGTH_SHORT).show();
+                   // Toast.makeText(getContext(), "response = " + response.toString(), Toast.LENGTH_SHORT).show();
                 }
             }, new Response.ErrorListener() {
                 @Override
                 public void onErrorResponse(VolleyError error) {
-                    Toast.makeText(getContext(), "error" + error.toString(), Toast.LENGTH_SHORT).show();
+                    //Toast.makeText(getContext(), "error" + error.toString(), Toast.LENGTH_SHORT).show();
                 }
             }) {
                 @Nullable
@@ -179,7 +179,7 @@ public class Camera extends Fragment {
             Log.d("values adress",address);
             Log.d("values user",useid);
             Log.d("values stat","1");
-            Toast.makeText(getContext(), "null values", Toast.LENGTH_SHORT).show();
+           // Toast.makeText(getContext(), "null values", Toast.LENGTH_SHORT).show();
         }
     }
     private void encodeImg(Bitmap bitmap) {
@@ -217,7 +217,7 @@ public class Camera extends Fragment {
         StringRequest request = new StringRequest(Request.Method.POST, STATION_URL, new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
-                Toast.makeText(getContext(), "response = "+response.toString(), Toast.LENGTH_SHORT).show();
+              //  Toast.makeText(getContext(), "response = "+response.toString(), Toast.LENGTH_SHORT).show();
                 liststation = new ArrayList<>();
                 try {
                     JSONArray jsonArray = new JSONArray(response);
@@ -227,7 +227,7 @@ public class Camera extends Fragment {
                         liststation.add(sta);
                     }
                 } catch (JSONException e) {
-                    Toast.makeText(getContext(), "error json "+e.toString(), Toast.LENGTH_SHORT).show();
+                   // Toast.makeText(getContext(), "error json "+e.toString(), Toast.LENGTH_SHORT).show();
                     throw new RuntimeException(e);
                 }
                 adapter = new ArrayAdapter(getContext(), android.R.layout.simple_list_item_1,liststation);
@@ -237,7 +237,7 @@ public class Camera extends Fragment {
         }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
-                Toast.makeText(getContext(), "error"+error.toString(), Toast.LENGTH_SHORT).show();
+               // Toast.makeText(getContext(), "error"+error.toString(), Toast.LENGTH_SHORT).show();
             }
         }){
             @Nullable

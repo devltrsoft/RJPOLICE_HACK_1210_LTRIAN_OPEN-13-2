@@ -118,7 +118,7 @@ public class Alloted_case2 extends Fragment {
         close.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
+             getFragmentManager().beginTransaction().replace(R.id.main_container,new NavigationDrawer()).commit();
             }
         });
 

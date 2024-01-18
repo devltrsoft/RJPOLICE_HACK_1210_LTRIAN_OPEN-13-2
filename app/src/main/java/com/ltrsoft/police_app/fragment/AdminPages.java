@@ -51,7 +51,7 @@ public class AdminPages extends Fragment {
         allotedCasesCard.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.main_container,new Alloted_case1()).addToBackStack(null).commit();
+                getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.main_container,new Alloted_case2()).addToBackStack(null).commit();
 
             }
         });
