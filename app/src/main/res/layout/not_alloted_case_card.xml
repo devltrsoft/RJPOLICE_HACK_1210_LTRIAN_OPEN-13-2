@@ -16,10 +16,12 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical">
+            android:orientation="vertical"
+            >
 
 
             <androidx.cardview.widget.CardView
+                android:layout_marginBottom="10dp"
                 android:id="@+id/not_alloted_card"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"

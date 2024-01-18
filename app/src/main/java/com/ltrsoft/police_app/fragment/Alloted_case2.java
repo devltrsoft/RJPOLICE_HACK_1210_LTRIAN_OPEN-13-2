@@ -61,7 +61,7 @@ public class Alloted_case2 extends Fragment {
                 int newVisibility = (witness_card.getVisibility() == View.VISIBLE) ? View.GONE : View.VISIBLE;
                 witness_card.setVisibility(newVisibility);
                 Evidance_card.setVisibility( newVisibility);
-
+                close.setVisibility(newVisibility);
                 int oppositeVisibility = (newVisibility == View.VISIBLE) ? View.GONE : View.VISIBLE;
                 Victim_Recycler.setVisibility(oppositeVisibility);
 
@@ -76,6 +76,7 @@ public class Alloted_case2 extends Fragment {
 
                 int newVisibility = ( Evidance_card.getVisibility() == View.VISIBLE) ? View.GONE : View.VISIBLE;
                 Evidance_card.setVisibility( newVisibility);
+                close.setVisibility(newVisibility);
 
                 int oppositeVisibility = (newVisibility == View.VISIBLE) ? View.GONE : View.VISIBLE;
                 Witness_Recycler.setVisibility(oppositeVisibility);
@@ -107,6 +108,7 @@ public class Alloted_case2 extends Fragment {
                 witness_card.setVisibility(newVisibility);
                 //Victim_Recycler.setVisibility(newVisibility);
                 Evidance_card.setVisibility( newVisibility);
+                close.setVisibility(newVisibility);
 
                 //Witness_Recycler.setVisibility(newVisibility);
                 // Evidance_Recycler.setVisibility(newVisibility);
