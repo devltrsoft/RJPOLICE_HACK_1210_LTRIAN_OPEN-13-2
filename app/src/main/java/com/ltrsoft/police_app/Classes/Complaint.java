@@ -29,7 +29,14 @@ public class Complaint {
         this.status_id = status_id;
     }
 
-    public Complaint(String complainName1, String complainDesc1, String complainAgainst1, String incidentDate1, String complainContactNocomplainContactNo, String incidentAddress1, String complainAgainst11, Integer statusId, Integer userId) {
+    public Complaint(String complaint_location, String complain_contact_no,
+                     String incident_date, String complain_Against, String complain_description) {
+        this.station_name = station_name;
+        this.complaint_location = complaint_location;
+        this.complain_contact_no = complain_contact_no;
+        this.incident_date = incident_date;
+        this.complain_Against = complain_Against;
+        this.complain_description = complain_description;
     }
 
     public String getComplain_type_name() {

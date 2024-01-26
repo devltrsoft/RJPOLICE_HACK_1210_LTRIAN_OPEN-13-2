@@ -116,10 +116,11 @@ public class AddComplaint extends Fragment {
          final  Integer status_id=1;
         final Integer user_id=1;
 
-
+                Complaint complaint = new Complaint(incident_address1,complain_contact_nocomplain_contact_no
+                ,incident_date1,complain_Against1,complain_desc1);
                 ComplaintDeo complaintDeo=new ComplaintDeo();
-                complaintDeo.createcomplaint(new Complaint(complain_name1, complain_desc1, complain_against1, incident_date1,
-                        complain_contact_nocomplain_contact_no, incident_address1, complain_Against1, status_id, user_id), getContext(), new Callback() {
+                complaintDeo.createcomplaint(complaint, getContext(), new Callback() {
+
                     @Override
                     public void onSuccess(Object obj) {
                         String success=(String) obj;
@@ -182,8 +183,9 @@ public class AddComplaint extends Fragment {
                     JSONArray jsonArray = new JSONArray(response);
                     for (int i = 0 ; i < jsonArray.length() ; i++){
                         JSONObject jsonObject = jsonArray.getJSONObject(i);
-                        Integer sta = Integer.valueOf(jsonObject.getString("complaint_type_id"));
-                        list_complain.add(String.valueOf(sta));
+//                        Integer sta = Integer.valueOf(jsonObject.getString("complaint_type_id"));
+                        String sta = jsonObject.getString("complaint_type_name");
+                        list_complain.add(sta);
                     }
                 } catch (JSONException e) {
                     Toast.makeText(getContext(), "error json "+e.toString(), Toast.LENGTH_SHORT).show();

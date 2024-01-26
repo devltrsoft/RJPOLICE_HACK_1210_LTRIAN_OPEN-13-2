@@ -42,7 +42,7 @@ public class NewsDeo {
 
     String createnews_url="https://rj.ltr-soft.com/public/police_api/news/create_news.php";
     String updatenews_url="https://rj.ltr-soft.com/public/police_api/news/update_news.php";
-    String getAllnews_URL="https://rj.ltr-soft.com/public/police_api/news/select_news.php";
+    String getAllnews_URL="https://rj.ltr-soft.com/public/police_api/news/last_news.php";
     String searchUrl="";
     public ArrayList<News> list = new ArrayList<>();
     public ArrayList<String> search_list=new ArrayList<String>();
@@ -71,8 +71,6 @@ public class NewsDeo {
                 Map<String, String> param = new HashMap<>();
                 param.put("news_id", String.valueOf(news_id));
                 param.put("photo",  Photopath);
-
-
                 return param;
             }
         };
@@ -126,16 +124,15 @@ public class NewsDeo {
                             for (int i = 0; i < jsonArray.length(); i++) {
                                 JSONObject jsonObject = jsonArray.getJSONObject(i);
 
-                                Integer news_id = jsonObject.getInt("news_id");
+                                String news_id = jsonObject.getString("news_id");
                                 Integer station_id = jsonObject.getInt("station_id");
                                 Integer like = jsonObject.getInt("like");
-                                Integer news_photo_id = jsonObject.getInt("news_photos_id");
-                                String news_category_name = jsonObject.getString("news_category_name");
+                                String news_photo_path = jsonObject.getString("news_date");
+//                                String news_category_name = jsonObject.getString("news_category_name");
                                 String news_title = jsonObject.getString("news_title");
                                 String news_description = jsonObject.getString("news_description");
                                 String news_date = jsonObject.getString("news_date");
-                                 list.add(new News(news_id, station_id, like, news_photo_id, news_title, news_description, news_date,
-                                          news_category_name));
+                                 list.add(new News(news_id,news_title,news_description,news_photo_path));
                             }
                                 callback.onSuccess(list);
                         } catch (JSONException e) {
@@ -159,8 +156,6 @@ public class NewsDeo {
             protected Map<String, String> getParams() throws AuthFailureError {
                 HashMap<String, String> map = new HashMap<>();
                 //  map.put("news_id", news_id);
-
-
                 return map;
             }
 
@@ -188,8 +183,8 @@ public class NewsDeo {
                                 String news_title = jsonObject.getString("news_title");
                                 String news_description = jsonObject.getString("news_description");
                                 String news_date = jsonObject.getString("news_date");
-                                 list.add(new News(news_id, station_id,like,news_photo_id,news_title,news_description,news_date,
-                                         news_category_name ));
+//                                 list.add(new News(news_id, station_id,like,news_photo_id,news_title,news_description,news_date,
+//                                         news_category_name ));
 
                             }
                         }

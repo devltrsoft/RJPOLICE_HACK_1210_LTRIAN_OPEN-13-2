@@ -45,9 +45,9 @@ public class  NavigationDrawer extends Fragment {
         View view= inflater.inflate(R.layout.navigation_drawer, container, false);
 
         toolbar = view.findViewById(R.id.toolbar);
-//        Dashboard dashboardFragment = new Dashboard() ;
+        Dashboard dashboardFragment = new Dashboard() ;
 
-        AdminDashBoard dashboardFragment = new AdminDashBoard();
+//        AdminDashBoard dashboardFragment = new AdminDashBoard();
         getFragmentManager().beginTransaction().replace(R.id.container_main, dashboardFragment).commit();
         ((AppCompatActivity) getActivity()).setSupportActionBar(toolbar);
 

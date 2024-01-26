@@ -57,38 +57,39 @@ public class Add_News_Page extends Fragment {
         save.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                Add_News_image addNewsImage=new Add_News_image();
 
+                FragmentTransaction transaction = getParentFragmentManager().beginTransaction();
+                transaction.replace(R.id.container_main,addNewsImage);
+                transaction.commit();
                 final String ntitle =  Ntitle.getText().toString().trim();
                 final String ncatagory =  Ncatagory.getText().toString().trim();
                 final String nstation =  Nstation.getText().toString().trim();
                 final String ndescription =  Ndescription.getText().toString().trim();
                 final String ndate =  Ndate.getText().toString().trim();
-                Add_News_image addNewsImage=new Add_News_image();
-                NewsDeo newsDeo=new NewsDeo();
-                newsDeo.createnews(new News(ntitle, ncatagory, nstation, ndescription, ndate), getContext(),getActivity(), new Callback() {
-                    @Override
-                    public void onSuccess(Object obj) {
-                        String success=(String) obj;
-                      // Toast.makeText(getContext(), ""+success, Toast.LENGTH_SHORT).show();
-                        FragmentTransaction transaction = getParentFragmentManager().beginTransaction();
-                        transaction.replace(R.id.container_main,addNewsImage);
-                        transaction.commit();
-                    }
-
-                    @Override
-                    public void onErro(String errro) {
-                 Toast.makeText(getContext(), ""+errro, Toast.LENGTH_SHORT).show();
-
-                    }
-
-//                Bundle bundle=new Bundle();
-//                bundle.putString("ntitle",ntitle);
-//                bundle.putString("ncatagory",ncatagory);
-//                bundle.putString("nstation",nstation);
-//                bundle.putString("ndescription",ndescription);
-//                bundle.putString("ndate",ndate);
-//                addNewsImage.setArguments(bundle);
-                        });
+                 NewsDeo newsDeo=new NewsDeo();
+//                newsDeo.createnews(new News(ntitle, ncatagory, nstation, ndescription, ndate), getContext(),getActivity(), new Callback() {
+//                    @Override
+//                    public void onSuccess(Object obj) {
+//                        String success=(String) obj;
+//                      // Toast.makeText(getContext(), ""+success, Toast.LENGTH_SHORT).show();
+//
+//                    }
+//
+//                    @Override
+//                    public void onErro(String errro) {
+//                 Toast.makeText(getContext(), ""+errro, Toast.LENGTH_SHORT).show();
+//
+//                    }
+//
+////                Bundle bundle=new Bundle();
+////                bundle.putString("ntitle",ntitle);
+////                bundle.putString("ncatagory",ncatagory);
+////                bundle.putString("nstation",nstation);
+////                bundle.putString("ndescription",ndescription);
+////                bundle.putString("ndate",ndate);
+////                addNewsImage.setArguments(bundle);
+//                        });
 
             }
         });

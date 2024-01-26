@@ -50,7 +50,7 @@ public class Missing_pages extends Fragment {
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {
-                        Log.d("response",""+response.toString());
+                       // Log.d("response",""+response.toString());
                         //Toast.makeText(getContext(), "response = "+response.toString(), Toast.LENGTH_SHORT).show();
                         try {
                             JSONArray jsonArray = new JSONArray(response);

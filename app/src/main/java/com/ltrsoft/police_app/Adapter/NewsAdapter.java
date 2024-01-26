@@ -1,5 +1,6 @@
 package com.ltrsoft.police_app.Adapter;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
@@ -49,6 +50,7 @@ public class NewsAdapter extends RecyclerView.Adapter<NewsAdapter.ViewHolder> {
         return new ViewHolder(view);
     }
 
+    @SuppressLint("RecyclerView")
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         News news = list.get(position);
@@ -82,30 +84,29 @@ public class NewsAdapter extends RecyclerView.Adapter<NewsAdapter.ViewHolder> {
             @Override
             public void onClick(View view) {
 
-                int newsId = list.get(position).getNews_id();
-                if (b) {
-
-                    likeCount++;
-                } else {
-
-                    likeCount--;
-                }
+//                String newsId  = news.getNews_id();
+//                if (b) {
+//                    likeCount++;
+//                } else {
+//
+//                    likeCount--;
+//                }
 
 
                 Toast.makeText(context, ""+likeCount, Toast.LENGTH_SHORT).show();
 
                 NewsDeo newsDeo=new NewsDeo();
-                newsDeo.sendLikeCountToServer(newsId, likeCount, view.getContext(), new Callback() {
-                    @Override
-                    public void onSuccess(Object obj) {
-
-                    }
-
-                    @Override
-                    public void onErro(String errro) {
-
-                    }
-                });
+//                newsDeo.sendLikeCountToServer(newsId, likeCount, view.getContext(), new Callback() {
+//                    @Override
+//                    public void onSuccess(Object obj) {
+//
+//                    }
+//
+//                    @Override
+//                    public void onErro(String errro) {
+//
+//                    }
+//                });
              }
         });
 
