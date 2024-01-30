@@ -20,17 +20,18 @@
         app:fabCustomSize="50dp"
         tools:ignore="MissingConstraints" />
 
+
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/search"
         android:layout_width="50dp"
         android:layout_height="50dp"
-        android:layout_below="@id/network"
+        android:layout_below="@+id/network"
         android:layout_alignParentEnd="true"
         android:layout_marginStart="15dp"
-        android:layout_marginTop="5dp"
-        android:layout_marginEnd="15dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="14dp"
         android:layout_marginBottom="15dp"
-        android:src="@drawable/s1"
+        android:src="@drawable/search"
         app:backgroundTint="@color/white"
         app:fabCustomSize="50dp"
         tools:ignore="MissingConstraints" />

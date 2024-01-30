@@ -35,7 +35,7 @@ public class SuspectDeo {
      String Search_URL="";
      String delete_URL="";
 
-    String  createsuspect_url="http://rj.ltr-soft.com/public/police_api/Investigation_suspect/create_investigation_suspect.php";
+    String  createsuspect_url="https://rj.ltr-soft.com/public/police_api/Investigation_suspect/create_investigation_suspect.php";
   String updatesuspect_url="rj.ltr-soft.com/public/police_api/Investigation_suspect/update_investigation_suspect.php";
     String getAllSuspect_URL="https://rj.ltr-soft.com/public/police_api/Investigation_suspect/read_investigation_suspect.php";
    String searcgUrl="";
@@ -178,21 +178,22 @@ public class SuspectDeo {
                   new Response.Listener<String>() {
                       @Override
                       public void onResponse(String response) {
-                          System.out.println("response"+response.toString());
-                         try {
-                             JSONArray jsonArray=new JSONArray(response);
-                        for(int i=0;i<jsonArray.length();i++){
-                            JSONObject jsonObject=jsonArray.getJSONObject(i);
-                            String  investigation_suspect_id = jsonObject.getString("investigation_suspect_id");
-                         callback.onSuccess(investigation_suspect_id);
-                        }
-
-
-
-                         }catch (Exception e){
-                             e.printStackTrace();
-                            callback.onErro(e.toString());
-                         }
+//                          System.out.println("response"+response.toString());
+                          callback.onSuccess("Success");
+//                         try {
+//                             JSONArray jsonArray=new JSONArray(response);
+//                        for(int i=0;i<jsonArray.length();i++){
+//                            JSONObject jsonObject=jsonArray.getJSONObject(i);
+//                            String  investigation_suspect_id = jsonObject.getString("investigation_suspect_id");
+//                         callback.onSuccess(investigation_suspect_id);
+//                        }
+//
+//
+//
+//                         }catch (Exception e){
+//                             e.printStackTrace();
+//                            callback.onErro(e.toString());
+//                         }
 
 
                       }

@@ -225,8 +225,8 @@ public class WitnessDeo {
                 HashMap<String, String> map = new HashMap<>();
                 map.put("fir_id", String.valueOf(insertwitness.getFir_id()));
                 map.put("witness_fname", insertwitness.getFname());
-                map.put("witness_mname", insertwitness.getMname());
-                map.put("witness_lname", insertwitness.getLname());
+                map.put("witness_mname","aaa"); //insertwitness.getMname());
+                map.put("witness_lname","bbb"); //insertwitness.getLname());
                 map.put("country_id", "1");
                 //insertsuspect.getAddress());
                 map.put("state_id", "1");
@@ -243,7 +243,7 @@ public class WitnessDeo {
                 //   map.put("",insertsuspect. getIs_suspect());
                 map.put("witness_adhar", insertwitness.getAdhar());
                 map.put("witness_address", insertwitness.getAddress());
-                map.put("witness_pan_no", insertwitness.getPan());
+//                map.put("witness_pan_no", insertwitness.getPan());
                 map.put("witness_photo", insertwitness.getPhoto_path());
                 map.put("police_id", Police_id);
 
