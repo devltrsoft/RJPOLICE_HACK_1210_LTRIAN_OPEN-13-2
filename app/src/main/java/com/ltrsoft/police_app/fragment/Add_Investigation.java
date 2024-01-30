@@ -168,7 +168,7 @@ public class Add_Investigation extends Fragment {
                 Evidance_card.setVisibility( newVisibility);
                 addDiscryption.setVisibility( newVisibility);
                 addButton.setVisibility( newVisibility);
-                mike.setVisibility( newVisibility);
+               // mike.setVisibility( newVisibility);
                 addRecomandation.setVisibility( newVisibility);
                 addRecomandationButton.setVisibility( newVisibility);
                 yourSpinner.setVisibility( newVisibility);
@@ -189,7 +189,7 @@ public class Add_Investigation extends Fragment {
                 Evidance_card.setVisibility( newVisibility);
                 addDiscryption.setVisibility( newVisibility);
                 addButton.setVisibility( newVisibility);
-                mike.setVisibility( newVisibility);
+                //mike.setVisibility( newVisibility);
                 addRecomandation.setVisibility( newVisibility);
                 addRecomandationButton.setVisibility( newVisibility);
                 yourSpinner.setVisibility( newVisibility);
@@ -208,7 +208,7 @@ public class Add_Investigation extends Fragment {
                 int newVisibility = ( addDiscryption.getVisibility() == View.VISIBLE) ? View.GONE : View.VISIBLE;
                 addDiscryption.setVisibility( newVisibility);
                 addButton.setVisibility( newVisibility);
-                mike.setVisibility( newVisibility);
+              //  mike.setVisibility( newVisibility);
                 addRecomandation.setVisibility( newVisibility);
                 addRecomandationButton.setVisibility( newVisibility);
                 yourSpinner.setVisibility( newVisibility);
@@ -232,7 +232,7 @@ public class Add_Investigation extends Fragment {
                 Evidance_card.setVisibility( newVisibility);
                 addDiscryption.setVisibility( newVisibility);
                 addButton.setVisibility( newVisibility);
-                mike.setVisibility( newVisibility);
+             //   mike.setVisibility( newVisibility);
                 addRecomandation.setVisibility( newVisibility);
                 addRecomandationButton.setVisibility( newVisibility);
                 yourSpinner.setVisibility( newVisibility);
