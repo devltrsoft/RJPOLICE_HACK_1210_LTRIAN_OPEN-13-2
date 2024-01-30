@@ -223,7 +223,7 @@ public class WitnessDeo {
             @Override
             protected Map<String, String> getParams() throws AuthFailureError {
                 HashMap<String, String> map = new HashMap<>();
-                map.put("fir_id", String.valueOf(insertwitness.getFir_id()));
+                map.put("fir_id","2023-12-14-1"); //String.valueOf(insertwitness.getFir_id()));
                 map.put("witness_fname", insertwitness.getFname());
                 map.put("witness_mname","aaa"); //insertwitness.getMname());
                 map.put("witness_lname","bbb"); //insertwitness.getLname());
