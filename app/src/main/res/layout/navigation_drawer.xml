@@ -24,6 +24,8 @@
 
         </FrameLayout>
 
+
+
         <androidx.appcompat.widget.Toolbar
             android:id="@+id/toolbar"
             android:layout_width="match_parent"
@@ -32,7 +34,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:title=" Raj User"
+            app:title=" Raj Police"
             app:titleTextColor="@color/white" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>

@@ -12,7 +12,9 @@ import android.net.Uri;
 import android.os.Bundle;
 
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AlertDialog;
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
@@ -83,6 +85,12 @@ import java.util.Map;
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
          View view= inflater.inflate(R.layout.add_witness, container, false);
+         ActionBar actionBar = ((AppCompatActivity) requireActivity()).getSupportActionBar();
+
+         // Set the title on the ActionBar or Toolbar
+         if (actionBar != null) {
+             actionBar.setTitle("  Add Witness ");
+         }
          name=view.findViewById(R.id.fname);
          address=view.findViewById(R.id.address);
          contact=view.findViewById(R.id.contact);
@@ -153,7 +161,7 @@ import java.util.Map;
                  String gender = male.isChecked() ? "Male" : "Female";
                  WitnessDeo witnessDeo=new WitnessDeo();
                  witnessDeo.createwitness(new Witness(name1, address1, country1, state1, district1, city1, email1, dob1,
-                         mobile1, addhar1, gender), getContext(), new Callback() {
+                         mobile1, addhar1, gender,encodeImage), getContext(), new Callback() {
                      @Override
                      public void onSuccess(Object obj) {
                          String success=(String) obj;

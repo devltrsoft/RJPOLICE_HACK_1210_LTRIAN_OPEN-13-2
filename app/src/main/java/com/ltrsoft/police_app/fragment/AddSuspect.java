@@ -12,7 +12,9 @@ import android.net.Uri;
 import android.os.Bundle;
 
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AlertDialog;
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
@@ -88,6 +90,14 @@ private  Bitmap bitmap;
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
          View view= inflater.inflate(R.layout.add_suspect, container, false);
+
+        ActionBar actionBar = ((AppCompatActivity) requireActivity()).getSupportActionBar();
+
+        // Set the title on the ActionBar or Toolbar
+        if (actionBar != null) {
+            actionBar.setTitle("  Add Suspect ");
+        }
+
         setSpinner();  name = view.findViewById(R.id.fname);
         address = view.findViewById(R.id.address);
         contact = view.findViewById(R.id.contact);
@@ -355,6 +365,7 @@ private  Bitmap bitmap;
             @Override
             public void onSuccess(Object obj) {
                 ArrayList citylist=new ArrayList();
+
                 citylist=(ArrayList) obj;
                 adapter4=new ArrayAdapter(getContext(), android.R.layout.simple_expandable_list_item_1,citylist);
                 adapter4.setDropDownViewResource(android.R.layout.simple_expandable_list_item_1);
