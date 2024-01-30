@@ -39,6 +39,7 @@ import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.ltrsoft.police_app.R;
 import com.ltrsoft.police_app.fragment.Camera;
+import com.ltrsoft.police_app.fragment.ChatBot;
 import com.ltrsoft.police_app.fragment.Message_fragment;
 import com.ltrsoft.police_app.fragment.Missing_pages;
 import com.ltrsoft.police_app.fragment.News_page;
@@ -142,7 +143,7 @@ public class Dashboard extends Fragment implements OnMapReadyCallback{
                     fragmentTransaction.commit();
                 } else if (id == R.id.emassge) {
                     item.setCheckable(true);
-                    Message_fragment message = new Message_fragment();
+                    ChatBot message = new ChatBot();
                     getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.container_main, message).commit();
                 }
                 return false;
