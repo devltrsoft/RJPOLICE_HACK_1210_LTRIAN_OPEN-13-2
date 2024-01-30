@@ -33,31 +33,37 @@ public class Alloted_case1 extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.alloted_cases__history, container, false);
+
+        Toast.makeText(getContext(), "hii", Toast.LENGTH_SHORT).show();
+
         recyclerView = view.findViewById(R.id.alloedrecycleview);
         ActionBar actionBar = ((AppCompatActivity) requireActivity()).getSupportActionBar();
 
         if (actionBar != null) {
             actionBar.setTitle("Alloted Cases");
         }
-       list.clear();
-         PoliceDeo  policeDeo=new PoliceDeo();
-         policeDeo.alloted_cases("1", getContext(), new Callback() {
-             @Override
-             public void onSuccess(Object obj) {
-                 list=(ArrayList<AllotedCaseHistoryClass>) obj;
-                 AllotedCaseAdapter1 adapter1=new AllotedCaseAdapter1(list);
-                 LinearLayoutManager layoutManager=new LinearLayoutManager(getContext());
-                 recyclerView.setLayoutManager(layoutManager);
+
+        PoliceDeo policeDeo = new PoliceDeo();
+        policeDeo.getAllCriminal(getContext(), new Callback() {
+            @Override
+            public void onSuccess(Object obj) {
+                ArrayList<AllotedCaseHistoryClass> list = (ArrayList<AllotedCaseHistoryClass>) obj;
+
+                AllotedCaseAdapter1 adapter1 = new AllotedCaseAdapter1(list);
+                LinearLayoutManager layoutManager = new LinearLayoutManager(getContext());
+
+                recyclerView.setLayoutManager(layoutManager);
                 recyclerView.setAdapter(adapter1);
 
-             }
+                // Notify the adapter that the data set has changed
+                adapter1.notifyDataSetChanged();
+            }
 
-             @Override
-             public void onErro(String errro) {
-                 Toast.makeText(getContext(), "error"+errro.toString(), Toast.LENGTH_SHORT).show();
-             }
-         });
-
+            @Override
+            public void onErro(String error) {
+                Toast.makeText(getContext(), "Error: " + error, Toast.LENGTH_SHORT).show();
+            }
+        });
         return view;
     }
 }

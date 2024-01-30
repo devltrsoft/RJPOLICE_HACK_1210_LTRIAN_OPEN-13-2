@@ -10,6 +10,7 @@ import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import com.ltrsoft.police_app.R;
 import com.ltrsoft.police_app.fragment.Alloted_case1;
@@ -69,7 +70,7 @@ public class Police_Complaint_History_Page extends Fragment {
         allowed_cases.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
 
-              //  Toast.makeText(getActivity(), " allowd cases", Toast.LENGTH_SHORT).show();
+                Toast.makeText(getActivity(), " allowd cases", Toast.LENGTH_SHORT).show();
                 Alloted_case1 al=new Alloted_case1();
                 getFragmentManager().beginTransaction().replace(R.id.container_main,al).addToBackStack(null).commit();
 

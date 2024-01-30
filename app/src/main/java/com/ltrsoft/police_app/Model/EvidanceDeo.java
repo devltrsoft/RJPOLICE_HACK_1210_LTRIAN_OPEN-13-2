@@ -60,8 +60,9 @@ public class EvidanceDeo {
                                 String evidance_photos_path = jsonObject.getString("evidance_photos_path");
                                 String evidance_photos_description = jsonObject.getString("evidance_photos_description");
                                 String evidance_photos_id=jsonObject.getString("evidance_photos_id");
+                                String evidencechangedate=jsonObject.getString("updated_at");
                                  list.add(new Evidance( evidance_id,fir_id,evidance_name,evidance_description,evidance_photos_path,
-                                         evidance_photos_description,evidance_photos_id));
+                                         evidance_photos_description,evidance_photos_id,evidencechangedate));
                             }
                             callback.onSuccess(list);
                         } catch (JSONException e) {

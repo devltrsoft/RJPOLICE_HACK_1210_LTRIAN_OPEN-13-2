@@ -4,9 +4,43 @@ public class Evidance {
 
     String evidance_id;
     String fir_id,evidance_name,discription,evidance_photos_path,evidance_photos_description,
-            evidance_photos_id;
+            evidance_photos_id,ChangeDate,date;
+
+//    public Evidance(String evidanceName, String evidanceDesc, String photoPath, String firId) {
+//    }
+
+    public Evidance(String evidanceId, String firId, String evidanceName, String evidanceDescription, String evidancePhotosPath, String evidancePhotosDescription, String evidancePhotosId, String evidencechangedate) {
+
+        this.evidance_name = evidanceName;
+        this.discription = evidanceDescription;
+        this.evidance_photos_path = evidancePhotosPath;
+        this.fir_id = firId;
+
+    }
 
     public Evidance(String evidanceName, String evidanceDesc, String photoPath, String firId) {
+  this.evidance_name=evidanceName;
+  this.discription=evidanceDesc;
+
+
+
+    }
+
+
+    public String getChangeDate() {
+        return ChangeDate;
+    }
+
+    public void setChangeDate(String changeDate) {
+        ChangeDate = changeDate;
+    }
+
+    public String getDate() {
+        return date;
+    }
+
+    public void setDate(String date) {
+        this.date = date;
     }
 
     public Evidance(String sampleEvidence, int evidence) {

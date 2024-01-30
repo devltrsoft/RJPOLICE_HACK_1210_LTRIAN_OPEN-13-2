@@ -1,9 +1,11 @@
 package com.ltrsoft.police_app.Adapter;
 
+import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -11,14 +13,13 @@ import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.ltrsoft.police_app.Classes.AllotedCaseHistoryClass;
-import com.ltrsoft.police_app.Classes.Complaint;
 import com.ltrsoft.police_app.R;
 import com.ltrsoft.police_app.fragment.Alloted_case2;
+import com.ltrsoft.police_app.fragment.Criminal2;
 
 import java.util.ArrayList;
 
-public class AllotedCaseAdapter1 extends RecyclerView.Adapter<AllotedCaseAdapter1.ViewHolder> {
-
+public class AllotedCaseAdapter1 extends RecyclerView.Adapter<AllotedCaseAdapter1.viewholder> {
     private ArrayList<AllotedCaseHistoryClass> dataList;
 
     public AllotedCaseAdapter1(ArrayList<AllotedCaseHistoryClass> dataList) {
@@ -27,26 +28,29 @@ public class AllotedCaseAdapter1 extends RecyclerView.Adapter<AllotedCaseAdapter
 
     @NonNull
     @Override
-    public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+    public viewholder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.allowedcasecard1, parent, false);
-        return new ViewHolder(view);
+        return new viewholder(view);
     }
 
     @Override
-    public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-         AllotedCaseHistoryClass item = dataList.get(position);
-
-        holder.tvi.setText("Complaint ID: " + item.  getId());
-         holder.crimetype.setText(" crime type: " + item.getComplaint_type());
-         holder.victim_name.setText("Victim Name :  "+item.getName());
-         holder.address.setText("Address :   " +item.getAddress() );
+    public void onBindViewHolder(@NonNull viewholder holder, int position) {
+        AllotedCaseHistoryClass item = dataList.get(position);
+        holder.complaint_id.setText("Complaint ID: " + item.getId());
+        holder.victim_name.setText("Victim Name: " + item.getName());
+        holder.address.setText("Address: " + item.getAddress());
+        holder.complaint_type.setText("Complaint Type: " + item.getComplaint_type());
         holder.cardView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                AppCompatActivity activity = (AppCompatActivity) v.getContext();
-                Alloted_case2 secondFragment = new Alloted_case2();
+                Toast.makeText(v.getContext(), "hiii", Toast.LENGTH_SHORT).show();
 
-                activity.getSupportFragmentManager().beginTransaction().replace(R.id.container_main, secondFragment).addToBackStack(null).commit();
+                AppCompatActivity activity = (AppCompatActivity) v.getContext();
+                Alloted_case2 allotedCase2=new Alloted_case2();
+
+         activity.getSupportFragmentManager().beginTransaction().replace(R.id.container_main,allotedCase2).addToBackStack(null
+         ).commit();
+
             }
         });
     }
@@ -56,16 +60,16 @@ public class AllotedCaseAdapter1 extends RecyclerView.Adapter<AllotedCaseAdapter
         return dataList.size();
     }
 
-    public static class ViewHolder extends RecyclerView.ViewHolder {
-      private   TextView tvi, address, victim_name,crimetype;
-      private   CardView cardView;
+    public class viewholder extends RecyclerView.ViewHolder {
+        private TextView complaint_id, complaint_type, victim_name, address;
+        private CardView cardView;
 
-        public ViewHolder(@NonNull View itemView) {
+        public viewholder(@NonNull View itemView) {
             super(itemView);
-            tvi = itemView.findViewById(R.id.textCaseId);
-            address = itemView.findViewById(R.id.textCaseName);
+            complaint_id = itemView.findViewById(R.id.textCaseId);
+            complaint_type = itemView.findViewById(R.id.textCaseName);
             victim_name = itemView.findViewById(R.id.textCaseDate);
-            crimetype=itemView.findViewById(R.id.crimetype);
+            address = itemView.findViewById(R.id.crime_type);
             cardView = itemView.findViewById(R.id.alloedcasecard);
         }
     }

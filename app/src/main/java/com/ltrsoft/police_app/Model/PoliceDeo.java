@@ -1,15 +1,9 @@
 package com.ltrsoft.police_app.Model;
 
-import static android.content.Context.MODE_PRIVATE;
-
 import android.content.Context;
-import android.content.SharedPreferences;
-import android.util.Log;
 import android.widget.Toast;
 
 import androidx.annotation.Nullable;
-import androidx.fragment.app.FragmentManager;
-import androidx.fragment.app.FragmentTransaction;
 
 import com.android.volley.AuthFailureError;
 import com.android.volley.Request;
@@ -40,7 +34,7 @@ public class PoliceDeo {
     String police_login_url="https://rj.ltr-soft.com/public/police_api/login/police_login.php";
     static String getonepolice_URL="http://rj.ltr-soft.com/public/police_api/data/police_read.php";
       String Polioce_registration_URL="https://rj.ltr-soft.com/public/police_api/data/police_insert.php";
-      String alloted_case="https://rj.ltr-soft.com/public/police_api/data/police_c_read.php";
+      String getAllCriminal_URL="https://rj.ltr-soft.com/public/police_api/data/police_c_read.php";
     String Search_URL="";
     String delete_URL="";
 
@@ -48,7 +42,7 @@ public class PoliceDeo {
     String updatepolice_url="https://rj.ltr-soft.com/public/police_api/data/police_update.php";
     String getAllpolice_URL="https://rj.ltr-soft.com/public/police_api/data/police_all.php";
     String searcgUrl="";
-    public static ArrayList<Police> list = new ArrayList<>();
+    public static ArrayList<AllotedCaseHistoryClass> list = new ArrayList<AllotedCaseHistoryClass>();
     public ArrayList<String> search_list=new ArrayList<String>();
 //    public ArrayList<Police> getAllnotification(String notification_id, Context context) {
 //
@@ -118,55 +112,58 @@ public class PoliceDeo {
 //    }
 //
 //
-    public void alloted_cases(String police_id,Context context, Callback callback){
-       police_id="1";
-        String finalPolice_id = police_id;
-        StringRequest stringRequest=new StringRequest(Request.Method.POST, alloted_case,
-                new Response.Listener<String>() {
-                    @Override
-                    public void onResponse(String response) {
-                     try{
-                         JSONArray jsonArray=new JSONArray(response);
-                                 for(int i=0;i<jsonArray.length();i++){
-                                     JSONObject jsonObject=jsonArray.getJSONObject(i);
-                                     String complaint_id=jsonObject.getString("complaint_id");
-                                     String complaint_type_name=jsonObject.getString("complaint_type_name");
-                                     String address=jsonObject.getString("address");
-                                     String complaint_victim_fname=jsonObject.getString("complaint_victim_fname");
-                                     String complaint_victim_lname=jsonObject.getString("complaint_victim_lname");
-                                    String victim_name=complaint_victim_fname+complaint_victim_lname;
-                                     ArrayList<AllotedCaseHistoryClass> list=new ArrayList<>();
-                                     AllotedCaseHistoryClass allotedCaseHistoryClass=new AllotedCaseHistoryClass( complaint_id,
-                                             victim_name,address,complaint_type_name);
-                                     list.add(allotedCaseHistoryClass);
-                                  }
-                     }
-                     catch (Exception e)
-                     {
-                         callback.onErro(e.toString());
-                     }
+public void getAllCriminal(Context context, Callback callback) {
+    ArrayList<AllotedCaseHistoryClass> list = new ArrayList<>();
+String police_id= String.valueOf(2);
+    String finalPolice_id = police_id;
+    StringRequest stringRequest = new StringRequest(Request.Method.POST, getAllCriminal_URL,
+            new Response.Listener<String>() {
+                @Override
+                public void onResponse(String response) {
+                    try {
+                        JSONArray jsonArray = new JSONArray(response);
+                        for (int i = 0; i < jsonArray.length(); i++) {
+                            JSONObject jsonObject = jsonArray.getJSONObject(i);
+                            String policeid=jsonObject.getString("police_id");
+                            String complaint_id = jsonObject.getString("police_complaint_id");
+                            String complaint_type_name = jsonObject.getString("complaint_description");
+                            String address = jsonObject.getString("police_address");
+                            String complaint_victim_fname = jsonObject.getString("complaint_type_name");
+                            String complaint_victim_lname = jsonObject.getString("user_address");
+                            String victim_name = complaint_victim_fname + complaint_victim_lname;
+
+                            Toast.makeText(context, "police id"+policeid.toString(), Toast.LENGTH_SHORT).show();
+
+
+                            AllotedCaseHistoryClass allotedCaseHistoryClass = new AllotedCaseHistoryClass(
+                                    complaint_id, victim_name, address, complaint_type_name);
+                            list.add(allotedCaseHistoryClass);
+                        }
+
                         callback.onSuccess(list);
+                    } catch (Exception e) {
+                        callback.onErro(e.toString());
                     }
-                }, new Response.ErrorListener() {
-            @Override
-            public void onErrorResponse(VolleyError error) {
-                callback.onErro(error.toString());
-            }
-        }){
-            @Nullable
-            @Override
-            protected Map<String, String> getParams() throws AuthFailureError {
-                 HashMap<String,String>map=new HashMap<>();
-                 map.put("police_id", finalPolice_id);
-                 return map;
-            }
-        };
+                }
+            }, new Response.ErrorListener() {
+        @Override
+        public void onErrorResponse(VolleyError error) {
+            callback.onErro(error.toString());
+        }
+    }) {
+        @Nullable
+        @Override
+        protected Map<String, String> getParams() throws AuthFailureError {
+            HashMap<String, String> map = new HashMap<>();
+            map.put("police_id", finalPolice_id);
+            return map;
+        }
+    };
 
-        RequestQueue requestQueue=Volley.newRequestQueue(context);
-        requestQueue.add(stringRequest);
+    RequestQueue requestQueue = Volley.newRequestQueue(context);
+    requestQueue.add(stringRequest);
+}
 
-
-    }
     public static void getonepolice( int police_id, Context context, Callback callback){
       police_id=1;
         int finalPolice_id = police_id;

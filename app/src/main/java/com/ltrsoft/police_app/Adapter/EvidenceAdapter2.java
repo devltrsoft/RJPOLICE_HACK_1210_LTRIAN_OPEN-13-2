@@ -14,21 +14,22 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.ltrsoft.police_app.Classes.Evidance;
 import com.ltrsoft.police_app.R;
 import com.ltrsoft.police_app.fragment.Evidance2;
+import com.ltrsoft.police_app.fragment.Evidance3;
 
 import java.util.ArrayList;
 
-public class EvidenceAdapter1 extends RecyclerView.Adapter<EvidenceAdapter1.ViewHolder> {
+public class EvidenceAdapter2 extends RecyclerView.Adapter<EvidenceAdapter2.ViewHolder> {
 
     private ArrayList<Evidance> dataList;
 
-    public EvidenceAdapter1(ArrayList<Evidance> dataList) {
+    public EvidenceAdapter2(ArrayList<Evidance> dataList) {
         this.dataList = dataList;
     }
 
     @NonNull
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.evidenceccardview, parent, false);
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.evidence_card_view_2, parent, false);
         return new ViewHolder(view);
     }
 
@@ -36,21 +37,21 @@ public class EvidenceAdapter1 extends RecyclerView.Adapter<EvidenceAdapter1.View
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         Evidance item = dataList.get(position);
 
-        holder.tvi.setText("Evidence ID: " + item.getEvidance_id());
+        holder.textEvidenceId.setText("Evidence ID: " + item.getEvidance_id());
         holder.textEvidenceName.setText("Evidence Name: " + item.getEvidance_name());
-        holder.textEvidenceDate.setText("Evidence Date: " + item.getDiscription());
+        holder.textEvidenceDate.setText("Evidence Date: " + item.getDate());
+        holder.textEvidenceChangeDate.setText("EvidenceChangeDate"+item.getChangeDate());
 
-
-        holder.cardView.setOnClickListener(new View.OnClickListener() {
+        holder.evidenceCard.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
-                Toast.makeText(v.getContext() , "sucses", Toast.LENGTH_SHORT).show();
-               AppCompatActivity activity=(AppCompatActivity)v.getContext();
-                Evidance2 secondFragment = new Evidance2();
-                activity.getSupportFragmentManager().beginTransaction().replace(R.id.container_main, secondFragment).
-                        addToBackStack(null).commit();
-
+                Toast.makeText(v.getContext(), "Success", Toast.LENGTH_SHORT).show();
+                AppCompatActivity activity = (AppCompatActivity) v.getContext();
+                Evidance3 thirdFragment = new Evidance3();
+                activity.getSupportFragmentManager().beginTransaction()
+                        .replace(R.id.container_main, thirdFragment)
+                        .addToBackStack(null)
+                        .commit();
             }
         });
     }
@@ -61,15 +62,17 @@ public class EvidenceAdapter1 extends RecyclerView.Adapter<EvidenceAdapter1.View
     }
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
-        TextView tvi, textEvidenceName, textEvidenceDate;
-        CardView cardView;
+        TextView textEvidenceId, textEvidenceName, textEvidenceDate,textEvidenceChangeDate;
+        CardView evidenceCard;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
-            tvi = itemView.findViewById(R.id.textEvidenceId);
+            textEvidenceId = itemView.findViewById(R.id.textEvidenceId);
             textEvidenceName = itemView.findViewById(R.id.textEvidenceName);
             textEvidenceDate = itemView.findViewById(R.id.textEvidenceDate);
-            cardView = itemView.findViewById(R.id.evidenceCard);
+            textEvidenceChangeDate=itemView.findViewById(R.id.changedate);
+            evidenceCard = itemView.findViewById(R.id.evidenceCard);
+
         }
     }
 }
