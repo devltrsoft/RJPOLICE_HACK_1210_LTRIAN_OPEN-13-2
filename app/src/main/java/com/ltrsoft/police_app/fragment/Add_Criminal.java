@@ -12,7 +12,9 @@ import android.net.Uri;
 import android.os.Bundle;
 
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AlertDialog;
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
@@ -27,13 +29,14 @@ import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.Spinner;
 import android.widget.Toast;
 
 import com.android.volley.RequestQueue;
 import com.android.volley.toolbox.Volley;
-import com.ltrsoft.police_app.Adapter.SpinnerAdapter;
+import com.ltrsoft.police_app.Model.SpinnerDeo;
 import com.ltrsoft.police_app.Classes.Criminal;
 import com.ltrsoft.police_app.Model.CriminalDeo;
 import com.ltrsoft.police_app.R;
@@ -57,6 +60,7 @@ public class Add_Criminal extends Fragment {
     private Spinner country,state,district,city;
     private ImageView showimg,calender,back;
     private Button upload,submit;
+    private RadioButton male,female;
     private View view;
     private RequestQueue queue;
 
@@ -64,8 +68,7 @@ public class Add_Criminal extends Fragment {
 
     int GALLERY_REQ_CODE=100;
     int CAMERA_REQ_CODE=200;
-    private String cname,caddress,ccontatct,cdob,cemail,cadharc,ccaseId;
-    private String encodeImage;
+     private String encodeImage;
     private Bitmap bitmap;
     private ArrayAdapter adapter,adapter2,adapter3,adapter4;
 
@@ -74,7 +77,11 @@ public class Add_Criminal extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         view= inflater.inflate(R.layout.add__criminal, container, false);
+        ActionBar actionBar = ((AppCompatActivity) requireActivity()).getSupportActionBar();
 
+        if (actionBar != null) {
+            actionBar.setTitle("   Add Criminal");
+        }
         setId();
         setSpinner();
         queue= Volley.newRequestQueue(getContext());
@@ -91,63 +98,106 @@ public class Add_Criminal extends Fragment {
         submit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Toast.makeText(getContext(), "success", Toast.LENGTH_SHORT).show();
-//                cname=name.getText().toString();
-//                caddress = address.getText().toString();
-//                ccontatct = contatct.getText().toString();
-//                cdob = dob.getText().toString();
-//                cemail = email.getText().toString();
-//                cadharc = adhar.getText().toString();
-//                ccaseId = caseId.getText().toString();
-//                int   case_id = Integer.parseInt(ccaseId);
-//
-//                int gen= gender.getCheckedRadioButtonId();
-//                String gender1 = null;
-//                if (gen==R.id. male ) {
-//                      gender1="male";
-//                } else if (gen==R.id. fname) {
-//                      gender1="female";
-//                }
-//                if (cname!=null) {
-//                    CriminalDeo criminalDeo=new CriminalDeo();
-//                     criminalDeo.createcriminal(new Criminal(cname, caddress, ccontatct, cdob, cemail, cadharc,    encodeImage,gender1,case_id), getContext(), new Callback() {
-//                         @Override
-//                         public void onSuccess(Object obj) {
-//                             String success = (String)obj;
-//                            // Toast.makeText(getContext(), ""+success, Toast.LENGTH_SHORT).show();
-//                         }
-//
-//                         @Override
-//                         public void onErro(String errro) {
-//                           String error=(String)errro;
-//                           //  Toast.makeText(getContext(), ""+error, Toast.LENGTH_SHORT).show();
-//                         }
-//                     });
-//                 }
-//                else {
-//                    Toast.makeText(getContext(), "fill all contents", Toast.LENGTH_SHORT).show();
-//                }
+              addcriminal();
             }
         });
 
         dob.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                openCalender();
+                openCalender( );
             }
         });
 
     return view;
     }
-    private void openCalender() {
+
+    private void addcriminal() { name = view.findViewById(R.id.fname);
+      String  address1 =  address.getText().toString().trim();
+      String  contatct1 = contatct .getText().toString().trim();
+      String dob1 = dob.getText().toString().trim();
+        String email1 = email.getText().toString().trim();
+        String adhar1 = adhar.getText().toString().trim();
+        String caseId1 = caseId.getText().toString().trim();
+        String cname =name.getText().toString().trim();
+        String gender = male.isChecked() ? "Male" : "Female";
+
+
+        if(caseId1.isEmpty()){
+            caseId.setError("Enter the Case ID");
+            Toast.makeText(getContext(), "Enter the Case ID", Toast.LENGTH_SHORT).show();
+        }
+        else {
+            if (cname.isEmpty()){
+                name.setError("Enter the Name of Criminal");
+                Toast.makeText(getContext(), "Enter the Name of Criminal", Toast.LENGTH_SHORT).show();
+
+            }
+            else {
+                if (address1.isEmpty()){
+                    address.setError("Enter The Address");
+                    Toast.makeText(getContext(), "Enter The Address", Toast.LENGTH_SHORT).show();
+
+                }
+                else {
+                    if (contatct1.isEmpty()){
+                        contatct.setError("Enter The Contact Number");
+                        Toast.makeText(getContext(), "Enter The Contact Number", Toast.LENGTH_SHORT).show();
+
+                    }
+                    else {
+                        if (dob1.isEmpty()){
+                            dob.setError("Enter the Date of Birth");
+                            Toast.makeText(getContext(), "Enter the Date of Birth", Toast.LENGTH_SHORT).show();
+
+                        }
+                        else {
+                            if (email1.isEmpty()){
+                                email.setError("Enter The Email");
+                                Toast.makeText(getContext(), "Enter The Email", Toast.LENGTH_SHORT).show();
+
+                            }
+                            else {
+                                if (adhar1.isEmpty()){
+                                    adhar.setError("Enter the Adhar Number");
+                                    Toast.makeText(getContext(), "Enter the Adhar Number", Toast.LENGTH_SHORT).show();
+
+                                }
+                                else {
+
+                                   Criminal criminal=new Criminal(cname,address1,adhar1,contatct1,
+                                           dob1,email1,caseId1,gender,encodeImage);
+                                    CriminalDeo criminalDeo=new CriminalDeo();
+                                    criminalDeo.createcriminal(criminal, getContext(), new Callback() {
+                                        @Override
+                                        public void onSuccess(Object obj) {
+                                         String success=(String) obj;
+                                            Toast.makeText(getContext(), "success", Toast.LENGTH_SHORT).show();
+                                        }
+
+                                        @Override
+                                        public void onErro(String errro) {
+                                            Toast.makeText(getContext(), "error="+errro, Toast.LENGTH_SHORT).show();
+                                        }
+                                    });
+
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+     }
+
+    public void openCalender() {
         Calendar calendar = Calendar.getInstance();
         int year = calendar.get(Calendar.YEAR);
         int month = calendar.get(Calendar.MONTH);
         int day = calendar.get(Calendar.DAY_OF_MONTH);
 
-        DatePickerDialog datePickerDialog = new DatePickerDialog(
-                getContext(),
-                new DatePickerDialog.OnDateSetListener() {
+        DatePickerDialog datePickerDialog = new DatePickerDialog(getContext(),
+                 new DatePickerDialog.OnDateSetListener() {
                     @Override
                     public void onDateSet(DatePicker datePicker, int selectedYear, int selectedMonth, int selectedDay) {
                         // Handle the date selection or update the TextView
@@ -162,7 +212,7 @@ public class Add_Criminal extends Fragment {
         // Show the date picker dialog
         datePickerDialog.show();
     }
-    private void openCamera() {
+    public void openCamera() {
 
         AlertDialog.Builder builder = new AlertDialog.Builder(getContext())
                 .setTitle("Select")
@@ -242,7 +292,8 @@ public class Add_Criminal extends Fragment {
         adhar = view.findViewById(R.id.addhar);
         caseId = view.findViewById(R.id.caseid);
         gender = view.findViewById(R.id.gender);
-
+        male=view.findViewById(R.id.male);
+        female=view.findViewById(R.id.female);
         country = view.findViewById(R.id.country);
         state = view.findViewById(R.id.state);
         district = view.findViewById(R.id.district);
@@ -254,20 +305,80 @@ public class Add_Criminal extends Fragment {
 
     }
     public void setSpinner(){
-        SpinnerAdapter spinnerAdapter = new SpinnerAdapter(getContext());
-        ArrayList list = spinnerAdapter.getCountryAdapter();
-        adapter = new ArrayAdapter(getContext(), android.R.layout.simple_expandable_list_item_1,list);
-        adapter.setDropDownViewResource(android.R.layout.simple_expandable_list_item_1);
-        country.setAdapter(adapter);
+        SpinnerDeo spinnerAdapter = new SpinnerDeo(getContext());
+        spinnerAdapter.getCountryAdapter(getContext(), new Callback() {
+            @Override
+            public void onSuccess(Object obj) {
+                ArrayList countrylist=new ArrayList();
+                countrylist=(ArrayList) obj;
+                adapter = new ArrayAdapter(getContext(), android.R.layout.simple_expandable_list_item_1,countrylist);
+                adapter.setDropDownViewResource(android.R.layout.simple_expandable_list_item_1);
+                country.setAdapter(adapter);
 
-        ArrayList list2 = spinnerAdapter.getStateList(1);
-        adapter2 = new ArrayAdapter(getContext(), android.R.layout.simple_expandable_list_item_1,list2);
-        adapter2.setDropDownViewResource(android.R.layout.simple_expandable_list_item_1);
-        state.setAdapter(adapter2);
+            }
 
-        ArrayList list3 = spinnerAdapter.getStateList(1);
-        adapter3 = new ArrayAdapter(getContext(), android.R.layout.simple_expandable_list_item_1,list3);
-        adapter3.setDropDownViewResource(android.R.layout.simple_expandable_list_item_1);
-        district.setAdapter(adapter3);
+            @Override
+            public void onErro(String errro) {
+                Toast.makeText(getContext(), ""+errro, Toast.LENGTH_SHORT).show();
+            }
+        });
+
+
+        spinnerAdapter.getStateList(1, getContext(), new Callback() {
+            @Override
+            public void onSuccess(Object obj) {
+
+                ArrayList  statelist=new ArrayList();
+                statelist=(ArrayList) obj;
+
+                adapter2 = new ArrayAdapter(getContext(), android.R.layout.simple_expandable_list_item_1,statelist);
+                adapter2.setDropDownViewResource(android.R.layout.simple_expandable_list_item_1);
+                state.setAdapter(adapter2);
+            }
+
+            @Override
+            public void onErro(String errro) {
+                Toast.makeText(getContext(), ""+errro, Toast.LENGTH_SHORT).show();
+
+            }
+        });
+
+
+        spinnerAdapter.getDistrict(1, getContext(), new Callback() {
+            @Override
+            public void onSuccess(Object obj) {
+
+                ArrayList  districtlist=new ArrayList();
+                districtlist=(ArrayList) obj;
+
+
+                adapter3 = new ArrayAdapter(getContext(), android.R.layout.simple_expandable_list_item_1,districtlist);
+                adapter3.setDropDownViewResource(android.R.layout.simple_expandable_list_item_1);
+                district.setAdapter(adapter3);
+
+            }
+
+            @Override
+            public void onErro(String errro) {
+                Toast.makeText(getContext(), ""+errro, Toast.LENGTH_SHORT).show();
+
+            }
+        });
+        spinnerAdapter.getCity(1, getContext(), new Callback() {
+            @Override
+            public void onSuccess(Object obj) {
+                ArrayList citylist=new ArrayList();
+                citylist=(ArrayList) obj;
+                adapter4=new ArrayAdapter(getContext(), android.R.layout.simple_expandable_list_item_1,citylist);
+                adapter4.setDropDownViewResource(android.R.layout.simple_expandable_list_item_1);
+                city.setAdapter(adapter4);
+            }
+
+            @Override
+            public void onErro(String errro) {
+
+            }
+        });
+
     }
 }

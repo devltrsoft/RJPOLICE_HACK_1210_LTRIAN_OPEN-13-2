@@ -7,6 +7,8 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.Toast;
 
+import androidx.appcompat.app.ActionBar;
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.cardview.widget.CardView;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -30,7 +32,7 @@ import com.ltrsoft.police_app.interface1.Callback;
 
 import java.util.ArrayList;
 
-public class Investigation_History_Dashboard extends Fragment {
+public class Investigation1 extends Fragment {
     private ArrayList<Suspect> list=new ArrayList<>();
     private ArrayList<Victim> victim_list = new ArrayList<>();
     private ArrayList<Evidance> evidances_list=new ArrayList<>();
@@ -43,22 +45,14 @@ public class Investigation_History_Dashboard extends Fragment {
 //    private ArrayList<InvistigationHeostryClass> list = new ArrayList<>();
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-      view = inflater.inflate( R.layout.investigation_history_dashboard, container, false);
-//        recyclerView = view.findViewById(R.id.investigationrecle);
-//
-//
-//        list.clear();
-//        list.add(new InvistigationHeostryClass("1", "Harun", "2022-01-08"));
-//        list.add(new InvistigationHeostryClass("2", "Harun Shaikh", "2022-01-09"));
-//        list.add(new InvistigationHeostryClass("3", "Shaikh Kaif", "2022-01-10"));
-//
-//        InvestigationHistoryAdapter adapter = new InvestigationHistoryAdapter(list);
-//        LinearLayoutManager layoutManager = new LinearLayoutManager(getContext());
-//
-//        recyclerView.setLayoutManager(layoutManager);
-//        recyclerView.setAdapter(adapter);
+      view = inflater.inflate( R.layout.investigation1, container, false);
 
 
+        ActionBar actionBar = ((AppCompatActivity) requireActivity()).getSupportActionBar();
+
+        if (actionBar != null) {
+            actionBar.setTitle("  Investigation History");
+        }
         setId();
         setSuspectAdapter();
         setVictimAdapter();

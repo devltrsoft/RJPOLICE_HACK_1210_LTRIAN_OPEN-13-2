@@ -1,5 +1,6 @@
 package com.ltrsoft.police_app.Adapter;
 
+import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -35,18 +36,31 @@ public class WitnessAdapter2 extends RecyclerView.Adapter<WitnessAdapter2.ViewHo
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-        Witness item = dataList.get(position);
+        Witness  model = dataList.get(position);
 
-        holder.tvi.setText("Witness ID: " + item.getInvestigation_witness_id());
-        holder.textWitnessName.setText("Witness Name: " + item.getFname());
-        holder.textWitnessDate.setText("Witness Date: " + item.getDob());
-        holder.change_date.setText("Change_Date:"+item.getDob());
+        holder.tvi.setText("Witness ID: " + model.getInvestigation_witness_id());
+        holder.textWitnessName.setText("Witness Name: " + model.getFname());
+        holder.textWitnessDate.setText("Witness Date: " + model.getDob());
+        holder.change_date.setText("Change_Date:"+model.getDob());
        holder.witnesscard.setOnClickListener(new View.OnClickListener() {
            @Override
            public void onClick(View v) {
                AppCompatActivity activity = (AppCompatActivity) v.getContext();
                 Witness3 witnessHistoryDates = new Witness3();
-               activity.getSupportFragmentManager().beginTransaction().replace(R.id. main_container, witnessHistoryDates).addToBackStack(null).commit();
+               Bundle args = new Bundle();
+               args.putString("witnessfame", model. getFname());
+               args.putString("witnessmame", model. getMname());
+               args.putString("witnesslame", model.getLname());
+               args.putString("complaint_witness_gender", model.getGender());
+               args.putString("complaint_witness_mobile", model.getMobile());
+               args.putString("complaint_witness_email", model.getEmail());
+               args.putString("complaint_witness_adhar", model.getAdhar());
+               args.putString("complaint_witness_address", model.getAddress());
+               args.putString("city_name", model.getCity());
+               args.putString("country_name", model.getCountry());
+               args.putString("state_name", model.getState());
+               args.putString("district_name", model.getDistrict());
+               activity.getSupportFragmentManager().beginTransaction().replace(R.id. container_main, witnessHistoryDates).addToBackStack(null).commit();
 
            }
        });

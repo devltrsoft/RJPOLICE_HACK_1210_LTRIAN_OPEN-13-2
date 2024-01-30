@@ -43,9 +43,9 @@ public class VictimAdapter1 extends RecyclerView.Adapter<VictimAdapter1.ViewHold
             public void onClick(View v) {
                 AppCompatActivity activity = (AppCompatActivity) v.getContext();
                 Victim2 victim2 = new Victim2();
-                Toast.makeText(activity, "go to victime", Toast.LENGTH_SHORT).show();
+                //Toast.makeText(activity, "go to victime", Toast.LENGTH_SHORT).show();
                 activity.getSupportFragmentManager().beginTransaction()
-                        .replace(R.id. main_container, victim2).addToBackStack(null)
+                        .replace(R.id. container_main, victim2).addToBackStack(null)
                         .commit();
             }
         });

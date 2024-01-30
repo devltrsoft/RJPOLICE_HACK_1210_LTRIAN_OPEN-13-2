@@ -70,19 +70,7 @@ public class Add_Investigation extends Fragment {
         setVictimAdapter();
         setWitnessAdapter();
         setEvidenceAdapter();
-        try {
-            FileInputStream fin = getActivity().openFileInput(filelang);
-            int a;
-            StringBuilder temp = new StringBuilder();
-            while ((a = fin.read()) != -1) {
-                temp.append((char) a);
-            }
-            lang=temp.toString();
-            fin.close();
-        } catch (IOException e) {
-            Toast.makeText(getContext(), "error = "+e.toString(), Toast.LENGTH_SHORT).show();
-            e.printStackTrace();
-        }
+
         disc.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -294,12 +282,12 @@ public class Add_Investigation extends Fragment {
     }
 
     private void setVictimAdapter() {
-        listvictim.add(new Victim("Ganesh","latur","347738876324"));
-        listvictim.add(new Victim("Ganesh","latur","347738876324"));
-        listvictim.add(new Victim("Ganesh","latur","347738876324"));
-        listvictim.add(new Victim("Ganesh","latur","347738876324"));
-        listvictim.add(new Victim("Ganesh","latur","347738876324"));
-        listvictim.add(new Victim("Ganesh","latur","347738876324"));
+//        listvictim.add(new Victim("Ganesh","latur","347738876324"));
+//        listvictim.add(new Victim("Ganesh","latur","347738876324"));
+//        listvictim.add(new Victim("Ganesh","latur","347738876324"));
+//        listvictim.add(new Victim("Ganesh","latur","347738876324"));
+//        listvictim.add(new Victim("Ganesh","latur","347738876324"));
+//        listvictim.add(new Victim("Ganesh","latur","347738876324"));
         IVictimAdapter iVictimAdapter = new IVictimAdapter(listvictim);
         LinearLayoutManager layoutManager = new LinearLayoutManager(getContext());
         Victim_Recycler.setLayoutManager(layoutManager);

@@ -58,7 +58,7 @@ public class NotAllotedDetailPage extends Fragment {
 allot.setOnClickListener(new View.OnClickListener() {
     @Override
     public void onClick(View view) {
-        Toast.makeText(getContext(), "Police Alloted", Toast.LENGTH_SHORT).show();
+       // Toast.makeText(getContext(), "Police Alloted", Toast.LENGTH_SHORT).show();
     }
 });
       return view;

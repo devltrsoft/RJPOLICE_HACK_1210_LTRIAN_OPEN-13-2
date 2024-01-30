@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".fragment.Evidance3">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+
+        <Spinner
+            android:id="@+id/ecomplain_name"
+            android:layout_width="300dp"
+            android:layout_height="50dp"
+            android:layout_below="@+id/card"
+            android:layout_marginTop="26dp"
+            android:gravity="center"
+            android:layout_marginLeft="55dp"
+            android:paddingLeft="15dp"
+            android:hint="Full Name"
+            android:background="@drawable/d1"/>
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:id="@+id/evidance_name"
+                android:layout_width="300dp"
+                android:layout_height="50dp"
+                android:layout_marginTop="20dp"
+                android:hint="Evidance Name"
+                android:background="@drawable/d1"
+                android:layout_marginLeft="55dp"
+                android:paddingLeft="20dp"
+                />
+
+        </LinearLayout>
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="40dp"
+            android:layout_marginLeft="20dp">
+            <VideoView
+                android:id="@+id/Evidance_video"
+                android:layout_width="380dp"
+                android:layout_height="200dp"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="20dp"
+                />
+            <ImageView
+                android:layout_margin="10dp"
+                android:id="@+id/Evidance_photo"
+                android:layout_width="match_parent"
+                android:layout_height="200dp"
+                 android:layout_marginTop="20dp"
+                android:src="@drawable/evidance"/>
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+            <EditText
+                android:id="@+id/description"
+                android:layout_width="335dp"
+                android:layout_height="200dp"
+                android:layout_weight="1"
+                android:ems="10"
+                android:gravity="start|top"
+                android:inputType="textMultiLine"
+                android:hint="Description"
+                android:background="@drawable/d1"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="20dp"
+                android:paddingLeft="20dp"
+                android:paddingTop="10dp"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:gravity="center"
+            android:layout_gravity="center"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+            <Button
+                android:id="@+id/close"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/btn_border3"
+                android:layout_marginTop="20dp"
+                android:layout_marginBottom="10dp"
+                android:layout_marginLeft="20dp"
+                android:text="Close"
+                android:textStyle="bold"
+                android:textSize="40dp"
+
+                />
+        </LinearLayout>
+    </LinearLayout>
+
+</ScrollView>

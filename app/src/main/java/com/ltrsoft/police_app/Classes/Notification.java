@@ -22,6 +22,13 @@ public class Notification {
     public Notification(Integer notificationId, Integer notificationStationId, Integer notificationPhotoId, String notificationDescription, String notificationType, String notificationPhotoPath) {
     }
 
+    public Notification(String title1, String stationId1, String desc, String notificationType1) {
+        this.notification_title = title1;
+        this. station_name = stationId1;
+        this.notification_description = desc;
+        this.notification_type = notificationType1;
+    }
+
     public int getNotification_id() {
         return notification_id;
     }

@@ -25,14 +25,15 @@ import java.util.Map;
 public class WarrantDeo {
 
 
-
+String Warrant_type_id="https://rj.ltr-soft.com/public/police_api/warrant_type/read_warrant_type.php";
+    ArrayList list1=new ArrayList();
 
         String investigation_id, Warrant_id;
         Warrant warrantone;
         Warrant create_warrant;
         Warrant update_warrant;
         Warrant delete_warrant;
-        String Police_id = "1";
+        String police_id = "1";
         String getoneWarrant_URL = "";
 
         String Search_URL = "";
@@ -64,10 +65,10 @@ public class WarrantDeo {
                                     String action=jsonObject.getString("action");
                                     String court_name=jsonObject.getString("court_name");
                                     String issuing_authority=jsonObject.getString("issuing_authority");
-                                   // int fir_id = Integer.parseInt(jsonObject.getString("fir_id"));
-                                    int warrent_id = jsonObject.getInt("warrant_id");
+                                    String fir_id =  jsonObject.getString("fir_id");
+                                    String warrent_id = jsonObject.getString("warrant_id");
 
-                                    list.add(new Warrant(warrent_id, date_issued,discription,action,court_name,
+                                    list.add(new Warrant(warrent_id,fir_id, date_issued,discription,action,court_name,
                                             issuing_authority,warrent_against ,warrent_type));
                                        callback.onSuccess(list);
                                 }
@@ -119,10 +120,10 @@ public class WarrantDeo {
                                     String action=jsonObject.getString("action");
                                     String court_name=jsonObject.getString("court_name");
                                     String issuing_authority=jsonObject.getString("issuing_authority");
-                                    int fir_id = jsonObject.getInt("fir_id");
-                                    int warrent_id = jsonObject.getInt("investigation_witness_id");
+                                    String fir_id = jsonObject.getString("fir_id");
+                                    String warrent_id = jsonObject.getString("investigation_witness_id");
 
-                                    list.add(new Warrant(warrent_id, date_issued,discription,action,court_name,
+                                    list.add(new Warrant(warrent_id, fir_id,date_issued,discription,action,court_name,
                                             issuing_authority,warrent_against ,warrent_type));
 
                                 }
@@ -160,43 +161,42 @@ public class WarrantDeo {
                     new Response.Listener<String>() {
                         @Override
                         public void onResponse(String response) {
-                            System.out.println("response" + response.toString());
-                            try {
-                                JSONArray jsonArray = new JSONArray(response);
-                                for (int i = 0; i < jsonArray.length(); i++) {
-                                    JSONObject jsonObject = jsonArray.getJSONObject(i);
-                                    String warrant_id = jsonObject.getString("warrant_id");
-                                  callback.onSuccess(warrant_id);
-                                }
-
-
-                            } catch (Exception e) {
-                                e.printStackTrace();
-
-                            }
-
-
+                           System.out.println("response" + response.toString());
+//                            try {
+//                                JSONArray jsonArray = new JSONArray(response);
+//                                for (int i = 0; i < jsonArray.length(); i++) {
+//                                    JSONObject jsonObject = jsonArray.getJSONObject(i);
+//                                    String warrant_id = jsonObject.getString("warrant_id");
+//                                  callback.onSuccess(warrant_id);
+//                                }
+//
+//
+//                            } catch (Exception e) {
+//                                e.printStackTrace();
+//                              callback.onErro(e.toString());
+//                            }
+//
+                      callback.onSuccess(response);
                         }
                     }, new Response.ErrorListener() {
                 @Override
                 public void onErrorResponse(VolleyError error) {
-                    Toast.makeText(context, "error " + error.toString(), Toast.LENGTH_SHORT).show();
+                  //  Toast.makeText(context, "error " + error.toString(), Toast.LENGTH_SHORT).show();
+                callback.onErro(error.toString());
                 }
             }) {
                 @Nullable
                 @Override
                 protected Map<String, String> getParams() throws AuthFailureError {
                     HashMap<String, String> map = new HashMap<>();
-                    map.put("fir_id", String.valueOf(insertwarrant.getFir_id()));
-                    map.put("warrent_type", insertwarrant.getWarrant_type());
+                    map.put("fir_id",  "2023-12-14-1");//insertwarrant.getFir_id());
+                    map.put("warrant_type_id", "1");//insertwarrant.getWarrant_type());
                     map.put("warrant_against", insertwarrant.getWarrant_against());
                     map.put("date_issued", insertwarrant.getDate_issued());
                     map.put("description", insertwarrant.getDiscription());
                     map.put("action", insertwarrant.getAction());
                     map.put("court_name", insertwarrant.getCourt_name());
                     map.put("issuing_authority", insertwarrant.getIssuing_athority());
-                    map.put("police_id", Police_id);
-                    map.put("investigation_witness_id", String.valueOf(insertwarrant.getWarrant_id()));
 
 
 
@@ -236,7 +236,7 @@ public class WarrantDeo {
                     map.put("action", updatewarrant.getAction());
                     map.put("court_name", updatewarrant.getCourt_name());
                     map.put("issuing_authority", updatewarrant.getIssuing_athority());
-                    map.put("police_id", Police_id);
+                    map.put("police_id", police_id);
                     map.put("investigation_witness_id", String.valueOf(updatewarrant.getWarrant_id()));
 
                     return map;
@@ -323,6 +323,33 @@ public class WarrantDeo {
 
 }
 
+public void read_wrarrant_type(Context context, Callback callback){
+            StringRequest stringRequest=new StringRequest(Request.Method.POST,
+                    Warrant_type_id, new Response.Listener<String>() {
+                @Override
+                public void onResponse(String response) {
+                  try{
+                      JSONArray jsonArray=new JSONArray(response);
+
+                      for (int i=0;i< jsonArray.length();i++){
+                          JSONObject jsonObject=jsonArray.getJSONObject(i);
+                          String warrant_type_name=jsonObject.getString("warrant_type_name");
+                           list1.add(warrant_type_name);
+
+                      }
+                  }catch (Exception e){
+                      callback.onErro(e.toString());
+                  }
+                  callback.onSuccess(list1);
+                }
+            }, new Response.ErrorListener() {
+                @Override
+                public void onErrorResponse(VolleyError error) {
+
+                }
+            });
+
+}
 
 
 

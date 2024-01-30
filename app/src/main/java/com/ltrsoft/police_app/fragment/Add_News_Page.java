@@ -52,7 +52,7 @@ public class Add_News_Page extends Fragment {
         save=view.findViewById(R.id.save);
         ActionBar actionBar = ((AppCompatActivity) requireActivity()).getSupportActionBar();
         if (actionBar != null) {
-            actionBar.setTitle("Add News ");
+            actionBar.setTitle("    Add News");
         }
         save.setOnClickListener(new View.OnClickListener() {
             @Override

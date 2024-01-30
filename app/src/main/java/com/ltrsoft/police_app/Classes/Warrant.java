@@ -2,12 +2,11 @@ package com.ltrsoft.police_app.Classes;
 
 public class Warrant {
 
-    int warrant_id,fir_id;
+     String warrant_id,fir_id;
     String warrant_type,warrant_against,date_issued,discription,action,court_name,issuing_athority;
 
-    public Warrant(int warrant_id, String warrant_type, String warrant_against,
-                   String date_issued, String discription,
-                   String action, String court_name, String issuing_athority) {
+    public Warrant(String warrant_id, String fir_id, String warrant_type, String warrant_against,
+                   String date_issued, String discription, String action, String court_name, String issuing_athority) {
         this.warrant_id = warrant_id;
         this.fir_id = fir_id;
         this.warrant_type = warrant_type;
@@ -19,24 +18,30 @@ public class Warrant {
         this.issuing_athority = issuing_athority;
     }
 
-    public Warrant() {
-
+    public Warrant(String warrantTypeId, String cases, String fname1, String idate, String judic, String auth, String desc, String courtName1) {
+         this.fir_id = cases;
+        this.warrant_type = warrantTypeId;
+        this.warrant_against = fname1;
+        this.date_issued = idate;
+        this.discription = desc;
+        this.action = judic;
+        this.court_name = courtName1;
+        this.issuing_athority = auth;
     }
 
-
-    public int getWarrant_id() {
+    public String getWarrant_id() {
         return warrant_id;
     }
 
-    public void setWarrant_id(int warrant_id) {
+    public void setWarrant_id(String warrant_id) {
         this.warrant_id = warrant_id;
     }
 
-    public int getFir_id() {
+    public String getFir_id() {
         return fir_id;
     }
 
-    public void setFir_id(int fir_id) {
+    public void setFir_id(String fir_id) {
         this.fir_id = fir_id;
     }
 

@@ -46,6 +46,18 @@
             android:hint="Issue Date"
             android:background="@drawable/d1"/>
 
+        <ImageView
+            android:id="@+id/calenderImg"
+            android:layout_width="45dp"
+            android:layout_height="45dp"
+            android:src="@drawable/calendar"
+            android:layout_below="@+id/fname"
+            android:layout_marginTop="26dp"
+            android:layout_marginLeft="280dp"
+            android:paddingLeft="15dp"
+            android:hint="Date of Birth"/>
+
+
 
         <EditText
             android:id="@+id/judician"

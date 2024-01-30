@@ -2,22 +2,24 @@ package com.ltrsoft.police_app.ineerfragments;
 
 import android.os.Bundle;
 
+import androidx.appcompat.app.ActionBar;
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.cardview.widget.CardView;
 import androidx.fragment.app.Fragment;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Toast;
 
 import com.ltrsoft.police_app.R;
 import com.ltrsoft.police_app.fragment.Alloted_case1;
 import com.ltrsoft.police_app.fragment.Alloted_case2;
 import com.ltrsoft.police_app.fragment.Criminal1;
 import com.ltrsoft.police_app.fragment.Evidence1;
-import com.ltrsoft.police_app.fragment.Investigation_History_Dashboard;
+import com.ltrsoft.police_app.fragment.Investigation1;
 import com.ltrsoft.police_app.fragment.Suspect1;
 import com.ltrsoft.police_app.fragment.Victim1;
+import com.ltrsoft.police_app.fragment.Warrant1;
 import com.ltrsoft.police_app.fragment.Witness1;
 
 public class Police_Complaint_History_Page extends Fragment {
@@ -25,7 +27,7 @@ public class Police_Complaint_History_Page extends Fragment {
 
     public Police_Complaint_History_Page() {
      }
-    private CardView invistigationcard,allowed_cases,complaint,evidence1,suspect,warrentcard,witness,victime,criminal;
+    private CardView invistigationcard,allowed_cases, evidence1,suspect,warrentcard,witness,victime,criminal;
 
 
     @Override
@@ -33,7 +35,10 @@ public class Police_Complaint_History_Page extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
          View v= inflater.inflate(R.layout.police__complaint__history__page, container, false);
-
+        ActionBar actionBar = ((AppCompatActivity) requireActivity()).getSupportActionBar();
+        if (actionBar != null) {
+            actionBar.setTitle("Police History Page");
+        }
         invistigationcard =v.findViewById(R.id.investigtion);
 
         allowed_cases=v.findViewById(R.id.allowscases);
@@ -42,7 +47,6 @@ public class Police_Complaint_History_Page extends Fragment {
 
         witness=v.findViewById(R.id.witness);
 
-        complaint=v.findViewById(R.id.complaint);
 
         suspect=v.findViewById(R.id.suspect);
 
@@ -54,7 +58,7 @@ public class Police_Complaint_History_Page extends Fragment {
             public void onClick(View v) {
 
                 //Toast.makeText(getActivity(), " invistigation", Toast.LENGTH_SHORT).show();
-                Investigation_History_Dashboard d=new Investigation_History_Dashboard();
+                Investigation1 d=new Investigation1();
 
                 getFragmentManager().beginTransaction().replace(R.id.container_main,d).addToBackStack(null).commit();
 
@@ -66,28 +70,20 @@ public class Police_Complaint_History_Page extends Fragment {
             public void onClick(View v) {
 
               //  Toast.makeText(getActivity(), " allowd cases", Toast.LENGTH_SHORT).show();
-                Alloted_case2 al=new Alloted_case2();
+                Alloted_case1 al=new Alloted_case1();
                 getFragmentManager().beginTransaction().replace(R.id.container_main,al).addToBackStack(null).commit();
 
             }
         });
 
-        complaint.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
 
-//                Complaint_History_Dashboard c=new Complaint_History_Dashboard();
-              //  Toast.makeText(getContext(), " hiii", Toast.LENGTH_SHORT).show();
-//                getFragmentManager().beginTransaction().replace(R.id.container_main,c).addToBackStack(null).commit();
-            }
-        });
 
 
         evidence1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
               Evidence1 ehd=new Evidence1();
-                getFragmentManager().beginTransaction().replace(R.id.main_container,ehd).addToBackStack(null).commit();
+                getFragmentManager().beginTransaction().replace(R.id.container_main,ehd).addToBackStack(null).commit();
             }
         });
 
@@ -96,7 +92,7 @@ public class Police_Complaint_History_Page extends Fragment {
             public void onClick(View v) {
               //  Toast.makeText(getActivity(), " suspect", Toast.LENGTH_SHORT).show();
                 Suspect1 shd=new Suspect1();
-                getFragmentManager().beginTransaction().replace(R.id.main_container,shd).addToBackStack(null).addToBackStack(null).commit();
+                getFragmentManager().beginTransaction().replace(R.id.container_main,shd).addToBackStack(null).addToBackStack(null).commit();
             }
         });
 
@@ -106,8 +102,8 @@ public class Police_Complaint_History_Page extends Fragment {
 
 
                // Toast.makeText(getActivity(), "witness", Toast.LENGTH_SHORT).show();
-//                Warrant_History_Dashboard w=new Warrant_History_Dashboard();
-//                getFragmentManager().beginTransaction().replace(R.id.main_container,w).commit();
+               Warrant1 w=new Warrant1();
+                getFragmentManager().beginTransaction().replace(R.id.container_main,w).addToBackStack(null).commit();
 
             }
         });
@@ -117,7 +113,7 @@ public class Police_Complaint_History_Page extends Fragment {
             public void onClick(View v) {
                 //Toast.makeText(getActivity(), "witness", Toast.LENGTH_SHORT).show();
                 Witness1 w=new Witness1();
-                getFragmentManager().beginTransaction().replace(R.id.main_container,w).addToBackStack(null).addToBackStack(null).commit();
+                getFragmentManager().beginTransaction().replace(R.id.container_main,w). addToBackStack(null).commit();
 
             }
         });

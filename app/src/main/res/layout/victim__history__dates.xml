@@ -1,90 +1,317 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:orientation="vertical">
+    tools:layout_editor_absoluteX="1dp"
+    tools:layout_editor_absoluteY="1dp"
+    android:fillViewport="true"
+    android:background="#E2E9FC"
 
-    <androidx.cardview.widget.CardView
-        android:id="@+id/investigation_card"
-        android:layout_width="350dp"
-        android:layout_height="60dp"
-        android:layout_gravity="center"
-        android:layout_marginTop="20dp"
-        android:outlineSpotShadowColor="#000080"
-        app:cardCornerRadius="15dp"
-        app:cardElevation="20dp">
+    tools:context=".MainActivity">
 
-        <TextView
-            android:id="@+id/e"
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+
+        android:orientation="vertical">
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_marginLeft="20dp"
+            android:layout_height="wrap_content">
+            <ImageView
+                android:id="@+id/Suspect_pic"
+                android:layout_width="200dp"
+                android:background="@drawable/man"
+                android:layout_height="200dp"
+                android:layout_marginTop="10dp"
+                />
+            <TextView
+                android:id="@+id/suspect_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Name"
+                android:layout_marginTop="50dp"
+                android:textSize="30dp"
+                android:textStyle="bold"
+                android:layout_marginLeft="50dp"/>
+
+
+
+        </LinearLayout>
+        <LinearLayout
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_margin="20dp"
-            android:text="Victim-1"
-            android:textColor="#000080"
-            android:textSize="18dp"
-            android:textStyle="bold" />
-    </androidx.cardview.widget.CardView>
+            android:layout_height="wrap_content">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Witness Full Name"
-        android:layout_marginTop="50dp"
-        android:textSize="17dp"
-        android:layout_gravity="center"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="30dp"
+                android:text="Full Name:"
+                android:textSize="19dp" />
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Gender"
-        android:layout_marginTop="40dp"
-        android:textSize="17dp"
-        android:layout_gravity="center"/>
+            <TextView
+                android:id="@+id/Suspect_full_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="30dp"
+                android:text="Full Name"
+                android:textSize="19dp"/>
+
+        </LinearLayout>
 
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Email Address"
-        android:inputType="textEmailAddress"
-        android:layout_marginTop="40dp"
-        android:textSize="17dp"
-        android:layout_gravity="center"/>
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Contact No"
-        android:layout_marginTop="40dp"
-        android:textSize="17dp"
-        android:layout_gravity="center"/>
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="D.O.B"
-        android:layout_marginTop="40dp"
-        android:textSize="17dp"
-        android:layout_gravity="center"/>
 
 
-    <ImageView
-        android:layout_width="200dp"
-        android:layout_height="150dp"
-        android:layout_marginTop="25dp"
-        android:layout_gravity="center"/>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="30dp"
+                android:text="Address:"
+                android:textSize="19dp" />
+
+            <TextView
+                android:id="@+id/suspect_address"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="30dp"
+                android:text="Address"
+                android:textSize="19dp" />
+        </LinearLayout>
 
 
-    <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/close"
-        android:layout_width="160dp"
-        android:layout_height="wrap_content"
-        android:text="Close"
-        android:textSize="20dp"
-        android:textColor="@color/white"
-        android:layout_marginTop="15dp"
-        android:layout_gravity="center"
-        android:background="@drawable/d2"/>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
 
-</LinearLayout>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="30dp"
+                android:text="DOB:"
+                android:textSize="19dp" />
+
+            <TextView
+                android:id="@+id/suspect_dob"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="30dp"
+                android:text="12/12/2002"
+                android:textSize="19dp"
+                />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="30dp"
+                android:text="Gender:"
+                android:textSize="19dp" />
+
+            <TextView
+                android:id="@+id/suspect_gender"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="30dp"
+                android:text="Gender"
+                android:textSize="19dp" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="30dp"
+                android:text="Mobile No:"
+                android:textSize="19dp" />
+
+            <TextView
+                android:id="@+id/suspect_mobile"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="30dp"
+                android:text="Mobile"
+                android:textSize="19dp"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="30dp"
+                android:text="Email:"
+                android:textSize="19dp" />
+
+            <TextView
+                android:id="@+id/suspect_email"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="30dp"
+                android:text="Email"
+                android:textSize="19dp" />
+        </LinearLayout>
+
+
+
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="30dp"
+                android:text="Adhaar No:"
+                android:textSize="19dp" />
+
+            <TextView
+                android:id="@+id/suspect_addhar"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="30dp"
+                android:text="aadhar no"
+                android:textSize="19dp"
+                />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="30dp"
+                android:text="Country Name:"
+                android:textSize="19dp" />
+
+            <TextView
+                android:id="@+id/suspect_country"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="30dp"
+                android:text="country name"
+                android:textSize="19dp"
+                />
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="30dp"
+                android:text="State Name:"
+                android:textSize="19dp" />
+
+            <TextView
+                android:id="@+id/suspect_state"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="30dp"
+                android:text="state name"
+                android:textSize="19dp"
+                />
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="30dp"
+                android:text="District Name:"
+                android:textSize="19dp" />
+
+            <TextView
+                android:id="@+id/suspect_district"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="30dp"
+                android:text="dist name"
+                android:textSize="19dp"
+                />
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="30dp"
+                android:text="City Name:"
+                android:textSize="19dp" />
+
+            <TextView
+                android:id="@+id/suspect_city"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="30dp"
+                android:text="city name"
+                android:textSize="19dp"
+                />
+        </LinearLayout>
+
+        <Button
+            android:id="@+id/suspect_button"
+            android:layout_marginBottom="12dp"
+            android:layout_width="180dp"
+            android:layout_height="50dp"
+            android:background="@drawable/d1"
+            android:layout_gravity="center"
+            android:text="Convert To criminal"
+            android:layout_marginTop="50dp"
+            android:backgroundTint="#000080"/>
+
+    </LinearLayout>
+</ScrollView>

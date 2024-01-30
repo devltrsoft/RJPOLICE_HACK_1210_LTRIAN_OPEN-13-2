@@ -6,6 +6,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
 
+import androidx.appcompat.app.ActionBar;
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -25,11 +27,16 @@ public class Witness2 extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.witness__history__dashboard, container, false);
         recyclerView = view.findViewById(R.id.witnessHistoryRecycler);
+        ActionBar actionBar = ((AppCompatActivity) requireActivity()).getSupportActionBar();
+
+        if (actionBar != null) {
+            actionBar.setTitle("Witness History By Date");
+        }
         WitnessDeo witnessDeo = new WitnessDeo();
         witnessDeo.getWitnessByDate(getContext(), new Callback() {
             @Override
             public void onSuccess(Object obj) {
-                Toast.makeText(getContext(), "succes"+obj, Toast.LENGTH_SHORT).show();
+                //Toast.makeText(getContext(), "succes"+obj, Toast.LENGTH_SHORT).show();
                 System.out.println("obj = "+obj.toString());
                 list1=(ArrayList<Witness>)obj;
                 WitnessAdapter2 adapter = new WitnessAdapter2(list1);

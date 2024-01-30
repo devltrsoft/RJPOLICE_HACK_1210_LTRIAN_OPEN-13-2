@@ -2,6 +2,8 @@ package com.ltrsoft.police_app.fragment;
 
 import android.os.Bundle;
 
+import androidx.appcompat.app.ActionBar;
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.cardview.widget.CardView;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -48,6 +50,11 @@ public class Alloted_case2 extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
           view= inflater.inflate(R.layout.alloted_case2, container, false);
+        ActionBar actionBar = ((AppCompatActivity) requireActivity()).getSupportActionBar();
+
+        if (actionBar != null) {
+            actionBar.setTitle("Alloted Case  Detail");
+        }
         setId();
         setSuspectAdapter();
         setVictimAdapter();
@@ -146,7 +153,7 @@ public class Alloted_case2 extends Fragment {
 
             @Override
             public void onErro(String errro) {
-                Toast.makeText(getContext(), ""+errro, Toast.LENGTH_SHORT).show();
+               // Toast.makeText(getContext(), ""+errro, Toast.LENGTH_SHORT).show();
             }
         });
 
@@ -194,7 +201,7 @@ public class Alloted_case2 extends Fragment {
 
             @Override
             public void onErro(String errro) {
-                Toast.makeText(getContext(), "response"+errro, Toast.LENGTH_SHORT).show();
+               // Toast.makeText(getContext(), "response"+errro, Toast.LENGTH_SHORT).show();
 
             }
         });

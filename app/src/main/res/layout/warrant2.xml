@@ -1,97 +1,110 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:orientation="vertical">
+    >
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
 
-
-    <androidx.cardview.widget.CardView
-        android:id="@+id/investigation_card"
-        android:layout_width="350dp"
-        android:layout_height="60dp"
-        android:layout_gravity="center"
-        android:layout_marginTop="20dp"
-        android:outlineSpotShadowColor="#000080"
-        app:cardCornerRadius="15dp"
-        app:cardElevation="20dp">
 
         <TextView
-            android:id="@+id/Warrant"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_margin="20dp"
-            android:text=" Warrant "
-            android:textColor="#000080"
-            android:textSize="18dp"
-            android:textStyle="bold" />
-    </androidx.cardview.widget.CardView>
-
-    <TextView
-        android:id="@+id/warrant_name"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Warrant Full Name"
-        android:layout_marginTop="50dp"
-        android:textSize="17dp"
-        android:layout_gravity="center"/>
-
-    <TextView
-        android:id="@+id/issued_dat"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Gender"
-        android:layout_marginTop="40dp"
-        android:textSize="17dp"
-        android:layout_gravity="center"/>
+            android:id="@+id/caseIDs"
+            android:layout_width="300dp"
+            android:layout_height="50dp"
+            android:layout_marginTop="26dp"
+            android:gravity="center"
+            android:layout_marginLeft="55dp"
+            android:paddingLeft="15dp"
+            android:hint="Case id"
+            android:background="@drawable/d1"/>
+        <TextView
+            android:id="@+id/fname"
+            android:layout_width="300dp"
+            android:layout_height="50dp"
+            android:layout_below="@+id/caseIDs"
+            android:layout_marginTop="26dp"
+            android:gravity="center"
+            android:layout_marginLeft="55dp"
+            android:paddingLeft="15dp"
+            android:hint="Full Name"
+            android:background="@drawable/d1"/>
 
 
-    <TextView
-        android:id="@+id/juridiction"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Email Address"
-        android:inputType="textEmailAddress"
-        android:layout_marginTop="40dp"
-        android:textSize="17dp"
-        android:layout_gravity="center"/>
-
-    <TextView
-        android:id="@+id/issuing_auth"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Contact No"
-        android:layout_marginTop="40dp"
-        android:textSize="17dp"
-        android:layout_gravity="center"/>
-
-    <TextView
-        android:id="@+id/warrantTyp"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="D.O.B"
-        android:layout_marginTop="40dp"
-        android:textSize="17dp"
-        android:layout_gravity="center"/>
+        <TextView
+            android:id="@+id/issued_date"
+            android:layout_width="300dp"
+            android:layout_height="50dp"
+            android:layout_below="@+id/fname"
+            android:layout_marginTop="26dp"
+            android:gravity="center"
+            android:layout_marginLeft="55dp"
+            android:paddingLeft="15dp"
+            android:hint="Issue Date"
+            android:background="@drawable/d1"/>
 
 
-    <TextView
-        android:id="@+id/wdesc"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="25dp"
-        android:layout_gravity="center"/>
 
+        <TextView
+            android:id="@+id/authority"
+            android:layout_width="300dp"
+            android:layout_height="50dp"
+            android:layout_below="@+id/issued_date"
+            android:layout_marginTop="26dp"
+            android:gravity="center"
+            android:layout_marginLeft="55dp"
+            android:paddingLeft="15dp"
+            android:hint="Issuing Authority "
+            android:background="@drawable/d1"/>
+        <TextView
+            android:id="@+id/court_name"
+            android:layout_width="300dp"
+            android:layout_height="50dp"
+            android:layout_below="@+id/authority"
+            android:layout_marginTop="26dp"
+            android:gravity="center"
+            android:layout_marginLeft="55dp"
+            android:paddingLeft="15dp"
+            android:hint="Court name "
+            android:background="@drawable/d1"/>
 
-    <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/close"
-        android:layout_width="160dp"
-        android:layout_height="wrap_content"
-        android:text="Close"
-        android:textSize="20dp"
-        android:textColor="@color/white"
-        android:layout_marginTop="15dp"
-        android:layout_gravity="center"
-        android:background="@drawable/d2"/>
+        <TextView
+            android:id="@+id/Warrant_Type"
+            android:layout_width="300dp"
+            android:layout_height="50dp"
+            android:layout_below="@+id/court_name"
+            android:layout_marginTop="26dp"
+            android:gravity="center"
+            android:layout_marginLeft="55dp"
+            android:paddingLeft="15dp"
+            android:hint="Warrant type"
+            android:background="@drawable/d1"/>
 
-</LinearLayout>
+        <EditText
+            android:id="@+id/Discription"
+            android:layout_width="300dp"
+            android:layout_height="190dp"
+            android:layout_below="@+id/Warrant_Type"
+            android:layout_marginTop="26dp"
+            android:gravity="center"
+            android:layout_marginLeft="55dp"
+            android:paddingLeft="15dp"
+            android:hint="Discription"
+            android:background="@drawable/d1"/>
+
+        <Button
+            android:id="@+id/close"
+            android:layout_width="200dp"
+            android:layout_height="70dp"
+            android:text="Close"
+            android:textSize="30dp"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="26dp"
+            android:layout_below="@+id/Discription"
+            android:background="@drawable/btn_border"
+            android:backgroundTint="#000080"/>
+    </RelativeLayout>
+</ScrollView>

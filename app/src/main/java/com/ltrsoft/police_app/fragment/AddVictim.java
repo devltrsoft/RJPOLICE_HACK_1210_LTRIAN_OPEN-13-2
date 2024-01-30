@@ -40,7 +40,7 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
-import com.ltrsoft.police_app.Adapter.SpinnerAdapter;
+import com.ltrsoft.police_app.Model.SpinnerDeo;
 import com.ltrsoft.police_app.Classes.Victim;
 import com.ltrsoft.police_app.Model.VictimDeo;
 import com.ltrsoft.police_app.R;
@@ -103,6 +103,7 @@ public class AddVictim extends Fragment {
         photo=view.findViewById(R.id.photo);
         gender=view.findViewById(R.id.gender);
          complain_name = view.findViewById(R.id.complain_name);
+        setSpinner();
 
         complain_name.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
@@ -159,7 +160,7 @@ public class AddVictim extends Fragment {
 
                 VictimDeo victimDeo=new VictimDeo();
                 victimDeo.createvictim(new Victim(country1,state1,district1,city1,name1,address1,email1,dob1,mobile1,
-                        addhar1,gender),getContext(), new Callback() {
+                        addhar1,gender,encodeImage),getContext(), new Callback() {
                     @Override
                     public void onSuccess(Object obj) {
                         String success=(String) obj;
@@ -291,23 +292,83 @@ public class AddVictim extends Fragment {
         startActivityForResult(galleryIntent, GALLERY_REQ_CODE);
     }
     public void setSpinner(){
-        SpinnerAdapter spinnerAdapter = new SpinnerAdapter(getContext());
-        ArrayList list = spinnerAdapter.getCountryAdapter();
-        adapter = new ArrayAdapter(getContext(), android.R.layout.simple_expandable_list_item_1,list);
-        adapter.setDropDownViewResource(android.R.layout.simple_expandable_list_item_1);
-        country.setAdapter(adapter);
+        SpinnerDeo spinnerAdapter = new SpinnerDeo(getContext());
+        spinnerAdapter.getCountryAdapter(getContext(), new Callback() {
+            @Override
+            public void onSuccess(Object obj) {
+                ArrayList countrylist=new ArrayList();
+                countrylist=(ArrayList) obj;
+                adapter = new ArrayAdapter(getContext(), android.R.layout.simple_expandable_list_item_1,countrylist);
+                adapter.setDropDownViewResource(android.R.layout.simple_expandable_list_item_1);
+                country.setAdapter(adapter);
 
-        ArrayList list2 = spinnerAdapter.getStateList(1);
-        adapter2 = new ArrayAdapter(getContext(), android.R.layout.simple_expandable_list_item_1,list2);
-        adapter2.setDropDownViewResource(android.R.layout.simple_expandable_list_item_1);
-        state.setAdapter(adapter2);
+            }
 
-        ArrayList list3 = spinnerAdapter.getStateList(1);
-        adapter3 = new ArrayAdapter(getContext(), android.R.layout.simple_expandable_list_item_1,list3);
-        adapter3.setDropDownViewResource(android.R.layout.simple_expandable_list_item_1);
-        district.setAdapter(adapter3);
-    }
-    private void loadComplainNameByUser(String police_id) {
+            @Override
+            public void onErro(String errro) {
+                Toast.makeText(getContext(), ""+errro, Toast.LENGTH_SHORT).show();
+            }
+        });
+
+
+        spinnerAdapter.getStateList(1, getContext(), new Callback() {
+            @Override
+            public void onSuccess(Object obj) {
+
+                ArrayList  statelist=new ArrayList();
+                statelist=(ArrayList) obj;
+
+                adapter2 = new ArrayAdapter(getContext(), android.R.layout.simple_expandable_list_item_1,statelist);
+                adapter2.setDropDownViewResource(android.R.layout.simple_expandable_list_item_1);
+                state.setAdapter(adapter2);
+            }
+
+            @Override
+            public void onErro(String errro) {
+                Toast.makeText(getContext(), ""+errro, Toast.LENGTH_SHORT).show();
+
+            }
+        });
+
+
+        spinnerAdapter.getDistrict(1, getContext(), new Callback() {
+            @Override
+            public void onSuccess(Object obj) {
+
+                ArrayList  districtlist=new ArrayList();
+                districtlist=(ArrayList) obj;
+
+
+                adapter3 = new ArrayAdapter(getContext(), android.R.layout.simple_expandable_list_item_1,districtlist);
+                adapter3.setDropDownViewResource(android.R.layout.simple_expandable_list_item_1);
+                district.setAdapter(adapter3);
+
+            }
+
+            @Override
+            public void onErro(String errro) {
+                Toast.makeText(getContext(), ""+errro, Toast.LENGTH_SHORT).show();
+
+            }
+        });
+        spinnerAdapter.getCity(1, getContext(), new Callback() {
+            @Override
+            public void onSuccess(Object obj) {
+                ArrayList citylist=new ArrayList();
+                citylist=(ArrayList) obj;
+                adapter4=new ArrayAdapter(getContext(), android.R.layout.simple_expandable_list_item_1,citylist);
+                adapter4.setDropDownViewResource(android.R.layout.simple_expandable_list_item_1);
+                city.setAdapter(adapter4);
+            }
+
+            @Override
+            public void onErro(String errro) {
+                Toast.makeText(getContext(), ""+errro, Toast.LENGTH_SHORT).show();
+
+            }
+        });
+
+    } void loadComplainNameByUser(String police_id) {
         StringRequest stringRequest = new StringRequest(Request.Method.POST, COMPLAIN_NAME_EBY_USER,
                 new Response.Listener<String>() {
                     @Override

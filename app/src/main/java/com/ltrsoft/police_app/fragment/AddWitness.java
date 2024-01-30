@@ -41,6 +41,7 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.ltrsoft.police_app.Classes.Witness;
+import com.ltrsoft.police_app.Model.SpinnerDeo;
 import com.ltrsoft.police_app.Model.WitnessDeo;
 import com.ltrsoft.police_app.R;
 import com.ltrsoft.police_app.interface1.Callback;
@@ -272,6 +273,83 @@ import java.util.Map;
              byte[] bytes = byteArrayOutputStream.toByteArray();
              encodeImage = Base64.encodeToString(bytes, Base64.DEFAULT);
          }
+     }
+     public void setSpinner(){
+         SpinnerDeo spinnerAdapter = new SpinnerDeo(getContext());
+         spinnerAdapter.getCountryAdapter(getContext(), new Callback() {
+             @Override
+             public void onSuccess(Object obj) {
+                 ArrayList countrylist=new ArrayList();
+                 countrylist=(ArrayList) obj;
+                 adapter = new ArrayAdapter(getContext(), android.R.layout.simple_expandable_list_item_1,countrylist);
+                 adapter.setDropDownViewResource(android.R.layout.simple_expandable_list_item_1);
+                 country.setAdapter(adapter);
+
+             }
+
+             @Override
+             public void onErro(String errro) {
+                 Toast.makeText(getContext(), ""+errro, Toast.LENGTH_SHORT).show();
+             }
+         });
+
+
+         spinnerAdapter.getStateList(1, getContext(), new Callback() {
+             @Override
+             public void onSuccess(Object obj) {
+
+                 ArrayList  statelist=new ArrayList();
+                 statelist=(ArrayList) obj;
+
+                 adapter2 = new ArrayAdapter(getContext(), android.R.layout.simple_expandable_list_item_1,statelist);
+                 adapter2.setDropDownViewResource(android.R.layout.simple_expandable_list_item_1);
+                 state.setAdapter(adapter2);
+             }
+
+             @Override
+             public void onErro(String errro) {
+                 Toast.makeText(getContext(), ""+errro, Toast.LENGTH_SHORT).show();
+
+             }
+         });
+
+
+         spinnerAdapter.getDistrict(1, getContext(), new Callback() {
+             @Override
+             public void onSuccess(Object obj) {
+
+                 ArrayList  districtlist=new ArrayList();
+                 districtlist=(ArrayList) obj;
+
+
+                 adapter3 = new ArrayAdapter(getContext(), android.R.layout.simple_expandable_list_item_1,districtlist);
+                 adapter3.setDropDownViewResource(android.R.layout.simple_expandable_list_item_1);
+                 district.setAdapter(adapter3);
+
+             }
+
+             @Override
+             public void onErro(String errro) {
+                 Toast.makeText(getContext(), ""+errro, Toast.LENGTH_SHORT).show();
+
+             }
+         });
+         spinnerAdapter.getCity(1, getContext(), new Callback() {
+             @Override
+             public void onSuccess(Object obj) {
+                 ArrayList citylist=new ArrayList();
+                 citylist=(ArrayList) obj;
+                 adapter4=new ArrayAdapter(getContext(), android.R.layout.simple_expandable_list_item_1,citylist);
+                 adapter4.setDropDownViewResource(android.R.layout.simple_expandable_list_item_1);
+                 city.setAdapter(adapter4);
+             }
+
+             @Override
+             public void onErro(String errro) {
+
+             }
+         });
+
      }
      private void launchCamera() {
          Intent cameraIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);

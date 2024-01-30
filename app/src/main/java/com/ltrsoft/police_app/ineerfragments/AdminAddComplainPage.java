@@ -1,4 +1,4 @@
-package com.ltrsoft.police_app.fragment;
+package com.ltrsoft.police_app.ineerfragments;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -13,6 +13,15 @@ import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
 import com.ltrsoft.police_app.R;
+import com.ltrsoft.police_app.fragment.AddComplaint;
+import com.ltrsoft.police_app.fragment.AddEvidence;
+import com.ltrsoft.police_app.fragment.AddSuspect;
+import com.ltrsoft.police_app.fragment.AddVictim;
+import com.ltrsoft.police_app.fragment.AddWarrent;
+import com.ltrsoft.police_app.fragment.AddWitness;
+import com.ltrsoft.police_app.fragment.Add_Criminal;
+import com.ltrsoft.police_app.fragment.Add_Investigation;
+import com.ltrsoft.police_app.fragment.Admin_add_notification;
 
 public class AdminAddComplainPage extends Fragment {
 
@@ -80,7 +89,7 @@ public class AdminAddComplainPage extends Fragment {
         addevidence.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                AddEvidence  addEvidence = new AddEvidence();
+                AddEvidence addEvidence = new AddEvidence();
                 loadfragment(addEvidence);
             }
         });
@@ -111,7 +120,7 @@ public class AdminAddComplainPage extends Fragment {
     private void loadfragment(Fragment fragment) {
         FragmentManager fragmentManager=getFragmentManager();
         FragmentTransaction fragmentTransaction= fragmentManager.beginTransaction();
-        fragmentTransaction.replace(R.id.main_container,fragment);
+        fragmentTransaction.replace(R.id.container_main,fragment);
         fragmentTransaction.addToBackStack(null);
         fragmentTransaction.commit();
     }

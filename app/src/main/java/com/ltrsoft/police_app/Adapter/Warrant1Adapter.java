@@ -48,13 +48,16 @@ public class Warrant1Adapter extends RecyclerView.Adapter<Warrant1Adapter.ViewHo
                 AppCompatActivity activity = (AppCompatActivity) v.getContext();
                  Warrant2 w = new Warrant2();
                 Bundle bundle=new Bundle();
-                bundle.putString(" ",item.getWarrant_type());
-                bundle.putString("warrant_id", String.valueOf(item.getWarrant_id()));
+                bundle.putString("warrant_type",item.getWarrant_type());
+                bundle.putString("issue_date",item.getDate_issued());
+                bundle.putString("fir_id",item. getFir_id());
+                 bundle.putString("discription",item.getDiscription());
+
                 bundle.putString("issuing_authority",item.getIssuing_athority());
                 bundle.putString("court_name",item.getCourt_name());
                 bundle.putString("warrant_against",item.getWarrant_against());
                 w.setArguments(bundle);
-                activity.getSupportFragmentManager().beginTransaction().replace(R.id. main_container, w).addToBackStack(null).commit();
+                activity.getSupportFragmentManager().beginTransaction().replace(R.id. container_main, w).addToBackStack(null).commit();
             }
         });
     }

@@ -13,6 +13,7 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.ltrsoft.police_app.Classes.Notification;
+import com.ltrsoft.police_app.interface1.Callback;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -144,34 +145,37 @@ public class NotificationDeo {
 
     };
 
-    public Notification createnotification(Notification insertnotification,Context context){
+    public Notification createnotification(Notification insertnotification, Context context, Callback callback){
         StringRequest stringRequest = new StringRequest(Request.Method.POST,  createnotification_url ,
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {
-                        System.out.println("response"+response.toString());
-                        try {
-                            JSONArray jsonArray=new JSONArray(response);
-                            for(int i=0;i<jsonArray.length();i++){
-                                JSONObject jsonObject=jsonArray.getJSONObject(i);
-                                Integer   notification_id = jsonObject. getInt("notification_id");
-                               // Integer news_photos_id=jsonObject.getInt("news_photos_id");
+                        callback.onSuccess(response);
 
-                            }
-
-
-
-                        }catch (Exception e){
-                            e.printStackTrace();
-
-                        }
+//                        System.out.println("response"+response.toString());
+//                        try {
+////                            JSONArray jsonArray=new JSONArray(response);
+////                            for(int i=0;i<jsonArray.length();i++){
+////                                JSONObject jsonObject=jsonArray.getJSONObject(i);
+////                                Integer   notification_id = jsonObject. getInt("notification_id");
+////                               // Integer news_photos_id=jsonObject.getInt("news_photos_id");
+//
+//                            }
+//
+//
+//
+//                        }catch (Exception e){
+//                            e.printStackTrace();
+//
+//                        }
 
 
                     }
                 }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
-                Toast.makeText( context, "error " + error.toString(), Toast.LENGTH_SHORT).show();
+                callback.onErro(error.toString());
+              //  Toast.makeText( context, "error " + error.toString(), Toast.LENGTH_SHORT).show();
             }
         }) {
             @Nullable

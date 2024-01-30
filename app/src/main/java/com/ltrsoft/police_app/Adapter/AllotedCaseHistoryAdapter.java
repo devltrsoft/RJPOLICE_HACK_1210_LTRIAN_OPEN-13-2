@@ -38,7 +38,7 @@ public class AllotedCaseHistoryAdapter extends RecyclerView.Adapter<AllotedCaseH
 
         holder.tvi.setText("Case ID: " + item.getId());
         holder.textCaseName.setText("Case Name: " + item.getName());
-        holder.textCaseDate.setText("Case Date: " + item.getDate());
+        holder.textCaseDate.setText("Case Date: " + item.getAddress());
 
         holder.cardView.setOnClickListener(new View.OnClickListener() {
             @Override

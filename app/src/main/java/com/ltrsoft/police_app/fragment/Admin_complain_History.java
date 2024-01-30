@@ -5,6 +5,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import androidx.appcompat.app.ActionBar;
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -30,6 +32,12 @@ RecyclerView recyclerView;
         // Inflate the layout for this fragment
         View view= inflater.inflate(R.layout.admin_complain_history, container, false);
          recyclerView=view.findViewById(R.id.complaint_Recycler);
+        ActionBar actionBar = ((AppCompatActivity) requireActivity()).getSupportActionBar();
+
+        // Set the title on the ActionBar or Toolbar
+        if (actionBar != null) {
+            actionBar.setTitle("Admin Complain History ");
+        }
          list.add(new complain_history_class("8380949810","ganesh sagave","latur"));
         list.add(new complain_history_class("8380949810","ganesh sagave","latur"));
         list.add(new complain_history_class("8380949810","ganesh sagave","latur"));

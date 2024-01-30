@@ -1,5 +1,6 @@
 package com.ltrsoft.police_app.Adapter;
 
+import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -33,7 +34,6 @@ public class SuspectAdapter2 extends RecyclerView.Adapter<SuspectAdapter2.ViewHo
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         Suspect item = dataList.get(position);
-
         holder.tvi.setText("Suspect ID: " + item.getInvestigation_suspect_id());
         holder.textSuspectName.setText("Suspect Name: " + item.getFname());
         holder.textSuspectDate.setText("Suspect Date: " + item.getDob());
@@ -43,7 +43,18 @@ public class SuspectAdapter2 extends RecyclerView.Adapter<SuspectAdapter2.ViewHo
             public void onClick(View v) {
                 AppCompatActivity activity = (AppCompatActivity) v.getContext();
                 Suspect3 s = new Suspect3();
-                activity.getSupportFragmentManager().beginTransaction().replace(R.id. main_container, s).addToBackStack(null).commit();
+                Bundle bundle=new Bundle();
+                 bundle.putString("firid",  item.getFir_id());
+                bundle.putString("name", item.getFname());
+                bundle.putString("gender",item.getGender());
+                bundle.putString("mobile",item.getMobile());
+                bundle.putString("email",item.getEmail());
+                bundle.putString("adhar",item.getAdhar());
+                bundle.putString("cname",item. getCountry());
+                bundle.putString("dname",item. getDistrict());
+                bundle.putString("sname",item.getState());
+                s.setArguments(bundle);
+                activity.getSupportFragmentManager().beginTransaction().replace(R.id.container_main, s).addToBackStack(null).commit();
             }
         });
     }

@@ -2,12 +2,16 @@ package com.ltrsoft.police_app.Classes;
 
 public class AllotedCaseHistoryClass {
 
-    String id,name,date;
+    String id;
+    String name;
+    String address;
+    String complaint_type;
 
-    public AllotedCaseHistoryClass(String id, String name, String date) {
+    public AllotedCaseHistoryClass(String id, String name, String address, String complaint_type) {
         this.id = id;
         this.name = name;
-        this.date = date;
+        this.address = address;
+        this.complaint_type = complaint_type;
     }
 
     public String getId() {
@@ -26,9 +30,19 @@ public class AllotedCaseHistoryClass {
         this.name = name;
     }
 
-    public String getDate() {
-        return date;
+    public String getAddress() {
+        return address;
     }
 
+    public void setAddress(String address) {
+        this.address = address;
+    }
 
+    public String getComplaint_type() {
+        return complaint_type;
+    }
+
+    public void setComplaint_type(String complaint_type) {
+        this.complaint_type = complaint_type;
+    }
 }

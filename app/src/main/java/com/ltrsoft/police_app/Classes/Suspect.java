@@ -36,7 +36,21 @@ public class Suspect {
         this.investigation_suspect_id = investigation_suspect_id;
     }
 
-    public Suspect(String country1, String state1, String district1, String city1, String name1, String address1, String email1, String dob1, String mobile1, String addhar1, String gender) {
+    public Suspect(String country1, String state1, String district1, String city1, String name1, String address1, String email1, String dob1, String mobile1, String addhar1, String gender , String photo_path) {
+        this.country = country1;
+        this.state = state1;
+        this.district = district1;
+        this.city = city1;
+        this.fname = name1;
+
+        this.address = address1;
+        this.dob = dob1;
+        this.email = email1;
+        this.adhar = addhar1;
+        this.gender = gender;
+        this.photo_path = photo_path;
+         this.mobile = mobile1;
+
     }
 
 

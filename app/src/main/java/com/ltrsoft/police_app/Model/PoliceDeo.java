@@ -18,6 +18,7 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
+import com.ltrsoft.police_app.Classes.AllotedCaseHistoryClass;
 import com.ltrsoft.police_app.Classes.Police;
 import com.ltrsoft.police_app.interface1.Callback;
 
@@ -39,6 +40,7 @@ public class PoliceDeo {
     String police_login_url="https://rj.ltr-soft.com/public/police_api/login/police_login.php";
     static String getonepolice_URL="http://rj.ltr-soft.com/public/police_api/data/police_read.php";
       String Polioce_registration_URL="https://rj.ltr-soft.com/public/police_api/data/police_insert.php";
+      String alloted_case="https://rj.ltr-soft.com/public/police_api/data/police_c_read.php";
     String Search_URL="";
     String delete_URL="";
 
@@ -116,6 +118,55 @@ public class PoliceDeo {
 //    }
 //
 //
+    public void alloted_cases(String police_id,Context context, Callback callback){
+       police_id="1";
+        String finalPolice_id = police_id;
+        StringRequest stringRequest=new StringRequest(Request.Method.POST, alloted_case,
+                new Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String response) {
+                     try{
+                         JSONArray jsonArray=new JSONArray(response);
+                                 for(int i=0;i<jsonArray.length();i++){
+                                     JSONObject jsonObject=jsonArray.getJSONObject(i);
+                                     String complaint_id=jsonObject.getString("complaint_id");
+                                     String complaint_type_name=jsonObject.getString("complaint_type_name");
+                                     String address=jsonObject.getString("address");
+                                     String complaint_victim_fname=jsonObject.getString("complaint_victim_fname");
+                                     String complaint_victim_lname=jsonObject.getString("complaint_victim_lname");
+                                    String victim_name=complaint_victim_fname+complaint_victim_lname;
+                                     ArrayList<AllotedCaseHistoryClass> list=new ArrayList<>();
+                                     AllotedCaseHistoryClass allotedCaseHistoryClass=new AllotedCaseHistoryClass( complaint_id,
+                                             victim_name,address,complaint_type_name);
+                                     list.add(allotedCaseHistoryClass);
+                                  }
+                     }
+                     catch (Exception e)
+                     {
+                         callback.onErro(e.toString());
+                     }
+                        callback.onSuccess(list);
+                    }
+                }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                callback.onErro(error.toString());
+            }
+        }){
+            @Nullable
+            @Override
+            protected Map<String, String> getParams() throws AuthFailureError {
+                 HashMap<String,String>map=new HashMap<>();
+                 map.put("police_id", finalPolice_id);
+                 return map;
+            }
+        };
+
+        RequestQueue requestQueue=Volley.newRequestQueue(context);
+        requestQueue.add(stringRequest);
+
+
+    }
     public static void getonepolice( int police_id, Context context, Callback callback){
       police_id=1;
         int finalPolice_id = police_id;
@@ -176,7 +227,7 @@ public class PoliceDeo {
 
 
         RequestQueue requestQueue=Volley.newRequestQueue(context);
-        requestQueue.add(stringRequest);;
+        requestQueue.add(stringRequest);
 
     };
 

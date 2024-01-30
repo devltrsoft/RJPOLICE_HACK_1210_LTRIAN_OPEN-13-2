@@ -70,8 +70,8 @@ public class VictimDeo {
                                 String pan = jsonObject.getString("mobile");
                                 String mobile = jsonObject.getString("mobile");
                                 String is_suspect = jsonObject.getString("is_c_victim");
-                                int fir_id = 100;
-                                int investigation_suspect_id = 10000;
+                                 String fir_id =  "100";//jsonObject.getString("fir_id");
+                                String investigation_suspect_id =  "100";//jsonObject.getString("investigation_suspect_id");
                                 list.add(new Victim(country, state, district, city, fname, mname, lname, address,
                                         dob, email, adhar, gender,
                                         photo_path, pan, mobile, is_suspect,
@@ -129,8 +129,8 @@ public class VictimDeo {
                                 String pan = jsonObject.getString("mobile");
                                 String mobile = jsonObject.getString("mobile");
                                 String is_suspect = jsonObject.getString("is_c_victim");
-                                int fir_id = 100;
-                                int investigation_suspect_id = 200;
+                                String fir_id = "100" ;//jsonObject.getString("fir_id");
+                                String investigation_suspect_id =  "100";//jsonObject.getString("investigation_suspect_id");
                                 list.add(new Victim(country, state, district, city, fname, mname, lname, address,
                                         dob, email, adhar, gender,
                                         photo_path, pan, mobile, is_suspect,
@@ -169,20 +169,20 @@ public class VictimDeo {
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {
-                        System.out.println("response"+response.toString());
-                        try {
-                            JSONArray jsonArray=new JSONArray(response);
-                            for(int i=0;i<jsonArray.length();i++){
-                                JSONObject jsonObject=jsonArray.getJSONObject(i);
-                                String  investigation_victim_id = jsonObject.getString("investigation_victim_id");
-                            callback.onSuccess(investigation_victim_id);
-                            }
-                        }catch (Exception e){
-                            e.printStackTrace();
-                            callback.onErro(e.toString());
-
-                        }
-
+//                        System.out.println("response"+response.toString());
+//                        try {
+//                            JSONArray jsonArray=new JSONArray(response);
+//                            for(int i=0;i<jsonArray.length();i++){
+//                                JSONObject jsonObject=jsonArray.getJSONObject(i);
+//                                String  investigation_victim_id = jsonObject.getString("investigation_victim_id");
+//                            callback.onSuccess(investigation_victim_id);
+//                            }
+//                        }catch (Exception e){
+//                            e.printStackTrace();
+//                            callback.onErro(e.toString());
+//
+//                        }
+//
 
                     }
                 }, new Response.ErrorListener() {
@@ -195,10 +195,10 @@ public class VictimDeo {
             @Override
             protected Map<String, String> getParams() throws AuthFailureError {
                 HashMap<String, String> map = new HashMap<>();
-                map.put("fir_id", String.valueOf(inservictim.getFir_id()));
+                map.put("fir_id",  "2023-12-14-1");
                 map.put("victim_fname",inservictim.getFname());
-                map.put("victim_mname",inservictim.getMname());
-                map.put("victim_lname",inservictim.getLname());
+               // map.put("victim_mname",inservictim.getMname());
+               // map.put("victim_lname",inservictim.getLname());
                 map.put("country_id","1");
                 //insertsuspect.getAddress());
                 map.put("state_id","1");

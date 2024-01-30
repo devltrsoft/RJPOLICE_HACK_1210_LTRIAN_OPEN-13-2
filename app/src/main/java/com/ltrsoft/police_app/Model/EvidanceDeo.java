@@ -42,6 +42,7 @@ public class EvidanceDeo {
     String searchUrl="";
     public ArrayList<Evidance> list = new ArrayList<>();
     public ArrayList<String> search_list=new ArrayList<String>();
+
     public void getAllEvidance(Context context,Callback callback) {
 
         StringRequest stringRequest = new StringRequest(Request.Method.POST,  getAllevidance_URL,

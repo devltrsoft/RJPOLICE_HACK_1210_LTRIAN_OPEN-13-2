@@ -5,12 +5,13 @@ import android.widget.EditText;
 public class Criminal {
        String fname,mname,lname,address,  dob,email,adhar, gender,city,
                district,state,country,  photo_path,pan,mobile,is_criminal,punishment,duration,punishment_date;
-    int criminal_id,criminal_complaint_id;
+     String criminal_id,criminal_complaint_id;
        String fir_id;
 
-
-    public Criminal(String fname, String mname, String lname, String address, String dob, String email, String adhar, String gender, String city, String district, String state, String country, String photo_path, String pan, String mobile, String is_criminal, String punishment,
-                    String duration, String punishment_date, int criminal_id, int criminal_complaint_id, String fir_id) {
+    public Criminal(String fname, String mname, String lname, String address, String dob, String email, String adhar,
+                    String gender, String city, String district, String state, String country, String photo_path,
+                    String pan, String mobile, String is_criminal, String punishment,
+                    String duration, String punishment_date, String criminal_id, String criminal_complaint_id, String fir_id) {
         this.fname = fname;
         this.mname = mname;
         this.lname = lname;
@@ -35,20 +36,21 @@ public class Criminal {
         this.fir_id = fir_id;
     }
 
+    public Criminal(String cname, String address1, String adhar1, String contatct1, String dob1, String email1,
+                    String caseId1, String gender,String photo_path) {
+        this.fname = cname;
+         this.address = address1;
+        this.dob = dob1;
+        this.email = email1;
+        this.adhar = adhar1;
+        this.gender = gender;
 
-    public Criminal(String fname, String address, String dob, String email, String adhar, String photo_path, String mobile,String fir_id,String gender) {
-        this.fname = fname;
-        this.address = address;
-        this.dob = dob;
-        this.email = email;
-        this.adhar = adhar;
-        this.photo_path = photo_path;
-        this.mobile = mobile;
-        this.fir_id= fir_id;
-        this.gender=gender;
-    }
+        this.mobile = contatct1;
+        this.photo_path=photo_path;
+        this.fir_id = caseId1;
 
-    public Criminal(String cname, String caddress, String ccontatct, String cdob, String cemail, String cadharc, String encodeImage, String gender1, int caseId) {
+
+
     }
 
     public String getFname() {
@@ -203,19 +205,19 @@ public class Criminal {
         this.punishment_date = punishment_date;
     }
 
-    public int getCriminal_id() {
+    public String getCriminal_id() {
         return criminal_id;
     }
 
-    public void setCriminal_id(int criminal_id) {
+    public void setCriminal_id(String criminal_id) {
         this.criminal_id = criminal_id;
     }
 
-    public int getCriminal_complaint_id() {
+    public String getCriminal_complaint_id() {
         return criminal_complaint_id;
     }
 
-    public void setCriminal_complaint_id(int criminal_complaint_id) {
+    public void setCriminal_complaint_id(String criminal_complaint_id) {
         this.criminal_complaint_id = criminal_complaint_id;
     }
 

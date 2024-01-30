@@ -5,8 +5,12 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.EditText;
+import android.widget.Spinner;
 import android.widget.TextView;
 
+import androidx.appcompat.app.ActionBar;
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 
 import com.ltrsoft.police_app.R;
@@ -19,13 +23,8 @@ public class Warrant2 extends Fragment {
         // Required empty public constructor
     }
 
-    private TextView caseIdTextView;
-    private TextView fullNameTextView;
-    private TextView issueDateTextView;
-    private TextView jurisdictionTextView;
-    private TextView issuingAuthorityTextView;
-    private  TextView warrantType;
-    private TextView descriptionTextView;
+    public TextView Discription,authority,judician,issued_date,fname,caseIDs,court_name;
+    public TextView Warrant_Type;
 
     // Declare Button variable
     private Button saveButton;
@@ -35,20 +34,31 @@ public class Warrant2 extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view= inflater.inflate(R.layout.warrant2, container, false);
-         fullNameTextView = view.findViewById(R.id.warrant_name);
-        issueDateTextView = view.findViewById(R.id.issued_dat);
-        jurisdictionTextView = view.findViewById(R.id.juridiction);
-        issuingAuthorityTextView = view.findViewById(R.id.issuing_auth);
-        warrantType = view.findViewById(R.id.warrantTyp);
-        descriptionTextView = view.findViewById(R.id.wdesc);
-
+        Warrant_Type = view.findViewById(R.id.Warrant_Type);
+        Discription = view.findViewById(R.id.Discription);
+        authority = view.findViewById(R.id.authority);
+         issued_date = view.findViewById(R.id.issued_date);
+        fname = view.findViewById(R.id.fname);
+        caseIDs = view.findViewById(R.id.caseIDs);
+        court_name=view.findViewById(R.id.court_name);
         // Find Button element by its ID
         saveButton = view.findViewById(R.id.close);
              Bundle bundle=getArguments();
-        fullNameTextView.setText(bundle.getString("warrant_against"));
-        issueDateTextView.setText(bundle.getString("issuing_authority"));
-        jurisdictionTextView.setText(bundle.getString("court_name"));
-        warrantType.setText(bundle.getString("warrant_type_name"));
+        fname.setText(bundle.getString("warrant_against"));
+        authority.setText(bundle.getString("issuing_authority"));
+        court_name.setText(bundle.getString("court_name"));
+        Warrant_Type.setText(bundle.getString("warrant_type_name"));
+        caseIDs.setText(bundle.getString("fir_id"));
+
+        issued_date.setText(bundle.getString("issue_date"));
+        Warrant_Type.setText(bundle.getString("warrant_type"));
+        Discription.setText(bundle.getString("discription"));
+
+        ActionBar actionBar = ((AppCompatActivity) requireActivity()).getSupportActionBar();
+
+        if (actionBar != null) {
+            actionBar.setTitle("  Warrant History Detail");
+        }
         saveButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

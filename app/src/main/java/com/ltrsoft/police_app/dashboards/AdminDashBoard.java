@@ -8,7 +8,6 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
@@ -17,12 +16,11 @@ import com.google.android.gms.maps.GoogleMap;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.ltrsoft.police_app.R;
-import com.ltrsoft.police_app.fragment.AdminAddComplainPage;
-import com.ltrsoft.police_app.fragment.AdminPages;
+import com.ltrsoft.police_app.ineerfragments.AdminAddComplainPage;
+import com.ltrsoft.police_app.ineerfragments.AdminPages;
 import com.ltrsoft.police_app.fragment.Camera;
 import com.ltrsoft.police_app.fragment.Missing_pages;
 import com.ltrsoft.police_app.fragment.News_page;
-import com.ltrsoft.police_app.ineerfragments.Add_Complain_page;
 import com.ltrsoft.police_app.ineerfragments.Emergancy_page;
 
 public class AdminDashBoard extends Fragment {
@@ -66,11 +64,11 @@ public class AdminDashBoard extends Fragment {
                     getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.Admin_dashboard, emergencyPage).commit();
 
                 } else if (id == R.id.ecomplaint) {
-                    Toast.makeText(getContext(), "Compalint Clicked", Toast.LENGTH_SHORT).show();
+                   // Toast.makeText(getContext(), "Compalint Clicked", Toast.LENGTH_SHORT).show();
                    AdminPages adminAthority = new AdminPages();
                     getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.Admin_dashboard, adminAthority).commit();
                 } else if (id == R.id.enews) {
-                    Toast.makeText(getContext(), "News", Toast.LENGTH_SHORT).show();
+                  //  Toast.makeText(getContext(), "News", Toast.LENGTH_SHORT).show();
                     getActivity().getSupportFragmentManager().beginTransaction().replace(R.id. container_main,  new News_page()).addToBackStack(null).commit();
                 } else if (id == R.id.message) {
 //                    Toast.makeText(getContext(), " selection clicked", Toast.LENGTH_SHORT).show();

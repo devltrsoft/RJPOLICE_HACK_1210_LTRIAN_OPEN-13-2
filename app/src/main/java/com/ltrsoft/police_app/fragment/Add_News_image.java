@@ -72,7 +72,7 @@ public class Add_News_image extends Fragment {
         save=view.findViewById(R.id.save);
         ActionBar actionBar = ((AppCompatActivity) requireActivity()).getSupportActionBar();
         if (actionBar != null) {
-            actionBar.setTitle(" News Details ");
+            actionBar.setTitle("   Add News Image ");
         }
 
         upload.setOnClickListener(new View.OnClickListener() {

@@ -43,10 +43,10 @@ public class WitnessAdapter1 extends RecyclerView.Adapter<WitnessAdapter1.ViewHo
             @Override
             public void onClick(View v) {
                 AppCompatActivity activity = (AppCompatActivity) v.getContext();
-                Toast.makeText(activity, "witness second", Toast.LENGTH_SHORT).show();
+               // Toast.makeText(activity, "witness second", Toast.LENGTH_SHORT).show();
 
                 Witness2 witnessSecond = new Witness2();
-                activity.getSupportFragmentManager().beginTransaction().replace(R.id. main_container, witnessSecond).addToBackStack(null).commit();
+                activity.getSupportFragmentManager().beginTransaction().replace(R.id. container_main, witnessSecond).addToBackStack(null).commit();
             }
         });
     }

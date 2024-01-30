@@ -10,6 +10,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.ltrsoft.police_app.Classes.AllotedCaseHistoryClass;
 import com.ltrsoft.police_app.Classes.Complaint;
 import com.ltrsoft.police_app.R;
 import com.ltrsoft.police_app.fragment.Alloted_case2;
@@ -18,9 +19,9 @@ import java.util.ArrayList;
 
 public class AllotedCaseAdapter1 extends RecyclerView.Adapter<AllotedCaseAdapter1.ViewHolder> {
 
-    private ArrayList<Complaint> dataList;
+    private ArrayList<AllotedCaseHistoryClass> dataList;
 
-    public AllotedCaseAdapter1(ArrayList<Complaint> dataList) {
+    public AllotedCaseAdapter1(ArrayList<AllotedCaseHistoryClass> dataList) {
         this.dataList = dataList;
     }
 
@@ -33,18 +34,19 @@ public class AllotedCaseAdapter1 extends RecyclerView.Adapter<AllotedCaseAdapter
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-         Complaint item = dataList.get(position);
+         AllotedCaseHistoryClass item = dataList.get(position);
 
-        holder.tvi.setText("Case ID: " + item. getComplain_id());
-         holder.textCaseDate.setText("Case Date: " + item.getIncident_date());
-
+        holder.tvi.setText("Complaint ID: " + item.  getId());
+         holder.crimetype.setText(" crime type: " + item.getComplaint_type());
+         holder.victim_name.setText("Victim Name :  "+item.getName());
+         holder.address.setText("Address :   " +item.getAddress() );
         holder.cardView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 AppCompatActivity activity = (AppCompatActivity) v.getContext();
                 Alloted_case2 secondFragment = new Alloted_case2();
 
-                activity.getSupportFragmentManager().beginTransaction().replace(R.id. main_container, secondFragment).addToBackStack(null).commit();
+                activity.getSupportFragmentManager().beginTransaction().replace(R.id.container_main, secondFragment).addToBackStack(null).commit();
             }
         });
     }
@@ -55,14 +57,15 @@ public class AllotedCaseAdapter1 extends RecyclerView.Adapter<AllotedCaseAdapter
     }
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
-        TextView tvi, textCaseName, textCaseDate;
-        CardView cardView;
+      private   TextView tvi, address, victim_name,crimetype;
+      private   CardView cardView;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
             tvi = itemView.findViewById(R.id.textCaseId);
-            textCaseName = itemView.findViewById(R.id.textCaseName);
-            textCaseDate = itemView.findViewById(R.id.textCaseDate);
+            address = itemView.findViewById(R.id.textCaseName);
+            victim_name = itemView.findViewById(R.id.textCaseDate);
+            crimetype=itemView.findViewById(R.id.crimetype);
             cardView = itemView.findViewById(R.id.alloedcasecard);
         }
     }

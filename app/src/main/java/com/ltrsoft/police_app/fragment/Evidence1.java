@@ -5,6 +5,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import androidx.appcompat.app.ActionBar;
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -24,7 +26,11 @@ public class Evidence1 extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.evidance__history__dashboard, container, false);
         recyclerView = view.findViewById(R.id.evidenceRecyclerView);
+        ActionBar actionBar = ((AppCompatActivity) requireActivity()).getSupportActionBar();
 
+        if (actionBar != null) {
+            actionBar.setTitle("Evidance History");
+        }
         EvidanceDeo evidanceDeo = new EvidanceDeo();
         evidanceDeo.getAllEvidance(getContext(), new Callback() {
             @Override

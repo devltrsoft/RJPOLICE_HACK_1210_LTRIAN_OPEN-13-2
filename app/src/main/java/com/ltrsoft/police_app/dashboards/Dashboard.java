@@ -159,7 +159,7 @@ public class Dashboard extends Fragment implements OnMapReadyCallback{
                         googleMap[0].setOnMapClickListener(new GoogleMap.OnMapClickListener() {
                             @Override
                             public void onMapClick(LatLng latLng) { // Handle the map click event here
-                                Toast.makeText(getActivity(), "Clicked on the map", Toast.LENGTH_SHORT).show();
+                              //  Toast.makeText(getActivity(), "Clicked on the map", Toast.LENGTH_SHORT).show();
                                 AllMapFragment allMapFragmet=new AllMapFragment();
 
                                 getFragmentManager().beginTransaction()
@@ -204,7 +204,7 @@ public class Dashboard extends Fragment implements OnMapReadyCallback{
                     currentLocation = location;
                     moveCameraToLocation(location);
                 } else {
-                    Toast.makeText(getContext(), "Location is null", Toast.LENGTH_SHORT).show();
+                   // Toast.makeText(getContext(), "Location is null", Toast.LENGTH_SHORT).show();
                     Log.d("Location", "null");
                 }
             }

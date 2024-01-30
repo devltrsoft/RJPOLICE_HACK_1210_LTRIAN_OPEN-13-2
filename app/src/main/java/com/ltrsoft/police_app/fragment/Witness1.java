@@ -6,6 +6,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
 
+import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -27,6 +28,11 @@ public class Witness1 extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.witness__history__dashboard, container, false);
         recyclerView = view.findViewById(R.id.witnessHistoryRecycler);
+        ActionBar actionBar = ((AppCompatActivity) requireActivity()).getSupportActionBar();
+
+        if (actionBar != null) {
+            actionBar.setTitle("  Witness History");
+        }
 
         WitnessDeo witnessDeo = new WitnessDeo();
         witnessDeo.getAllWitness(getContext(), new Callback() {

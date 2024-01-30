@@ -1,5 +1,6 @@
 package com.ltrsoft.police_app.Adapter;
 
+import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -43,10 +44,41 @@ public class CriminalAdapter extends RecyclerView.Adapter<CriminalAdapter.viewho
             @Override
             public void onClick(View v) {
                 Criminal2 criminal2 = new Criminal2();
+                Bundle b=new Bundle();
+                String criminal_id=  item.getCriminal_id();
+                String  criminal_name=  item.getFname();
+                  String address=item.getAddress();
+                  String contatct=item.getMobile();
+                  String dob=item.getDob();
+                  String email=item.getEmail();
+                  String adhar=item.getAdhar();
+                  String caseId=item.getCriminal_complaint_id();
+
+                  String gender=item.getGender();
+                  String country=item.getCountry();
+                  String state=item.getState();
+                  String district=item.getDistrict();
+                  String city=item.getCity();
+                b.putString("criminal_id",criminal_id);
+                b.putString("criminal_name", criminal_name );
+                b.putString("address",address);
+                b.putString("contatct",contatct);
+                b.putString("dob",dob);
+                b.putString("email",email);
+                b.putString("adhar",adhar);
+                b.putString("caseId",caseId);
+                b.putString("gender",gender);
+                b.putString("country",country);
+                b.putString("state",state);
+                b.putString("district",district);
+                b.putString("city",city);
+
+
+                criminal2.setArguments(b);
                 AppCompatActivity activity = (AppCompatActivity) v.getContext();
-                Toast.makeText(activity, "go to  criminal", Toast.LENGTH_SHORT).show();
+              //  Toast.makeText(activity, "go to  criminal", Toast.LENGTH_SHORT).show();
                 activity.getSupportFragmentManager().beginTransaction()
-                        .replace(R.id. main_container, criminal2).addToBackStack(null)
+                        .replace(R.id. container_main, criminal2).addToBackStack(null)
                         .commit();
             }
         });

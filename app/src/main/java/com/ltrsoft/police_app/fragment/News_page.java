@@ -48,7 +48,7 @@ public class News_page extends Fragment {
         ActionBar actionBar = ((AppCompatActivity) requireActivity()).getSupportActionBar();
 
         if (actionBar != null) {
-            actionBar.setTitle("News  Page");
+            actionBar.setTitle("     News");
         }
         floating.setOnClickListener(new View.OnClickListener() {
             @Override

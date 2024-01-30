@@ -6,6 +6,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
 
+import androidx.appcompat.app.ActionBar;
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -25,11 +27,16 @@ public class Suspect2 extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.suspect__history__dashboard, container, false);
         recyclerView = view.findViewById(R.id.suspectHistoryRecycler);
+        ActionBar actionBar = ((AppCompatActivity) requireActivity()).getSupportActionBar();
+
+        if (actionBar != null) {
+            actionBar.setTitle("Suspect History By Dates");
+        }
         SuspectDeo suspectDeo = new SuspectDeo();
         suspectDeo.getSuspectByDate("2023-12-25", getContext(), new Callback() {
             @Override
             public void onSuccess(Object obj) {
-                Toast.makeText(getContext(), "success"+obj.toString(), Toast.LENGTH_SHORT).show();
+               // Toast.makeText(getContext(), "success"+obj.toString(), Toast.LENGTH_SHORT).show();
 
                 SuspectAdapter2 adapter2 = new SuspectAdapter2((ArrayList<Suspect>) obj);
                 LinearLayoutManager layoutManager = new LinearLayoutManager(getContext());

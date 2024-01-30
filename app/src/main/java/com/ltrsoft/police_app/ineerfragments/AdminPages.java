@@ -1,4 +1,4 @@
-package com.ltrsoft.police_app.fragment;
+package com.ltrsoft.police_app.ineerfragments;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -10,6 +10,14 @@ import androidx.cardview.widget.CardView;
 import androidx.fragment.app.Fragment;
 
 import com.ltrsoft.police_app.R;
+import com.ltrsoft.police_app.fragment.Admin_complain_History;
+import com.ltrsoft.police_app.fragment.Alloted_case1;
+import com.ltrsoft.police_app.fragment.Criminal1;
+import com.ltrsoft.police_app.fragment.Evidence1;
+import com.ltrsoft.police_app.fragment.Not_Alloted_case;
+import com.ltrsoft.police_app.fragment.Suspect1;
+import com.ltrsoft.police_app.fragment.Victim1;
+import com.ltrsoft.police_app.fragment.Warrant1;
 
 
 public class AdminPages extends Fragment {
@@ -33,7 +41,7 @@ public class AdminPages extends Fragment {
         adminComplaintCard.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Toast.makeText(getContext(), "to police  complaint History", Toast.LENGTH_SHORT).show();
+               // Toast.makeText(getContext(), "to police  complaint History", Toast.LENGTH_SHORT).show();
                  getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.main_container,new Admin_complain_History()).addToBackStack(null).commit();
 
             }
@@ -43,7 +51,7 @@ public class AdminPages extends Fragment {
         notAllotedCard.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.main_container,new Not_Alloted_case()).addToBackStack(null).commit();
+                getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.container_main,new Not_Alloted_case()).addToBackStack(null).commit();
 
             }
         });
@@ -51,23 +59,23 @@ public class AdminPages extends Fragment {
         allotedCasesCard.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.main_container,new Alloted_case1()).addToBackStack(null).commit();
+                getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.container_main,new Alloted_case1()).addToBackStack(null).commit();
 
             }
         });
         warrantCard.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.main_container,new Warrant1()).commit();
-                Toast.makeText(getContext(), "to police  Suspect History", Toast.LENGTH_SHORT).show();
+                getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.container_main,new Warrant1()).commit();
+               // Toast.makeText(getContext(), "to police  Suspect History", Toast.LENGTH_SHORT).show();
 
             }
         });
         evidenceCard.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Toast.makeText(getContext(), "to police Evidance History", Toast.LENGTH_SHORT).show();
-                getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.main_container,new Evidence1()).commit();
+               // Toast.makeText(getContext(), "to police Evidance History", Toast.LENGTH_SHORT).show();
+                getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.container_main,new Evidence1()).commit();
 
             }
         });
@@ -75,24 +83,24 @@ public class AdminPages extends Fragment {
         suspectCard.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Toast.makeText(getContext(), "to police  Suspect History", Toast.LENGTH_SHORT).show();
-                  getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.main_container,new Suspect1()).commit();
+               // Toast.makeText(getContext(), "to police  Suspect History", Toast.LENGTH_SHORT).show();
+                  getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.container_main,new Suspect1()).commit();
 
             }
         });
         victimCard.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Toast.makeText(getContext(), "to police Evidance History", Toast.LENGTH_SHORT).show();
-                  getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.main_container,new Victim1()).commit();
+               // Toast.makeText(getContext(), "to police Evidance History", Toast.LENGTH_SHORT).show();
+                  getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.container_main,new Victim1()).commit();
 
             }
         });
        witnessCard.setOnClickListener(new View.OnClickListener() {
            @Override
            public void onClick(View view) {
-               Toast.makeText(getContext(), "to police  witness History", Toast.LENGTH_SHORT).show();
-                 getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.main_container,new Warrant1()).commit();
+              // Toast.makeText(getContext(), "to police  witness History", Toast.LENGTH_SHORT).show();
+                 getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.container_main,new Warrant1()).commit();
 
            }
        });
@@ -100,8 +108,8 @@ public class AdminPages extends Fragment {
         criminalCard.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Toast.makeText(getContext(), "to police Criminal History", Toast.LENGTH_SHORT).show();
-                  getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.main_container,new Criminal1()).commit();
+               // Toast.makeText(getContext(), "to police Criminal History", Toast.LENGTH_SHORT).show();
+                  getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.container_main,new Criminal1()).commit();
 
             }
         });

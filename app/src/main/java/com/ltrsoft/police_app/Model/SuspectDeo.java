@@ -35,7 +35,7 @@ public class SuspectDeo {
      String Search_URL="";
      String delete_URL="";
 
-    String createsuspect_url="http://rj.ltr-soft.com/public/police_api/Investigation_suspect/create_investigation_suspect.php";
+    String  createsuspect_url="http://rj.ltr-soft.com/public/police_api/Investigation_suspect/create_investigation_suspect.php";
   String updatesuspect_url="rj.ltr-soft.com/public/police_api/Investigation_suspect/update_investigation_suspect.php";
     String getAllSuspect_URL="https://rj.ltr-soft.com/public/police_api/Investigation_suspect/read_investigation_suspect.php";
    String searcgUrl="";
@@ -207,10 +207,10 @@ public class SuspectDeo {
               @Override
               protected Map<String, String> getParams() throws AuthFailureError {
                   HashMap<String, String> map = new HashMap<>();
-                  map.put("fir_id", String.valueOf(insertsuspect.getFir_id()));
+                  map.put("fir_id",  "2023-12-14-1");
                  map.put("suspect_fname",insertsuspect.getFname());
-                map.put("suspect_mname",insertsuspect.getMname());
-                  map.put("suspect_lname",insertsuspect.getLname());
+                //map.put("suspect_mname",insertsuspect.getMname());
+               //   map.put("suspect_lname",insertsuspect.getLname());
                   map.put("country_id","1");
                           //insertsuspect.getAddress());
                   map.put("state_id","1");
@@ -227,9 +227,9 @@ public class SuspectDeo {
                //   map.put("",insertsuspect. getIs_suspect());
                   map.put("suspect_adhar",insertsuspect.getAdhar());
                   map.put("suspect_address",insertsuspect. getAddress());
-                  map.put("suspect_pan_no",insertsuspect.  getPan());
+                 // map.put("suspect_pan_no",insertsuspect.  getPan());
                   map.put("suspect_photo",insertsuspect.  getPhoto_path());
-                    map.put("police_id",Police_id);
+                    map.put("police_id","1");
 
                   return map;
               }

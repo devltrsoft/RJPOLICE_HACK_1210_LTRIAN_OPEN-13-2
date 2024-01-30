@@ -41,7 +41,7 @@ public class SuspectAdapter1 extends RecyclerView.Adapter<SuspectAdapter1.ViewHo
             public void onClick(View v) {
                 AppCompatActivity activity = (AppCompatActivity) v.getContext();
                 Suspect2 s = new Suspect2();
-                activity.getSupportFragmentManager().beginTransaction().replace(R.id. main_container, s).addToBackStack(null).commit();
+                activity.getSupportFragmentManager().beginTransaction().replace(R.id. container_main, s).addToBackStack(null).commit();
             }
         });
     }

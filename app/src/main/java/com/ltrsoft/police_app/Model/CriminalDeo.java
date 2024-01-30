@@ -30,7 +30,7 @@ public class CriminalDeo {
         Criminal update_criminal;
         Criminal delete_criminal;
         String Police_id = "1";
-        String getoneCriminal_URL = "";
+        String getoneCriminal_URL = "https://rj.ltr-soft.com/public/police_api/criminal_complaint/read_by_id.php";
 
         String Search_URL = "";
         String delete_URL = "";
@@ -71,9 +71,9 @@ public class CriminalDeo {
                                     String punishment=jsonObject.getString("punishment");
                                     String duration=jsonObject.getString("duration");
                                     String punishment_date=jsonObject.getString("punishment_date");
-                                    int criminal_complaint_id= Integer.parseInt(jsonObject.getString("criminal_complaint_id"));
+                                    String criminal_complaint_id=jsonObject.getString("criminal_complaint_id");
                                     String fir_id = jsonObject.getString("fir_id");
-                                    int criminal_id = Integer.parseInt(jsonObject.getString("criminal_id"));
+                                    String criminal_id =jsonObject.getString("criminal_id");
 
                                     list.add(new Criminal(fname,mname,lname,address,  dob,email,adhar, gender,city,
                                             district,state,country,  photo_path,pan,mobile,is_criminal,punishment,duration,punishment_date,
@@ -105,7 +105,7 @@ public class CriminalDeo {
             requestQueue.add(stringRequest);
         }
 
-        public Criminal criminalone(int criminal_id, Context context) {
+        public  void criminalone(String criminal_id, Context context,Callback callback) {
 
             StringRequest stringRequest = new StringRequest(Request.Method.POST, getoneCriminal_URL,
                     new Response.Listener<String>() {
@@ -130,38 +130,39 @@ public class CriminalDeo {
                                     String state=jsonObject.getString("state_id");
                                     String country=jsonObject.getString("country_id");
                                     String photo_path=jsonObject.getString("criminal_photo");
-                                    String pan=jsonObject.getString("");
-                                    String mobile=jsonObject.getString("");
-                                    String is_criminal=jsonObject.getString("");
+                                    String pan=jsonObject.getString("criminal_pan");
+                                    String mobile=jsonObject.getString("criminal_mobile");
+                                    String is_criminal=jsonObject.getString("is_criminal");
                                     String punishment=jsonObject.getString("punishment");
                                     String duration=jsonObject.getString("duration");
-                                    String punishment_date=jsonObject.getString("");
-                                    int criminal_complaint_id=jsonObject.getInt("criminal_complaint_id");
+                                    String punishment_date=jsonObject.getString("punishment_date");
+                                    String criminal_complaint_id=jsonObject. getString("criminal_complaint_id");
                                     String fir_id = jsonObject.getString("fir_id");
-                                    int criminal_id = jsonObject.getInt("criminal_id");
-
-                                    list.add(new Criminal(fname,mname,lname,address,  dob,email,adhar, gender,city,
+                                    String criminal_id = jsonObject.getString("criminal_id");
+                                     list.add(new Criminal(fname,mname,lname,address,  dob,email,adhar, gender,city,
                                             district,state,country,  photo_path,pan,mobile,is_criminal,punishment,duration,punishment_date,
                                             criminal_id,criminal_complaint_id,fir_id));
 
                                 }
                             } catch (Exception e) {
-                                e.printStackTrace();
-                                throw new RuntimeException(e);
+                                callback.onErro(e.toString());
+                                 throw new RuntimeException(e);
                             }
+                           callback.onSuccess(list);
                         }
+
                     },
                     new Response.ErrorListener() {
                         @Override
                         public void onErrorResponse(VolleyError error) {
-                            error.printStackTrace();
-                        }
+                     callback.onErro(error.toString());
+                         }
                     }) {
                 @Nullable
                 @Override
                 protected Map<String, String> getParams() throws AuthFailureError {
                     HashMap<String, String> map = new HashMap<>();
-                    map.put("criminal_id", String.valueOf(Criminal_id));
+                    map.put("criminal_id", criminal_id);
                     return map;
                 }
             };
@@ -170,7 +171,6 @@ public class CriminalDeo {
             RequestQueue requestQueue = Volley.newRequestQueue(context);
             requestQueue.add(stringRequest);
 
-            return criminalone;
 
         }
 
@@ -179,23 +179,11 @@ public class CriminalDeo {
                     new Response.Listener<String>() {
                         @Override
                         public void onResponse(String response) {
-                             if (response.contains("success")){
-                                 try {
-                                     JSONArray jsonArray=new JSONArray(response);
-                                     for(int i=0;i<jsonArray.length();i++){
-                                         JSONObject jsonObject=jsonArray.getJSONObject(i);
-                                         String   police_id = jsonObject.getString("police_id");
-                                        callback.onSuccess(police_id);
-                                     }
+
+                                        callback.onSuccess("success");
 
 
 
-                                 }catch (Exception e){
-                                     e.printStackTrace();
-                                   callback.onErro(e.toString());
-                                 }
-
-                            }
                         }
                     }, new Response.ErrorListener() {
                 @Override

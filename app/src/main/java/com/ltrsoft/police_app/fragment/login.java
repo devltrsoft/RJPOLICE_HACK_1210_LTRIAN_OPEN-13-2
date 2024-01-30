@@ -75,7 +75,7 @@ public class login extends Fragment {
                             UserDataAccess access = new UserDataAccess();
                             access.setUserId(police_id ,getActivity());
 
-                            Toast.makeText(getContext(), "success"+success, Toast.LENGTH_SHORT).show();
+                           // Toast.makeText(getContext(), "success"+success, Toast.LENGTH_SHORT).show();
                             System.out.println("response = "+success.toString());
                             Intent main_activity_intent = new Intent( getActivity(), MainActivity.class);
                             startActivity(main_activity_intent);

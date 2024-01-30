@@ -4,12 +4,12 @@ public class Victim {
     String country,state,district,city,fname,mname,lname,address, dob,
             email,adhar, gender,
             photo_path,pan,mobile,is_victim;
-     int  fir_id,investigation_victim_id;
+     String  fir_id,investigation_victim_id;
 
-    public Victim(String country, String state, String district, String city, String fname,
-                  String mname, String lname, String address, String dob, String email, String adhar,
-                  String gender, String photo_path,
-                  String pan, String mobile, String is_victim, int fir_id, int investigation_victim_id) {
+    public Victim(String country, String state, String district, String city, String fname, String mname, String lname,
+                  String address, String dob, String email,
+                  String adhar, String gender, String photo_path, String pan, String mobile,
+                  String is_victim, String fir_id, String investigation_victim_id) {
         this.country = country;
         this.state = state;
         this.district = district;
@@ -30,10 +30,20 @@ public class Victim {
         this.investigation_victim_id = investigation_victim_id;
     }
 
-    public Victim(String country1, String state1, String district1, String city1, String name1, String address1, String email1, String dob1, String mobile1, String addhar1, String gender) {
-    }
-
-    public Victim(String ganesh, String latur, String number) {
+    public Victim(String country1, String state1, String district1, String city1, String name1, String address1,
+                  String email1, String dob1, String mobile1, String addhar1, String gender,String photo_path) {
+        this.country = country1;
+        this.state = state1;
+        this.district = district1;
+        this.city = city1;
+        this.fname = name1;
+         this.address = address1;
+        this.dob = dob1;
+        this.email = email1;
+        this.adhar = addhar1;
+        this.gender = gender;
+         this.mobile = mobile1;
+          this.photo_path=photo_path;
     }
 
     public String getCountry() {
@@ -164,19 +174,19 @@ public class Victim {
         this.is_victim = is_victim;
     }
 
-    public int getFir_id() {
+    public String getFir_id() {
         return fir_id;
     }
 
-    public void setFir_id(int fir_id) {
+    public void setFir_id(String fir_id) {
         this.fir_id = fir_id;
     }
 
-    public int getInvestigation_victim_id() {
+    public String getInvestigation_victim_id() {
         return investigation_victim_id;
     }
 
-    public void setInvestigation_victim_id(int investigation_victim_id) {
+    public void setInvestigation_victim_id(String investigation_victim_id) {
         this.investigation_victim_id = investigation_victim_id;
     }
 }

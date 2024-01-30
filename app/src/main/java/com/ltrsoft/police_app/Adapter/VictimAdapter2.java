@@ -1,5 +1,6 @@
 package com.ltrsoft.police_app.Adapter;
 
+import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -31,11 +32,11 @@ public class VictimAdapter2 extends RecyclerView.Adapter<VictimAdapter2.viewhold
 
     @Override
     public void onBindViewHolder(@NonNull viewholder holder, int position) {
-        Victim victim2class=list.get(position);
-        holder.victim_id.setText("victim id"+victim2class.getInvestigation_victim_id());
-        holder.victim_name.setText("victim  name    "+victim2class.getFname());
-        holder.victim_date.setText("victim date  "+victim2class.getDob());
-        holder.victim_changed_date.setText("victim changed date"+victim2class.getDob());
+        Victim victimClass=list.get(position);
+        holder.victim_id.setText("victim id"+victimClass.getInvestigation_victim_id());
+        holder.victim_name.setText("victim  name    "+victimClass.getFname());
+        holder.victim_date.setText("victim date  "+victimClass.getDob());
+        holder.victim_changed_date.setText("victim changed date"+victimClass.getDob());
 
 
 
@@ -43,10 +44,26 @@ public class VictimAdapter2 extends RecyclerView.Adapter<VictimAdapter2.viewhold
             @Override
             public void onClick(View v) {
                 AppCompatActivity activity = (AppCompatActivity) v.getContext();
-
                 Victim3 w = new Victim3();
 
-                activity.getSupportFragmentManager().beginTransaction().replace(R.id. main_container, w).addToBackStack(null).commit();
+                Bundle bundle=new Bundle();
+                bundle.putString("fir_id", victimClass.getFir_id());
+                bundle.putString("victim_fname", victimClass.getFname ());
+                bundle.putString("complaint_victim_mname", victimClass.getMname());
+                bundle.putString("complaint_victim_lname", victimClass.getLname());
+                bundle.putString("address",victimClass.getAddress());
+                bundle.putString("gender",victimClass.getGender());
+                bundle.putString("aadhar",victimClass.getAdhar());
+                bundle.putString("photo",victimClass.getPhoto_path());
+                bundle.putString("dob",victimClass.getDob());
+                bundle.putString("mobile",victimClass.getMobile());
+                bundle.putString("state_name",victimClass.getState());
+                bundle.putString("district_name",victimClass.getDistrict());
+                bundle.putString("country_name",victimClass.getCountry());
+                bundle.putString("city_name",victimClass.getCity());
+                 w.setArguments(bundle);
+
+                activity.getSupportFragmentManager().beginTransaction().replace(R.id. container_main, w).addToBackStack(null).commit();
             }
         });
 

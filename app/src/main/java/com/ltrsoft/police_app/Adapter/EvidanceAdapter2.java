@@ -13,26 +13,27 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.ltrsoft.police_app.Classes.Evidance;
 import com.ltrsoft.police_app.R;
 import com.ltrsoft.police_app.fragment.Evidance2;
+import com.ltrsoft.police_app.fragment.Evidance3;
 
 import java.util.ArrayList;
 
-public class EvidenceAdapter1 extends RecyclerView.Adapter<EvidenceAdapter1.ViewHolder> {
+public class EvidanceAdapter2 extends RecyclerView.Adapter<EvidanceAdapter2.viewholder>{
 
     private ArrayList<Evidance> dataList;
 
-    public EvidenceAdapter1(ArrayList<Evidance> dataList) {
+    public  EvidanceAdapter2(ArrayList<Evidance> dataList) {
         this.dataList = dataList;
     }
-
     @NonNull
     @Override
-    public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.evidenceccardview, parent, false);
-        return new ViewHolder(view);
+    public viewholder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+        View view= LayoutInflater.from(parent.getContext()).inflate(R.layout.evidancecard2,parent,false);
+        return  new viewholder(view);
+
     }
 
     @Override
-    public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull viewholder holder, int position) {
         Evidance item = dataList.get(position);
 
         holder.tvi.setText("Evidence ID: " + item.getEvidance_id());
@@ -44,9 +45,9 @@ public class EvidenceAdapter1 extends RecyclerView.Adapter<EvidenceAdapter1.View
             @Override
             public void onClick(View v) {
 
-               AppCompatActivity activity=(AppCompatActivity)v.getContext();
-                Evidance2 secondFragment = new Evidance2();
-                activity.getSupportFragmentManager().beginTransaction().replace(R.id.container_main, secondFragment).
+                AppCompatActivity activity=(AppCompatActivity)v.getContext();
+                Evidance3  third = new Evidance3();
+                activity.getSupportFragmentManager().beginTransaction().replace(R.id.container_main, third).
                         addToBackStack(null).commit();
 
             }
@@ -58,15 +59,15 @@ public class EvidenceAdapter1 extends RecyclerView.Adapter<EvidenceAdapter1.View
         return dataList.size();
     }
 
-    public static class ViewHolder extends RecyclerView.ViewHolder {
-        TextView tvi, textEvidenceName, textEvidenceDate;
-        CardView cardView;
-
-        public ViewHolder(@NonNull View itemView) {
+    public class viewholder extends RecyclerView.ViewHolder{
+      private   TextView tvi, textEvidenceName, textEvidenceDate,changeddate;
+        private  CardView cardView;
+        public viewholder(@NonNull View itemView) {
             super(itemView);
             tvi = itemView.findViewById(R.id.textEvidenceId);
             textEvidenceName = itemView.findViewById(R.id.textEvidenceName);
             textEvidenceDate = itemView.findViewById(R.id.textEvidenceDate);
+            changeddate=itemView.findViewById(R.id.textchangedEvidenceDate);
             cardView = itemView.findViewById(R.id.evidenceCard);
         }
     }
