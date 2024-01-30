@@ -20,16 +20,16 @@ public class SplashScreen extends AppCompatActivity {
                 try {
                     sleep(4000);
 
-                    SharedPreferences pref = getSharedPreferences("login", MODE_PRIVATE);
-                    SharedPreferences.Editor editor = pref.edit();
-                    if (pref.getBoolean("flag",false)){
+                    //SharedPreferences pref = getSharedPreferences("login", MODE_PRIVATE);
+                  //  SharedPreferences.Editor editor = pref.edit();
+                   // if (pref.getBoolean("flag",false)){
                         Intent main_activity_intent = new Intent(SplashScreen.this, MainActivity.class);
-                        startActivity(main_activity_intent);
-                    }
-                    else {
-                        Intent login_activity_intent = new Intent(SplashScreen.this, LoginAndRegistrationActivity.class);
-                        startActivity(login_activity_intent);
-                    }
+                       startActivity(main_activity_intent);
+                  //  }
+                    //else {
+                        //Intent login_activity_intent = new Intent(SplashScreen.this, LoginAndRegistrationActivity.class);
+                      //  startActivity(login_activity_intent);
+                   // }
                     finish();
                 } catch (InterruptedException e) {
                     e.printStackTrace();

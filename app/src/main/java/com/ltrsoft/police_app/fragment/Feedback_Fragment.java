@@ -13,6 +13,8 @@ import android.widget.EditText;
 import android.widget.RatingBar;
 import android.widget.Toast;
 
+import androidx.appcompat.app.ActionBar;
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 
 import com.android.volley.AuthFailureError;
@@ -47,7 +49,11 @@ public class Feedback_Fragment extends Fragment {
                              Bundle savedInstanceState) {
 
         View view = inflater.inflate(R.layout.feed_back, container, false);
+        ActionBar actionBar = ((AppCompatActivity) requireActivity()).getSupportActionBar();
 
+        if (actionBar != null) {
+            actionBar.setTitle("  Give Feedback");
+        }
 
 //        try {
 //            FileInputStream fileInputStream = getActivity().openFileInput("mytextfile.txt");
