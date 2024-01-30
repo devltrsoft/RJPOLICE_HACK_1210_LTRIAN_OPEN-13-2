@@ -33,7 +33,21 @@ public class Witness {
         this.investigation_witness_id = investigation_witness_id;
     }
 
-    public Witness(String name1, String address1, String country1, String state1, String district1, String city1, String email1, String dob1, String mobile1, String addhar1, String gender) {
+    public Witness(String name1, String address1, String country1,
+                   String state1, String district1, String city1, String email1,
+                   String dob1, String mobile1, String addhar1, String gender,String photo_path) {
+        this.country = country1;
+        this.state = state1;
+        this.district = district1;
+        this.city = city1;
+        this.fname = name1;
+        this.address = address1;
+        this.dob = dob1;
+        this.email = email1;
+        this.adhar = addhar1;
+        this.gender = gender;
+        this.mobile = mobile1;
+        this.photo_path = photo_path;
     }
 
     public Witness(String harun, String pune, String number) {

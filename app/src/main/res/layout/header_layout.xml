@@ -3,26 +3,28 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="200dp"
+    android:layout_height="250dp"
     android:padding="2dp"
     android:gravity="bottom"
     android:orientation="vertical"
-    android:layout_marginTop="70dp"
+
     android:background="#EBFCFB">
     <ImageView
         android:id="@+id/Header_image"
-        android:layout_width="168dp"
-        android:layout_height="103dp"
-        android:layout_marginLeft="40dp"
+        android:layout_width="200dp"
+        android:layout_height="150dp"
+        android:layout_marginLeft="20dp"
         android:layout_marginTop="20dp"
-        app:srcCompat="@mipmap/ic_launcher"/>
+        app:srcCompat="@drawable/man"/>
     <TextView
         android:id="@+id/Header_name"
-        android:layout_width="207dp"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="30dp"
+        android:layout_marginLeft="70dp"
         android:layout_marginTop="10dp"
-        android:text="User Name"
-        android:textSize="33sp"
-        android:textStyle="bold"/>
+        android:text="Sahil Kshirsagar"
+        android:textColor="@color/black"
+        android:textSize="25sp"
+        android:textStyle="bold"
+        android:fontFamily="sans-serif-black"/>
 </LinearLayout>

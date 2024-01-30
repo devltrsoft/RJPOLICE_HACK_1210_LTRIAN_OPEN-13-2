@@ -16,6 +16,7 @@ import com.google.android.gms.maps.GoogleMap;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.ltrsoft.police_app.R;
+import com.ltrsoft.police_app.fragment.ChatBot;
 import com.ltrsoft.police_app.ineerfragments.AdminAddComplainPage;
 import com.ltrsoft.police_app.ineerfragments.AdminPages;
 import com.ltrsoft.police_app.fragment.Camera;
@@ -73,6 +74,9 @@ public class AdminDashBoard extends Fragment {
                 } else if (id == R.id.message) {
 //                    Toast.makeText(getContext(), " selection clicked", Toast.LENGTH_SHORT).show();
                     // getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.container_main,  new Selection_page()).addToBackStack(null).commit();
+                    item.setCheckable(true);
+                    ChatBot message = new ChatBot();
+                    getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.container_main, message).commit();
                 }
                 return false;
             }
