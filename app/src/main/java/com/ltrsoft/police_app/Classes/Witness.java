@@ -8,11 +8,11 @@ public class Witness {
             gender,
               photo_path,pan,mobile,is_witness;
 
-        int investigation_witness_id;
+        String investigation_witness_id,complaint_witness_id,complaint_id;
         String fir_id;
 
     public Witness(String country, String state, String district, String city, String fname, String mname, String lname, String address, String dob, String email, String adhar, String gender, String photo_path,
-                   String pan, String mobile, String is_witness, String fir_id, int investigation_witness_id) {
+                   String pan, String mobile, String is_witness, String fir_id, String investigation_witness_id) {
         this.country = country;
         this.state = state;
         this.district = district;
@@ -54,6 +54,32 @@ public class Witness {
     }
 
     public Witness(ArrayList<Witness> listwitness) {
+    }
+
+    public Witness(String complaintWitnessId, String complaintWitnessFname, String complaintWitnessMname,
+                   String complaintWitnessLname, String complaintWitnessAddress, String cityName, String countryName,
+                   String stateName, String districtName, String complaintWitnessDob, String complaintWitnessGender,
+                   String complaintWitnessMobile, String complaintWitnessEmail, String complaintWitnessPhotoPath,
+                   String complaintWitnessPan, String complaintWitnessAdhar, String complaint_id, String isWitness,String complaint_table)
+    {
+        this.country = countryName;
+        this.state = stateName;
+        this.district = districtName;
+        this.city = cityName;
+        this.fname = complaintWitnessFname;
+        this.mname = complaintWitnessMname;
+        this.lname = complaintWitnessLname;
+        this.address = complaintWitnessAddress;
+        this.dob = complaintWitnessDob;
+        this.email = complaintWitnessEmail;
+        this.adhar = complaintWitnessAdhar;
+        this.gender = complaintWitnessGender;
+        this.photo_path = complaintWitnessPhotoPath;
+        this.pan = complaintWitnessPan;
+        this.mobile = complaintWitnessMobile;
+        this.complaint_witness_id = complaintWitnessId;
+        this.complaint_id = complaint_id;
+        this.is_witness = isWitness;
     }
 
     public String getCountry() {
@@ -192,11 +218,11 @@ public class Witness {
         this.fir_id = fir_id;
     }
 
-    public int getInvestigation_witness_id() {
+    public String getInvestigation_witness_id() {
         return investigation_witness_id;
     }
 
-    public void setInvestigation_witness_id(int investigation_witness_id) {
+    public void setInvestigation_witness_id(String investigation_witness_id) {
         this.investigation_witness_id = investigation_witness_id;
     }
 }

@@ -49,26 +49,27 @@ public class IVictimAdapter extends RecyclerView.Adapter<IVictimAdapter.ViewHold
             }
         });
 
-        holder.nonvictim.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                if (flag){
-                    holder.nonvictim.setText("Suspect");
-                    Toast.makeText(view.getContext(), "Suspect is being non suspect", Toast.LENGTH_SHORT).show();
-                    flag = false;
-                }
-                else {
-                    holder.nonvictim.setText("Non Suspect");
-                    Toast.makeText(view.getContext(), "Suspect is suspect", Toast.LENGTH_SHORT).show();
-                    flag=true;
-                }            }
-        });
+//        holder.nonvictim.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                if (flag){
+//                    holder.nonvictim.setText("Suspect");
+//                    Toast.makeText(view.getContext(), "Suspect is being non suspect", Toast.LENGTH_SHORT).show();
+//                    flag = false;
+//                }
+//                else {
+//                    holder.nonvictim.setText("Non Suspect");
+//                    Toast.makeText(view.getContext(), "Suspect is suspect", Toast.LENGTH_SHORT).show();
+//                    flag=true;
+//                }            }
+//        });
 
         holder.cardView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 AppCompatActivity activity = new AppCompatActivity();
-//                activity.getSupportFragmentManager().beginTransaction().replace(R.id.main_container, new ).commit();
+
+           //  activity.getSupportFragmentManager().beginTransaction().replace(R.id.main_container, new ).commit();
             }
         });
 
