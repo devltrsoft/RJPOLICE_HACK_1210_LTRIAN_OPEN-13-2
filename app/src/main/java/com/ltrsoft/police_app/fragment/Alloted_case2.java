@@ -144,7 +144,7 @@ public class Alloted_case2 extends Fragment {
     private void setEvidenceAdapter() {
 
         EvidanceDeo evidanceDeo=new EvidanceDeo();
-        evidanceDeo.getAllEvidance(getContext(), new Callback() {
+        evidanceDeo.getAllEvidance("2023-12-14-1",getContext(), new Callback() {
             @Override
             public void onSuccess(Object obj) {
                 evidances_list=(ArrayList<Evidance>) obj;

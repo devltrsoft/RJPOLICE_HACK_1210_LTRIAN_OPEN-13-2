@@ -39,37 +39,40 @@ public class EvidanceDeo {
 
     String createEvidance_url="https://rj.ltr-soft.com/public/police_api/evidance/create_evidance.php";
     String updateevidance_url="https://rj.ltr-soft.com/public/police_api/evidance/update_evidance.php";
-    String getAllevidance_URL="https://rj.ltr-soft.com/public/police_api/evidance/read_evidance.php";
+    String getAllevidance_URL_BY_FIRID="https://rj.ltr-soft.com/public/police_api/evidance/read_by_fir.php";
     String searchUrl="";
     public ArrayList<Evidance> list = new ArrayList<>();
     public ArrayList<String> search_list=new ArrayList<String>();
-
-    public void getAllEvidance(Context context,Callback callback) {
-
-        StringRequest stringRequest = new StringRequest(Request.Method.POST,  getAllevidance_URL,
+    public void getAllEvidance(String firID,Context context,Callback callback) {
+        StringRequest stringRequest = new StringRequest(Request.Method.POST,  getAllevidance_URL_BY_FIRID,
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {
-                        try {
-                            JSONArray jsonArray = new JSONArray(response);
-                            for (int i = 0; i < jsonArray.length(); i++) {
-                                JSONObject jsonObject = jsonArray.getJSONObject(i);
-                                 String fir_id = jsonObject.getString("fir_id");
-                                String evidance_id=jsonObject.getString("evidance_id");
-                                String evidance_name = jsonObject.getString("evidance_name");
-                                String evidance_description = jsonObject.getString("evidance_description");
-                                String evidance_photos_path = jsonObject.getString("evidance_photos_path");
-                                String evidance_photos_description = jsonObject.getString("evidance_photos_description");
-                                String evidance_photos_id=jsonObject.getString("evidance_photos_id");
-                                String evidencechangedate=jsonObject.getString("updated_at");
-                                 list.add(new Evidance( evidance_id,fir_id,evidance_name,evidance_description,evidance_photos_path,
-                                         evidance_photos_description,evidance_photos_id,evidencechangedate));
+                        if (!response.isEmpty()) {
+                            try {
+                                JSONArray jsonArray = new JSONArray(response);
+                                for (int i = 0; i < jsonArray.length(); i++) {
+                                    JSONObject jsonObject = jsonArray.getJSONObject(i);
+                                    String fir_id = jsonObject.getString("fir_id");
+                                    String evidance_id = jsonObject.getString("evidance_id");
+                                    String evidance_name = jsonObject.getString("evidance_name");
+                                    String evidance_description = jsonObject.getString("evidance_description");
+                                    String evidance_photos_path = jsonObject.getString("evidance_photos_path");
+                                    String evidance_photos_description = jsonObject.getString("evidance_photos_description");
+                                    String evidance_photos_id = jsonObject.getString("evidance_photos_id");
+                                    String evidencechangedate = jsonObject.getString("updated_at");
+                                    list.add(new Evidance(evidance_id, fir_id, evidance_name, evidance_description, evidance_photos_path,
+                                            evidance_photos_description, evidance_photos_id, evidencechangedate));
+                                }
+                                callback.onSuccess(list);
+                            } catch (JSONException e) {
+                                callback.onErro(e.toString());
+                                e.printStackTrace();
+                                throw new RuntimeException(e);
                             }
-                            callback.onSuccess(list);
-                        } catch (JSONException e) {
-                            callback.onErro(e.toString());
-                            e.printStackTrace();
-                            throw new RuntimeException(e);
+                        }
+                        else {
+                            callback.onErro("This FIR have no evidence");
                         }
                     }
                 }, new Response.ErrorListener() {
@@ -83,6 +86,7 @@ public class EvidanceDeo {
             @Override
             protected Map<String, String> getParams() throws AuthFailureError {
                 HashMap<String, String> map = new HashMap<>();
+                map.put("fir_id",firID);
                 return map;
             }
 

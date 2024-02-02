@@ -33,56 +33,59 @@ public class VictimDeo {
     Victim update_victim;
     Victim delete_victim;
      String getoneVictim_URL="https://rj.ltr-soft.com/public/police_api/data/complaint_by_date.php";
-
     String Search_URL="";
     String delete_URL="";
-
     String createvictim_url="https://rj.ltr-soft.com/public/police_api/investigation_victim/create_investigation_victim.php";
     String updatvictim_url="https://rj.ltr-soft.com/public/police_api/investigation_victim/update_investigation_victim.php";
-    String getAllvictim_URL="https://rj.ltr-soft.com/public/police_api/data/read_complaint_victim.php";
+    String getAllvictim_URL="https://rj.ltr-soft.com/public/police_api/investigation_victim/victim_fir_id.php";
     String searcgUrl="";
     public ArrayList<Victim> list = new ArrayList<>();
     public ArrayList<String> search_list=new ArrayList<String>();
-    public void getAllVictim( Context context,Callback callback) {
+    public void getAllVictim( String fir_d,Context context,Callback callback) {
         StringRequest stringRequest = new StringRequest(Request.Method.POST, getAllvictim_URL,
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {
-                        try {
-                            JSONArray jsonArray = new JSONArray(response);
-                            for (int i = 0; i < jsonArray.length(); i++) {
-                                JSONObject jsonObject = jsonArray.getJSONObject(i);
+                        if (!response.isEmpty()) {
+                            try {
+                                JSONArray jsonArray = new JSONArray(response);
+                                for (int i = 0; i < jsonArray.length(); i++) {
+                                    JSONObject jsonObject = jsonArray.getJSONObject(i);
 
-                                String country = jsonObject.getString("country_name");
-                                String state = jsonObject.getString("state_name");
-                                String district = jsonObject.getString("district_name");
-                                String city = jsonObject.getString("city_name");
-                                String fname = jsonObject.getString("complaint_victim_fname");
-                                String mname = jsonObject.getString("complaint_victim_mname");
-                                String lname = jsonObject.getString("complaint_victim_lname");
-                                String address = jsonObject.getString("address");
+                                    String country = jsonObject.getString("country_name");
+                                    String state = jsonObject.getString("state_name");
+                                    String district = jsonObject.getString("district_name");
+                                    String city = jsonObject.getString("city_name");
+                                    String fname = jsonObject.getString("victim_fname");
+                                    String mname = jsonObject.getString("victim_mname");
+                                    String lname = jsonObject.getString("victim_lname");
+                                    String address = jsonObject.getString("victim_address");
 
-                                String dob = jsonObject.getString("dob");
-                                String email = jsonObject.getString("email");
-                                String adhar = jsonObject.getString("aadhar");
-                                String gender = jsonObject.getString("gender");
+                                    String dob = jsonObject.getString("victim_dob");
+                                    String email = jsonObject.getString("victim_email");
+                                    String adhar = jsonObject.getString("victim_adhar");
+                                    String gender = jsonObject.getString("victim_gender");
 
-                                String photo_path = jsonObject.getString("photo");
-                                String pan = jsonObject.getString("mobile");
-                                String mobile = jsonObject.getString("mobile");
-                                String is_suspect = jsonObject.getString("is_c_victim");
-                                 String fir_id =  "100";//jsonObject.getString("fir_id");
-                                String investigation_suspect_id =  "100";//jsonObject.getString("investigation_suspect_id");
-                                list.add(new Victim(country, state, district, city, fname, mname, lname, address,
-                                        dob, email, adhar, gender,
-                                        photo_path, pan, mobile, is_suspect,
-                                        fir_id, investigation_suspect_id));
+                                    String photo_path = jsonObject.getString("victim_photo");
+                                    String pan = jsonObject.getString("victim_pan");
+                                    String mobile = jsonObject.getString("victim_mobile_no");
+                                    String is_suspect = jsonObject.getString("is_i_victim");
+                                    String fir_id =jsonObject.getString("fir_id");
+                                    String investigation_victim_id = jsonObject.getString("investigation_victim_id");
+                                    list.add(new Victim(country, state, district, city, fname, mname, lname, address,
+                                            dob, email, adhar, gender,
+                                            photo_path, pan, mobile, is_suspect,
+                                            fir_id,investigation_victim_id ));
+                                }
+                                callback.onSuccess(list);
+                            } catch (JSONException e) {
+                                callback.onErro(e.toString());
+                                e.printStackTrace();
+                                throw new RuntimeException(e);
                             }
-                            callback.onSuccess(list);
-                        } catch (JSONException e) {
-                            callback.onErro(e.toString());
-                            e.printStackTrace();
-                            throw new RuntimeException(e);
+                        }
+                        else {
+                            callback.onErro("THis FIR have no victim ");
                         }
                     }
                 }, new Response.ErrorListener() {
@@ -96,6 +99,7 @@ public class VictimDeo {
             @Override
             protected Map<String, String> getParams() throws AuthFailureError {
                 HashMap<String, String> map = new HashMap<>();
+                map.put("fir_id",fir_d);
                 return map;
             }
         };
@@ -231,6 +235,7 @@ public class VictimDeo {
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {
+                        callback.onSuccess(response.toString());
 //                        System.out.println("response"+response.toString());
 //                        try {
 //                            JSONArray jsonArray=new JSONArray(response);
@@ -264,7 +269,6 @@ public class VictimDeo {
                 map.put("country_id","1");
                 //insertsuspect.getAddress());
                 map.put("state_id","1");
-
                 //insertsuspect.  getCity());
                 map.put("district_id","1");
                 // insertsuspect. getState());
@@ -277,8 +281,8 @@ public class VictimDeo {
                 //   map.put("",insertsuspect. getIs_suspect());
                 map.put("victim_adhar",inservictim.getAdhar());
                 map.put("victim_address",inservictim. getAddress());
-                map.put("victim_pan_no",inservictim.  getPan());
-                map.put("victim_photo",inservictim.  getPhoto_path());
+//                map.put("victim_pan_no",inservictim.  getPan());
+//                map.put("victim_photo",inservictim.  getPhoto_path());
                 UserDataAccess userDataAccess=new UserDataAccess();
                 Activity activity=(Activity)context;
 
@@ -286,12 +290,8 @@ public class VictimDeo {
                 return map;
             }
         };
-
         RequestQueue requestQueue = Volley.newRequestQueue( context);
         requestQueue.add(stringRequest);
-
-
-
         return create_victim;
     };
     public Victim updatevictim(Victim updatevictim,Context context){

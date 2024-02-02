@@ -14,6 +14,7 @@ import android.view.ViewGroup;
 import android.widget.Toast;
 
 import com.ltrsoft.police_app.Adapter.EvidenceAdapter1;
+import com.ltrsoft.police_app.Adapter.EvidenceAdapter2;
 import com.ltrsoft.police_app.Classes.Evidance;
 import com.ltrsoft.police_app.Model.EvidanceDeo;
 import com.ltrsoft.police_app.R;
@@ -35,29 +36,22 @@ public class Evidance2 extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view= inflater.inflate(R.layout.evidance2, container, false);
-
-
         Toast.makeText(getContext(), "yes working", Toast.LENGTH_SHORT).show();
-
-
         ActionBar actionBar = ((AppCompatActivity) requireActivity()).getSupportActionBar();
     evidance2recycler=view.findViewById(R.id.evidance2_recycle);
         if (actionBar != null) {
             actionBar.setTitle("Evidance History By Dates");
         }
-
-
         EvidanceDeo evidanceDeo = new EvidanceDeo();
-        evidanceDeo.getAllEvidance(getContext(), new Callback() {
+        evidanceDeo.getAllEvidance("2023-12-14-1",getContext(), new Callback() {
             @Override
             public void onSuccess(Object obj) {
                 list=(ArrayList<Evidance>) obj;
-                EvidenceAdapter1 adapter=new EvidenceAdapter1((ArrayList<Evidance>)obj);
+                EvidenceAdapter2 adapter=new EvidenceAdapter2((ArrayList<Evidance>)obj);
                 LinearLayoutManager layoutManager = new LinearLayoutManager(getContext());
                 evidance2recycler.setLayoutManager(layoutManager);
                 evidance2recycler.setAdapter(adapter);
             }
-
             @Override
             public void onErro(String errro) {
 

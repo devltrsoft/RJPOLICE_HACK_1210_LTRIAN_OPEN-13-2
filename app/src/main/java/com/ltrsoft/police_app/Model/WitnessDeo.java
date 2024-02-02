@@ -38,55 +38,60 @@ public class WitnessDeo {
 
     String createwitness_url = "https://rj.ltr-soft.com/public/police_api/investigation_witness/create__investigation_witness.php";
     String updatesWitness_url = "https://rj.ltr-soft.com/public/police_api/investigation_witness/create__investigation_witness.php";
-    String getAllWitness_URL = "https://rj.ltr-soft.com/public/police_api/investigation_witness/read__investigation_vitness.php";
+    String getAllWitness_URL = "https://rj.ltr-soft.com/public/police_api/investigation_witness/read_by_fir.php";
     String searcgUrl = "";
     public ArrayList<Witness> list = new ArrayList<>();
     public ArrayList<String> search_list = new ArrayList<String>();
 
-    public void getAllWitness( Context context , Callback callback) {
+    public void getAllWitness( String fir_id,Context context , Callback callback) {
         StringRequest stringRequest = new StringRequest(Request.Method.POST, getAllWitness_URL,
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {
                         System.out.println("resposne"+response.toString());
-                        try {
-                            JSONArray jsonArray = new JSONArray(response);
-                            for (int i = 0; i < jsonArray.length(); i++) {
-                                JSONObject jsonObject = jsonArray.getJSONObject(i);
-                                String country = jsonObject.getString("country_name");
+                        if (!response.isEmpty()&&response.length()>1) {
+                            try {
+                                JSONArray jsonArray = new JSONArray(response);
+                                for (int i = 0; i < jsonArray.length(); i++) {
+                                    JSONObject jsonObject = jsonArray.getJSONObject(i);
+                                    String country = jsonObject.getString("country_name");
 
-                                String state = jsonObject.getString("state_name");
-                                String district = jsonObject.getString("district_name");
-                                String city = jsonObject.getString("city_name");
-                                String fname = jsonObject.getString("investigation_witness_fname");
-                                String mname = jsonObject.getString("investigation_witness_mname");
-                                String lname = jsonObject.getString("investigation_witness_lname");
-                                String address = jsonObject.getString("investigation_witness_address");
+                                    String state = jsonObject.getString("state_name");
+                                    String district = jsonObject.getString("district_name");
+                                    String city = jsonObject.getString("city_name");
+                                    String fname = jsonObject.getString("investigation_witness_fname");
+                                    String mname = jsonObject.getString("investigation_witness_mname");
+                                    String lname = jsonObject.getString("investigation_witness_lname");
+                                    String address = jsonObject.getString("investigation_witness_address");
 
-                                String dob = jsonObject.getString("investigation_witness_dob");
-                                String email = jsonObject.getString("investigation_witness_email");
-                                String adhar = jsonObject.getString("investigation_witness_adhar");
-                                String gender = jsonObject.getString("investigation_witness_gender");
+                                    String dob = jsonObject.getString("investigation_witness_dob");
+                                    String email = jsonObject.getString("investigation_witness_email");
+                                    String adhar = jsonObject.getString("investigation_witness_adhar");
+                                    String gender = jsonObject.getString("investigation_witness_gender");
 
-                                String photo_path = jsonObject.getString("investigation_witness_photo");
-                                String pan = jsonObject.getString("witness_pan");
-                                String mobile = jsonObject.getString("investigation_witness_mobile");
-                                String is_witness = jsonObject.getString("is_i_witness");
-                                String fir_id = jsonObject.getString("fir_id");
+                                    String photo_path = jsonObject.getString("investigation_witness_photo");
+                                    String pan = jsonObject.getString("witness_pan");
+                                    String mobile = jsonObject.getString("investigation_witness_mobile");
+                                    String is_witness = jsonObject.getString("is_i_witness");
+                                    String fir_id = jsonObject.getString("fir_id");
 
-                                int investigation_witness_id = jsonObject.getInt("investigation_witness_id");
-                                list.add(new Witness(country, state, district, city, fname, mname, lname, address,
-                                        dob, email, adhar, gender,
-                                        photo_path, pan, mobile, is_witness,
-                                        fir_id, investigation_witness_id));
+                                    int investigation_witness_id = jsonObject.getInt("investigation_witness_id");
+                                    list.add(new Witness(country, state, district, city, fname, mname, lname, address,
+                                            dob, email, adhar, gender,
+                                            photo_path, pan, mobile, is_witness,
+                                            fir_id, investigation_witness_id));
+                                }
+                                callback.onSuccess(list);
+
+                            } catch (JSONException e) {
+                                System.out.println("error" + e.toString());
+                                callback.onErro(e.toString());
+                                e.printStackTrace();
+                                throw new RuntimeException(e);
                             }
-                            callback.onSuccess(list);
-
-                        } catch (JSONException e) {
-                            System.out.println("error"+e.toString());
-                            callback.onErro(e.toString());
-                            e.printStackTrace();
-                            throw new RuntimeException(e);
+                        }
+                        else {
+                            callback.onErro("this fir havce no witness");
                         }
                     }
                 }, new Response.ErrorListener() {
@@ -101,7 +106,7 @@ public class WitnessDeo {
             @Override
             protected Map<String, String> getParams() throws AuthFailureError {
                 HashMap<String, String> map = new HashMap<>();
-//                map.put("created_date","2023-12-25" );
+                map.put("fir_id",fir_id );
                 return map;
             }
 
@@ -112,7 +117,6 @@ public class WitnessDeo {
 
 
     public void getWitnessByDate( Context context ,Callback callback) {
-
         StringRequest stringRequest = new StringRequest(Request.Method.POST, getoneWitness_URL,
                 new Response.Listener<String>() {
                     @Override

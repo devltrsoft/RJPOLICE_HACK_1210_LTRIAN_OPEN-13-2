@@ -131,7 +131,7 @@ public class Investigation1 extends Fragment {
     private void setEvidenceAdapter() {
 
         EvidanceDeo evidanceDeo=new EvidanceDeo();
-        evidanceDeo.getAllEvidance(getContext(), new Callback() {
+        evidanceDeo.getAllEvidance("2023-12-14-1",getContext(), new Callback() {
             @Override
             public void onSuccess(Object obj) {
                 evidances_list=(ArrayList<Evidance>) obj;
@@ -152,7 +152,7 @@ public class Investigation1 extends Fragment {
     private void setWitnessAdapter() {
 
         WitnessDeo witnessDeo=new WitnessDeo();
-        witnessDeo.getAllWitness(getContext(), new Callback() {
+        witnessDeo.getAllWitness("2023-12-14-1",getContext(), new Callback() {
             @Override
             public void onSuccess(Object obj) {
                 ArrayList<Witness>list1 = (ArrayList<Witness>)obj;
@@ -172,7 +172,7 @@ public class Investigation1 extends Fragment {
 
     private void setVictimAdapter() {
         VictimDeo victimDeo=new VictimDeo();
-        victimDeo.getAllVictim(getContext(), new Callback() {
+        victimDeo.getAllVictim("2023-12-14-1",getContext(), new Callback() {
             @Override
             public void onSuccess(Object obj) {
                 victim_list = (ArrayList<Victim>) obj;

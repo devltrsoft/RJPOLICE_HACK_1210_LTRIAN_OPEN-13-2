@@ -61,7 +61,6 @@ import java.util.Map;
 public class AddVictim extends Fragment {
     private final int CAMERA_REQ_CODE = 104;
     private final int GALLERY_REQ_CODE = 105;
-
     private EditText name,address,contact,dob,email,addhar;
     private RadioGroup gender;
     private String encodeImage;
@@ -110,7 +109,6 @@ public class AddVictim extends Fragment {
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 cid=  listcomplainid.get(position);
             }
-
             @Override
             public void onNothingSelected(AdapterView<?> parent) {
                 cid=  listcomplainid.get(0);
@@ -119,10 +117,7 @@ public class AddVictim extends Fragment {
 
         String police_Id = "1";
         loadComplainNameByUser(police_Id);
-
-
-
-        dob.setOnClickListener(new View.OnClickListener() {
+                dob.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 showDatePickerDialog();
