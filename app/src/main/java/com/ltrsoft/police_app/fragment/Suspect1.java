@@ -16,6 +16,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.ltrsoft.police_app.Adapter.SuspectAdapter1;
+import com.ltrsoft.police_app.Adapter.WitnessAdapter1;
 import com.ltrsoft.police_app.Classes.Suspect;
 import com.ltrsoft.police_app.Model.PoliceDeo;
 import com.ltrsoft.police_app.Model.SuspectDeo;
@@ -27,10 +28,9 @@ import java.util.ArrayList;
 
 public class Suspect1 extends Fragment {
     private RecyclerView recyclerView;
-    private ArrayList<Suspect> list ;
+    private ArrayList<Suspect> list=new ArrayList<>() ;
    private Spinner fir_spinner;
-    ArrayList   firlist=new ArrayList();
-
+    ArrayList <String>  firlist=new ArrayList();
     String fir_id;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -44,16 +44,15 @@ public class Suspect1 extends Fragment {
         }
 
         PoliceDeo policeDeo=new PoliceDeo();
-        policeDeo.getfir_id(getContext(), new Callback() {
+             policeDeo.getfir_id(getContext(), new Callback() {
             @Override
             public void onSuccess(Object obj) {
-         firlist=(ArrayList) obj;
-          ArrayAdapter adapter2;
-        adapter2 = new ArrayAdapter(getContext(), android.R.layout.simple_expandable_list_item_1,firlist);
-        adapter2.setDropDownViewResource(android.R.layout.simple_expandable_list_item_1);
-        fir_spinner .setAdapter(adapter2);
-
-            }
+                     firlist=(ArrayList) obj;
+                      ArrayAdapter adapter2;
+                      adapter2 = new ArrayAdapter(getContext(), android.R.layout.simple_expandable_list_item_1,firlist);
+                      adapter2.setDropDownViewResource(android.R.layout.simple_expandable_list_item_1);
+                     fir_spinner .setAdapter(adapter2);
+             }
 
             @Override
             public void onErro(String errro) {
@@ -63,28 +62,39 @@ public class Suspect1 extends Fragment {
         fir_spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
-                fir_id = adapterView.getItemAtPosition(i).toString();
-
+                fir_id = firlist.get(i);
+                loadSuspectBYFirId(fir_id);
             }
-
             @Override
             public void onNothingSelected(AdapterView<?> adapterView) {
-                fir_id=firlist.get(0).toString();
+//                fir_id=firlist.get(0);
+//                loadSuspectBYFirId(fir_id);
             }
         });
+        return view;
+    }
+
+    public void loadSuspectBYFirId(String fir_id){
         SuspectDeo suspectDeo = new SuspectDeo();
-
-
-        suspectDeo.getAllSuspect(getContext(), new Callback() {
+        if (!list.isEmpty()) {
+            list.clear();
+            SuspectAdapter1 adapter = new SuspectAdapter1(list);
+            LinearLayoutManager layoutManager = new LinearLayoutManager(getContext());
+            recyclerView.setLayoutManager(layoutManager);
+            recyclerView.setAdapter(adapter);
+        }
+        suspectDeo.getsuspect_by_Fir_id(fir_id, getContext(), new Callback() {
             @Override
             public void onSuccess(Object obj) {
-                System.out.println("response"+obj.toString());
-               // Toast.makeText(getContext(), "response"+obj, Toast.LENGTH_SHORT).show();
                 list = (ArrayList<Suspect>)obj;
-                SuspectAdapter1 adapter = new SuspectAdapter1(list);
-                LinearLayoutManager layoutManager = new LinearLayoutManager(getContext());
-                recyclerView.setLayoutManager(layoutManager);
-                recyclerView.setAdapter(adapter);
+                if (!list.isEmpty()) {
+                    SuspectAdapter1 adapter = new SuspectAdapter1(list);
+                    LinearLayoutManager layoutManager = new LinearLayoutManager(getContext());
+                    recyclerView.setLayoutManager(layoutManager);
+                    recyclerView.setAdapter(adapter);
+                }else {
+
+                }
             }
 
             @Override
@@ -92,8 +102,5 @@ public class Suspect1 extends Fragment {
                 Toast.makeText(getContext(), "error"+errro.toString(), Toast.LENGTH_SHORT).show();
             }
         });
-
-
-        return view;
     }
 }

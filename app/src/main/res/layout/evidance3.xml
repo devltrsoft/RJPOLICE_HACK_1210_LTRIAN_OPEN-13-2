@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -9,19 +10,6 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical">
-
-
-        <Spinner
-            android:id="@+id/ecomplain_name"
-            android:layout_width="300dp"
-            android:layout_height="50dp"
-            android:layout_below="@+id/card"
-            android:layout_marginTop="26dp"
-            android:gravity="center"
-            android:layout_marginLeft="55dp"
-            android:paddingLeft="15dp"
-            android:hint="Full Name"
-            android:background="@drawable/d1"/>
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content">
@@ -43,20 +31,17 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="40dp"
             android:layout_marginLeft="20dp">
-            <VideoView
-                android:id="@+id/Evidance_video"
-                android:layout_width="380dp"
-                android:layout_height="200dp"
-                android:layout_marginLeft="20dp"
-                android:layout_marginTop="20dp"
-                />
+
             <ImageView
-                android:layout_margin="10dp"
                 android:id="@+id/Evidance_photo"
                 android:layout_width="match_parent"
                 android:layout_height="200dp"
-                 android:layout_marginTop="20dp"
-                android:src="@drawable/evidance"/>
+                android:layout_margin="10dp"
+                android:src="@drawable/evidance"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
 
 
         </androidx.constraintlayout.widget.ConstraintLayout>

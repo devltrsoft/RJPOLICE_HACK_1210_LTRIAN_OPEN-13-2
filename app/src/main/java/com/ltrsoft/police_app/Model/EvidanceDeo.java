@@ -32,8 +32,7 @@ public class EvidanceDeo {
     Evidance create_evidance;
     Evidance update_evidance;
     Evidance delete_evidance;
-     String getoneEvidance_URL="";
-
+     String getoneEvidance_URL="https://rj.ltr-soft.com/public/police_api/evidance/read_by_id.php";
     String Search_URL="";
     String delete_URL="";
 
@@ -94,7 +93,7 @@ public class EvidanceDeo {
         RequestQueue requestQueue = Volley.newRequestQueue(context);
         requestQueue.add(stringRequest);
     }
-    public Evidance getoneEvidance( Evidance evidance_id, Context context ){
+    public void getoneEvidance( String evidance_id, Context context ,Callback callback){
 
         StringRequest stringRequest=new StringRequest(Request.Method.POST,  getoneEvidance_URL,
                 new Response.Listener<String>() {
@@ -113,19 +112,20 @@ public class EvidanceDeo {
                                 String evidance_photos_id=jsonObject.getString("evidance_photos_id");
                                 list.add(new Evidance( evidance_id,fir_id,evidance_name,evidance_description,evidance_photos_path,
                                         evidance_photos_description,evidance_photos_id));
-
-
                         }
                         }
                         catch ( Exception e){
+                            callback.onErro(e.toString());
                             e.printStackTrace();
                             throw new RuntimeException(e);
                         }
+                        callback.onSuccess(list);
                     }
                 },
                 new Response.ErrorListener() {
                     @Override
                     public void onErrorResponse(VolleyError error) {
+                        callback.onErro(error.toString());
                         error.printStackTrace();
                     }
                 }){
@@ -133,16 +133,12 @@ public class EvidanceDeo {
             @Override
             protected Map<String, String> getParams() throws AuthFailureError {
                 HashMap <String,  String> map=new HashMap<>();
-                map.put("evidance_id", String.valueOf(evidance_id));
+                map.put("evidance_id", evidance_id);
                 return map;
             }
         };
-
-
         RequestQueue requestQueue=Volley.newRequestQueue(context);
         requestQueue.add(stringRequest);
-        return evidanceone;
-
     };
 
     public Evidance createevidance(Evidance insertevidance, Context context, Callback callback){

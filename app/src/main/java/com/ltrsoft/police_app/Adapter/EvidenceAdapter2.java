@@ -1,5 +1,6 @@
 package com.ltrsoft.police_app.Adapter;
 
+import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -45,9 +46,12 @@ public class EvidenceAdapter2 extends RecyclerView.Adapter<EvidenceAdapter2.View
         holder.evidenceCard.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(v.getContext(), "Success", Toast.LENGTH_SHORT).show();
+//                Toast.makeText(v.getContext(), "Success", Toast.LENGTH_SHORT).show();
                 AppCompatActivity activity = (AppCompatActivity) v.getContext();
                 Evidance3 thirdFragment = new Evidance3();
+                Bundle bundle = new Bundle();
+                bundle.putString("evidence_id",item.getEvidance_id());
+                thirdFragment.setArguments(bundle);
                 activity.getSupportFragmentManager().beginTransaction()
                         .replace(R.id.container_main, thirdFragment)
                         .addToBackStack(null)

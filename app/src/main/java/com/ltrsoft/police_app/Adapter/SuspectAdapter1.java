@@ -1,5 +1,6 @@
 package com.ltrsoft.police_app.Adapter;
 
+import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -17,13 +18,10 @@ import com.ltrsoft.police_app.fragment.Suspect2;
 import java.util.ArrayList;
 
 public class SuspectAdapter1 extends RecyclerView.Adapter<SuspectAdapter1.ViewHolder> {
-
     private ArrayList<Suspect> dataList;
-
     public SuspectAdapter1(ArrayList<Suspect> dataList) {
         this.dataList = dataList;
     }
-
     @NonNull
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
@@ -41,6 +39,9 @@ public class SuspectAdapter1 extends RecyclerView.Adapter<SuspectAdapter1.ViewHo
             public void onClick(View v) {
                 AppCompatActivity activity = (AppCompatActivity) v.getContext();
                 Suspect2 s = new Suspect2();
+                Bundle bundle = new Bundle();
+                s.setArguments(bundle);
+                bundle.putString("investigation_suspect_id",item.getInvestigation_suspect_id());
                 activity.getSupportFragmentManager().beginTransaction().replace(R.id. container_main, s).addToBackStack(null).commit();
             }
         });

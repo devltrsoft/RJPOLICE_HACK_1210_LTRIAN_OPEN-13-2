@@ -15,15 +15,12 @@ public class Evidance {
         this.discription = evidanceDescription;
         this.evidance_photos_path = evidancePhotosPath;
         this.fir_id = firId;
-
+        this.evidance_id=evidanceId;
     }
 
     public Evidance(String evidanceName, String evidanceDesc, String photoPath, String firId) {
   this.evidance_name=evidanceName;
   this.discription=evidanceDesc;
-
-
-
     }
 
 

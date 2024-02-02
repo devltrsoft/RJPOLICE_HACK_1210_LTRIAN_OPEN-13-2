@@ -76,7 +76,6 @@ public class Suspect3 extends Fragment {
                  suspect_state.setText(suspect.getState());
                  suspect_city.setText(suspect.getCity());
               }
-
              @Override
              public void onErro(String errro) {
 
@@ -86,17 +85,33 @@ public class Suspect3 extends Fragment {
 
         Bundle bundle = getArguments();
         if(bundle !=null) {
-            sid.setText(bundle.getString("cid"));
-            suspect_dob.setText(bundle.getString("date"));
-            Suspect_full_name.setText(bundle.getString("name"));
-            // suspect_address.setText(bundle.getString(""));
-            suspect_gender.setText(bundle.getString("gender"));
-            suspect_mobile.setText(bundle.getString("mobile"));
-            suspect_email.setText(bundle.getString("email"));
-            suspect_country.setText(bundle.getString("cname"));
-            suspect_district.setText(bundle.getString("dname"));
-            suspect_state.setText(bundle.getString("sname"));
-            suspect_city.setText(bundle.getString("cname"));
+           String id=bundle.getString("suspect_id");
+           SuspectDeo suspectDeo = new SuspectDeo();
+           suspectDeo.getOneSuspect(id, getContext(), new Callback() {
+               @Override
+               public void onSuccess(Object obj) {
+                   ArrayList <Suspect>suspectlist= (ArrayList<Suspect>) obj;
+                   Suspect suspect= suspectlist.get(0);
+
+                   sid.setText(suspect.getInvestigation_suspect_id());
+                   suspect_dob.setText(suspect.getDob());
+                   Suspect_full_name.setText(suspect.getFname());
+                   suspect_address.setText(suspect.getMname());
+                   suspect_gender.setText(suspect.getGender());
+                   suspect_mobile.setText(suspect.getMobile());
+                   suspect_email.setText(suspect.getEmail());
+                   suspect_country.setText(suspect.getCountry());
+                   suspect_district.setText(suspect.getDistrict());
+                   suspect_state.setText(suspect.getState());
+                   suspect_city.setText(suspect.getCity());
+               }
+
+               @Override
+               public void onErro(String errro) {
+                   Toast.makeText(getContext(), "error "+errro.toString(), Toast.LENGTH_SHORT).show();
+               }
+           });
+
         }
             Add_criminal=view.findViewById(R.id.suspect_button);
             Add_criminal.setOnClickListener(new View.OnClickListener() {

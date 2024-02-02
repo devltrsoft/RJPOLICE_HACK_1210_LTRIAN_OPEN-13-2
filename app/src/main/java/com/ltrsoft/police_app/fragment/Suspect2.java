@@ -32,6 +32,7 @@ public class Suspect2 extends Fragment {
         if (actionBar != null) {
             actionBar.setTitle("Suspect History By Dates");
         }
+        Toast.makeText(getContext(), "suspect id ="+getArguments().getString("investigation_suspect_id"), Toast.LENGTH_SHORT).show();
         SuspectDeo suspectDeo = new SuspectDeo();
         suspectDeo.getSuspectByDate("2023-12-25", getContext(), new Callback() {
             @Override
@@ -40,11 +41,9 @@ public class Suspect2 extends Fragment {
 
                 SuspectAdapter2 adapter2 = new SuspectAdapter2((ArrayList<Suspect>) obj);
                 LinearLayoutManager layoutManager = new LinearLayoutManager(getContext());
-
                 recyclerView.setLayoutManager(layoutManager);
                 recyclerView.setAdapter(adapter2);
             }
-
             @Override
             public void onErro(String errro) {
                 Toast.makeText(getContext(), "failed "+errro.toString(), Toast.LENGTH_SHORT).show();

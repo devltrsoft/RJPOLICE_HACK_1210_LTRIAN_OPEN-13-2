@@ -24,9 +24,6 @@ import java.util.ArrayList;
 
 public class Evidance2 extends Fragment {
     private ArrayList<Evidance> list = new ArrayList<>();
-
-
-
     public Evidance2() {
         // Required empty public constructor
     }
@@ -36,7 +33,7 @@ public class Evidance2 extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view= inflater.inflate(R.layout.evidance2, container, false);
-        Toast.makeText(getContext(), "yes working", Toast.LENGTH_SHORT).show();
+        Toast.makeText(getContext(), "yes working"+getArguments().getString("evidence_id"), Toast.LENGTH_SHORT).show();
         ActionBar actionBar = ((AppCompatActivity) requireActivity()).getSupportActionBar();
     evidance2recycler=view.findViewById(R.id.evidance2_recycle);
         if (actionBar != null) {
@@ -47,6 +44,7 @@ public class Evidance2 extends Fragment {
             @Override
             public void onSuccess(Object obj) {
                 list=(ArrayList<Evidance>) obj;
+
                 EvidenceAdapter2 adapter=new EvidenceAdapter2((ArrayList<Evidance>)obj);
                 LinearLayoutManager layoutManager = new LinearLayoutManager(getContext());
                 evidance2recycler.setLayoutManager(layoutManager);

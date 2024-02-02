@@ -44,15 +44,15 @@ public class SuspectAdapter2 extends RecyclerView.Adapter<SuspectAdapter2.ViewHo
                 AppCompatActivity activity = (AppCompatActivity) v.getContext();
                 Suspect3 s = new Suspect3();
                 Bundle bundle=new Bundle();
-                 bundle.putString("firid",  item.getFir_id());
-                bundle.putString("name", item.getFname());
-                bundle.putString("gender",item.getGender());
-                bundle.putString("mobile",item.getMobile());
-                bundle.putString("email",item.getEmail());
-                bundle.putString("adhar",item.getAdhar());
-                bundle.putString("cname",item. getCountry());
-                bundle.putString("dname",item. getDistrict());
-                bundle.putString("sname",item.getState());
+                 bundle.putString("suspect_id",  "3");
+//                bundle.putString("name", item.getFname());
+//                bundle.putString("gender",item.getGender());
+//                bundle.putString("mobile",item.getMobile());
+//                bundle.putString("email",item.getEmail());
+//                bundle.putString("adhar",item.getAdhar());
+//                bundle.putString("cname",item. getCountry());
+//                bundle.putString("dname",item. getDistrict());
+//                bundle.putString("sname",item.getState());
                 s.setArguments(bundle);
                 activity.getSupportFragmentManager().beginTransaction().replace(R.id.container_main, s).addToBackStack(null).commit();
             }

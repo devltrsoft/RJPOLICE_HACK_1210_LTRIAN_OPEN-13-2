@@ -1,5 +1,6 @@
 package com.ltrsoft.police_app.Adapter;
 
+import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -35,7 +36,6 @@ public class EvidenceAdapter1 extends RecyclerView.Adapter<EvidenceAdapter1.View
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         Evidance item = dataList.get(position);
-
         holder.tvi.setText("Evidence ID: " + item.getEvidance_id());
         holder.textEvidenceName.setText("Evidence Name: " + item.getEvidance_name());
         holder.textEvidenceDate.setText("Evidence Date: " + item.getDiscription());
@@ -48,13 +48,14 @@ public class EvidenceAdapter1 extends RecyclerView.Adapter<EvidenceAdapter1.View
                 Toast.makeText(v.getContext() , "sucses", Toast.LENGTH_SHORT).show();
                AppCompatActivity activity=(AppCompatActivity)v.getContext();
                 Evidance2 secondFragment = new Evidance2();
+                Bundle bundle = new Bundle();
+                bundle.putString("evidence_id",item.getEvidance_id());
+                secondFragment.setArguments(bundle);
                 activity.getSupportFragmentManager().beginTransaction().replace(R.id.container_main, secondFragment).
                         addToBackStack(null).commit();
-
             }
         });
     }
-
     @Override
     public int getItemCount() {
         return dataList.size();
