@@ -46,7 +46,12 @@ public class Evidance {
     public Evidance(String sampleEvidence, int evidence) {
     }
 
-    public Evidance(String harun, String pune, String number) {
+    public Evidance(String complaint_photo_id, String complaint_photo_path, String complaint_photo_description) {
+
+        this.evidance_photos_id = complaint_photo_id;
+        this.discription = complaint_photo_description;
+        this.evidance_photos_path = complaint_photo_path;
+
     }
 
     public String getEvidance_id() {

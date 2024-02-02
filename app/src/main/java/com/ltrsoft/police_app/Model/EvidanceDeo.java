@@ -34,15 +34,105 @@ public class EvidanceDeo {
     Evidance delete_evidance;
      String getoneEvidance_URL="";
 
+    ArrayList<Evidance> evidanceArrayList=new ArrayList<>();
+
+
     String Search_URL="";
     String delete_URL="";
-
+    public static final String Get_one_complaint_evidance_by_evidanceid="https://rj.ltr-soft.com/public/police_api/evidance/read_evidance.php";
+    public static final String URL="https://rj.ltr-soft.com/public/police_api/evidance/read_evidance.php";
     String createEvidance_url="https://rj.ltr-soft.com/public/police_api/evidance/create_evidance.php";
     String updateevidance_url="https://rj.ltr-soft.com/public/police_api/evidance/update_evidance.php";
     String getAllevidance_URL_BY_FIRID="https://rj.ltr-soft.com/public/police_api/evidance/read_by_fir.php";
     String searchUrl="";
     public ArrayList<Evidance> list = new ArrayList<>();
     public ArrayList<String> search_list=new ArrayList<String>();
+    public static final String GET_ALL_Complaint_EVIDENCE_by_complaint_id="https://rj.ltr-soft.com/public/police_api/data/complaint_id_photo.php";
+
+    public void Get_one_complaint_evidance_by_evidanceid(String evidenceId, Context context,Callback callback){
+        StringRequest stringRequest = new StringRequest(Request.Method.POST, Get_one_complaint_evidance_by_evidanceid, new Response.Listener<String>() {
+            @Override
+            public void onResponse(String response) {
+                try {
+
+                    JSONObject jsonObject = new JSONObject(response);
+                    String path = jsonObject.getString("complaint_photo_path");
+                    String idd = jsonObject.getString("complaint_id");
+                    String description = jsonObject.getString("evidence_description");
+                    evidanceArrayList.add(new Evidance(idd,path,description));
+
+                } catch (JSONException e) {
+                    callback.onErro(e.toString());
+
+                    throw new RuntimeException(e);
+                }
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+
+            }
+        }){
+            @Nullable
+            @Override
+            protected Map<String, String> getParams() throws AuthFailureError {
+                HashMap <String , String> hashMap = new HashMap();
+                hashMap.put("evidence_id",evidenceId);
+                return hashMap;
+            }
+        };
+        RequestQueue requestQueue = Volley.newRequestQueue(context);
+        requestQueue.add(stringRequest);
+ }
+
+
+    public void GET_ALL_Complaint_EVIDENCE_by_complaint_id(String complaint_id, Context context , Callback callBack){
+        StringRequest stringRequest = new StringRequest(Request.Method.POST, GET_ALL_Complaint_EVIDENCE_by_complaint_id, new Response.Listener<String>() {
+            @Override
+            public void onResponse(String response) {
+               // System.out.println("response = "+response.toString());
+                if (!response.isEmpty()&&response.length()>1) {
+                    try {
+                        JSONArray jsonArray = new JSONArray(response);
+                        for (int i = 0; i < jsonArray.length(); i++) {
+                            JSONObject jsonObject = jsonArray.getJSONObject(i);
+                            String complaint_photo_id = jsonObject.getString("complaint_photo_id");
+                            String complaint_photo_path = jsonObject.getString("complaint_photo_path");
+                            String complaint_photo_description = jsonObject.getString("complaint_photo_description");
+                             evidanceArrayList.add(new Evidance(complaint_photo_id,complaint_photo_path,complaint_photo_description));
+                        }
+                    } catch (JSONException e) {
+                        callBack.onErro(e.toString());
+                        throw new RuntimeException(e);
+                    }
+                    callBack.onSuccess(evidanceArrayList);
+                }
+                else {
+                    evidanceArrayList = new ArrayList<>();
+                    callBack.onSuccess(evidanceArrayList);
+                }
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                callBack.onErro(error.toString());
+                System.out.println("error "+error.toString());
+                error.printStackTrace();
+            }
+        }){
+            @Nullable
+            @Override
+            protected Map<String, String> getParams() throws AuthFailureError {
+                HashMap hashMap = new HashMap();
+                hashMap.put("complaint_id",complaint_id);
+//                hashMap.put("complaint_id","1");
+                return hashMap;
+            }
+        };
+        RequestQueue requestQueue = Volley.newRequestQueue(context);
+        requestQueue.add(stringRequest);
+}
+
     public void getAllEvidance(String firID,Context context,Callback callback) {
         StringRequest stringRequest = new StringRequest(Request.Method.POST,  getAllevidance_URL_BY_FIRID,
                 new Response.Listener<String>() {
