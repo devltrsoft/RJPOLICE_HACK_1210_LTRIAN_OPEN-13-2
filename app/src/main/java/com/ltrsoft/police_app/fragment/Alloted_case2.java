@@ -17,11 +17,14 @@ import android.widget.Toast;
 
 import com.ltrsoft.police_app.Adapter.EvidenceAdapter1;
 import com.ltrsoft.police_app.Adapter.ISuspectAdapter;
+import com.ltrsoft.police_app.Adapter.IVictimAdapter;
+import com.ltrsoft.police_app.Adapter.IWitnessAdapter;
 import com.ltrsoft.police_app.Adapter.SuspectAdapter1;
 import com.ltrsoft.police_app.Adapter.VictimAdapter1;
 import com.ltrsoft.police_app.Classes.Evidance;
 import com.ltrsoft.police_app.Classes.Suspect;
 import com.ltrsoft.police_app.Classes.Victim;
+import com.ltrsoft.police_app.Classes.Witness;
 import com.ltrsoft.police_app.Model.EvidanceDeo;
 import com.ltrsoft.police_app.Model.SuspectDeo;
 import com.ltrsoft.police_app.Model.VictimDeo;
@@ -60,7 +63,7 @@ public class Alloted_case2 extends Fragment {
         }
         setId();
         setSuspectAdapter();
-       // setVictimAdapter();
+        setVictimAdapter();
         //setWitnessAdapter();
         //setEvidenceAdapter();
         victim_card.setOnClickListener(new View.OnClickListener() {
@@ -165,17 +168,33 @@ public class Alloted_case2 extends Fragment {
     private void setWitnessAdapter() {
 
         WitnessDeo witnessDeo=new WitnessDeo();
+      witnessDeo.GET_Complaint_WITNESS_by_complaint_id(complaint_id, getContext(), new Callback() {
+          @Override
+          public void onSuccess(Object obj) {
+              ArrayList < Witness> witnesses=new ArrayList<>();
+              witnesses=(ArrayList<Witness>) obj;
+              IWitnessAdapter adapter=new IWitnessAdapter((ArrayList<Witness>)obj);
+              LinearLayoutManager linearLayoutManager=new LinearLayoutManager(getContext());
+              Witness_Recycler.setLayoutManager(linearLayoutManager);
+            Witness_Recycler.setAdapter(adapter);
 
+          }
+
+          @Override
+          public void onErro(String errro) {
+
+          }
+      });
 
     }
 
     private void setVictimAdapter() {
         VictimDeo victimDeo=new VictimDeo();
-        victimDeo.getVictimByComplaint_id(complaint_id,getContext(), new Callback() {
+        victimDeo.get_Complaint_victim_by_complaint_id(complaint_id,getContext(), new Callback() {
             @Override
             public void onSuccess(Object obj) {
                 victim_list = (ArrayList<Victim>) obj;
-                VictimAdapter1 adapter = new VictimAdapter1((ArrayList<Victim>) obj);
+                IVictimAdapter adapter = new IVictimAdapter((ArrayList<Victim>) obj);
                 LinearLayoutManager layoutManager = new LinearLayoutManager(getContext());
                  Victim_Recycler.setLayoutManager(layoutManager);
                 Victim_Recycler.setAdapter(adapter);

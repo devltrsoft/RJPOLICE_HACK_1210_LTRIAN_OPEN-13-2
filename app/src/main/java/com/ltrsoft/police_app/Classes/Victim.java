@@ -4,7 +4,7 @@ public class Victim {
     String country,state,district,city,fname,mname,lname,address, dob,
             email,adhar, gender,
             photo_path,pan,mobile,is_victim;
-     String  fir_id,investigation_victim_id;
+     String  fir_id,investigation_victim_id,complaint_id,complaint_victim_id;
 
     public Victim(String country, String state, String district, String city, String fname, String mname, String lname,
                   String address, String dob, String email,
@@ -44,6 +44,13 @@ public class Victim {
         this.gender = gender;
          this.mobile = mobile1;
           this.photo_path=photo_path;
+    }
+
+    public Victim(String victim_id, String complaintVictimFname, String complaintVictimMname, String complaintVictimLname,
+                  String address, String gender, String aadhar, String photo, String dob,
+                  String mobile, String stateName, String districtName, String cityName) {
+
+
     }
 
     public String getCountry() {
@@ -181,7 +188,22 @@ public class Victim {
     public void setFir_id(String fir_id) {
         this.fir_id = fir_id;
     }
+    public String getComplaint_id() {
+        return complaint_id;
+    }
 
+    public void setComplaint_id(String fir_id) {
+        this.complaint_id = complaint_id;
+    }
+
+
+    public String getComplaint_victim_id() {
+        return complaint_victim_id;
+    }
+
+    public void setComplaint_victim_id(String complaint_victim_id) {
+        this.complaint_victim_id = complaint_victim_id;
+    }
     public String getInvestigation_victim_id() {
         return investigation_victim_id;
     }

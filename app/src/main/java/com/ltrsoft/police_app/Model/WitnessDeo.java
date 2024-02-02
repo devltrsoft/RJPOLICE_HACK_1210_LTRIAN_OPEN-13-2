@@ -43,6 +43,136 @@ public class WitnessDeo {
     public ArrayList<Witness> list = new ArrayList<>();
     public ArrayList<String> search_list = new ArrayList<String>();
 
+    private static String GET_ONE_WITNESS_By_Witness_Id_Url = "https://rj.ltr-soft.com/public//police_api/data/c_witness_id.php";
+    private static String GET_Complaint_WITNESS_by_complaint_id = "https://rj.ltr-soft.com/public/police_api/data/complaint_vit_read.php";
+    public void GET_Complaint_WITNESS_by_complaint_id(String complaint_id , Context context , Callback userCallBack){
+        StringRequest stringRequest = new StringRequest(Request.Method.POST, GET_Complaint_WITNESS_by_complaint_id, new Response.Listener<String>() {
+            @Override
+            public void onResponse(String response) {
+                System.out.println("response = "+response.toString());
+                if (response != null && !response.isEmpty()&&response.length()>1) {
+                    try {
+                        JSONArray jsonArray = new JSONArray(response);
+                        for (int i = 0; i < jsonArray.length(); i++) {
+                            JSONObject jsonObject = jsonArray.getJSONObject(i);
+                            String complaint_witness_id = jsonObject.getString("complaint_witness_id");
+                            String complaint_witness_fname = jsonObject.getString("complaint_witness_fname");
+                            String complaint_witness_mname = jsonObject.getString("complaint_witness_mname");
+                            String complaint_witness_lname = jsonObject.getString("complaint_witness_lname");
+                            String complaint_witness_address = jsonObject.getString("complaint_witness_address");
+                            String city_name = jsonObject.getString("city_name");
+                            String country_name = jsonObject.getString("country_name");
+                            String state_name = jsonObject.getString("state_name");
+                            String district_name = jsonObject.getString("district_name");
+                            String complaint_witness_dob = jsonObject.getString("complaint_witness_dob");
+                            String complaint_witness_gender = jsonObject.getString("complaint_witness_gender");
+                            String complaint_witness_mobile = jsonObject.getString("complaint_witness_mobile");
+                            String complaint_witness_email = jsonObject.getString("complaint_witness_email");
+                            String complaint_witness_photo_path = jsonObject.getString("complaint_witness_photo_path");
+                            String complaint_witness_pan = jsonObject.getString("complaint_witness_pan");
+                            String complaint_witness_adhar = jsonObject.getString("complaint_witness_adhar");
+                            String complaint_id = jsonObject.getString("complaint_id");
+                            String isWitness = "";
+                            list = new ArrayList<>();
+                            list.add(new Witness(complaint_witness_id, complaint_witness_fname, complaint_witness_mname, complaint_witness_lname, complaint_witness_address, city_name, country_name, state_name, district_name
+                                    , complaint_witness_dob, complaint_witness_gender, complaint_witness_mobile, complaint_witness_email, complaint_witness_photo_path, complaint_witness_pan, complaint_witness_adhar, complaint_id, isWitness));
+                        }
+                    } catch (JSONException e) {
+                        System.out.println("error"+e.toString());
+                        userCallBack.onErro(e.toString());
+                        e.printStackTrace();
+                    }
+                    userCallBack.onSuccess(list);
+                }
+                else {
+                    list = new ArrayList<>();
+                    userCallBack.onSuccess(list);
+                }
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                System.out.println("error"+error.toString());
+                userCallBack.onErro(error.toString());
+                error.printStackTrace();
+            }
+        }){
+            @Nullable
+            @Override
+            protected Map<String, String> getParams() throws AuthFailureError {
+                HashMap hashMap = new HashMap();
+                hashMap.put("complaint_id",complaint_id);
+//                hashMap.put("complaint_id","1");
+                return hashMap;
+            }
+        };
+        RequestQueue queue = Volley.newRequestQueue(context);
+        queue.add(stringRequest);
+ }
+
+    public void GET_ONE_WITNESS_By_Witness_Id(String witness_id,Context context , Callback userCallBack){
+
+        StringRequest stringRequest = new StringRequest(Request.Method.POST, GET_ONE_WITNESS_By_Witness_Id_Url, new Response.Listener<String>() {
+            @Override
+            public void onResponse(String response) {
+
+                System.out.println("response = "+response.toString());
+                try {
+                    JSONArray jsonArray = new JSONArray(response);
+                    for ( int i = 0  ;i < 1 ; i++){
+                        JSONObject jsonObject = jsonArray.getJSONObject(i);
+                        String complaint_witness_id = jsonObject.getString("complaint_witness_id");
+                        String complaint_witness_fname = jsonObject.getString("complaint_witness_fname");
+                        String complaint_witness_mname = jsonObject.getString("complaint_witness_mname");
+                        String complaint_witness_lname = jsonObject.getString("complaint_witness_lname");
+                        String complaint_witness_address = jsonObject.getString("complaint_witness_address");
+                        String city_name = jsonObject.getString("city_name");
+                        String country_name = jsonObject.getString("country_name");
+                        String state_name = jsonObject.getString("state_name");
+                        String district_name = jsonObject.getString("district_name");
+                        String complaint_witness_dob = jsonObject.getString("complaint_witness_dob");
+                        String complaint_witness_gender = jsonObject.getString("complaint_witness_gender");
+                        String complaint_witness_mobile = jsonObject.getString("complaint_witness_mobile");
+                        String complaint_witness_email = jsonObject.getString("complaint_witness_email");
+                        String complaint_witness_photo_path = jsonObject.getString("complaint_witness_photo_path");
+                        String complaint_witness_pan = jsonObject.getString("complaint_witness_pan");
+                        String complaint_witness_adhar = jsonObject.getString("complaint_witness_adhar");
+                        String complaint_id = jsonObject.getString("complaint_id");
+                      //  String isWitness = "";
+                      String isWitness = jsonObject.getString("isWitness");
+
+                        list.add(new Witness(complaint_witness_id,complaint_witness_fname,complaint_witness_mname,
+                                complaint_witness_lname,complaint_witness_address,city_name,country_name,state_name,
+                                district_name,complaint_witness_dob,complaint_witness_gender,complaint_witness_mobile,
+                                complaint_witness_email,complaint_witness_photo_path,complaint_witness_pan,
+                                complaint_witness_adhar,complaint_id,isWitness,"complaint_table"));
+                    }
+                    System.out.println("sisze = "+list.size());
+                    userCallBack.onSuccess(list);
+                } catch (JSONException e) {
+                    userCallBack.onErro(e.toString());
+                    throw new RuntimeException(e);
+                }
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                userCallBack.onErro(error.toString());
+            }
+        }){
+            @Nullable
+            @Override
+            protected Map<String, String> getParams() throws AuthFailureError {
+                HashMap hashMap = new HashMap();
+                hashMap.put("complaint_witness_id",witness_id);
+                return hashMap;
+            }
+        };
+        RequestQueue requestQueue = Volley.newRequestQueue(context);
+        requestQueue.add(stringRequest);
+
+   }
+
     public void getAllWitness( String fir_id,Context context , Callback callback) {
         StringRequest stringRequest = new StringRequest(Request.Method.POST, getAllWitness_URL,
                 new Response.Listener<String>() {
@@ -75,7 +205,7 @@ public class WitnessDeo {
                                     String is_witness = jsonObject.getString("is_i_witness");
                                     String fir_id = jsonObject.getString("fir_id");
 
-                                    int investigation_witness_id = jsonObject.getInt("investigation_witness_id");
+                                    String investigation_witness_id = jsonObject.getString("investigation_witness_id");
                                     list.add(new Witness(country, state, district, city, fname, mname, lname, address,
                                             dob, email, adhar, gender,
                                             photo_path, pan, mobile, is_witness,
@@ -158,8 +288,9 @@ public class WitnessDeo {
                                 String mobile = jsonObject.getString("complaint_witness_mobile");
                                 String is_witness = jsonObject.getString("is_c_witness");
                                 String fir_id = jsonObject.getString("complaint_id");
-                                int investigation_witness_id = 000;
-                                list.add(witnessone = new Witness(country, state, district, city, fname, mname, lname, address,
+                                String investigation_witness_id = "000";
+                                list.add(witnessone = new Witness(country, state, district, city, fname, mname,
+                                        lname, address,
                                         dob, email, adhar, gender,
                                         photo_path, pan, mobile, is_witness,
                                         fir_id, investigation_witness_id));
