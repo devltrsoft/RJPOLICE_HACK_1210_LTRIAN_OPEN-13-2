@@ -7,13 +7,19 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 
+import com.ltrsoft.police_app.Classes.Witness;
+import com.ltrsoft.police_app.Model.WitnessDeo;
 import com.ltrsoft.police_app.R;
+import com.ltrsoft.police_app.interface1.Callback;
 import com.squareup.picasso.Picasso;
+
+import java.util.ArrayList;
 
 public class Witness3 extends Fragment {
     public Witness3() {}
@@ -25,6 +31,7 @@ public class Witness3 extends Fragment {
 
    private Button close;
     private ImageView back;
+    public ArrayList<Witness>list;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -52,25 +59,51 @@ public class Witness3 extends Fragment {
         district_name = v.findViewById(R.id.district);
         adhar = v.findViewById(R.id.addhar);
         Bundle bundle = getArguments();
-        if (bundle != null) {
-            wfname.setText(bundle.getString("witnessfame"));
-            wmname.setText(bundle.getString("witnessfame"));
-            wlname.setText(    bundle.getString("witnessmame"));
-            waddress.setText(  bundle.getString("witnesslame"));
-            wdob.setText(  bundle.getString("witnessfame"));
-            wgender.setText(  bundle.getString("complaint_witness_gender"));
-            wsub.setText(   bundle.getString("complaint_witness_mobile"));
-            email.setText( bundle.getString("complaint_witness_email"));
-            city_name.setText( bundle.getString("city_name"));
-            country_name.setText( bundle.getString("country_name"));
-            state_name.setText( bundle.getString("state_name"));
-            district_name.setText( bundle.getString("district_name"));
 
-            String imageUrl = bundle.getString("imag");
-            if (imageUrl != null) {
-                Picasso.get().load(imageUrl).into(imageView);
-            }
-        }
+        if (bundle.getString("type").equals("investigation")) {
+            String id = bundle.getString("witness_id");
+            Toast.makeText(getContext(), "from investigetion" + id, Toast.LENGTH_SHORT).show();
+            WitnessDeo witnessDeo = new WitnessDeo();
+            witnessDeo.getOneWitness(id, getContext(), new Callback() {
+                @Override
+                public void onSuccess(Object obj) {
+                    Toast.makeText(getContext(), "success", Toast.LENGTH_SHORT).show();
+                    list= (ArrayList<Witness>) obj;
+                    Witness witness = list.get(0);
+                    wfname.setText(witness.getFname());
+                    wmname.setText(witness.getMname());
+                    wlname.setText(witness.getLname());
+                    waddress.setText( witness.getAddress());
+                    wdob.setText(witness.getDob());
+                    wgender.setText( witness. getGender());
+                    wsub.setText(  witness. getMobile());
+                    email.setText( witness.getEmail());
+                    city_name.setText(witness. getCity());
+                    country_name.setText(witness.getCountry());
+                    state_name.setText(witness. getState());
+                    district_name.setText( witness.getDistrict());
+
+                    String imageUrl = bundle.getString("imag");
+                    if (imageUrl != null) {
+                        Picasso.get().load(imageUrl).into(imageView);
+                    }
+
+                }
+
+                @Override
+                public void onErro(String errro) {
+                    Toast.makeText(getContext(), "error "+errro.toString(), Toast.LENGTH_SHORT).show();
+                }
+            });
+
+        } else if (bundle.getString("type").equals("complaints")) {
+
+        Toast.makeText(getContext(), "from complaints", Toast.LENGTH_SHORT).show();
+    }
+
+//        if (bundle != null) {
+//
+//        }
     return v;
     }
 }

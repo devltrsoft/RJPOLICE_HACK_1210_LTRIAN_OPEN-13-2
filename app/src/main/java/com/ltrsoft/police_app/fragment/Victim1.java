@@ -83,7 +83,7 @@ public class Victim1 extends Fragment {
             recyclerView.setLayoutManager(layoutManager);
             recyclerView.setAdapter(adapter);
         }
-        victimDeo.getAllVictim(fir_id, getContext(), new Callback() {
+        victimDeo.getAllVictim(firId, getContext(), new Callback() {
             @Override
             public void onSuccess(Object obj) {
                 list = (ArrayList<Victim>) obj;

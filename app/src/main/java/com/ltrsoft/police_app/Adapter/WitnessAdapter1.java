@@ -1,5 +1,6 @@
 package com.ltrsoft.police_app.Adapter;
 
+import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -43,9 +44,10 @@ public class WitnessAdapter1 extends RecyclerView.Adapter<WitnessAdapter1.ViewHo
             @Override
             public void onClick(View v) {
                 AppCompatActivity activity = (AppCompatActivity) v.getContext();
-               // Toast.makeText(activity, "witness second", Toast.LENGTH_SHORT).show();
-
+                Bundle bundle = new Bundle();
+                bundle.putString("witness_id", "1");
                 Witness2 witnessSecond = new Witness2();
+                witnessSecond.setArguments(bundle);
                 activity.getSupportFragmentManager().beginTransaction().replace(R.id. container_main, witnessSecond).addToBackStack(null).commit();
             }
         });

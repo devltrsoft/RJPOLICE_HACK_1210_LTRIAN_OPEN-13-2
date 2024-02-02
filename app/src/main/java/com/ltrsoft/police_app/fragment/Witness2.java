@@ -32,6 +32,9 @@ public class Witness2 extends Fragment {
         if (actionBar != null) {
             actionBar.setTitle("Witness History By Date");
         }
+        Bundle bundle = getArguments();
+        String wid=bundle.getString("witness_id");
+        Toast.makeText(getContext(), "id="+wid, Toast.LENGTH_SHORT).show();
         WitnessDeo witnessDeo = new WitnessDeo();
         witnessDeo.getWitnessByDate(getContext(), new Callback() {
             @Override

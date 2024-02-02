@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
@@ -37,7 +38,8 @@ public class Victim2 extends Fragment {
          View view= inflater.inflate(R.layout.victim2, container, false);
         victim2=view.findViewById(R.id.victime2);
         ActionBar actionBar = ((AppCompatActivity) requireActivity()).getSupportActionBar();
-
+        Bundle bundle = getArguments();
+        Toast.makeText(getContext(), "id = "+bundle.getString("victim_id"), Toast.LENGTH_SHORT).show();
         if (actionBar != null) {
             actionBar.setTitle("Victim History By Dates");
         }
@@ -57,7 +59,6 @@ public class Victim2 extends Fragment {
 
             }
         });
-
         return view;
     }
 }

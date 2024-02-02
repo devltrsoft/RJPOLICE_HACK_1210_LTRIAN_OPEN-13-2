@@ -1,5 +1,6 @@
 package com.ltrsoft.police_app.Adapter;
 
+import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -18,13 +19,10 @@ import com.ltrsoft.police_app.fragment.Victim2;
 import java.util.ArrayList;
 
 public class VictimAdapter1 extends RecyclerView.Adapter<VictimAdapter1.ViewHolder> {
-
     private ArrayList<Victim> dataList;
-
     public VictimAdapter1(ArrayList<Victim> dataList) {
         this.dataList = dataList;
     }
-
     @NonNull
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
@@ -44,6 +42,9 @@ public class VictimAdapter1 extends RecyclerView.Adapter<VictimAdapter1.ViewHold
                 AppCompatActivity activity = (AppCompatActivity) v.getContext();
                 Victim2 victim2 = new Victim2();
                 //Toast.makeText(activity, "go to victime", Toast.LENGTH_SHORT).show();
+                Bundle bundle = new Bundle();
+                bundle.putString("victim_id",item.getInvestigation_victim_id());
+                victim2.setArguments(bundle);
                 activity.getSupportFragmentManager().beginTransaction()
                         .replace(R.id. container_main, victim2).addToBackStack(null)
                         .commit();

@@ -39,6 +39,7 @@ public class VictimDeo {
     String createvictim_url="https://rj.ltr-soft.com/public/police_api/investigation_victim/create_investigation_victim.php";
     String updatvictim_url="https://rj.ltr-soft.com/public/police_api/investigation_victim/update_investigation_victim.php";
     String getAllvictim_URL="https://rj.ltr-soft.com/public/police_api/investigation_victim/victim_fir_id.php";
+    String getOneInvstvictim_URL="https://rj.ltr-soft.com/public/police_api/investigation_victim/i_victim_id.php";
     public final static String GET_ALL_Complaint_VICTIM_URL_by_complaint_id = "https://rj.ltr-soft.com/public/police_api/data/complaint_victim_r.php";
     String searcgUrl="";
     public ArrayList<Victim> list = new ArrayList<>();
@@ -537,5 +538,66 @@ public class VictimDeo {
 
 
         return delete_victim;
+    }
+    public void getOneVictim( String victim_id,Context context,Callback callback) {
+        StringRequest stringRequest = new StringRequest(Request.Method.POST, getOneInvstvictim_URL,
+                new Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String response) {
+                            try {
+                                JSONArray jsonArray = new JSONArray(response);
+                                for (int i = 0; i < jsonArray.length(); i++) {
+                                    JSONObject jsonObject = jsonArray.getJSONObject(i);
+
+                                    String country = jsonObject.getString("country_name");
+                                    String state = jsonObject.getString("state_name");
+                                    String district = jsonObject.getString("district_name");
+                                    String city = jsonObject.getString("city_name");
+                                    String fname = jsonObject.getString("victim_fname");
+                                    String mname = jsonObject.getString("victim_mname");
+                                    String lname = jsonObject.getString("victim_lname");
+                                    String address = jsonObject.getString("victim_address");
+
+                                    String dob = jsonObject.getString("victim_dob");
+                                    String email = jsonObject.getString("victim_email");
+                                    String adhar = jsonObject.getString("victim_adhar");
+                                    String gender = jsonObject.getString("victim_gender");
+
+                                    String photo_path = jsonObject.getString("victim_photo");
+                                    String pan = jsonObject.getString("victim_pan");
+                                    String mobile = jsonObject.getString("victim_mobile_no");
+                                    String is_suspect = jsonObject.getString("is_i_victim");
+                                    String fir_id =jsonObject.getString("fir_id");
+                                    String investigation_victim_id = jsonObject.getString("investigation_victim_id");
+                                    list.add(new Victim(country, state, district, city, fname, mname, lname, address,
+                                            dob, email, adhar, gender,
+                                            photo_path, pan, mobile, is_suspect,
+                                            fir_id,investigation_victim_id ));
+                                }
+                                callback.onSuccess(list);
+                            } catch (JSONException e) {
+                                callback.onErro(e.toString());
+                                e.printStackTrace();
+                                throw new RuntimeException(e);
+                            }
+                    }
+                }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                callback.onErro(error.toString());
+                error.printStackTrace();
+            }
+        }) {
+            @Nullable
+            @Override
+            protected Map<String, String> getParams() throws AuthFailureError {
+                HashMap<String, String> map = new HashMap<>();
+//                map.put("investigation_victim_id",victim_id);
+                map.put("investigation_victim_id","1");
+                return map;
+            }
+        };
+        RequestQueue requestQueue = Volley.newRequestQueue(context);
+        requestQueue.add(stringRequest);
     }
 }

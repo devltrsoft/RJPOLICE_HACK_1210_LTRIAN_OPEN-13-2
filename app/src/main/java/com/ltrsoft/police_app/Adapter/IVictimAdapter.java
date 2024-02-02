@@ -1,5 +1,6 @@
 package com.ltrsoft.police_app.Adapter;
 
+import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,6 +16,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.ltrsoft.police_app.Classes.Victim;
 import com.ltrsoft.police_app.R;
+import com.ltrsoft.police_app.fragment.Victim3;
 
 
 import java.util.ArrayList;
@@ -67,12 +69,15 @@ public class IVictimAdapter extends RecyclerView.Adapter<IVictimAdapter.ViewHold
         holder.cardView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                AppCompatActivity activity = new AppCompatActivity();
-
-           //  activity.getSupportFragmentManager().beginTransaction().replace(R.id.main_container, new ).commit();
+                AppCompatActivity activity = (AppCompatActivity) view.getContext();
+                Victim3 w = new Victim3();
+                Bundle bundle=new Bundle();
+                bundle.putString("victim_id", "1");
+                bundle.putString("type", "complaints");
+                w.setArguments(bundle);
+             activity.getSupportFragmentManager().beginTransaction().replace(R.id.main_container, w ).commit();
             }
         });
-
     }
 
     @Override
