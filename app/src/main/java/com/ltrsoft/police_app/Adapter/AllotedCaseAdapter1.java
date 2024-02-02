@@ -43,11 +43,12 @@ public class AllotedCaseAdapter1 extends RecyclerView.Adapter<AllotedCaseAdapter
         holder.cardView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(v.getContext(), "hiii", Toast.LENGTH_SHORT).show();
 
                 AppCompatActivity activity = (AppCompatActivity) v.getContext();
                 Alloted_case2 allotedCase2=new Alloted_case2();
-
+                 Bundle bundle=new Bundle();
+                 bundle.putString("complaint_id",item.getId());
+                 allotedCase2.setArguments(bundle);
          activity.getSupportFragmentManager().beginTransaction().replace(R.id.container_main,allotedCase2).addToBackStack(null
          ).commit();
 

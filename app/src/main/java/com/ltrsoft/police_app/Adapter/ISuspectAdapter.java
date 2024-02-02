@@ -58,7 +58,8 @@ public class ISuspectAdapter extends RecyclerView.Adapter<ISuspectAdapter.ViewHo
             @Override
             public void onClick(View view) {
                 AppCompatActivity activity = new AppCompatActivity();
-//                activity.getSupportFragmentManager().beginTransaction().replace(R.id.main_container, new ).commit();
+                activity.getSupportFragmentManager().beginTransaction().replace(R.id.container_main, new AddSuspect())
+                        .commit();
             }
         });
 

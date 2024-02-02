@@ -4,7 +4,12 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".Police_Complain_History.Suspect_History_Dashboard">
+    >
+    <Spinner
+        android:layout_width="match_parent"
+        android:layout_height="55dp"
+        android:id="@+id/fir_id_spiiner"/>
+
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/suspectHistoryRecycler"
         android:layout_width="match_parent"

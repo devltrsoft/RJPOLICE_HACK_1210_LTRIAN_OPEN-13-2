@@ -1,5 +1,6 @@
 package com.ltrsoft.police_app.Model;
 
+import android.app.Activity;
 import android.content.Context;
 import android.widget.Toast;
 
@@ -14,6 +15,7 @@ import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.ltrsoft.police_app.Classes.Evidance;
 import com.ltrsoft.police_app.interface1.Callback;
+import com.ltrsoft.police_app.utils.UserDataAccess;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -30,8 +32,7 @@ public class EvidanceDeo {
     Evidance create_evidance;
     Evidance update_evidance;
     Evidance delete_evidance;
-    String Police_id="1";
-    String getoneEvidance_URL="";
+     String getoneEvidance_URL="";
 
     String Search_URL="";
     String delete_URL="";
@@ -176,8 +177,11 @@ public class EvidanceDeo {
                map.put("fir_id", String.valueOf(insertevidance.getFir_id()));
                map.put("evidance_name",insertevidance.getEvidance_name());
                map.put("evidance_description",insertevidance.getDiscription());
-               map.put("police_id",Police_id);
-               map.put("evidance_photos_path",insertevidance.getEvidance_photos_path());
+                UserDataAccess userDataAccess=new UserDataAccess();
+                Activity activity=(Activity)context;
+
+                map.put("police_id",userDataAccess.getPoliceId(activity));
+                map.put("evidance_photos_path",insertevidance.getEvidance_photos_path());
                //map.put("evidance_photos_description",insertevidance.getEvidance_photos_description());
                  return map;
             }
@@ -211,8 +215,10 @@ public class EvidanceDeo {
                 map.put("fir_id", String.valueOf(updateevidance.getFir_id()));
                 map.put("evidance_name",updateevidance.getEvidance_name());
                 map.put("evidance_description",updateevidance.getDiscription());
-                map.put("police_id",Police_id);
-                map.put("evidance_photos_path",updateevidance.getEvidance_photos_path());
+                UserDataAccess userDataAccess=new UserDataAccess();
+                Activity activity=(Activity)context;
+
+                map.put("police_id",userDataAccess.getPoliceId(activity));                map.put("evidance_photos_path",updateevidance.getEvidance_photos_path());
                 map.put("evidance_photos_description",updateevidance.getEvidance_photos_description());
                 return map;
             }

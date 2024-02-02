@@ -1,5 +1,6 @@
 package com.ltrsoft.police_app.Model;
 
+import android.app.Activity;
 import android.content.Context;
 import android.widget.Toast;
 
@@ -14,6 +15,7 @@ import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.ltrsoft.police_app.Classes.Suspect;
 import com.ltrsoft.police_app.interface1.Callback;
+import com.ltrsoft.police_app.utils.UserDataAccess;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -31,10 +33,11 @@ public class SuspectDeo {
     Suspect delete_suspect;
     String Police_id="1";
     String getoneSuspect_URL="https://rj.ltr-soft.com/public/police_api/data/complaint_by_date.php";
+    String getSuspect_by_complaint_id_url="https://rj.ltr-soft.com/public/police_api/data/suspect_suspect_read.php";
 
      String Search_URL="";
      String delete_URL="";
-
+       String read_suspect_by_fir_id="rj.ltr-soft.com/public/police_api/Investigation_suspect/read_investigation_suspectall.php";
     String  createsuspect_url="https://rj.ltr-soft.com/public/police_api/Investigation_suspect/create_investigation_suspect.php";
   String updatesuspect_url="rj.ltr-soft.com/public/police_api/Investigation_suspect/update_investigation_suspect.php";
     String getAllSuspect_URL="https://rj.ltr-soft.com/public/police_api/Investigation_suspect/read_investigation_suspect.php";
@@ -43,8 +46,72 @@ public class SuspectDeo {
     public ArrayList<Suspect>list = new ArrayList<>();
 
     public ArrayList<String> search_list=new ArrayList<String>();
+    public void get_Suspect_by_complaint_id(String complaint_id, Context context, Callback userCallBack){
 
-     public void getAllSuspect( Context context,Callback callback) {
+        StringRequest stringRequest = new StringRequest(Request.Method.POST, getSuspect_by_complaint_id_url, new Response.Listener<String>() {
+            @Override
+            public void onResponse(String response) {
+                System.out.println("response "+response.toString());
+                if (!response.isEmpty()&&response.length()>1) {
+                    try {
+                        JSONArray jsonArray = new JSONArray(response);
+                        for (int i = 0; i < jsonArray.length(); i++) {
+                            JSONObject jsonObject = jsonArray.getJSONObject(i);
+                            String complaint_suspect_fname = jsonObject.getString("complaint_suspect_fname");
+                            String complaint_suspect_mname = jsonObject.getString("complaint_suspect_mname");
+                            String complaint_suspect_lname = jsonObject.getString("complaint_suspect_lname");
+                            String complaint_suspect_gender = jsonObject.getString("complaint_suspect_gender");
+                            String complaint_suspect_mobile_no = jsonObject.getString("complaint_suspect_mobile_no");
+                            String complaint_suspect_email = jsonObject.getString("complaint_suspect_email");
+                            String complaint_suspect_adhar = jsonObject.getString("complaint_suspect_adhar");
+                            String country_name = jsonObject.getString("country_name");
+                            String city_name = jsonObject.getString("city_name");
+                            String state_name = jsonObject.getString("state_name");
+                            String district_name = jsonObject.getString("district_name");
+                            String complaint_suspect_dob = jsonObject.getString("complaint_suspect_dob");
+                            String isSuspect = jsonObject.getString("is_c_suspect");
+                            String photourl = jsonObject.getString("complaint_suspect_photo_path");
+                            String complaint_suspect_id = jsonObject.getString("complaint_suspect_id");
+                            String complaint_id = jsonObject.getString("complaint_id");
+
+                            list.add(new Suspect(complaint_suspect_fname, complaint_suspect_mname, complaint_suspect_lname, complaint_suspect_dob
+                                    , complaint_suspect_gender, complaint_suspect_mobile_no, complaint_suspect_email, complaint_suspect_adhar,
+                                    country_name, state_name, district_name, city_name, isSuspect, photourl, complaint_suspect_id, complaint_id));
+                        }
+                    } catch (JSONException e) {
+                        userCallBack.onErro(" " + e.toString());
+                        throw new RuntimeException(e);
+                    }
+                    userCallBack.onSuccess(list);
+                }
+                else {
+                    list = new ArrayList<>();
+                    userCallBack.onSuccess(list);
+                }
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                userCallBack.onErro(error.toString());
+                System.out.println("error "+error.toString());
+                error.printStackTrace();
+            }
+        }){
+            @Nullable
+            @Override
+            protected Map<String, String> getParams() throws AuthFailureError {
+                HashMap hashMap = new HashMap();
+                hashMap.put("complaint_id",complaint_id);
+//                hashMap.put("complaint_id","1");
+                return hashMap;
+            }
+        };
+        RequestQueue requestQueue = Volley.newRequestQueue(context);
+        requestQueue.add(stringRequest);
+}
+
+
+    public void getAllSuspect( Context context,Callback callback) {
 
          StringRequest stringRequest = new StringRequest(Request.Method.POST, getAllSuspect_URL,
                  new Response.Listener<String>() {
@@ -105,9 +172,12 @@ public class SuspectDeo {
          RequestQueue requestQueue = Volley.newRequestQueue(context);
          requestQueue.add(stringRequest);
      }
-        public void getSuspectByDate(String  craeted_at, Context context ,Callback callback){
+     public  void getsuspect_by_Fir_id(String fir_id,Context context,Callback callback){
 
-         StringRequest stringRequest=new StringRequest(Request.Method.POST, getoneSuspect_URL,
+    }
+    public void getSuspectByDate(String  craeted_at, Context context ,Callback callback){
+
+         StringRequest stringRequest=new StringRequest(Request.Method.POST,  getoneSuspect_URL,
                  new Response.Listener<String>() {
                      @Override
                      public void onResponse(String response) {
@@ -173,6 +243,74 @@ public class SuspectDeo {
 
          };
 
+     public  void  getSuspect_By_Complaint_id(String complaint_id,Context context,Callback callback){
+
+             StringRequest stringRequest=new StringRequest(Request.Method.POST, getoneSuspect_URL,
+                     new Response.Listener<String>() {
+                         @Override
+                         public void onResponse(String response) {
+                             System.out.println("response = "+response.toString());
+                             try{
+                                 JSONArray jsonArray=new JSONArray(response);
+                                 for (int i = 0; i < jsonArray.length(); i++) {
+                                     JSONObject jsonObject = jsonArray.getJSONObject(i);
+                                     String country = jsonObject.getString("country_name");
+
+                                     String state = jsonObject.getString("state_name");
+                                     String district = jsonObject.getString("district_name");
+                                     String city = jsonObject.getString("city_name");
+                                     String fname = jsonObject.getString("complaint_suspect_fname");
+                                     String mname = jsonObject.getString("complaint_suspect_mname");
+                                     String lname = jsonObject.getString("complaint_suspect_lname");
+                                     String address = jsonObject.getString("complaint_suspect_address");
+
+                                     String dob = jsonObject.getString("complaint_suspect_dob");
+                                     String email = jsonObject.getString("complaint_suspect_email");
+                                     String adhar = jsonObject.getString("complaint_suspect_adhar");
+                                     String gender = jsonObject.getString("complaint_suspect_gender");
+
+                                     String photo_path = jsonObject.getString("complaint_suspect_photo_path");
+                                     String pan = jsonObject.getString("complaint_suspect_pan");
+                                     String mobile = jsonObject.getString("complaint_suspect_mobile_no");
+                                     String is_suspect = jsonObject.getString("is_c_suspect");
+                                     String fir_id =jsonObject.getString("cmp_id");
+                                     String complaint_suspect_id =" jsonObject.getString(complaint_suspect_id);";
+
+//                            String investigation_suspect_id = jsonObject.getString(complaint_suspect_id);
+                                     list.add(new Suspect(country, state, district, city, fname, mname, lname, address,
+                                             dob, email, adhar, gender,
+                                             photo_path, pan, mobile, is_suspect,
+                                             fir_id, ""));
+                                 }
+                                 callback.onSuccess(list);
+                             }
+                             catch ( Exception e){
+                                 callback.onErro(e.toString());
+                                 e.printStackTrace();
+                                 throw new RuntimeException(e);
+                             }
+                         }
+                     },
+                     new Response.ErrorListener() {
+                         @Override
+                         public void onErrorResponse(VolleyError error) {
+                             callback.onErro(error.toString());
+                             error.printStackTrace();
+                         }
+                     }){
+                 @Nullable
+                 @Override
+                 protected Map<String, String> getParams() throws AuthFailureError {
+                     HashMap <String,  String> map=new HashMap<>();
+                     map.put("created_date","2023-12-25" );
+                     return map;
+                 }
+             };
+             RequestQueue requestQueue=Volley.newRequestQueue(context);
+             requestQueue.add(stringRequest);
+
+         }
+
       public Suspect createsuspect(Suspect insertsuspect,Context context,Callback callback){
           StringRequest stringRequest = new StringRequest(Request.Method.POST, createsuspect_url ,
                   new Response.Listener<String>() {
@@ -230,7 +368,10 @@ public class SuspectDeo {
                   map.put("suspect_address",insertsuspect. getAddress());
                  // map.put("suspect_pan_no",insertsuspect.  getPan());
                   map.put("suspect_photo",insertsuspect.  getPhoto_path());
-                    map.put("police_id","1");
+                  UserDataAccess userDataAccess=new UserDataAccess();
+                  Activity activity=(Activity)context;
+
+                    map.put("police_id",userDataAccess.getPoliceId(activity));
 
                   return map;
               }
@@ -283,8 +424,10 @@ public class SuspectDeo {
                map.put("suspect_address",updatesuspect. getAddress());
                map.put("suspect_pan_no",updatesuspect.  getPan());
                map.put("suspect_photo",updatesuspect.  getPhoto_path());
-               map.put("police_id",Police_id);
-              map.put("investigation_suspect_id", String.valueOf(updatesuspect.getInvestigation_suspect_id()));
+               UserDataAccess userDataAccess=new UserDataAccess();
+               Activity activity=(Activity)context;
+
+               map.put("police_id",userDataAccess.getPoliceId(activity));              map.put("investigation_suspect_id", String.valueOf(updatesuspect.getInvestigation_suspect_id()));
                return map;
            }
        };

@@ -1,5 +1,6 @@
 package com.ltrsoft.police_app.Model;
 
+import android.app.Activity;
 import android.content.Context;
 import android.widget.Toast;
 
@@ -14,6 +15,7 @@ import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.ltrsoft.police_app.Classes.Notification;
 import com.ltrsoft.police_app.interface1.Callback;
+import com.ltrsoft.police_app.utils.UserDataAccess;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -25,13 +27,11 @@ import java.util.Map;
 
 public class NotificationDeo {
 
-    Integer notification_id=1;
-     Notification notificationeone;
+      Notification notificationeone;
     Notification create_notification;
     Notification update_notification;
     Notification delete_notification;
-    String Police_id="1";
-    String getonotification_URL="https://rj.ltr-soft.com/public/police_api/notification/last_notification.php";
+     String getonotification_URL="https://rj.ltr-soft.com/public/police_api/notification/last_notification.php";
 
     String Search_URL="";
     String delete_URL="";
@@ -183,8 +183,10 @@ public class NotificationDeo {
             protected Map<String, String> getParams() throws AuthFailureError {
                 HashMap<String, String> map = new HashMap<>();
                 map.put("notification_title",insertnotification.getNotification_title());
-                map.put("station_id", "1");
-                map.put("notification_description",insertnotification.getNotification_description());
+                UserDataAccess userDataAccess=new UserDataAccess();
+                Activity activity=(Activity)context;
+
+                map.put("station_id",userDataAccess.getStationId(activity));                map.put("notification_description",insertnotification.getNotification_description());
                 // map.put("police_id",Police_id);
 //                map.put("evidance_photos_path",insertnews.getNews_photo_path());
 //                map.put("evidance_photos_description",insertnews.getNews_description());
@@ -220,8 +222,10 @@ public class NotificationDeo {
                 HashMap<String, String> map = new HashMap<>();
                 map.put("notification_id", String.valueOf(updatenotification.getNotification_id()));
                 map.put("notification_title",updatenotification.getNotification_title());
-                map.put("station_id", "1");
-                map.put("notification_description",updatenotification.getNotification_description());
+                UserDataAccess userDataAccess=new UserDataAccess();
+                Activity activity=(Activity)context;
+
+                map.put("station_id",userDataAccess.getStationId(activity));                map.put("notification_description",updatenotification.getNotification_description());
                 return map;
             }
         };

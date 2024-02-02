@@ -1,5 +1,6 @@
 package com.ltrsoft.police_app.Model;
 
+import android.app.Activity;
 import android.content.Context;
 import android.widget.Toast;
 
@@ -13,6 +14,7 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.ltrsoft.police_app.Classes.Investigation;
+import com.ltrsoft.police_app.utils.UserDataAccess;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -23,13 +25,11 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class InvestigationDeo {
-    String investigation_id,suspect_id;
-    Investigation oneinvestigation;
+     Investigation oneinvestigation;
     Investigation create_investigation;
     Investigation update_investigation;
     Investigation delete_investigation;
-    String Police_id="1";
-    String getoneInvestigation_URL="https://rj.ltr-soft.com//police_api/investigation/read_fir_id.php";
+     String getoneInvestigation_URL="https://rj.ltr-soft.com//police_api/investigation/read_fir_id.php";
 
     String Search_URL="";
     String delete_URL="";
@@ -162,20 +162,20 @@ public class InvestigationDeo {
                     @Override
                     public void onResponse(String response) {
                         System.out.println("response"+response.toString());
-                        try {
-                            JSONArray jsonArray=new JSONArray(response);
-                            for(int i=0;i<jsonArray.length();i++){
-                                JSONObject jsonObject=jsonArray.getJSONObject(i);
-                                String    fir_id= jsonObject.getString("fir_id");
-
-                            }
-
-
-
-                        }catch (Exception e){
-                            e.printStackTrace();
-
-                        }
+//                        try {
+//                            JSONArray jsonArray=new JSONArray(response);
+//                            for(int i=0;i<jsonArray.length();i++){
+//                                JSONObject jsonObject=jsonArray.getJSONObject(i);
+//                                String    fir_id= jsonObject.getString("fir_id");
+//
+//                            }
+//
+//
+//
+//                        }catch (Exception e){
+//                            e.printStackTrace();
+//
+//                        }
 
 
                     }
@@ -192,7 +192,11 @@ public class InvestigationDeo {
 
 
                 map.put("investigation_id", String.valueOf( insertinvestigation.getInvestigation_id()));
-                 map.put("fir_id", String.valueOf(insertinvestigation. getFir_id()));
+                UserDataAccess userDataAccess=new UserDataAccess();
+                Activity activity=(Activity)context;
+
+                map.put("fir_id",userDataAccess.getFir_id(activity));
+
                 map.put("complaint_id", String.valueOf(insertinvestigation. getComplaint_id()));
                 map.put("start_date",insertinvestigation.getStart_date());
                 //insertsuspect.getAddress());
@@ -239,7 +243,10 @@ public class InvestigationDeo {
                 HashMap<String, String> map = new HashMap<>();
 
                 map.put("investigation_id", String.valueOf( updateinvestigation.getInvestigation_id()));
-                map.put("fir_id", String.valueOf(updateinvestigation. getFir_id()));
+                UserDataAccess userDataAccess=new UserDataAccess();
+                Activity activity=(Activity)context;
+
+                map.put("fir_id",userDataAccess.getFir_id(activity));
                 map.put("complaint_id", String.valueOf(updateinvestigation. getComplaint_id()));
                 map.put("start_date",updateinvestigation.getStart_date());
                 //insertsuspect.getAddress());

@@ -1,5 +1,6 @@
 package com.ltrsoft.police_app.Model;
 
+import android.app.Activity;
 import android.content.Context;
 import android.widget.Toast;
 
@@ -14,6 +15,7 @@ import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
  import com.ltrsoft.police_app.Classes.Victim;
 import com.ltrsoft.police_app.interface1.Callback;
+import com.ltrsoft.police_app.utils.UserDataAccess;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -30,8 +32,7 @@ public class VictimDeo {
     Victim create_victim;
     Victim update_victim;
     Victim delete_victim;
-    String Police_id="1";
-    String getoneVictim_URL="https://rj.ltr-soft.com/public/police_api/data/complaint_by_date.php";
+     String getoneVictim_URL="https://rj.ltr-soft.com/public/police_api/data/complaint_by_date.php";
 
     String Search_URL="";
     String delete_URL="";
@@ -162,8 +163,69 @@ public class VictimDeo {
         };
         RequestQueue requestQueue=Volley.newRequestQueue(context);
         requestQueue.add(stringRequest);
-    };
+    }
+    public void getVictimByComplaint_id(String complaint_id,Context context,Callback callback ){
 
+        StringRequest stringRequest=new StringRequest(Request.Method.POST, getoneVictim_URL,
+                new Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String response) {
+                        try{
+                            JSONArray jsonArray=new JSONArray(response);
+                            for (int i = 0; i < jsonArray.length(); i++) {
+                                JSONObject jsonObject = jsonArray.getJSONObject(i);
+                                String country = jsonObject.getString("country_name");
+                                String state = jsonObject.getString("state_name");
+                                String district = jsonObject.getString("district_name");
+                                String city = jsonObject.getString("city_name");
+                                String fname = jsonObject.getString("complaint_victim_fname");
+                                String mname = jsonObject.getString("complaint_victim_mname");
+                                String lname = jsonObject.getString("complaint_victim_lname");
+                                String address = jsonObject.getString("address");
+
+                                String dob = jsonObject.getString("dob");
+                                String email = jsonObject.getString("email");
+                                String adhar = jsonObject.getString("aadhar");
+                                String gender = jsonObject.getString("gender");
+
+                                String photo_path = jsonObject.getString("photo");
+                                String pan = jsonObject.getString("mobile");
+                                String mobile = jsonObject.getString("mobile");
+                                String is_suspect = jsonObject.getString("is_c_victim");
+                                String fir_id = "100" ;//jsonObject.getString("fir_id");
+                                String investigation_suspect_id =  "100";//jsonObject.getString("investigation_suspect_id");
+                                list.add(new Victim(country, state, district, city, fname, mname, lname, address,
+                                        dob, email, adhar, gender,
+                                        photo_path, pan, mobile, is_suspect,
+                                        fir_id, investigation_suspect_id));
+                            }
+                            callback.onSuccess(list);
+                        }
+                        catch ( Exception e){
+                            callback.onErro(e.toString());
+                            e.printStackTrace();
+                            throw new RuntimeException(e);
+                        }
+                    }
+                },
+                new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        callback.onErro(error.toString());
+                        error.printStackTrace();
+                    }
+                }){
+            @Nullable
+            @Override
+            protected Map<String, String> getParams() throws AuthFailureError {
+                HashMap <String,  String> map=new HashMap<>();
+                map.put("complaint_id","complaint_id");
+                return map;
+            }
+        };
+        RequestQueue requestQueue=Volley.newRequestQueue(context);
+        requestQueue.add(stringRequest);
+    };
     public Victim createvictim(Victim inservictim, Context context, Callback callback){
         StringRequest stringRequest = new StringRequest(Request.Method.POST, createvictim_url ,
                 new Response.Listener<String>() {
@@ -217,8 +279,10 @@ public class VictimDeo {
                 map.put("victim_address",inservictim. getAddress());
                 map.put("victim_pan_no",inservictim.  getPan());
                 map.put("victim_photo",inservictim.  getPhoto_path());
-                map.put("police_id",Police_id);
+                UserDataAccess userDataAccess=new UserDataAccess();
+                Activity activity=(Activity)context;
 
+                map.put("police_id",userDataAccess.getPoliceId(activity));
                 return map;
             }
         };
@@ -270,7 +334,10 @@ public class VictimDeo {
                 map.put("victim_address",updatevictim. getAddress());
                 map.put("victim_pan_no",updatevictim.  getPan());
                 map.put("victim_photo",updatevictim.  getPhoto_path());
-                map.put("police_id",Police_id);
+                UserDataAccess userDataAccess=new UserDataAccess();
+                Activity activity=(Activity)context;
+
+                map.put("police_id",userDataAccess.getPoliceId(activity));
                 return map;
             }
         };

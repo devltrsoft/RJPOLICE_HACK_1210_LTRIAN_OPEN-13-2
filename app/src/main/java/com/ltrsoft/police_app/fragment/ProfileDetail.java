@@ -1,5 +1,6 @@
 package com.ltrsoft.police_app.fragment;
 
+import android.app.Activity;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -15,6 +16,7 @@ import com.ltrsoft.police_app.Classes.Police;
 import com.ltrsoft.police_app.Model.PoliceDeo;
 import com.ltrsoft.police_app.R;
 import com.ltrsoft.police_app.interface1.Callback;
+import com.ltrsoft.police_app.utils.UserDataAccess;
 
 import java.util.ArrayList;
 
@@ -29,7 +31,7 @@ public class ProfileDetail extends Fragment {
             ,police_email,police_gender,police_dob,police_mobile1,police_mobile2,police_address,
             position_name,city_name,district_name,state_name,police_adhar;
     private Button button;
-     Integer Police_id=1;
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -53,7 +55,10 @@ public class ProfileDetail extends Fragment {
         state_name = view.findViewById(R.id.stateid);
         police_adhar = view . findViewById(R.id.policeadhar);
         PoliceDeo policeDeo=new PoliceDeo();
-        PoliceDeo.getonepolice(new Police(Police_id).setPolice_id(), getContext(), new Callback() {
+        UserDataAccess access1 = new UserDataAccess();
+        Activity activity1 =(Activity)getContext();
+       String Police_id= access1.getPoliceId( activity1);
+         PoliceDeo.getonepolice(new Police(Police_id).setPolice_id(), getContext(), new Callback() {
             @Override
             public void onSuccess(Object obj) {
             Police police = (Police)obj;

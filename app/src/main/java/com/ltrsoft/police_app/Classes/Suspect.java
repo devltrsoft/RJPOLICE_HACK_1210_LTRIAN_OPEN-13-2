@@ -5,7 +5,7 @@ public class Suspect {
     String country,state,district,city,fname,mname,lname,address,
              dob,email,adhar, gender,
             photo_path,pan,mobile,is_suspect;
-       String  fir_id,investigation_suspect_id;
+       String  fir_id,investigation_suspect_id,complaint_id;
 
     public Suspect(String fname, String address, String mobile) {
         this.fname = fname;
@@ -53,6 +53,29 @@ public class Suspect {
 
     }
 
+    public Suspect(String complaintSuspectFname, String complaintSuspectMname, String complaintSuspectLname,
+                   String complaintSuspectDob, String complaintSuspectGender, String complaintSuspectMobileNo,
+                   String complaintSuspectEmail, String complaintSuspectAdhar, String countryName,
+                   String stateName, String districtName, String cityName, String isSuspect, String photourl,
+                   String complaintSuspectId, String complaintId) {
+        this.country = countryName;
+        this.state = stateName;
+        this.district = districtName;
+        this.city = cityName;
+        this.fname = complaintSuspectFname;
+        this.mname = complaintSuspectMname;
+        this.lname = complaintSuspectLname;
+         this.dob = complaintSuspectDob;
+        this.email = complaintSuspectEmail;
+        this.adhar = complaintSuspectAdhar;
+        this.gender = complaintSuspectGender;
+        this.photo_path = photourl;
+        this.pan = pan;
+        this.mobile = complaintSuspectMobileNo;
+        this.is_suspect = isSuspect;
+        this.fir_id = fir_id;
+        this.investigation_suspect_id =  complaintSuspectId;
+    }
 
 
     public String getCountry() {
@@ -194,6 +217,10 @@ public class Suspect {
     public String getInvestigation_suspect_id() {
         return investigation_suspect_id;
     }
+    public void setComplaint_id(String complaint_id) {
+        this.complaint_id = complaint_id;
+    }
+
 
     public void setInvestigation_suspect_id(String investigation_suspect_id) {
         this.investigation_suspect_id = investigation_suspect_id;

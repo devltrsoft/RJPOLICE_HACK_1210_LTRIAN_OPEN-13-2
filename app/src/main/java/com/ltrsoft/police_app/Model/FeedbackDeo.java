@@ -181,7 +181,7 @@ public class FeedbackDeo {
                 HashMap<String, String> map = new HashMap<>();
                 UserDataAccess userDataAccess =new UserDataAccess();
 
-                map.put("police_id",userDataAccess.getUserId(activity));
+                map.put("police_id",userDataAccess.getPoliceId(activity));
                 map.put("overall_satisfaction", String.valueOf(insertfeedback.getOverallsatisfication()));
                 map.put("average_prating", String.valueOf(insertfeedback.getAvarage_prating()));
                 map.put("relevance_info", String.valueOf(insertfeedback.getRelavance_info()));

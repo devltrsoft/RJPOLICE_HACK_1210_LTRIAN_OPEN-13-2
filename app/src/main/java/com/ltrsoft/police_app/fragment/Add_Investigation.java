@@ -22,15 +22,22 @@ import android.widget.Spinner;
 import android.widget.Toast;
 
 import com.google.android.material.navigation.NavigationView;
+import com.ltrsoft.police_app.Adapter.EvidenceAdapter1;
 import com.ltrsoft.police_app.Adapter.IEvidenceAdapter;
 import com.ltrsoft.police_app.Adapter.ISuspectAdapter;
 import com.ltrsoft.police_app.Adapter.IVictimAdapter;
 import com.ltrsoft.police_app.Adapter.IWitnessAdapter;
+import com.ltrsoft.police_app.Adapter.SuspectAdapter1;
+import com.ltrsoft.police_app.Adapter.WitnessAdapter1;
 import com.ltrsoft.police_app.Classes.Evidance;
 import com.ltrsoft.police_app.Classes.Suspect;
 import com.ltrsoft.police_app.Classes.Victim;
 import com.ltrsoft.police_app.Classes.Witness;
+import com.ltrsoft.police_app.Model.EvidanceDeo;
+import com.ltrsoft.police_app.Model.SuspectDeo;
+import com.ltrsoft.police_app.Model.WitnessDeo;
 import com.ltrsoft.police_app.R;
+import com.ltrsoft.police_app.interface1.Callback;
 
 import java.io.FileInputStream;
 import java.io.IOException;
@@ -109,7 +116,7 @@ public class Add_Investigation extends Fragment {
             public void onClick(View view) {
                 getActivity().getSupportFragmentManager()
                         .beginTransaction()
-                        .replace(R.id.main_container, new AddSuspect())
+                        .replace(R.id.container_main, new AddSuspect())
                         .addToBackStack(null)
                         .commit();
 
@@ -120,7 +127,7 @@ public class Add_Investigation extends Fragment {
             public void onClick(View view) {
                 getActivity().getSupportFragmentManager()
                         .beginTransaction()
-                        .replace(R.id.main_container, new AddVictim())
+                        .replace(R.id.container_main, new AddVictim())
                         .addToBackStack(null)
                         .commit();
 
@@ -131,7 +138,7 @@ public class Add_Investigation extends Fragment {
             public void onClick(View view) {
                 getActivity().getSupportFragmentManager()
                         .beginTransaction()
-                        .replace(R.id.main_container, new AddWitness())
+                        .replace(R.id.container_main, new AddWitness())
                         .addToBackStack(null)
                         .commit();
 
@@ -142,7 +149,7 @@ public class Add_Investigation extends Fragment {
             public void onClick(View view) {
                 getActivity().getSupportFragmentManager()
                         .beginTransaction()
-                        .replace(R.id.main_container, new AddEvidence())
+                        .replace(R.id.container_main, new AddEvidence())
                         .addToBackStack(null)
                         .commit();
 
@@ -170,8 +177,11 @@ public class Add_Investigation extends Fragment {
                 addButton.setVisibility( newVisibility);
                // mike.setVisibility( newVisibility);
                 addRecomandation.setVisibility( newVisibility);
-                addRecomandationButton.setVisibility( newVisibility);
+              //  addRecomandationButton.setVisibility( newVisibility);
                 yourSpinner.setVisibility( newVisibility);
+                disc.setVisibility(newVisibility);
+                reco.setVisibility(newVisibility);
+
                 closeFile.setVisibility( newVisibility);
                 int oppositeVisibility = (newVisibility == View.VISIBLE) ? View.GONE : View.VISIBLE;
                 Victim_Recycler.setVisibility(oppositeVisibility);
@@ -191,9 +201,11 @@ public class Add_Investigation extends Fragment {
                 addButton.setVisibility( newVisibility);
                 //mike.setVisibility( newVisibility);
                 addRecomandation.setVisibility( newVisibility);
-                addRecomandationButton.setVisibility( newVisibility);
+                //addRecomandationButton.setVisibility( newVisibility);
                 yourSpinner.setVisibility( newVisibility);
                 closeFile.setVisibility( newVisibility);
+                disc.setVisibility(newVisibility);
+                reco.setVisibility(newVisibility);
                 int oppositeVisibility = (newVisibility == View.VISIBLE) ? View.GONE : View.VISIBLE;
                 Witness_Recycler.setVisibility(oppositeVisibility);
                 updateCardClickability(victim_card, oppositeVisibility != View.VISIBLE);
@@ -210,8 +222,10 @@ public class Add_Investigation extends Fragment {
                 addButton.setVisibility( newVisibility);
               //  mike.setVisibility( newVisibility);
                 addRecomandation.setVisibility( newVisibility);
-                addRecomandationButton.setVisibility( newVisibility);
+                //addRecomandationButton.setVisibility( newVisibility);
                 yourSpinner.setVisibility( newVisibility);
+                disc.setVisibility(newVisibility);
+                reco.setVisibility(newVisibility);
                 closeFile.setVisibility( newVisibility);
                 int oppositeVisibility = (newVisibility == View.VISIBLE) ? View.GONE : View.VISIBLE;
                 Evidance_Recycler.setVisibility(oppositeVisibility);
@@ -232,9 +246,11 @@ public class Add_Investigation extends Fragment {
                 Evidance_card.setVisibility( newVisibility);
                 addDiscryption.setVisibility( newVisibility);
                 addButton.setVisibility( newVisibility);
+                disc.setVisibility(newVisibility);
+                reco.setVisibility(newVisibility);
              //   mike.setVisibility( newVisibility);
                 addRecomandation.setVisibility( newVisibility);
-                addRecomandationButton.setVisibility( newVisibility);
+//                addRecomandationButton.setVisibility( newVisibility);
                 yourSpinner.setVisibility( newVisibility);
                 closeFile.setVisibility( newVisibility);
                 //Witness_Recycler.setVisibility(newVisibility);
@@ -254,30 +270,61 @@ public class Add_Investigation extends Fragment {
     }
 
     private void setEvidenceAdapter() {
+        EvidanceDeo evidanceDeo = new EvidanceDeo();
+        evidanceDeo.getAllEvidance(getContext(), new Callback() {
+            @Override
+            public void onSuccess(Object obj) {
+                listevidence=(ArrayList<Evidance>) obj;
+                EvidenceAdapter1 adapter=new EvidenceAdapter1((ArrayList<Evidance>)obj);
+                LinearLayoutManager layoutManager = new LinearLayoutManager(getContext());
+                Evidance_Recycler.setLayoutManager(layoutManager);
+                Evidance_Recycler.setAdapter(adapter);
+            }
 
-        listevidence.add(new Evidance("sample evidence",R.drawable.evidence));
-        listevidence.add(new Evidance("sample evidence",R.drawable.evidence));
-        listevidence.add(new Evidance("sample evidence",R.drawable.evidence));
-        listevidence.add(new Evidance("sample evidence",R.drawable.evidence));
-        listevidence.add(new Evidance("sample evidence",R.drawable.evidence));
-        LinearLayoutManager layoutManager = new LinearLayoutManager(getContext());
-        Evidance_Recycler.setLayoutManager(layoutManager);
-        IEvidenceAdapter adapter = new IEvidenceAdapter(listevidence);
-        Evidance_Recycler.setAdapter(adapter);
+            @Override
+            public void onErro(String errro) {
+
+            }
+        });
+
+//        listevidence.add(new Evidance("sample evidence",R.drawable.evidence));
+//        listevidence.add(new Evidance("sample evidence",R.drawable.evidence));
+//        listevidence.add(new Evidance("sample evidence",R.drawable.evidence));
+//        listevidence.add(new Evidance("sample evidence",R.drawable.evidence));
+//        listevidence.add(new Evidance("sample evidence",R.drawable.evidence));
+//        LinearLayoutManager layoutManager = new LinearLayoutManager(getContext());
+//        Evidance_Recycler.setLayoutManager(layoutManager);
+//        IEvidenceAdapter adapter = new IEvidenceAdapter(listevidence);
+//        Evidance_Recycler.setAdapter(adapter);
 
     }
 
     private void setWitnessAdapter() {
+        WitnessDeo witnessDeo = new WitnessDeo();
+        witnessDeo.getAllWitness(getContext(), new Callback() {
+            @Override
+            public void onSuccess(Object obj) {
+                listwitness = (ArrayList<Witness>)obj;
+                WitnessAdapter1 witnessAdapter1 = new WitnessAdapter1(listwitness);
+                LinearLayoutManager layoutManager = new LinearLayoutManager(getContext());
+                Witness_Recycler.setLayoutManager(layoutManager);
+                Witness_Recycler.setAdapter(witnessAdapter1);
+            }
+            @Override
+            public void onErro(String errro) {
+                Toast.makeText(getContext(), "error"+errro.toString(), Toast.LENGTH_SHORT).show();
+            }
+        });
 
-        listwitness.add(new Witness("Harun","pune","5673486583"));
-        listwitness.add(new Witness("Harun","pune","5673486583"));
-        listwitness.add(new Witness("Harun","pune","5673486583"));
-        listwitness.add(new Witness("Harun","pune","5673486583"));
-        listwitness.add(new Witness("Harun","pune","5673486583"));
-        LinearLayoutManager layoutManager = new LinearLayoutManager(getContext());
-        IWitnessAdapter adapter = new IWitnessAdapter(listwitness);
-        Witness_Recycler.setLayoutManager(layoutManager);
-        Witness_Recycler.setAdapter(adapter);
+//        listwitness.add(new Witness("Harun","pune","5673486583"));
+//        listwitness.add(new Witness("Harun","pune","5673486583"));
+//        listwitness.add(new Witness("Harun","pune","5673486583"));
+//        listwitness.add(new Witness("Harun","pune","5673486583"));
+//        listwitness.add(new Witness("Harun","pune","5673486583"));
+//        LinearLayoutManager layoutManager = new LinearLayoutManager(getContext());
+//        IWitnessAdapter adapter = new IWitnessAdapter(listwitness);
+//        Witness_Recycler.setLayoutManager(layoutManager);
+//        Witness_Recycler.setAdapter(adapter);
 
     }
 
@@ -294,15 +341,36 @@ public class Add_Investigation extends Fragment {
         Victim_Recycler.setAdapter(iVictimAdapter);
     }
     private void setSuspectAdapter() {
+        SuspectDeo suspectDeo = new SuspectDeo();
 
-        list.add(new Suspect("8380949810","ganesh sagave","latur"));
-        list.add(new Suspect("8380949810","ganesh sagave","latur"));
-        list.add(new Suspect("8380949810","ganesh sagave","latur"));
-        list.add(new Suspect("8380949810","ganesh sagave","latur"));
-        ISuspectAdapter iSuspectAdapter = new ISuspectAdapter(list);
-        LinearLayoutManager layoutManager = new LinearLayoutManager(getContext());
-        Suspect_recycler.setLayoutManager(layoutManager);
-        Suspect_recycler.setAdapter(iSuspectAdapter);
+
+        suspectDeo.getAllSuspect(getContext(), new Callback() {
+            @Override
+            public void onSuccess(Object obj) {
+                System.out.println("response"+obj.toString());
+                // Toast.makeText(getContext(), "response"+obj, Toast.LENGTH_SHORT).show();
+                list = (ArrayList<Suspect>)obj;
+                SuspectAdapter1 adapter = new SuspectAdapter1(list);
+                LinearLayoutManager layoutManager = new LinearLayoutManager(getContext());
+                Suspect_recycler.setLayoutManager(layoutManager);
+                Suspect_recycler.setAdapter(adapter);
+            }
+
+            @Override
+            public void onErro(String errro) {
+                Toast.makeText(getContext(), "error"+errro.toString(), Toast.LENGTH_SHORT).show();
+            }
+        });
+
+
+//        list.add(new Suspect("8380949810","ganesh sagave","latur"));
+//        list.add(new Suspect("8380949810","ganesh sagave","latur"));
+//        list.add(new Suspect("8380949810","ganesh sagave","latur"));
+//        list.add(new Suspect("8380949810","ganesh sagave","latur"));
+//        ISuspectAdapter iSuspectAdapter = new ISuspectAdapter(list);
+//        LinearLayoutManager layoutManager = new LinearLayoutManager(getContext());
+//        Suspect_recycler.setLayoutManager(layoutManager);
+//        Suspect_recycler.setAdapter(iSuspectAdapter);
     }
 
     private void setId() {

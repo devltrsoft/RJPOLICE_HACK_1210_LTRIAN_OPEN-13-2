@@ -44,24 +44,9 @@ public class login extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
           View view= inflater.inflate(R.layout.login, container, false);
-        users = view.findViewById(R.id.user);
-        adapter = new ArrayAdapter<>(getActivity(), android.R.layout.simple_list_item_1,user);
-        adapter.setDropDownViewResource(android.R.layout.simple_expandable_list_item_1);
-        users.setAdapter(adapter);
-     users.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-         @Override
-         public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
-             selecteduser =  adapterView.getItemAtPosition(i).toString();
 
-             // Display a toast message with the selected item
-             //Toast.makeText(adapterView.getContext(), "Selected: " + selectedItem, Toast.LENGTH_SHORT).show();
-         }
 
-         @Override
-         public void onNothingSelected(AdapterView<?> adapterView) {
 
-         }
-     });
         loginbtn=view.findViewById(R.id.loginbtn);
         registration=view.findViewById(R.id.registration);
         forgot_password=view.findViewById(R.id.forgot_password);
@@ -81,21 +66,25 @@ public class login extends Fragment {
                     policeDeo.police_login(new Police(mEmail, mPass), getContext(), new Callback() {
                         @Override
                         public void onSuccess(Object obj) {
-                            String success = (String)obj;
-//                            SharedPreferences pref = getActivity().getSharedPreferences("login", MODE_PRIVATE);
-//                            SharedPreferences.Editor editor = pref.edit();
-//                            editor.putBoolean("flag", true)
-//                                    .apply();
+                            String user = (String)obj;
+                          SharedPreferences pref = getActivity().getSharedPreferences("login", MODE_PRIVATE);
+                            SharedPreferences.Editor editor = pref.edit();
+                            editor.putBoolean("flag", true)
+                                    .apply();
 
-                            String police_id = (String)obj;
-                            UserDataAccess access = new UserDataAccess();
-                            access.setUserId(police_id ,getActivity());
 
-                           // Toast.makeText(getContext(), "success"+success, Toast.LENGTH_SHORT).show();
-                            System.out.println("response = "+success.toString());
-                            Intent main_activity_intent = new Intent( getActivity(), LoginAndRegistrationActivity.class);
-                            main_activity_intent.putExtra("user",selecteduser);
+                           Toast.makeText(getContext(), ""+user, Toast.LENGTH_SHORT).show();
+                             Intent main_activity_intent = new Intent( getActivity(),  MainActivity.class);
+                            main_activity_intent.putExtra("user",user);
+
                             startActivity(main_activity_intent);
+                            UserDataAccess userDataAccess = new UserDataAccess();
+                            userDataAccess.setuser(user,getActivity());
+//                            userDataAccess.getPoliceId(getActivity());
+//                            userDataAccess.getStationId(getActivity());
+//                            Toast.makeText(getContext(), ""+userDataAccess.getPoliceId(getActivity())+""+ userDataAccess.getStationId(getActivity())
+//                                    , Toast.LENGTH_SHORT).show();
+
                         }
                         @Override
                         public void onErro(String errro) {
@@ -116,7 +105,9 @@ public class login extends Fragment {
                 getActivity().getSupportFragmentManager()
                         .beginTransaction()
                         .addToBackStack(null)
-                        .replace(R.id.session_container, new Registration())
+                        .replace(R.id.main_container, new Registration())
+
+
                         .commit();
             }
         });
@@ -125,7 +116,7 @@ public class login extends Fragment {
             @Override
             public void onClick(View view) {
                 getActivity().getSupportFragmentManager().beginTransaction()
-                        .replace(R.id.session_container, new Forgot_Password())
+                        .replace(R.id.main_container, new Forgot_Password())
                         .addToBackStack(null)
                         .commit();
             }

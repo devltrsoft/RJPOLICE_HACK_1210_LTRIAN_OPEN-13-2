@@ -1,5 +1,6 @@
 package com.ltrsoft.police_app.Model;
 
+import android.app.Activity;
 import android.content.Context;
 import android.widget.Toast;
 
@@ -14,6 +15,7 @@ import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.ltrsoft.police_app.Classes.Witness;
 import com.ltrsoft.police_app.interface1.Callback;
+import com.ltrsoft.police_app.utils.UserDataAccess;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -29,8 +31,7 @@ public class WitnessDeo {
     Witness create_witness;
     Witness update_witness;
     Witness delete_witness;
-    String Police_id = "1";
-    String getoneWitness_URL = "https://rj.ltr-soft.com/public/police_api/data/complaint_by_date.php";
+     String getoneWitness_URL = "https://rj.ltr-soft.com/public/police_api/data/complaint_by_date.php";
 
     String Search_URL = "";
     String delete_URL = "";
@@ -245,8 +246,10 @@ public class WitnessDeo {
                 map.put("witness_address", insertwitness.getAddress());
 //                map.put("witness_pan_no", insertwitness.getPan());
                 map.put("witness_photo", insertwitness.getPhoto_path());
-                map.put("police_id", Police_id);
+                UserDataAccess userDataAccess=new UserDataAccess();
+                Activity activity=(Activity)context;
 
+                map.put("police_id",userDataAccess.getPoliceId(activity));
                 return map;
             }
         };
@@ -300,8 +303,10 @@ public class WitnessDeo {
                 map.put("witness_address", updatewitness.getAddress());
                 map.put("witness_pan_no", updatewitness.getPan());
                 map.put("witness_photo", updatewitness.getPhoto_path());
-                map.put("police_id", Police_id);
-                map.put("investigation_witness_id", String.valueOf(updatewitness.getInvestigation_witness_id()));
+                UserDataAccess userDataAccess=new UserDataAccess();
+                Activity activity=(Activity)context;
+
+                map.put("police_id",userDataAccess.getPoliceId(activity));                map.put("investigation_witness_id", String.valueOf(updatewitness.getInvestigation_witness_id()));
                 return map;
             }
         };

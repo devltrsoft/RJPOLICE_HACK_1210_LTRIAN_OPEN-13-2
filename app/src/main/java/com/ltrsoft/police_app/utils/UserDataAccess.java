@@ -6,27 +6,62 @@ import android.app.Activity;
 import android.content.SharedPreferences;
 
 public class UserDataAccess {
-    String userId,complaintID;
-    public String getUserId(Activity activity) {
+    public String getPoliceId(Activity activity) {
         SharedPreferences pref = activity.getSharedPreferences("UserData", MODE_PRIVATE);
         return pref.getString("userID",null);
     }
 
-    public void setUserId(String userId, Activity activity) {
+    public void setPoliceId(String userId, Activity activity) {
         SharedPreferences pref = activity.getSharedPreferences("UserData", MODE_PRIVATE);
         SharedPreferences.Editor editor = pref.edit();
         editor.putString("userID", userId)
                 .apply();
     }
 
-    public String getComplaintID(Activity activity) {
+    public String getStationId(Activity activity) {
         SharedPreferences pref = activity.getSharedPreferences("UserData", MODE_PRIVATE);
-        return pref.getString("ComplaintId",null);
+        return pref.getString("station_id",null);
     }
-    public void setComplaintID(String complaintID,Activity activity) {
+
+    public void setStationId(String stationId, Activity activity) {
         SharedPreferences pref = activity.getSharedPreferences("UserData", MODE_PRIVATE);
         SharedPreferences.Editor editor = pref.edit();
-        editor.putString("ComplaintId", complaintID)
+        editor.putString("station_id", stationId)
                 .apply();
     }
+    public String   getuser(  Activity activity) {
+        SharedPreferences pref = activity.getSharedPreferences("UserData", MODE_PRIVATE);
+        return pref.getString("user",null);
+    }
+
+    public void  setuser(String user, Activity activity) {
+        SharedPreferences pref = activity.getSharedPreferences("UserData", MODE_PRIVATE);
+        SharedPreferences.Editor editor = pref.edit();
+        editor.putString("user", user)
+                .apply();
+    }
+    public String   getFir_id(  Activity activity) {
+        SharedPreferences pref = activity.getSharedPreferences("UserData", MODE_PRIVATE);
+        return pref.getString("Fir_id",null);
+    }
+
+    public void  setFir_id(String Fir_id, Activity activity) {
+        SharedPreferences pref = activity.getSharedPreferences("UserData", MODE_PRIVATE);
+        SharedPreferences.Editor editor = pref.edit();
+        editor.putString("Fir_id", Fir_id)
+                .apply();
+    }
+
+//    public String getPoliceId(Activity activity) {
+//        SharedPreferences pref = activity.getSharedPreferences("UserData", MODE_PRIVATE);
+//        return pref.getString("station_id",null);
+//    }
+//
+//    public void setPoliceId(String stationId, Activity activity) {
+//
+//        SharedPreferences pref = activity.getSharedPreferences("UserData", MODE_PRIVATE);
+//        SharedPreferences.Editor editor = pref.edit();
+//        editor.putString("station_id", stationId)
+//                .apply();
+//    }
 }

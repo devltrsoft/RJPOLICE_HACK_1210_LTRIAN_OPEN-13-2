@@ -1,5 +1,6 @@
 package com.ltrsoft.police_app.Model;
 
+import android.app.Activity;
 import android.content.Context;
 import android.widget.Toast;
 
@@ -13,6 +14,7 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.ltrsoft.police_app.Classes.Training_video;
+import com.ltrsoft.police_app.utils.UserDataAccess;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -30,8 +32,7 @@ public class Training_videoDeo {
     Training_video create_video;
     Training_video update_video;
     Training_video delete_video;
-    String Police_id="1";
-    String getonevideo_URL="";
+     String getonevideo_URL="";
 
     String Search_URL="";
     String delete_URL="";
@@ -183,7 +184,10 @@ public class Training_videoDeo {
                 map.put("video", String.valueOf(insertevideo.getVideo_path()));
                 map.put("video_description",insertevideo.getVideo_description());
                 map.put("video_subject",insertevideo.getVideo_subject());
-                 map.put("station_id","1");
+                UserDataAccess userDataAccess=new UserDataAccess();
+                Activity activity=(Activity)context;
+
+                map.put("station_id",userDataAccess.getStationId(activity));
                 return map;
             }
         };
@@ -217,7 +221,10 @@ public class Training_videoDeo {
                 map.put("video", String.valueOf(updatevideo.getVideo_path()));
                 map.put("video_description",updatevideo.getVideo_description());
                 map.put("video_subject",updatevideo.getVideo_subject());
-                map.put("station_id","1");
+                UserDataAccess userDataAccess=new UserDataAccess();
+                Activity activity=(Activity)context;
+
+                map.put("station_id",userDataAccess.getStationId(activity));
                 return map;
             }
         };

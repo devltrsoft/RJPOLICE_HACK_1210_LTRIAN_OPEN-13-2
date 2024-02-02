@@ -4,6 +4,9 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
+import android.widget.Spinner;
 import android.widget.Toast;
 
 import androidx.appcompat.app.ActionBar;
@@ -22,13 +25,16 @@ import com.ltrsoft.police_app.Model.ComplaintDeo;
 import com.ltrsoft.police_app.Model.PoliceDeo;
 import com.ltrsoft.police_app.R;
 import com.ltrsoft.police_app.interface1.Callback;
+import com.ltrsoft.police_app.utils.UserDataAccess;
 
 import java.util.ArrayList;
 
 public class Alloted_case1 extends Fragment {
 
     private RecyclerView recyclerView;
-   private ArrayList<AllotedCaseHistoryClass> list = new ArrayList<>();
+
+
+    private ArrayList<AllotedCaseHistoryClass> list = new ArrayList<>();
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -37,14 +43,15 @@ public class Alloted_case1 extends Fragment {
         Toast.makeText(getContext(), "hii", Toast.LENGTH_SHORT).show();
 
         recyclerView = view.findViewById(R.id.alloedrecycleview);
+
         ActionBar actionBar = ((AppCompatActivity) requireActivity()).getSupportActionBar();
 
         if (actionBar != null) {
             actionBar.setTitle("Alloted Cases");
         }
+        PoliceDeo policeDeo=new PoliceDeo();
 
-        PoliceDeo policeDeo = new PoliceDeo();
-        policeDeo.getAllCriminal(getContext(), new Callback() {
+         policeDeo.getAloted_cases(getContext(), new Callback() {
             @Override
             public void onSuccess(Object obj) {
                 ArrayList<AllotedCaseHistoryClass> list = (ArrayList<AllotedCaseHistoryClass>) obj;
@@ -57,6 +64,9 @@ public class Alloted_case1 extends Fragment {
 
                 // Notify the adapter that the data set has changed
                 adapter1.notifyDataSetChanged();
+//                UserDataAccess userDataAccess=new UserDataAccess();
+//                userDataAccess.setFir_id("2023-12-14-1",getActivity());
+
             }
 
             @Override

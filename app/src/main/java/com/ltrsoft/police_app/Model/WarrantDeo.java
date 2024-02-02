@@ -1,5 +1,6 @@
 package com.ltrsoft.police_app.Model;
 
+import android.app.Activity;
 import android.content.Context;
 import android.widget.Toast;
 
@@ -14,6 +15,7 @@ import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.ltrsoft.police_app.Classes.Warrant;
 import com.ltrsoft.police_app.interface1.Callback;
+import com.ltrsoft.police_app.utils.UserDataAccess;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
@@ -189,8 +191,10 @@ String Warrant_type_id="https://rj.ltr-soft.com/public/police_api/warrant_type/r
                 @Override
                 protected Map<String, String> getParams() throws AuthFailureError {
                     HashMap<String, String> map = new HashMap<>();
-                    map.put("fir_id",  "2023-12-14-1");//insertwarrant.getFir_id());
-                    map.put("warrant_type_id", "1");//insertwarrant.getWarrant_type());
+                    UserDataAccess userDataAccess=new UserDataAccess();
+                    Activity activity=(Activity)context;
+
+                    map.put("station_id",userDataAccess.getStationId(activity));                    map.put("warrant_type_id", "1");//insertwarrant.getWarrant_type());
                     map.put("warrant_against", insertwarrant.getWarrant_against());
                     map.put("date_issued", insertwarrant.getDate_issued());
                     map.put("description", insertwarrant.getDiscription());
@@ -228,8 +232,10 @@ String Warrant_type_id="https://rj.ltr-soft.com/public/police_api/warrant_type/r
                 @Override
                 protected Map<String, String> getParams() throws AuthFailureError {
                     HashMap<String, String> map = new HashMap<>();
-                    map.put("fir_id", String.valueOf(updatewarrant.getFir_id()));
-                    map.put("warrent_type", updatewarrant.getWarrant_type());
+                    UserDataAccess userDataAccess=new UserDataAccess();
+                    Activity activity=(Activity)context;
+
+                    map.put("station_id",userDataAccess.getStationId(activity));                    map.put("warrent_type", updatewarrant.getWarrant_type());
                     map.put("warrant_against", updatewarrant.getWarrant_against());
                     map.put("date_issued", updatewarrant.getDate_issued());
                     map.put("description", updatewarrant.getDiscription());

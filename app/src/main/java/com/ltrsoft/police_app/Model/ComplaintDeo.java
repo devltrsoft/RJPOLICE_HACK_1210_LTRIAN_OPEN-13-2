@@ -30,8 +30,7 @@ public class ComplaintDeo {
     Complaint create_complaint;
     Complaint update_complaint;
     Complaint delete_complaint;
-    String Police_id="1";
-    String getoneComplaint_URL="http://rj.ltr-soft.com/public/police_api/data/police_c_read.php";
+     String getoneComplaint_URL="http://rj.ltr-soft.com/public/police_api/data/police_c_read.php";
 
     String Search_URL="";
     String delete_URL="";

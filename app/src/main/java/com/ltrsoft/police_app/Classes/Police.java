@@ -25,7 +25,7 @@ public class Police {
     static String police_fcm_token;
     static String position_name;
     static String pan;
-    static int police_id;
+    static String police_id;
 
     public Police(String email, String password) {
         this.email = email;
@@ -36,7 +36,7 @@ public class Police {
                   String lname, String address, String photo_path, String country, String state, String district,
                   String city, String email, String password, String gender, String dob, String mobile1, String mobile2,
                   String adhar, String police_lattitude,
-                  String police_langitude, String police_fcm_token, String position_name, String pan, int police_id) {
+                  String police_langitude, String police_fcm_token, String position_name, String pan, String police_id) {
         this.batch_number = batch_number;
         this.station_name = station_name;
         this.authority = authority;
@@ -74,7 +74,8 @@ public class Police {
     public Police(String batchNumber, String stationId, String policeFname, String policeMname, String policeLname, String policeEmail, String policeGender, String policeDob, String policeMobile1, String policeMobile2, String policeAddress, String cityName, String districtName, String stateName, String positionName, String policeAdhar, Integer policeId) {
     }
 
-    public Police(Integer policeId) {
+    public Police(String policeId) {
+        this.police_id = policeId;
     }
 
     public static String getBatch_number() {
@@ -269,11 +270,11 @@ public class Police {
         this.pan = pan;
     }
 
-    public Integer setPolice_id() {
+    public String setPolice_id() {
         return  police_id;
     }
 
-    public void setPolice_id(int police_id) {
+    public void setPolice_id(String police_id) {
         this.police_id = police_id;
     }
 

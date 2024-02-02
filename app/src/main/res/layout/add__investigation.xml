@@ -25,8 +25,9 @@
                 android:layout_width="335dp"
                 android:layout_height="50dp"
                 android:layout_gravity="center"
-                android:layout_marginTop="100dp"
 
+                android:layout_marginTop="70dp"
+           android:layout_marginBottom="2dp"
                 app:cardElevation="20dp"
                 app:cardCornerRadius="10dp">
                 <TextView
@@ -76,7 +77,9 @@
                 android:layout_width="335dp"
                 android:layout_height="50dp"
                 android:layout_gravity="center"
-                android:layout_marginTop="170dp"
+                android:layout_marginTop="140dp"
+                android:layout_marginBottom="2dp"
+
                 app:cardElevation="20dp"
                 app:cardCornerRadius="10dp">
                 <TextView
@@ -125,9 +128,11 @@
             <androidx.cardview.widget.CardView
                 android:id="@+id/witness_card"
                 android:layout_width="335dp"
+                android:layout_marginBottom="2dp"
+
                 android:layout_height="50dp"
                 android:layout_gravity="center"
-                android:layout_marginTop="240dp"
+                android:layout_marginTop="210dp"
                 app:cardElevation="20dp"
                 app:cardCornerRadius="10dp">
                 <TextView
@@ -176,7 +181,9 @@
                 android:layout_width="335dp"
                 android:layout_height="50dp"
                 android:layout_gravity="center"
-                android:layout_marginTop="310dp"
+                android:layout_marginTop="280dp"
+                android:layout_marginBottom="2dp"
+
                 app:cardElevation="20dp"
                 app:cardCornerRadius="10dp">
                 <TextView
@@ -239,7 +246,7 @@
                 android:layout_height="190dp"
                 android:layout_marginLeft="50dp"
                 android:padding="15dp"
-                android:layout_marginTop="380dp"
+                android:layout_marginTop="350dp"
                 android:background="@drawable/d1"
                 android:hint="Add_Discription"
                 android:gravity="top|left" />
@@ -264,8 +271,9 @@
                     android:id="@+id/mikedisc"
                     android:layout_width="50dp"
                     android:layout_height="50dp"
-                    android:layout_marginLeft="300dp"
-                    android:src="@drawable/mike" />
+                    android:layout_gravity="end"
+                    android:layout_marginLeft="280dp"
+                     android:src="@drawable/mike" />
             </LinearLayout>
         </LinearLayout>
         <LinearLayout
@@ -276,7 +284,7 @@
             >
             <EditText
                 android:id="@+id/add_note"
-                android:layout_marginTop="640dp"
+                android:layout_marginTop="610dp"
                 android:layout_width="320dp"
                 android:layout_height="100dp"
                 android:layout_marginLeft="50dp"
@@ -284,11 +292,12 @@
                 android:background="@drawable/d1"
                 android:hint="Add_Recomandation and notes"
                 android:gravity="top|left" />
+
             <ImageView
                 android:id="@+id/mikerec"
                 android:layout_width="50dp"
                 android:layout_height="50dp"
-                android:layout_marginLeft="300dp"
+                android:layout_gravity="end"
                 android:src="@drawable/mike" />
 
             <Spinner
@@ -311,6 +320,7 @@
                 android:textSize="15dp"
                 android:layout_gravity="center"
                 android:layout_marginLeft="20dp"
+                android:layout_marginBottom="10dp"
                 android:text="Submit" />
         </LinearLayout>
     </FrameLayout>

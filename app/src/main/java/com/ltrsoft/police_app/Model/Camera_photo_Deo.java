@@ -1,5 +1,6 @@
 package com.ltrsoft.police_app.Model;
 
+import android.app.Activity;
 import android.content.Context;
 import android.widget.Toast;
 
@@ -13,6 +14,7 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.ltrsoft.police_app.Classes.Camera_photo_uploading;
+import com.ltrsoft.police_app.utils.UserDataAccess;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -29,7 +31,8 @@ public class Camera_photo_Deo {
      Camera_photo_uploading update_camera_photo;
     Camera_photo_uploading delete_camera_photo;
     Camera_photo_uploading create_camera_photo;
-    String Police_id="1";
+    UserDataAccess userDataAccess=new UserDataAccess();
+
     String getoneCamera_URL="";
 
     String Search_URL="";

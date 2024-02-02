@@ -251,8 +251,12 @@ public class NewsDeo {
             protected Map<String, String> getParams() throws AuthFailureError {
                 HashMap<String, String> map = new HashMap<>();
                 map.put("news_category_id","1");
-                map.put("station_id", "1");
-                map.put("news_title","news title");
+                UserDataAccess userDataAccess=new UserDataAccess();
+                Activity activity=(Activity)context;
+
+                map.put("station_id",userDataAccess.getStationId(activity));
+
+                 map.put("news_title","news title");
                         //insertnews. getNews_title());
                 //UserDataAccess userDataAccess=new UserDataAccess();
                 map.put("news_description","hello ");
@@ -290,8 +294,10 @@ public class NewsDeo {
                 HashMap<String, String> map = new HashMap<>();
                 map.put("news_id", String.valueOf(update_news.getNews_id()));
                 map.put("news_category_id","1");
-                map.put("station_id", "1");
-                map.put("news_title",update_news. getNews_title());
+                UserDataAccess userDataAccess=new UserDataAccess();
+                Activity activity=(Activity)context;
+
+                map.put("station_id",userDataAccess.getStationId(activity));                map.put("news_title",update_news. getNews_title());
                  map.put("evidance_photos_path",updatenews.getNews_photo_path());
                 map.put("evidance_photos_description",update_news.getNews_description());
                 map.put("news_date",update_news.getNews_date());

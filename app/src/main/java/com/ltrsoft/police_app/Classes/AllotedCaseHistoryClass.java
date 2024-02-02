@@ -7,11 +7,11 @@ public class AllotedCaseHistoryClass {
     String address;
     String complaint_type;
 
-    public AllotedCaseHistoryClass(String id, String name, String address, String complaint_type) {
+    public AllotedCaseHistoryClass(String id, String name, String  address, String complaint_type) {
         this.id = id;
         this.name = name;
-        this.address = address;
-        this.complaint_type = complaint_type;
+        this.address=address;
+         this.complaint_type = complaint_type;
     }
 
     public String getId() {

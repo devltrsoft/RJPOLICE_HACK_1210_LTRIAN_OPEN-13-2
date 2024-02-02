@@ -44,6 +44,7 @@ public class Alloted_case2 extends Fragment {
     private RecyclerView Suspect_recycler,Witness_Recycler,Victim_Recycler,Evidance_Recycler;
     public  View view;
     private Button close;
+    String complaint_id;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -51,7 +52,9 @@ public class Alloted_case2 extends Fragment {
         // Inflate the layout for this fragment
           view= inflater.inflate(R.layout.alloted_case2, container, false);
         ActionBar actionBar = ((AppCompatActivity) requireActivity()).getSupportActionBar();
-
+      Bundle bundle=getArguments();
+        complaint_id=bundle.getString("complaint_id");
+        Toast.makeText(getContext(), ""+complaint_id, Toast.LENGTH_SHORT).show();
         if (actionBar != null) {
             actionBar.setTitle("Alloted Case  Detail");
         }
@@ -168,7 +171,7 @@ public class Alloted_case2 extends Fragment {
 
     private void setVictimAdapter() {
         VictimDeo victimDeo=new VictimDeo();
-        victimDeo.getAllVictim(getContext(), new Callback() {
+        victimDeo.getVictimByComplaint_id(complaint_id,getContext(), new Callback() {
             @Override
             public void onSuccess(Object obj) {
                 victim_list = (ArrayList<Victim>) obj;
@@ -187,7 +190,7 @@ public class Alloted_case2 extends Fragment {
     private void setSuspectAdapter() {
 
         SuspectDeo suspectDeo=new SuspectDeo();
-        suspectDeo.getAllSuspect(getContext(), new Callback() {
+        suspectDeo.getSuspect_By_Complaint_id(complaint_id,getContext(), new Callback() {
             @Override
             public void onSuccess(Object obj) {
                /// System.out.println("response"+obj.toString());

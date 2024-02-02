@@ -1,5 +1,6 @@
 package com.ltrsoft.police_app.Model;
 
+import android.app.Activity;
 import android.content.Context;
 import android.util.Log;
 import android.widget.Toast;
@@ -15,6 +16,7 @@ import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.ltrsoft.police_app.Classes.Criminal;
 import com.ltrsoft.police_app.interface1.Callback;
+import com.ltrsoft.police_app.utils.UserDataAccess;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
@@ -29,8 +31,7 @@ public class CriminalDeo {
         Criminal create_criminal;
         Criminal update_criminal;
         Criminal delete_criminal;
-        String Police_id = "1";
-        String getoneCriminal_URL = "https://rj.ltr-soft.com/public/police_api/criminal_complaint/read_by_id.php";
+           String getoneCriminal_URL = "https://rj.ltr-soft.com/public/police_api/criminal_complaint/read_by_id.php";
 
         String Search_URL = "";
         String delete_URL = "";
@@ -239,7 +240,10 @@ public class CriminalDeo {
                 @Override
                 protected Map<String, String> getParams() throws AuthFailureError {
                     HashMap<String, String> map = new HashMap<>();
+                    Activity activity=(Activity)context;
+                    UserDataAccess userDataAccess=new UserDataAccess();
                     map.put("fir_id", String.valueOf(updatecriminal.getFir_id()));
+
                     map.put("",String.valueOf(updatecriminal.getFname()));
                     map.put("",String.valueOf(updatecriminal.getMname()));
                     map.put("",String.valueOf(updatecriminal.getLname()));
@@ -255,7 +259,7 @@ public class CriminalDeo {
                     map.put("",String.valueOf(updatecriminal.getPhoto_path()));
                     map.put("",String.valueOf(updatecriminal.getPunishment()));
                     map.put("",String.valueOf(updatecriminal.getDuration()));
-                    map.put("police_id", Police_id);
+                    map.put("police_id",userDataAccess.getPoliceId(activity)  );
                     map.put("investigation_witness_id", String.valueOf(updatecriminal.getCriminal_id()));
 
                     return map;
