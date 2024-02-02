@@ -1,5 +1,7 @@
 package com.ltrsoft.police_app.Adapter;
 
+import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -16,17 +18,16 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.ltrsoft.police_app.fragment.AddSuspect;
 import com.ltrsoft.police_app.Classes.Suspect;
 import com.ltrsoft.police_app.R;
+import com.ltrsoft.police_app.fragment.Suspect3;
 
 
 import java.lang.ref.WeakReference;
 import java.util.ArrayList;
 
 public class ISuspectAdapter extends RecyclerView.Adapter<ISuspectAdapter.ViewHolder> {
-    private WeakReference<AppCompatActivity> activityReference;
 
-    public ISuspectAdapter(AppCompatActivity activity) {
-        this.activityReference = new WeakReference<>(activity);
-    }
+
+
     public ArrayList<Suspect>listsuspect=new ArrayList<>();
     public boolean flag=false;
 
@@ -57,12 +58,19 @@ public class ISuspectAdapter extends RecyclerView.Adapter<ISuspectAdapter.ViewHo
         holder.cardView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                AppCompatActivity activity = new AppCompatActivity();
-                activity.getSupportFragmentManager().beginTransaction().replace(R.id.container_main, new AddSuspect())
-                        .commit();
+                AppCompatActivity activity = (AppCompatActivity) view.getContext();
+                if (activity != null) {
+                    Suspect3 suspect3 = new Suspect3();
+                    Bundle bundle1 = new Bundle();
+                    bundle1.putString("suspect_id", iSuspectClass.getComplaint_suspect_id());
+                    suspect3.setArguments(bundle1);
+                    activity.getSupportFragmentManager()
+                            .beginTransaction()
+                            .replace(R.id.container_main, suspect3)
+                            .commit();
+                }
             }
         });
-
     }
 
     @Override

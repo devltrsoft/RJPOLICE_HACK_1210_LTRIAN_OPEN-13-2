@@ -7,12 +7,18 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 
+import com.ltrsoft.police_app.Classes.Suspect;
+import com.ltrsoft.police_app.Model.SuspectDeo;
 import com.ltrsoft.police_app.R;
+import com.ltrsoft.police_app.interface1.Callback;
+
+import java.util.ArrayList;
 
 
 public class Suspect3 extends Fragment {
@@ -47,18 +53,51 @@ public class Suspect3 extends Fragment {
         if (actionBar != null) {
             actionBar.setTitle("Suspect History Detail");
         }
+        Bundle bundle1=getArguments();
+        if(bundle1!=null){
+            String suspect_id=bundle1.getString("suspect_id");
+            Toast.makeText(getContext(), ""+suspect_id, Toast.LENGTH_SHORT).show();
+            SuspectDeo suspectDeo=new SuspectDeo();
+         suspectDeo.getone_Complaint_Suspect_by_Suspect_id(suspect_id, getContext(), new Callback() {
+             @Override
+             public void onSuccess(Object obj) {
+                 ArrayList <Suspect>suspectlist= (ArrayList<Suspect>) obj;
+                 Suspect suspect= suspectlist.get(0);
+
+                 sid.setText(suspect.getComplaint_suspect_id());
+                 suspect_dob.setText(suspect.getDob());
+                 Suspect_full_name.setText(suspect.getFname());
+                  suspect_address.setText(suspect.getMname());
+                 suspect_gender.setText(suspect.getGender());
+                 suspect_mobile.setText(suspect.getMobile());
+                 suspect_email.setText(suspect.getEmail());
+                 suspect_country.setText(suspect.getCountry());
+                 suspect_district.setText(suspect.getDistrict());
+                 suspect_state.setText(suspect.getState());
+                 suspect_city.setText(suspect.getCity());
+              }
+
+             @Override
+             public void onErro(String errro) {
+
+             }
+         });
+        }
+
         Bundle bundle = getArguments();
-        sid.setText(bundle.getString("cid"));
-        suspect_dob.setText(bundle.getString("date"));
-        Suspect_full_name.setText(bundle.getString("name"));
-        // suspect_address.setText(bundle.getString(""));
-        suspect_gender.setText(bundle.getString("gender"));
-        suspect_mobile.setText(bundle.getString("mobile"));
-        suspect_email.setText(bundle.getString("email"));
-        suspect_country.setText(bundle.getString("cname"));
-        suspect_district.setText(bundle.getString("dname"));
-        suspect_state.setText(bundle.getString("sname"));
-        suspect_city.setText(bundle.getString("cname"));
+        if(bundle !=null) {
+            sid.setText(bundle.getString("cid"));
+            suspect_dob.setText(bundle.getString("date"));
+            Suspect_full_name.setText(bundle.getString("name"));
+            // suspect_address.setText(bundle.getString(""));
+            suspect_gender.setText(bundle.getString("gender"));
+            suspect_mobile.setText(bundle.getString("mobile"));
+            suspect_email.setText(bundle.getString("email"));
+            suspect_country.setText(bundle.getString("cname"));
+            suspect_district.setText(bundle.getString("dname"));
+            suspect_state.setText(bundle.getString("sname"));
+            suspect_city.setText(bundle.getString("cname"));
+        }
             Add_criminal=view.findViewById(R.id.suspect_button);
             Add_criminal.setOnClickListener(new View.OnClickListener() {
                 @Override

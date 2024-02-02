@@ -46,6 +46,65 @@ public class SuspectDeo {
     public ArrayList<Suspect>list = new ArrayList<>();
 
     public ArrayList<String> search_list=new ArrayList<String>();
+    public final static String GET_ONE_Complaint_SUSPECT_by_suspect_id = "https://rj.ltr-soft.com/public/police_api/data/c_suspect_id.php";
+
+    public void getone_Complaint_Suspect_by_Suspect_id(String suspectId, Context context,Callback callBack){
+        StringRequest stringRequest = new StringRequest(Request.Method.POST, GET_ONE_Complaint_SUSPECT_by_suspect_id, new Response.Listener<String>() {
+            @Override
+            public void onResponse(String response) {
+                try {
+                    JSONArray jsonArray = new JSONArray(response);
+                    for (int i = 0; i < jsonArray.length(); i++) {
+                        JSONObject jsonObject = jsonArray.getJSONObject(i);
+                        String complaint_suspect_fname = jsonObject.getString("complaint_suspect_fname");
+                        String complaint_suspect_mname = jsonObject.getString("complaint_suspect_mname");
+                        String complaint_suspect_lname = jsonObject.getString("complaint_suspect_lname");
+                        String complaint_suspect_gender = jsonObject.getString("complaint_suspect_gender");
+                        String complaint_suspect_mobile_no = jsonObject.getString("complaint_suspect_mobile_no");
+                        String complaint_suspect_email = jsonObject.getString("complaint_suspect_email");
+                        String complaint_suspect_adhar = jsonObject.getString("complaint_suspect_adhar");
+                        String country_name = jsonObject.getString("country_name");
+                        String city_name = jsonObject.getString("city_name");
+                        String state_name = jsonObject.getString("state_name");
+                        String district_name = jsonObject.getString("district_name");
+                        String complaint_suspect_dob = jsonObject.getString("complaint_suspect_dob");
+                        String isSuspect = jsonObject.getString("is_c_suspect");
+                        String photourl = jsonObject.getString("complaint_suspect_photo_path");
+                        String complaint_suspect_id = jsonObject.getString("complaint_suspect_id");
+                        String complaint_id = jsonObject.getString("complaint_id");
+
+                        list.add(new Suspect(complaint_suspect_fname,complaint_suspect_mname,complaint_suspect_lname,complaint_suspect_dob
+                                ,complaint_suspect_gender,complaint_suspect_mobile_no,complaint_suspect_email,complaint_suspect_adhar,
+                                country_name,state_name,district_name,city_name,isSuspect,photourl,complaint_suspect_id,complaint_id));
+                    }
+                } catch (JSONException e) {
+                    callBack.onErro(e.toString());
+                    throw new RuntimeException(e);
+                }
+                callBack.onSuccess(list);
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                callBack.onErro(error.toString());
+            }
+        }){
+            @Nullable
+            @Override
+            protected Map<String, String> getParams() throws AuthFailureError {
+                HashMap hashMap = new HashMap();
+                hashMap.put("complaint_suspect_id",suspectId);
+                return hashMap;
+            }
+        };
+
+        RequestQueue requestQueue = Volley.newRequestQueue(context);
+        requestQueue.add(stringRequest);
+
+}
+
+
+
     public void get_Suspect_by_complaint_id(String complaint_id, Context context, Callback userCallBack){
 
         StringRequest stringRequest = new StringRequest(Request.Method.POST, getSuspect_by_complaint_id_url, new Response.Listener<String>() {
@@ -243,73 +302,7 @@ public class SuspectDeo {
 
          };
 
-     public  void  getSuspect_By_Complaint_id(String complaint_id,Context context,Callback callback){
-
-             StringRequest stringRequest=new StringRequest(Request.Method.POST, getoneSuspect_URL,
-                     new Response.Listener<String>() {
-                         @Override
-                         public void onResponse(String response) {
-                             System.out.println("response = "+response.toString());
-                             try{
-                                 JSONArray jsonArray=new JSONArray(response);
-                                 for (int i = 0; i < jsonArray.length(); i++) {
-                                     JSONObject jsonObject = jsonArray.getJSONObject(i);
-                                     String country = jsonObject.getString("country_name");
-
-                                     String state = jsonObject.getString("state_name");
-                                     String district = jsonObject.getString("district_name");
-                                     String city = jsonObject.getString("city_name");
-                                     String fname = jsonObject.getString("complaint_suspect_fname");
-                                     String mname = jsonObject.getString("complaint_suspect_mname");
-                                     String lname = jsonObject.getString("complaint_suspect_lname");
-                                     String address = jsonObject.getString("complaint_suspect_address");
-
-                                     String dob = jsonObject.getString("complaint_suspect_dob");
-                                     String email = jsonObject.getString("complaint_suspect_email");
-                                     String adhar = jsonObject.getString("complaint_suspect_adhar");
-                                     String gender = jsonObject.getString("complaint_suspect_gender");
-
-                                     String photo_path = jsonObject.getString("complaint_suspect_photo_path");
-                                     String pan = jsonObject.getString("complaint_suspect_pan");
-                                     String mobile = jsonObject.getString("complaint_suspect_mobile_no");
-                                     String is_suspect = jsonObject.getString("is_c_suspect");
-                                     String fir_id =jsonObject.getString("cmp_id");
-                                     String complaint_suspect_id =" jsonObject.getString(complaint_suspect_id);";
-
-//                            String investigation_suspect_id = jsonObject.getString(complaint_suspect_id);
-                                     list.add(new Suspect(country, state, district, city, fname, mname, lname, address,
-                                             dob, email, adhar, gender,
-                                             photo_path, pan, mobile, is_suspect,
-                                             fir_id, ""));
-                                 }
-                                 callback.onSuccess(list);
-                             }
-                             catch ( Exception e){
-                                 callback.onErro(e.toString());
-                                 e.printStackTrace();
-                                 throw new RuntimeException(e);
-                             }
-                         }
-                     },
-                     new Response.ErrorListener() {
-                         @Override
-                         public void onErrorResponse(VolleyError error) {
-                             callback.onErro(error.toString());
-                             error.printStackTrace();
-                         }
-                     }){
-                 @Nullable
-                 @Override
-                 protected Map<String, String> getParams() throws AuthFailureError {
-                     HashMap <String,  String> map=new HashMap<>();
-                     map.put("created_date","2023-12-25" );
-                     return map;
-                 }
-             };
-             RequestQueue requestQueue=Volley.newRequestQueue(context);
-             requestQueue.add(stringRequest);
-
-         }
+//
 
       public Suspect createsuspect(Suspect insertsuspect,Context context,Callback callback){
           StringRequest stringRequest = new StringRequest(Request.Method.POST, createsuspect_url ,

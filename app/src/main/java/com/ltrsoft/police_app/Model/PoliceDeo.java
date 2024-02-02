@@ -219,7 +219,7 @@ public void getAloted_cases(Context context, Callback callback) {
                         JSONArray jsonArray = new JSONArray(response);
                         for (int i = 0; i < jsonArray.length(); i++) {
                             JSONObject jsonObject = jsonArray.getJSONObject(i);
-                             String complaint_id = jsonObject.getString("complaint_id ");
+                             String complaint_id = jsonObject.getString("complaint_id");
                             String complaint_type_name = jsonObject.getString("complaint_description");
                             String address = jsonObject.getString("police_address");
                             String incidant_date=jsonObject.getString("incident_date");

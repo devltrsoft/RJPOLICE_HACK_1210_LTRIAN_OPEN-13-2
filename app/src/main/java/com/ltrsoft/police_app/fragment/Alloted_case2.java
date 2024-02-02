@@ -60,9 +60,9 @@ public class Alloted_case2 extends Fragment {
         }
         setId();
         setSuspectAdapter();
-        setVictimAdapter();
-        setWitnessAdapter();
-        setEvidenceAdapter();
+       // setVictimAdapter();
+        //setWitnessAdapter();
+        //setEvidenceAdapter();
         victim_card.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -190,13 +190,13 @@ public class Alloted_case2 extends Fragment {
     private void setSuspectAdapter() {
 
         SuspectDeo suspectDeo=new SuspectDeo();
-        suspectDeo.getSuspect_By_Complaint_id(complaint_id,getContext(), new Callback() {
+        suspectDeo.get_Suspect_by_complaint_id(complaint_id,getContext(), new Callback() {
             @Override
             public void onSuccess(Object obj) {
                /// System.out.println("response"+obj.toString());
                // Toast.makeText(getContext(), "response"+obj, Toast.LENGTH_SHORT).show();
                 list = (ArrayList<Suspect>)obj;
-                SuspectAdapter1 adapter = new SuspectAdapter1(list);
+                ISuspectAdapter adapter = new ISuspectAdapter(list);
                 LinearLayoutManager layoutManager = new LinearLayoutManager(getContext());
                 Suspect_recycler.setLayoutManager(layoutManager);
                 Suspect_recycler.setAdapter(adapter);

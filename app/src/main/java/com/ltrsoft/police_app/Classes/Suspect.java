@@ -73,8 +73,8 @@ public class Suspect {
         this.pan = pan;
         this.mobile = complaintSuspectMobileNo;
         this.is_suspect = isSuspect;
-        this.fir_id = fir_id;
-        this.investigation_suspect_id =  complaintSuspectId;
+        this.complaint_suspect_id = complaintSuspectId;
+        this.complaint_id =  complaintId;
     }
 
 
@@ -222,14 +222,13 @@ public class Suspect {
     public void setInvestigation_suspect_id(String investigation_suspect_id) {
         this.investigation_suspect_id = investigation_suspect_id;
     }
-    public void getComplaint_id(String complaint_id) {
-        this.complaint_id = complaint_id;
-    }
+    public String getComplaint_id(  ) {
+        return  complaint_id;    }
     public void setComplaint_id(String  complaint_id) {
         this.complaint_id = complaint_id;
     }
-    public void  getComplaint_suspect_id(String complaint_suspect_id) {
-        this.complaint_suspect_id = complaint_suspect_id;
+    public String  getComplaint_suspect_id() {
+        return  complaint_suspect_id;
     }
     public void setComplaint_suspect_id(String  complaint_suspect_id) {
         this.complaint_suspect_id = complaint_suspect_id;
