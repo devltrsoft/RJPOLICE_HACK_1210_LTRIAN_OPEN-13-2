@@ -16,6 +16,7 @@ import android.widget.Button;
 import android.widget.Toast;
 
 import com.ltrsoft.police_app.Adapter.EvidenceAdapter1;
+import com.ltrsoft.police_app.Adapter.IEvidenceAdapter;
 import com.ltrsoft.police_app.Adapter.ISuspectAdapter;
 import com.ltrsoft.police_app.Adapter.IVictimAdapter;
 import com.ltrsoft.police_app.Adapter.IWitnessAdapter;
@@ -64,8 +65,8 @@ public class Alloted_case2 extends Fragment {
         setId();
         setSuspectAdapter();
         setVictimAdapter();
-        //setWitnessAdapter();
-        //setEvidenceAdapter();
+        setWitnessAdapter();
+        setEvidenceAdapter();
         victim_card.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -101,14 +102,23 @@ public class Alloted_case2 extends Fragment {
             @Override
             public void onClick(View view) {
                 // Toggle visibility for others
-
-                int newVisibility = (  close  .getVisibility() == View.VISIBLE) ? View.GONE : View.VISIBLE;
+                int newVisibility = ( close.getVisibility() == View.VISIBLE) ? View.GONE : View.VISIBLE;
+//
+//                victim_card.setVisibility(newVisibility);
+//                witness_card.setVisibility(newVisibility);
+//                //Victim_Recycler.setVisibility(newVisibility);
+//                Evidance_card.setVisibility( newVisibility);
+              close.setVisibility(newVisibility);
+                //Witness_Recycler.setVisibility(newVisibility);
+                // Evidance_Recycler.setVisibility(newVisibility);
 
                 int oppositeVisibility = (newVisibility == View.VISIBLE) ? View.GONE : View.VISIBLE;
                 Evidance_Recycler.setVisibility(oppositeVisibility);
                 updateCardClickability(victim_card, oppositeVisibility != View.VISIBLE);
-                updateCardClickability(witness_card, oppositeVisibility != View.VISIBLE);
                 updateCardClickability( suspect_card, oppositeVisibility != View.VISIBLE);
+                updateCardClickability( witness_card, oppositeVisibility != View.VISIBLE);
+
+
             }
         });
         suspect_card.setOnClickListener(new View.OnClickListener() {
@@ -147,11 +157,11 @@ public class Alloted_case2 extends Fragment {
     private void setEvidenceAdapter() {
 
         EvidanceDeo evidanceDeo=new EvidanceDeo();
-        evidanceDeo.getAllEvidance("2023-12-14-1",getContext(), new Callback() {
+        evidanceDeo.GET_ALL_Complaint_EVIDENCE_by_complaint_id(complaint_id,getContext(), new Callback() {
             @Override
             public void onSuccess(Object obj) {
                 evidances_list=(ArrayList<Evidance>) obj;
-                EvidenceAdapter1 adapter=new EvidenceAdapter1((ArrayList<Evidance>)obj);
+                IEvidenceAdapter adapter=new IEvidenceAdapter((ArrayList<Evidance>)obj);
                 LinearLayoutManager layoutManager = new LinearLayoutManager(getContext());
                 Evidance_Recycler.setLayoutManager(layoutManager);
                 Evidance_Recycler.setAdapter(adapter);
