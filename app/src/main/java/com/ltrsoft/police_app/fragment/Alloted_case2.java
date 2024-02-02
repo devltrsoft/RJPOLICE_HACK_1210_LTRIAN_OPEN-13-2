@@ -16,6 +16,7 @@ import android.widget.Button;
 import android.widget.Toast;
 
 import com.ltrsoft.police_app.Adapter.EvidenceAdapter1;
+import com.ltrsoft.police_app.Adapter.IEvidenceAdapter;
 import com.ltrsoft.police_app.Adapter.ISuspectAdapter;
 import com.ltrsoft.police_app.Adapter.IVictimAdapter;
 import com.ltrsoft.police_app.Adapter.IWitnessAdapter;
@@ -160,7 +161,7 @@ public class Alloted_case2 extends Fragment {
             @Override
             public void onSuccess(Object obj) {
                 evidances_list=(ArrayList<Evidance>) obj;
-                EvidenceAdapter1 adapter=new EvidenceAdapter1((ArrayList<Evidance>)obj);
+                IEvidenceAdapter adapter=new IEvidenceAdapter((ArrayList<Evidance>)obj);
                 LinearLayoutManager layoutManager = new LinearLayoutManager(getContext());
                 Evidance_Recycler.setLayoutManager(layoutManager);
                 Evidance_Recycler.setAdapter(adapter);
