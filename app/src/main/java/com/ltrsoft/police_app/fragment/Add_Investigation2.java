@@ -21,12 +21,8 @@ import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.Toast;
 
-import com.google.android.material.navigation.NavigationView;
 import com.ltrsoft.police_app.Adapter.EvidenceAdapter1;
-import com.ltrsoft.police_app.Adapter.IEvidenceAdapter;
-import com.ltrsoft.police_app.Adapter.ISuspectAdapter;
 import com.ltrsoft.police_app.Adapter.IVictimAdapter;
-import com.ltrsoft.police_app.Adapter.IWitnessAdapter;
 import com.ltrsoft.police_app.Adapter.SuspectAdapter1;
 import com.ltrsoft.police_app.Adapter.WitnessAdapter1;
 import com.ltrsoft.police_app.Classes.Evidance;
@@ -39,13 +35,11 @@ import com.ltrsoft.police_app.Model.WitnessDeo;
 import com.ltrsoft.police_app.R;
 import com.ltrsoft.police_app.interface1.Callback;
 
-import java.io.FileInputStream;
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Objects;
 
-public class Add_Investigation extends Fragment {
-    public Add_Investigation() {
+public class Add_Investigation2 extends Fragment {
+    public Add_Investigation2() {
     }
     private CardView suspect_card,witness_card,victim_card,Evidance_card;
     private ArrayList<Suspect>list=new ArrayList<>();

@@ -20,7 +20,7 @@ import com.ltrsoft.police_app.fragment.AddVictim;
 import com.ltrsoft.police_app.fragment.AddWarrent;
 import com.ltrsoft.police_app.fragment.AddWitness;
 import com.ltrsoft.police_app.fragment.Add_Criminal;
-import com.ltrsoft.police_app.fragment.Add_Investigation;
+import com.ltrsoft.police_app.fragment.Add_Investigation2;
 import com.ltrsoft.police_app.fragment.Admin_add_notification;
 
 public class AdminAddComplainPage extends Fragment {
@@ -111,7 +111,7 @@ public class AdminAddComplainPage extends Fragment {
         Addinvestigation.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Add_Investigation addInvestigation=new Add_Investigation();
+                Add_Investigation2 addInvestigation=new Add_Investigation2();
                 loadfragment(addInvestigation);
             }
         });

@@ -101,16 +101,10 @@ public class Alloted_case2 extends Fragment {
         Evidance_card.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                // Toggle visibility for others
-                int newVisibility = ( close.getVisibility() == View.VISIBLE) ? View.GONE : View.VISIBLE;
-//
-//                victim_card.setVisibility(newVisibility);
-//                witness_card.setVisibility(newVisibility);
-//                //Victim_Recycler.setVisibility(newVisibility);
-//                Evidance_card.setVisibility( newVisibility);
+                 int newVisibility = ( close.getVisibility() == View.VISIBLE) ? View.GONE : View.VISIBLE;
+
               close.setVisibility(newVisibility);
-                //Witness_Recycler.setVisibility(newVisibility);
-                // Evidance_Recycler.setVisibility(newVisibility);
+
 
                 int oppositeVisibility = (newVisibility == View.VISIBLE) ? View.GONE : View.VISIBLE;
                 Evidance_Recycler.setVisibility(oppositeVisibility);
@@ -124,13 +118,11 @@ public class Alloted_case2 extends Fragment {
         suspect_card.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                // Toggle visibility for others
 
                 int newVisibility = (victim_card.getVisibility() == View.VISIBLE) ? View.GONE : View.VISIBLE;
                 victim_card.setVisibility(newVisibility);
                 witness_card.setVisibility(newVisibility);
-                //Victim_Recycler.setVisibility(newVisibility);
-                Evidance_card.setVisibility( newVisibility);
+                 Evidance_card.setVisibility( newVisibility);
                 close.setVisibility(newVisibility);
 
                 //Witness_Recycler.setVisibility(newVisibility);
