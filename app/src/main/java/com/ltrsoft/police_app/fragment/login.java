@@ -73,7 +73,7 @@ public class login extends Fragment {
                                     .apply();
 
 
-                           Toast.makeText(getContext(), ""+user, Toast.LENGTH_SHORT).show();
+                         //  Toast.makeText(getContext(), ""+user, Toast.LENGTH_SHORT).show();
                              Intent main_activity_intent = new Intent( getActivity(),  MainActivity.class);
                             main_activity_intent.putExtra("user",user);
 
@@ -82,8 +82,8 @@ public class login extends Fragment {
                             userDataAccess.setuser(user,getActivity());
 //                            userDataAccess.getPoliceId(getActivity());
 //                            userDataAccess.getStationId(getActivity());
-//                            Toast.makeText(getContext(), ""+userDataAccess.getPoliceId(getActivity())+""+ userDataAccess.getStationId(getActivity())
-//                                    , Toast.LENGTH_SHORT).show();
+                          Toast.makeText(getContext(), ""+userDataAccess.getPoliceId(getActivity())+""+ userDataAccess.getStationId(getActivity())
+                                    , Toast.LENGTH_SHORT).show();
 
                         }
                         @Override

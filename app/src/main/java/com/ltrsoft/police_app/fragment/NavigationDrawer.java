@@ -53,7 +53,7 @@ public class  NavigationDrawer extends Fragment {
          String user =userDataAccess.getuser(getActivity());
          userDataAccess.getPoliceId(getActivity());
          System.out.println("response"+userDataAccess.getPoliceId(getActivity()));
-       Toast.makeText(getContext(), ""+         userDataAccess.getPoliceId(getActivity()), Toast.LENGTH_SHORT).show();
+       Toast.makeText(getContext(), ""+user, Toast.LENGTH_SHORT).show();
 //        Dashboard dashboardFragment = new Dashboard() ;
        // AdminDashBoard dashboardFragment = new AdminDashBoard();
        // getFragmentManager().beginTransaction().replace(R.id.container_main, dashboardFragment).commit();
@@ -67,105 +67,104 @@ public class  NavigationDrawer extends Fragment {
         toggle.syncState();
 
         toggle.getDrawerArrowDrawable().setColor(getContext().getColor(R.color.white));
-         if(user.equals("Admin")){
-              AdminDashBoard dashboardFragment = new AdminDashBoard();
-             getFragmentManager().beginTransaction().replace(R.id.container_main, dashboardFragment).commit();
-             navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
-                 @Override
-                 public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-                     int id = item.getItemId();
-                     item.setChecked(true);
-                     if (id == R.id.home) {
-                         getFragmentManager().beginTransaction().replace(R.id.container_main, dashboardFragment).addToBackStack(null).commit();
-                     }
-                     else if (id == R.id.profile) {
-                         getFragmentManager().beginTransaction().replace(R.id.container_main, new ProfileDetail()).addToBackStack(null).commit();
-                     }else if (id == R.id.setting) {
-                         getFragmentManager().beginTransaction().replace(R.id.container_main, new Setting()).addToBackStack(null).commit();
-                     }
-                     else if (id == R.id.logout) {
-                         AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
-                         builder.setTitle("Logout Dailoge");
-                         builder.setMessage("Do You Want To Logout?");
-                         builder.setPositiveButton("Logout", new DialogInterface.OnClickListener() {
-                             @Override
-                             public void onClick(DialogInterface dialog, int which) {
-                                 SharedPreferences pref = getActivity().getSharedPreferences("login", MODE_PRIVATE);
-                                 SharedPreferences.Editor editor = pref.edit();
-                                 editor.putBoolean("flag", false)
-                                         .apply();
-                                 editor.commit();
+          if(user!=null) {
+              if (user.equals("Admin")) {
+                  AdminDashBoard dashboardFragment = new AdminDashBoard();
+                  getFragmentManager().beginTransaction().replace(R.id.container_main, dashboardFragment).commit();
+                  navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
+                      @Override
+                      public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+                          int id = item.getItemId();
+                          item.setChecked(true);
+                          if (id == R.id.home) {
+                              getFragmentManager().beginTransaction().replace(R.id.container_main, dashboardFragment).addToBackStack(null).commit();
+                          } else if (id == R.id.profile) {
+                              getFragmentManager().beginTransaction().replace(R.id.container_main, new ProfileDetail()).addToBackStack(null).commit();
+                          } else if (id == R.id.setting) {
+                              getFragmentManager().beginTransaction().replace(R.id.container_main, new Setting()).addToBackStack(null).commit();
+                          } else if (id == R.id.logout) {
+                              AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
+                              builder.setTitle("Logout Dailoge");
+                              builder.setMessage("Do You Want To Logout?");
+                              builder.setPositiveButton("Logout", new DialogInterface.OnClickListener() {
+                                  @Override
+                                  public void onClick(DialogInterface dialog, int which) {
+                                      SharedPreferences pref = getActivity().getSharedPreferences("login", MODE_PRIVATE);
+                                      SharedPreferences.Editor editor = pref.edit();
+                                      editor.putBoolean("flag", false)
+                                              .apply();
+                                      editor.commit();
 //                            getFragmentManager().beginTransaction().replace(R.id.main_container, new login()).commit();
-                                 Intent main_activity_intent = new Intent( getActivity(),  MainActivity.class);
-                                 startActivity(main_activity_intent);
-                             }
-                         });
-                         builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
-                             @Override
-                             public void onClick(DialogInterface dialog, int which) {
+                                      Intent main_activity_intent = new Intent(getActivity(), MainActivity.class);
+                                      startActivity(main_activity_intent);
+                                  }
+                              });
+                              builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+                                  @Override
+                                  public void onClick(DialogInterface dialog, int which) {
 
-                                 Toast.makeText(getContext(), "Cancelled", Toast.LENGTH_SHORT).show();
+                                      Toast.makeText(getContext(), "Cancelled", Toast.LENGTH_SHORT).show();
 
-                             }
-                         });
-                         builder.show();
-                     }
-                     drawerLayout.closeDrawer(GravityCompat.START);
-                     return true;
+                                  }
+                              });
+                              builder.show();
+                          }
+                          drawerLayout.closeDrawer(GravityCompat.START);
+                          return true;
 
-                 }
-             });
-         }
-        else {
-             Dashboard dashboardFragment = new Dashboard();
-             getFragmentManager().beginTransaction().replace(R.id.container_main, dashboardFragment).commit();
-             navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
-                 @Override
-                 public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-                     int id = item.getItemId();
-                     item.setChecked(true);
-                     if (id == R.id.home) {
-                         getFragmentManager().beginTransaction().replace(R.id.container_main, dashboardFragment).addToBackStack(null).commit();
-                     }
-                     else if (id == R.id.profile) {
-                         getFragmentManager().beginTransaction().replace(R.id.container_main, new ProfileDetail()).addToBackStack(null).commit();
-                     }else if (id == R.id.setting) {
-                         getFragmentManager().beginTransaction().replace(R.id.container_main, new Setting()).addToBackStack(null).commit();
-                     }
-                     else if (id == R.id.logout) {
-                         AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
-                         builder.setTitle("Logout Dailoge");
-                         builder.setMessage("Do You Want To Logout?");
-                         builder.setPositiveButton("Logout", new DialogInterface.OnClickListener() {
-                             @Override
-                             public void onClick(DialogInterface dialog, int which) {
-                                 SharedPreferences pref = getActivity().getSharedPreferences("login", MODE_PRIVATE);
-                                 SharedPreferences.Editor editor = pref.edit();
-                                 editor.putBoolean("flag", false)
-                                         .apply();
-                                 editor.commit();
+                      }
+                  });
+              }
+          }
+          else {
+                Dashboard dashboardFragment = new Dashboard();
+                getFragmentManager().beginTransaction().replace(R.id.container_main, dashboardFragment).commit();
+                navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
+                    @Override
+                    public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+                        int id = item.getItemId();
+                        item.setChecked(true);
+                        if (id == R.id.home) {
+                            getFragmentManager().beginTransaction().replace(R.id.container_main, dashboardFragment).addToBackStack(null).commit();
+                        } else if (id == R.id.profile) {
+                            getFragmentManager().beginTransaction().replace(R.id.container_main, new ProfileDetail()).addToBackStack(null).commit();
+                        } else if (id == R.id.setting) {
+                            getFragmentManager().beginTransaction().replace(R.id.container_main, new Setting()).addToBackStack(null).commit();
+                        } else if (id == R.id.logout) {
+                            AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
+                            builder.setTitle("Logout Dailoge");
+                            builder.setMessage("Do You Want To Logout?");
+                            builder.setPositiveButton("Logout", new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialog, int which) {
+                                    SharedPreferences pref = getActivity().getSharedPreferences("login", MODE_PRIVATE);
+                                    SharedPreferences.Editor editor = pref.edit();
+                                    editor.putBoolean("flag", false)
+                                            .apply();
+                                    editor.commit();
 //                            getFragmentManager().beginTransaction().replace(R.id.main_container, new login()).commit();
-                                 Intent main_activity_intent = new Intent( getActivity(),  MainActivity.class);
-                                 startActivity(main_activity_intent);
-                             }
-                         });
-                         builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
-                             @Override
-                             public void onClick(DialogInterface dialog, int which) {
+                                    Intent main_activity_intent = new Intent(getActivity(), MainActivity.class);
+                                    startActivity(main_activity_intent);
+                                }
+                            });
+                            builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialog, int which) {
 
-                                 Toast.makeText(getContext(), "Cancelled", Toast.LENGTH_SHORT).show();
+                                    Toast.makeText(getContext(), "Cancelled", Toast.LENGTH_SHORT).show();
 
-                             }
-                         });
-                         builder.show();
-                     }
-                     drawerLayout.closeDrawer(GravityCompat.START);
-                     return true;
+                                }
+                            });
+                            builder.show();
+                        }
+                        drawerLayout.closeDrawer(GravityCompat.START);
+                        return true;
 
-                 }
-             });
+                    }
+                });
 
-         }
+            }
+
         return view;
     }
 

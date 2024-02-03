@@ -36,20 +36,20 @@ public class Evidance3 extends Fragment {
        img = view.findViewById(R.id.Evidance_photo);
 
         EvidanceDeo evidanceDeo = new EvidanceDeo();
-        evidanceDeo.getoneEvidance(getArguments().getString("evidence_id"), getContext(), new Callback() {
-            @Override
-            public void onSuccess(Object obj) {
-                list = (ArrayList<Evidance>) obj;
-                Evidance evidance = list.get(0);
-                name.setText(evidance.getEvidance_name());
-                description.setText(evidance.getDiscription());
-                img.setImageResource(R.drawable.tutorial);
-            }
-            @Override
-            public void onErro(String errro) {
-                Toast.makeText(getContext(), "error while loading details", Toast.LENGTH_SHORT).show();
-            }
-        });
+//        evidanceDeo.getoneEvidance(getArguments().getString("evidence_id"), getContext(), new Callback() {
+//            @Override
+//            public void onSuccess(Object obj) {
+//                list = (ArrayList<Evidance>) obj;
+//                Evidance evidance = list.get(0);
+//                name.setText(evidance.getEvidance_name());
+//                description.setText(evidance.getDiscription());
+//                img.setImageResource(R.drawable.tutorial);
+//            }
+//            @Override
+//            public void onErro(String errro) {
+//                Toast.makeText(getContext(), "error while loading details", Toast.LENGTH_SHORT).show();
+//            }
+//        });
 
     return view;
     }
