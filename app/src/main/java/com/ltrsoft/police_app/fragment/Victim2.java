@@ -14,6 +14,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.ltrsoft.police_app.Adapter.VictimAdapter2;
 import com.ltrsoft.police_app.Classes.Victim;
+import com.ltrsoft.police_app.Classes.Victimtracking;
 import com.ltrsoft.police_app.Model.VictimDeo;
 import com.ltrsoft.police_app.R;
 import com.ltrsoft.police_app.interface1.Callback;
@@ -39,16 +40,17 @@ public class Victim2 extends Fragment {
         victim2=view.findViewById(R.id.victime2);
         ActionBar actionBar = ((AppCompatActivity) requireActivity()).getSupportActionBar();
         Bundle bundle = getArguments();
-        Toast.makeText(getContext(), "id = "+bundle.getString("victim_id"), Toast.LENGTH_SHORT).show();
+//        Toast.makeText(getContext(), "id = "+bundle.getString("victim_id"), Toast.LENGTH_SHORT).show();
+        String id=bundle.getString("victim_id");
         if (actionBar != null) {
             actionBar.setTitle("Victim History By Dates");
         }
 
         VictimDeo victimDeo = new VictimDeo();
-        victimDeo.getVictimByDate(getContext(), new Callback() {
+        victimDeo.getVictimByDate(id,getContext(), new Callback() {
             @Override
             public void onSuccess(Object obj) {
-                VictimAdapter2 adapter = new VictimAdapter2((ArrayList<Victim>) obj);
+                VictimAdapter2 adapter = new VictimAdapter2((ArrayList<Victimtracking>) obj);
                 LinearLayoutManager layoutManager= new LinearLayoutManager(getContext());
                 victim2.setLayoutManager(layoutManager);
                 victim2.setAdapter(adapter);
@@ -56,7 +58,7 @@ public class Victim2 extends Fragment {
 
             @Override
             public void onErro(String errro) {
-
+                Toast.makeText(getContext(), "eror "+errro.toString(), Toast.LENGTH_SHORT).show();
             }
         });
         return view;

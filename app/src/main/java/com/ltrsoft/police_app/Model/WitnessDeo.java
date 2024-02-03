@@ -14,6 +14,7 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.ltrsoft.police_app.Classes.Witness;
+import com.ltrsoft.police_app.Classes.WitnessTracking;
 import com.ltrsoft.police_app.interface1.Callback;
 import com.ltrsoft.police_app.utils.UserDataAccess;
 
@@ -31,8 +32,7 @@ public class WitnessDeo {
     Witness create_witness;
     Witness update_witness;
     Witness delete_witness;
-     String getoneWitness_URL = "https://rj.ltr-soft.com/public/police_api/data/complaint_by_date.php";
-
+     String getwitnessDetailByDate = "https://rj.ltr-soft.com/public/police_api/history_tracking/read_by_witness.php";
     String Search_URL = "";
     String delete_URL = "";
 
@@ -42,6 +42,7 @@ public class WitnessDeo {
     String getOneWitness_URL = "https://rj.ltr-soft.com/public/police_api/investigation_witness/i_witness_id.php";
     String searcgUrl = "";
     public ArrayList<Witness> list = new ArrayList<>();
+    public ArrayList<WitnessTracking> listt= new ArrayList<>();
     public ArrayList<String> search_list = new ArrayList<String>();
 
     private static String GET_ONE_WITNESS_By_Witness_Id_Url = "https://rj.ltr-soft.com/public//police_api/data/c_witness_id.php";
@@ -311,60 +312,35 @@ public class WitnessDeo {
         RequestQueue requestQueue = Volley.newRequestQueue(context);
         requestQueue.add(stringRequest);
     }
-    public void getWitnessByDate( Context context ,Callback callback) {
-        StringRequest stringRequest = new StringRequest(Request.Method.POST, getoneWitness_URL,
+    public void getWitnessByDate(String witness_id, Context context ,Callback callback) {
+        StringRequest stringRequest = new StringRequest(Request.Method.POST, getwitnessDetailByDate,
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {
                         System.out.println("response "+response.toString());
-                        try {
-                            JSONArray jsonArray = new JSONArray(response);
-                            for (int i = 0; i < jsonArray.length(); i++) {
-                                JSONObject jsonObject = jsonArray.getJSONObject(i);
-                                String country = jsonObject.getString("country_name");
-                                String state = jsonObject.getString("state_name");
-                                String district = jsonObject.getString("district_name");
-                                String city = jsonObject.getString("city_name");
-                                //  "complaint_witness_id": "1",
-                                //        "complaint_witness_fname": "Gagan",
-                                //        "complaint_witness_mname": "John",
-                                //        "complaint_witness_lname": "Yadav",
-                                //        "complaint_witness_address": "dsgra",
-                                //        "complaint_witness_dob": "2003-11-09",
-                                //        "complaint_witness_gender": "Male",
-                                //        "complaint_witness_mobile": "67658733",
-                                //        "complaint_witness_email": "samar11@g,ail.com",
-                                //        "complaint_witness_photo_path": "inputfiles/abc.gpg",
-                                //        "complaint_witness_pan": "564564565",
-                                //        "complaint_witness_adhar": "876554567",
-                                //        "complaint_witness_desc": "",
-                                String fname = jsonObject.getString("complaint_witness_fname");
-                                String mname = jsonObject.getString("complaint_witness_mname");
-                                String lname = jsonObject.getString("complaint_witness_lname");
-                                String address = jsonObject.getString("complaint_witness_address");
-
-                                String dob = jsonObject.getString("complaint_witness_dob");
-                                String email = jsonObject.getString("complaint_witness_email");
-                                String adhar = jsonObject.getString("complaint_witness_adhar");
-                                String gender = jsonObject.getString("complaint_witness_gender");
-
-                                String photo_path = jsonObject.getString("complaint_witness_photo_path");
-                                String pan = jsonObject.getString("complaint_witness_pan");
-                                String mobile = jsonObject.getString("complaint_witness_mobile");
-                                String is_witness = jsonObject.getString("is_c_witness");
-                                String fir_id = jsonObject.getString("complaint_id");
-                                String investigation_witness_id = "000";
-                                list.add(witnessone = new Witness(country, state, district, city, fname, mname,
-                                        lname, address,
-                                        dob, email, adhar, gender,
-                                        photo_path, pan, mobile, is_witness,
-                                        fir_id, investigation_witness_id));
+                        if (!response.isEmpty()&&response.length()>1) {
+                            try {
+                                JSONArray jsonArray = new JSONArray(response);
+                                for (int i = 0; i < jsonArray.length(); i++) {
+                                    JSONObject jsonObject = jsonArray.getJSONObject(i);
+                                    String witness_history_id = jsonObject.getString("witness_history_id");
+                                    String witness_id = jsonObject.getString("witness_id");
+                                    String police_id = jsonObject.getString("police_id");
+                                    String tracking_date = jsonObject.getString("tracking_date");
+                                    String operation = jsonObject.getString("operation");
+                                    String description = jsonObject.getString("description");
+                                    String created_at = jsonObject.getString("created_at");
+                                    listt.add(new WitnessTracking(witness_history_id, witness_id, police_id, tracking_date, operation, description, created_at));
+                                }
+                                callback.onSuccess(listt);
+                            } catch (Exception e) {
+                                callback.onErro(e.toString());
+                                e.printStackTrace();
+                                throw new RuntimeException(e);
                             }
-                            callback.onSuccess(list);
-                        } catch (Exception e) {
-                            callback.onErro(e.toString());
-                            e.printStackTrace();
-                            throw new RuntimeException(e);
+                        }
+                        else {
+                            callback.onErro("NoData");
                         }
                     }
                 },
@@ -379,12 +355,11 @@ public class WitnessDeo {
             @Override
             protected Map<String, String> getParams() throws AuthFailureError {
                 HashMap<String, String> map = new HashMap<>();
-                map.put("created_date", "2023-12-25");
+//                map.put("witness_id", "3");
+                map.put("witness_id", witness_id);
                 return map;
             }
         };
-
-
         RequestQueue requestQueue = Volley.newRequestQueue(context);
         requestQueue.add(stringRequest);
 

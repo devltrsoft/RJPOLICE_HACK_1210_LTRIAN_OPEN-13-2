@@ -14,6 +14,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.ltrsoft.police_app.Adapter.SuspectAdapter2;
 import com.ltrsoft.police_app.Classes.Suspect;
+import com.ltrsoft.police_app.Classes.SuspectTracking;
 import com.ltrsoft.police_app.Model.SuspectDeo;
 import com.ltrsoft.police_app.R;
 import com.ltrsoft.police_app.interface1.Callback;
@@ -22,24 +23,23 @@ import java.util.ArrayList;
 
 public class Suspect2 extends Fragment {
     private RecyclerView recyclerView;
-    private ArrayList<Suspect> list = new ArrayList<>();
+    private ArrayList<SuspectTracking> list = new ArrayList<>();
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.suspect__history__dashboard, container, false);
-        recyclerView = view.findViewById(R.id.suspectHistoryRecycler);
+        View view = inflater.inflate(R.layout.suspect2, container, false);
+        recyclerView = view.findViewById(R.id.suspect2recycler);
         ActionBar actionBar = ((AppCompatActivity) requireActivity()).getSupportActionBar();
 
         if (actionBar != null) {
             actionBar.setTitle("Suspect History By Dates");
         }
-        Toast.makeText(getContext(), "suspect id ="+getArguments().getString("investigation_suspect_id"), Toast.LENGTH_SHORT).show();
+        String suspect_id=getArguments().getString("investigation_suspect_id");
+        Toast.makeText(getContext(), "suspect id ="+suspect_id, Toast.LENGTH_SHORT).show();
         SuspectDeo suspectDeo = new SuspectDeo();
-        suspectDeo.getSuspectByDate("2023-12-25", getContext(), new Callback() {
+        suspectDeo.getSuspectByDate(suspect_id, getContext(), new Callback() {
             @Override
             public void onSuccess(Object obj) {
-               // Toast.makeText(getContext(), "success"+obj.toString(), Toast.LENGTH_SHORT).show();
-
-                SuspectAdapter2 adapter2 = new SuspectAdapter2((ArrayList<Suspect>) obj);
+                SuspectAdapter2 adapter2 = new SuspectAdapter2((ArrayList<SuspectTracking>) obj);
                 LinearLayoutManager layoutManager = new LinearLayoutManager(getContext());
                 recyclerView.setLayoutManager(layoutManager);
                 recyclerView.setAdapter(adapter2);

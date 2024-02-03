@@ -45,7 +45,7 @@ public class WitnessAdapter1 extends RecyclerView.Adapter<WitnessAdapter1.ViewHo
             public void onClick(View v) {
                 AppCompatActivity activity = (AppCompatActivity) v.getContext();
                 Bundle bundle = new Bundle();
-                bundle.putString("witness_id", "1");
+                bundle.putString("witness_id", item.getInvestigation_witness_id());
                 Witness2 witnessSecond = new Witness2();
                 witnessSecond.setArguments(bundle);
                 activity.getSupportFragmentManager().beginTransaction().replace(R.id. container_main, witnessSecond).addToBackStack(null).commit();

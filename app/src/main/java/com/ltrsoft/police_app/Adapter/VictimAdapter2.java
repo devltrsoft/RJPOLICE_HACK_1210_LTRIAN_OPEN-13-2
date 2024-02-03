@@ -12,14 +12,15 @@ import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.ltrsoft.police_app.Classes.Victim;
+import com.ltrsoft.police_app.Classes.Victimtracking;
 import com.ltrsoft.police_app.R;
 import com.ltrsoft.police_app.fragment.Victim3;
 
 import java.util.ArrayList;
 
 public class VictimAdapter2 extends RecyclerView.Adapter<VictimAdapter2.viewholder> {
-    private ArrayList<Victim> list;
-    public VictimAdapter2(ArrayList<Victim>list){
+    private ArrayList<Victimtracking> list;
+    public VictimAdapter2(ArrayList<Victimtracking>list){
        this.list=list;
     }
 
@@ -32,11 +33,11 @@ public class VictimAdapter2 extends RecyclerView.Adapter<VictimAdapter2.viewhold
 
     @Override
     public void onBindViewHolder(@NonNull viewholder holder, int position) {
-        Victim victimClass=list.get(position);
+        Victimtracking victimClass=list.get(position);
         holder.victim_id.setText("victim id"+victimClass.getInvestigation_victim_id());
-        holder.victim_name.setText("victim  name    "+victimClass.getFname());
-        holder.victim_date.setText("victim date  "+victimClass.getDob());
-        holder.victim_changed_date.setText("victim changed date"+victimClass.getDob());
+        holder.victim_name.setText("changed at    "+victimClass.getDescription());
+        holder.victim_date.setText("opration "+victimClass.getOperation());
+        holder.victim_changed_date.setText("changed by"+victimClass.getPolice_id());
 
 
 
@@ -46,29 +47,14 @@ public class VictimAdapter2 extends RecyclerView.Adapter<VictimAdapter2.viewhold
                 AppCompatActivity activity = (AppCompatActivity) v.getContext();
                 Victim3 w = new Victim3();
                 Bundle bundle=new Bundle();
-                bundle.putString("victim_id", "1");
+                bundle.putString("victim_id",victimClass.getInvestigation_victim_id());
                 bundle.putString("type", "investigation");
-//                bundle.putString("victim_fname", victimClass.getFname ());
-//                bundle.putString("complaint_victim_mname", victimClass.getMname());
-//                bundle.putString("complaint_victim_lname", victimClass.getLname());
-//                bundle.putString("address",victimClass.getAddress());
-//                bundle.putString("gender",victimClass.getGender());
-//                bundle.putString("aadhar",victimClass.getAdhar());
-//                bundle.putString("photo",victimClass.getPhoto_path());
-//                bundle.putString("dob",victimClass.getDob());
-//                bundle.putString("mobile",victimClass.getMobile());
-//                bundle.putString("state_name",victimClass.getState());
-//                bundle.putString("district_name",victimClass.getDistrict());
-//                bundle.putString("country_name",victimClass.getCountry());
-//                bundle.putString("city_name",victimClass.getCity());
                  w.setArguments(bundle);
 
                 activity.getSupportFragmentManager().beginTransaction().replace(R.id. container_main, w).addToBackStack(null).commit();
             }
         });
-
     }
-
     @Override
     public int getItemCount() {
         return list.size();

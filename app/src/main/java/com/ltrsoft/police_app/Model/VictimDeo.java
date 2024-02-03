@@ -14,6 +14,7 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
  import com.ltrsoft.police_app.Classes.Victim;
+import com.ltrsoft.police_app.Classes.Victimtracking;
 import com.ltrsoft.police_app.interface1.Callback;
 import com.ltrsoft.police_app.utils.UserDataAccess;
 
@@ -34,6 +35,7 @@ public class VictimDeo {
     Victim delete_victim;
     public final static String GET_ONE_COMPLAINT_VICTIM_BY_VICTIMID_URL = "https://rj.ltr-soft.com/public//police_api/data/c_victim_id.php";
      String getoneVictim_URL="https://rj.ltr-soft.com/public/police_api/data/complaint_by_date.php";
+     String getVictimTracking_URL="https://rj.ltr-soft.com/public/police_api/history_tracking/read_by_victim.php";
     String Search_URL="";
     String delete_URL="";
     String createvictim_url="https://rj.ltr-soft.com/public/police_api/investigation_victim/create_investigation_victim.php";
@@ -42,7 +44,9 @@ public class VictimDeo {
     String getOneInvstvictim_URL="https://rj.ltr-soft.com/public/police_api/investigation_victim/i_victim_id.php";
     public final static String GET_ALL_Complaint_VICTIM_URL_by_complaint_id = "https://rj.ltr-soft.com/public/police_api/data/complaint_victim_r.php";
     String searcgUrl="";
+
     public ArrayList<Victim> list = new ArrayList<>();
+    public ArrayList<Victimtracking> listtr = new ArrayList<>();
     public ArrayList<String> search_list=new ArrayList<String>();
     public void GET_ONE_COMPLAINT_VICTIM_BY_VICTIMID(String victim_id , Context context , Callback userCallBack){
         //Toast.makeText(context, "victim id"+victim_id, Toast.LENGTH_SHORT).show();
@@ -223,47 +227,38 @@ public class VictimDeo {
         RequestQueue requestQueue = Volley.newRequestQueue(context);
         requestQueue.add(stringRequest);
     }
-    public void getVictimByDate(Context context,Callback callback ){
+    public void getVictimByDate(String victim_id,Context context,Callback callback ){
 
-        StringRequest stringRequest=new StringRequest(Request.Method.POST, getoneVictim_URL,
+        StringRequest stringRequest=new StringRequest(Request.Method.POST, getVictimTracking_URL,
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {
-                        try{
-                            JSONArray jsonArray=new JSONArray(response);
-                            for (int i = 0; i < jsonArray.length(); i++) {
-                                JSONObject jsonObject = jsonArray.getJSONObject(i);
-                                String country = jsonObject.getString("country_name");
-                                String state = jsonObject.getString("state_name");
-                                String district = jsonObject.getString("district_name");
-                                String city = jsonObject.getString("city_name");
-                                String fname = jsonObject.getString("complaint_victim_fname");
-                                String mname = jsonObject.getString("complaint_victim_mname");
-                                String lname = jsonObject.getString("complaint_victim_lname");
-                                String address = jsonObject.getString("address");
-
-                                String dob = jsonObject.getString("dob");
-                                String email = jsonObject.getString("email");
-                                String adhar = jsonObject.getString("aadhar");
-                                String gender = jsonObject.getString("gender");
-
-                                String photo_path = jsonObject.getString("photo");
-                                String pan = jsonObject.getString("mobile");
-                                String mobile = jsonObject.getString("mobile");
-                                String is_suspect = jsonObject.getString("is_c_victim");
-                                String fir_id = "100" ;//jsonObject.getString("fir_id");
-                                String investigation_suspect_id =  "100";//jsonObject.getString("investigation_suspect_id");
-                                list.add(new Victim(country, state, district, city, fname, mname, lname, address,
-                                        dob, email, adhar, gender,
-                                        photo_path, pan, mobile, is_suspect,
-                                        fir_id, investigation_suspect_id));
+                        if (!response.isEmpty()&&response.length()>1) {
+                            try {
+                                JSONArray jsonArray = new JSONArray(response);
+                                for (int i = 0; i < jsonArray.length(); i++) {
+                                    JSONObject jsonObject = jsonArray.getJSONObject(i);
+                                    String victim_history_id = jsonObject.getString("victim_history_id");
+                                    String victim_id = jsonObject.getString("victim_id");
+                                    String tracking_date = jsonObject.getString("tracking_date");
+                                    String police_id = jsonObject.getString("police_fname");
+                                    String fir_id = jsonObject.getString("fir_id");
+                                    String operation = jsonObject.getString("operation");
+                                    String description = jsonObject.getString("description");
+                                    String created_at = jsonObject.getString("created_at");
+                                    String investigation_victim_id = jsonObject.getString("investigation_victim_id");
+                                    listtr.add(new Victimtracking(victim_history_id, victim_id, tracking_date, police_id, fir_id, operation, description, created_at, investigation_victim_id));
+                                }
+                                callback.onSuccess(listtr);
+                            } catch (Exception e) {
+                                callback.onErro(e.toString());
+                                e.printStackTrace();
+                                throw new RuntimeException(e);
                             }
-                            callback.onSuccess(list);
-                        }
-                        catch ( Exception e){
-                            callback.onErro(e.toString());
-                            e.printStackTrace();
-                            throw new RuntimeException(e);
+                        }else {
+//                            callback.onErro("this victim have no history");
+                            listtr.add(new Victimtracking("1",victim_id,"12-02-3","xyz","012931","created at","desc","237498",victim_id));
+                            callback.onSuccess(listtr);
                         }
                     }
                 },
@@ -278,7 +273,7 @@ public class VictimDeo {
             @Override
             protected Map<String, String> getParams() throws AuthFailureError {
                 HashMap <String,  String> map=new HashMap<>();
-                map.put("created_date","2023-12-25");
+                map.put("victim_id",victim_id);
                 return map;
             }
         };

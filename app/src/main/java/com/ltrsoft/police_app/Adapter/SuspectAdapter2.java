@@ -13,15 +13,16 @@ import androidx.recyclerview.widget.RecyclerView;
 
 
 import com.ltrsoft.police_app.Classes.Suspect;
+import com.ltrsoft.police_app.Classes.SuspectTracking;
 import com.ltrsoft.police_app.R;
 import com.ltrsoft.police_app.fragment.Suspect3;
 
 import java.util.ArrayList;
 
 public class SuspectAdapter2 extends RecyclerView.Adapter<SuspectAdapter2.ViewHolder> {
-    private ArrayList<Suspect> dataList;
+    private ArrayList<SuspectTracking> dataList;
 
-    public SuspectAdapter2(ArrayList<Suspect> dataList) {
+    public SuspectAdapter2(ArrayList<SuspectTracking> dataList) {
         this.dataList = dataList;
     }
 
@@ -33,26 +34,19 @@ public class SuspectAdapter2 extends RecyclerView.Adapter<SuspectAdapter2.ViewHo
     }
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-        Suspect item = dataList.get(position);
-        holder.tvi.setText("Suspect ID: " + item.getInvestigation_suspect_id());
-        holder.textSuspectName.setText("Suspect Name: " + item.getFname());
-        holder.textSuspectDate.setText("Suspect Date: " + item.getDob());
-
+        SuspectTracking item = dataList.get(position);
+        holder.tvi.setText("Suspect ID: " + item.getSuspect_id());
+        holder.textSuspectName.setText("Suspect Name: " + item.getOperation());
+        holder.textSuspectDate.setText("Suspect Date: " + item.getDescription());
+        holder.change_date.setText("Change Date :"+item.getCreated_at());
         holder.cardView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 AppCompatActivity activity = (AppCompatActivity) v.getContext();
                 Suspect3 s = new Suspect3();
                 Bundle bundle=new Bundle();
-                 bundle.putString("suspect_id",  "3");
-//                bundle.putString("name", item.getFname());
-//                bundle.putString("gender",item.getGender());
-//                bundle.putString("mobile",item.getMobile());
-//                bundle.putString("email",item.getEmail());
-//                bundle.putString("adhar",item.getAdhar());
-//                bundle.putString("cname",item. getCountry());
-//                bundle.putString("dname",item. getDistrict());
-//                bundle.putString("sname",item.getState());
+                 bundle.putString("suspect_id",  item.getSuspect_id());
+                bundle.putString("type", "investigation");
                 s.setArguments(bundle);
                 activity.getSupportFragmentManager().beginTransaction().replace(R.id.container_main, s).addToBackStack(null).commit();
             }
@@ -76,6 +70,7 @@ public class SuspectAdapter2 extends RecyclerView.Adapter<SuspectAdapter2.ViewHo
             textSuspectDate = itemView.findViewById(R.id.SuspectDate);
             change_date=itemView.findViewById(R.id.change_date);
             cardView = itemView.findViewById(R.id.scard);
+
         }
     }
 }

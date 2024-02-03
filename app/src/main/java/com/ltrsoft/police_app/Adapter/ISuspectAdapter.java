@@ -51,10 +51,6 @@ public class ISuspectAdapter extends RecyclerView.Adapter<ISuspectAdapter.ViewHo
         holder.name.setText(iSuspectClass.getFname());
         holder.phone.setText(iSuspectClass. getMobile());
         holder.location.setText(iSuspectClass. getAddress());
-
-
-
-
         holder.cardView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -63,6 +59,7 @@ public class ISuspectAdapter extends RecyclerView.Adapter<ISuspectAdapter.ViewHo
                     Suspect3 suspect3 = new Suspect3();
                     Bundle bundle1 = new Bundle();
                     bundle1.putString("suspect_id", iSuspectClass.getComplaint_suspect_id());
+                    bundle1.putString("type","complaints" );
                     suspect3.setArguments(bundle1);
                     activity.getSupportFragmentManager()
                             .beginTransaction()

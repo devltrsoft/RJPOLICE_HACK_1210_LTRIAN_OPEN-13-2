@@ -53,39 +53,39 @@ public class Suspect3 extends Fragment {
         if (actionBar != null) {
             actionBar.setTitle("Suspect History Detail");
         }
+
         Bundle bundle1=getArguments();
-        if(bundle1!=null){
+        if (bundle1.getString("type").equals("complaints")){
             String suspect_id=bundle1.getString("suspect_id");
             Toast.makeText(getContext(), ""+suspect_id, Toast.LENGTH_SHORT).show();
             SuspectDeo suspectDeo=new SuspectDeo();
-         suspectDeo.getone_Complaint_Suspect_by_Suspect_id(suspect_id, getContext(), new Callback() {
-             @Override
-             public void onSuccess(Object obj) {
-                 ArrayList <Suspect>suspectlist= (ArrayList<Suspect>) obj;
-                 Suspect suspect= suspectlist.get(0);
+            suspectDeo.getone_Complaint_Suspect_by_Suspect_id(suspect_id, getContext(), new Callback() {
+                @Override
+                public void onSuccess(Object obj) {
+                    ArrayList <Suspect>suspectlist= (ArrayList<Suspect>) obj;
+                    Suspect suspect= suspectlist.get(0);
 
-                 sid.setText(suspect.getComplaint_suspect_id());
-                 suspect_dob.setText(suspect.getDob());
-                 Suspect_full_name.setText(suspect.getFname());
-                  suspect_address.setText(suspect.getMname());
-                 suspect_gender.setText(suspect.getGender());
-                 suspect_mobile.setText(suspect.getMobile());
-                 suspect_email.setText(suspect.getEmail());
-                 suspect_country.setText(suspect.getCountry());
-                 suspect_district.setText(suspect.getDistrict());
-                 suspect_state.setText(suspect.getState());
-                 suspect_city.setText(suspect.getCity());
-              }
-             @Override
-             public void onErro(String errro) {
+                    sid.setText(suspect.getComplaint_suspect_id());
+                    suspect_dob.setText(suspect.getDob());
+                    Suspect_full_name.setText(suspect.getFname());
+                    suspect_address.setText(suspect.getMname());
+                    suspect_gender.setText(suspect.getGender());
+                    suspect_mobile.setText(suspect.getMobile());
+                    suspect_email.setText(suspect.getEmail());
+                    suspect_country.setText(suspect.getCountry());
+                    suspect_district.setText(suspect.getDistrict());
+                    suspect_state.setText(suspect.getState());
+                    suspect_city.setText(suspect.getCity());
+                }
+                @Override
+                public void onErro(String errro) {
 
-             }
-         });
+                }
+            });
         }
-
-        Bundle bundle = getArguments();
-        if(bundle !=null) {
-           String id=bundle.getString("suspect_id");
+        else if(bundle1.getString("type").equals("investigation")) {
+           String id=bundle1.getString("suspect_id");
+            Toast.makeText(getContext(), "id ="+id, Toast.LENGTH_SHORT).show();
            SuspectDeo suspectDeo = new SuspectDeo();
            suspectDeo.getOneSuspect(id, getContext(), new Callback() {
                @Override
