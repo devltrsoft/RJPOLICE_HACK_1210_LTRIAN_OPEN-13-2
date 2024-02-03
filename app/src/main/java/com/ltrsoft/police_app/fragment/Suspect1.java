@@ -92,8 +92,8 @@ public class Suspect1 extends Fragment {
             }
             @Override
             public void onNothingSelected(AdapterView<?> adapterView) {
-//                fir_id=firlist.get(0);
-//                loadSuspectBYFirId(fir_id);
+               fir_id=firlist.get(0);
+                loadSuspectBYFirId(fir_id);
             }
         });
         return view;

@@ -22,6 +22,7 @@ import com.ltrsoft.police_app.Model.PoliceDeo;
 import com.ltrsoft.police_app.Model.WitnessDeo;
 import com.ltrsoft.police_app.R;
 import com.ltrsoft.police_app.interface1.Callback;
+import com.ltrsoft.police_app.utils.UserDataAccess;
 
 import java.util.ArrayList;
 
@@ -42,6 +43,47 @@ public class Witness1 extends Fragment {
         if (actionBar != null) {
             actionBar.setTitle("  Witness History");
         }
+        PoliceDeo policeDeo=new PoliceDeo();
+        UserDataAccess userDataAccess=new UserDataAccess();
+        String user=userDataAccess.getuser(getActivity());
+
+        if(user.equals("Admin")){
+            policeDeo.getfir_id_by_station_id(getContext(), new Callback() {
+                @Override
+
+
+                public void onSuccess(Object obj) {
+                    // Toast.makeText(getContext(), ""+user, Toast.LENGTH_SHORT).show();
+                    firlist=(ArrayList) obj;
+                    ArrayAdapter adapter2;
+                    adapter2 = new ArrayAdapter(getContext(), android.R.layout.simple_expandable_list_item_1,firlist);
+                    adapter2.setDropDownViewResource(android.R.layout.simple_expandable_list_item_1);
+                    fir_spinner .setAdapter(adapter2);
+                }
+
+                @Override
+                public void onErro(String errro) {
+                    Toast.makeText(getContext(), ""+errro, Toast.LENGTH_SHORT).show();
+
+                }
+            });
+        }else {
+            policeDeo.getfir_id(getContext(), new Callback() {
+                @Override
+                public void onSuccess(Object obj) {
+                    firlist = (ArrayList) obj;
+                    ArrayAdapter adapter2;
+                    adapter2 = new ArrayAdapter(getContext(), android.R.layout.simple_expandable_list_item_1, firlist);
+                    adapter2.setDropDownViewResource(android.R.layout.simple_expandable_list_item_1);
+                    fir_spinner.setAdapter(adapter2);
+                }
+
+                @Override
+                public void onErro(String errro) {
+                    Toast.makeText(getContext(), "" + errro, Toast.LENGTH_SHORT).show();
+                }
+            });
+        }
         fir_spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
@@ -56,22 +98,7 @@ public class Witness1 extends Fragment {
             }
         });
 
-        PoliceDeo policeDeo=new PoliceDeo();
-        policeDeo.getfir_id(getContext(), new Callback() {
-            @Override
-            public void onSuccess(Object obj) {
-                firlist=(ArrayList) obj;
-                ArrayAdapter adapter2;
-                adapter2 = new ArrayAdapter(getContext(), android.R.layout.simple_expandable_list_item_1,firlist);
-                adapter2.setDropDownViewResource(android.R.layout.simple_expandable_list_item_1);
-                fir_spinner .setAdapter(adapter2);
 
-            }
-            @Override
-            public void onErro(String errro) {
-                Toast.makeText(getContext(), ""+errro, Toast.LENGTH_SHORT).show();
-            }
-        });
         return view;
     }
 
