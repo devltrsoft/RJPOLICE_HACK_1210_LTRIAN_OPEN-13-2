@@ -48,6 +48,7 @@ public class PoliceDeo {
     String searcgUrl="";
     public static ArrayList<AllotedCaseHistoryClass> list = new ArrayList<AllotedCaseHistoryClass>();
     public ArrayList<String> search_list=new ArrayList<String>();
+    String getFir_id_by_Station_Id="https://rj.ltr-soft.com/public/police_api/data/station_i_read.php";
 //    public ArrayList<Police> getAllnotification(String notification_id, Context context) {
 //
 //        StringRequest stringRequest = new StringRequest(Request.Method.POST,  getAllpolice_URL,
@@ -121,7 +122,7 @@ public class PoliceDeo {
         Activity activity = (Activity) context;
         String station_id = access.getStationId(activity);
         StringRequest stringRequest = new StringRequest(Request.Method.POST,
-                Fir_id_URL,
+                getFir_id_by_Station_Id,
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {
